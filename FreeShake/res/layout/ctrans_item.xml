@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    >
+<ImageView 
+    android:id="@+id/ctrans_item_iv"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/sr4"
+    android:background="@drawable/circle_shape_bg" 
+    android:contentDescription="@string/empty"/>
+</LinearLayout>
