@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.paitao.freeshake"
+    package="com.geekchic.freeshake"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -13,8 +13,10 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <uses-library android:name="android.test.runner" />
+
         <activity
-            android:name="com.paitao.freeshake.MainActivity"
+            android:name="com.geekchic.freeshake.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,5 +25,10 @@
             </intent-filter>
         </activity>
     </application>
+
+    <instrumentation
+        android:name="android.test.InstrumentationTestRunner"
+        android:label="com.geekchic.freeshake"
+        android:targetPackage="com.geekchic.freeshake" />
 
 </manifest>
