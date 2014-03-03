@@ -1,4 +1,4 @@
-package com.paitao.freeshake.comm;
+package com.paitao.comm;
 
 import android.app.Service;
 import android.content.Context;

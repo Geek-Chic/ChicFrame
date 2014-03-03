@@ -1,4 +1,4 @@
-package com.paitao.freeshake.comm;
+package com.paitao.comm;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;

@@ -1,4 +1,4 @@
-package com.paitao.freeshake.comm;
+package com.paitao.comm;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;

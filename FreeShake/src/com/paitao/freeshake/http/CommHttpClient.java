@@ -31,7 +31,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.text.TextUtils;
 
-import com.paitao.freeshake.comm.LogUtil;
+import com.paitao.comm.LogUtil;
 
 public class CommHttpClient
 {

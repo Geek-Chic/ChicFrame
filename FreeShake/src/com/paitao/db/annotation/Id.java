@@ -1,4 +1,4 @@
-package com.paitao.freeshake.db.annotation;
+package com.paitao.db.annotation;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

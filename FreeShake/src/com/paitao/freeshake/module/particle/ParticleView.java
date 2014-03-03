@@ -2,7 +2,7 @@ package com.paitao.freeshake.module.particle;
 
 import java.util.List;
 
-import com.paitao.freeshake.comm.GlobalUtil;
+import com.paitao.comm.GlobalUtil;
 
 import android.content.Context;
 import android.graphics.Canvas;

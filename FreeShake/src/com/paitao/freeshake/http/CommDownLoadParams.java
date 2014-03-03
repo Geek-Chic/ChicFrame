@@ -3,7 +3,7 @@ package com.paitao.freeshake.http;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import com.paitao.freeshake.comm.LogUtil;
+import com.paitao.comm.LogUtil;
 
 import android.content.Context;
 

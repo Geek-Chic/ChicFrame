@@ -1,4 +1,4 @@
-package com.paitao.freeshake.db.util;
+package com.paitao.db;
 
 import java.lang.reflect.Field;
 import java.sql.Blob;
@@ -10,12 +10,12 @@ import java.util.Map;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.paitao.freeshake.db.annotation.Column;
-import com.paitao.freeshake.db.annotation.Id;
-import com.paitao.freeshake.db.annotation.Table;
+import com.paitao.db.annotation.Column;
+import com.paitao.db.annotation.Id;
+import com.paitao.db.annotation.Table;
 
-public class TableHelper {
-	private static final String TAG = "AHibernate";
+public class TableUtils {
+	private static final String TAG = "TableUtils";
 
 	public static <T> void createTablesByClasses(SQLiteDatabase db,
 			Class<?>[] clazzs) {
@@ -28,7 +28,7 @@ public class TableHelper {
 		for (Class<?> clazz : clazzs)
 			dropTable(db, clazz);
 	}
-
+     
 	public static <T> void createTable(SQLiteDatabase db, Class<T> clazz) {
 		String tableName = "";
 		if (clazz.isAnnotationPresent(Table.class)) {
@@ -39,7 +39,7 @@ public class TableHelper {
 		StringBuilder sb = new StringBuilder();
 		sb.append("CREATE TABLE ").append(tableName).append(" (");
 
-		List<Field> allFields = TableHelper
+		List<Field> allFields = TableUtils
 				.joinFields(clazz.getDeclaredFields(), clazz.getSuperclass()
 						.getDeclaredFields());
 		for (Field field : allFields) {

@@ -21,8 +21,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.paitao.comm.GlobalUtil;
 import com.paitao.freeshake.R;
-import com.paitao.freeshake.comm.GlobalUtil;
 import com.paitao.freeshake.module.particle.ParticleView;
 
 public class CtransMenu extends FrameLayout
