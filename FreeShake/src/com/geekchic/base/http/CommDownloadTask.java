@@ -3,9 +3,15 @@ package com.geekchic.base.http;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
+
+import com.geekchic.common.LogUtil;
+import com.geekchic.common.NetStringUtil;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -30,9 +36,11 @@ public class CommDownloadTask extends AsyncTask<CommDownLoadParams, Integer, Voi
     public CommDownloadTask(Context context,CommDownloadTaskListener listener){
         mContext=context;
         this.mCommDownloadTaskListener=listener;
-        mCommHttpDBOps=new CommHttpInfoDBImpl(context);
     }
     
+    /* (non-Javadoc)
+     * @see android.os.AsyncTask#doInBackground(Params[])
+     */
     @Override
     protected Void doInBackground(CommDownLoadParams... params)
     {
@@ -48,16 +56,6 @@ public class CommDownloadTask extends AsyncTask<CommDownLoadParams, Integer, Voi
              cancel(true);
              return null;
          }
-         BufferedInputStream bis=null;
-         BufferedOutputStream bos=null;
-         try
-        {
-            HttpURLConnection connection=(HttpURLConnection)downloadURL.openConnection();
-        }
-        catch (Exception e)
-        {
-            // TODO: handle exception
-        } 
          mDownloadTaskMap.put(fileAbsolutePath, this);
          if(!file.getParentFile().exists()){
              file.getParentFile().mkdirs();
@@ -66,7 +64,158 @@ public class CommDownloadTask extends AsyncTask<CommDownLoadParams, Integer, Voi
          if(mSaveFile.exists() && this.mCommDownloadTaskListener!=null && this.mCommDownloadTaskListener.onLoadFileExisting(mContext, mCommDownLoadParams)){
              return null;
          }
+         BufferedInputStream bis=null;
+         BufferedOutputStream bos=null;
+         try
+        {
+            HttpURLConnection connection=(HttpURLConnection)downloadURL.openConnection();
+            CommHttpURL commHttpURL=CommHttpInfoDBImpl.getINSTANCE(mContext).getUrl(downloadURL.toString());
+            if(commHttpURL!=null){
+                if(!NetStringUtil.isEmpty(commHttpURL.getLastModified())){
+                    connection.setRequestProperty("If-Modified-Since", commHttpURL.getLastModified());
+                }
+                if(!NetStringUtil.isEmpty(commHttpURL.getEtag())){
+                    connection.setRequestProperty("If-None-Match", commHttpURL.getEtag());
+                }
+            }
+            int stateCode=connection.getResponseCode();
+            switch (stateCode)
+            {
+                case HttpURLConnection.HTTP_OK:
+                     if(mSaveFile.exists()){
+                         mSaveFile.delete();
+                         mSaveFile.createNewFile();
+                     }
+                     bis=new BufferedInputStream(connection.getInputStream(),buffsize);
+                     bos=new BufferedOutputStream(new FileOutputStream(mSaveFile),buffsize);
+                     fileSize=connection.getContentLength();
+                     readFromInputStream(bis,bos);
+                    break;
+                
+                case HttpURLConnection.HTTP_NOT_MODIFIED:
+                    File cacheFile=new File(commHttpURL.getLocalData());
+                    connection.disconnect();
+                    bis=new BufferedInputStream(new FileInputStream(cacheFile),buffsize);
+                    bos=new BufferedOutputStream(new FileOutputStream(mSaveFile),buffsize);
+                    fileSize=(int)cacheFile.length();
+                    readFromInputStream(bis, bos);
+                    break;
+                    
+                default:
+                    isFailed=true;
+                    errorCode=stateCode;
+                    break;
+            }
+            
+        }
+        catch (Exception e)
+        {
+            LogUtil.e(new Throwable().getStackTrace()[0].toString()+" Exception",e.toString());
+            isFailed=true;
+        } 
+         finally{
+            try
+            {
+                if(bos!=null){
+                    bos.flush();
+                    bos.close();
+                }
+                if(bis!=null){
+                    bis.close();
+                }
+            }
+            catch (IOException e2)
+            {
+            }
+        }
+
         return null;
+    }
+    private void readFromInputStream(BufferedInputStream bis,
+            BufferedOutputStream bos) throws IOException
+    {
+       byte[] buf=new byte[buffsize];
+       int progress = 0;
+       int finishedSize = 0;
+       int readLen = -1;
+       int lencount=0;
+       long time = System.currentTimeMillis();
+       while ((readLen = bis.read(buf)) != -1 && !isCancel) {
+           bos.write(buf, 0, readLen);
+           finishedSize += readLen;
+           lencount += readLen;
+           // 计算新进度
+           int newProgress = (int) (((double) finishedSize / fileSize) * 100);
+           long curTime = System.currentTimeMillis();
+           if (newProgress - progress > 0) {
+                   if (curTime - time > 1000) {
+                           speed = (int) (((lencount * 1000) >> 10) / (curTime - time));
+                           lencount = 0;
+                           time = curTime;
+                   }
+                   publishProgress(newProgress);
+           }
+           progress = newProgress;
+   }
+   if (isCancel && finishedSize != fileSize) {
+   } else {
+           publishProgress(100);// 下载完成
+   }
+    }
+    
+    @Override
+    protected void onPostExecute(Void result)
+    {
+        super.onPostExecute(result);
+        if(mDownloadTaskMap!=null){
+            mDownloadTaskMap.remove(fileAbsolutePath);
+        }
+         if(this.mCommDownloadTaskListener!=null){
+             if(isFailed){
+                 this.mCommDownloadTaskListener.onLoadFailed(mContext, mCommDownLoadParams, errorCode);
+             }else if(isCancel){
+                 this.mCommDownloadTaskListener.onLoadCancel(mContext, mCommDownLoadParams);
+             }else{
+                 this.mCommDownloadTaskListener.onLoadFinish(mContext, mCommDownLoadParams);
+             }
+         }
+    }
+
+    @Override
+    protected void onProgressUpdate(Integer... values)
+    {
+        super.onProgressUpdate(values);
+        int progress=values[0];
+        if(this.mCommDownloadTaskListener!=null){
+            this.mCommDownloadTaskListener.onLoadProgress(mContext, mCommDownLoadParams, progress, fileSize, speed);
+        }
+    }
+    @Override
+    protected void onCancelled()
+    {
+        if(mDownloadTaskMap!=null){
+            mDownloadTaskMap.remove(fileAbsolutePath);
+        }
+        if(this.mCommDownloadTaskListener!=null){
+            this.mCommDownloadTaskListener.onLoadCancel(mContext, mCommDownLoadParams);
+        }
+        super.onCancelled();
+        
+    }
+    // 是否正在下载，fileName不包含路径名
+    public static boolean isDownLoadingFile(String fileName) {
+            return mDownloadTaskMap.containsKey(fileName);
+    }
+
+    public static void cancelDownload(String filename) {
+            try {
+                    if (isDownLoadingFile(filename)) {
+                            mDownloadTaskMap.get(filename).isCancel = true;
+                    }
+            } catch (Exception e) {
+                    LogUtil.e(new Throwable().getStackTrace()[0].toString()
+                                    + " Exception ", e);
+            }
     }
     public interface CommDownloadTaskListener{
         public boolean onLoadFileExisting(Context context,CommDownLoadParams params);

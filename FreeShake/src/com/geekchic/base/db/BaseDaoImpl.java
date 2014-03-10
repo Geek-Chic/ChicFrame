@@ -18,23 +18,6 @@ import com.geekchic.base.db.annotation.Column;
 import com.geekchic.base.db.annotation.Id;
 import com.geekchic.base.db.annotation.Table;
 
-/**
- * AHibernate��Ҫ <br/>
- * (һ)֧�ֹ���: 1.�Զ�����,֧���������Լ̳���:�ɸ��ע���Զ���ɽ���,���Ҷ��ڼ̳����е�ע���ֶ�Ҳ֧���Զ�����. 2.�Զ�֧����ɾ��
- * ,����֧�ֶ��󻯲���:��ɾ������ݿ���������Ԫ,�����ظ�д��Щ��ɾ�ĵĴ���,������Ӻ͸���֧��������hibernate�еĶ��󻯲���.
- * 3.��ѯ��ʽ���:֧��android����ṩ�ķ�ʽ,Ҳ֧��ԭ��sql��ʽ.
- * 4.��ѯ������:���ڲ�ѯ�����Զ���װΪʵ�����,������hibernate���.
- * 5.��ѯ������:��ѯ���֧�ֶ���,Ҳ֧�ֽ��ΪList<Map<String,String>>��ʽ,���������ʵ����Ŀ�к�ʵ��,��Ч�ʸ��Щ.
- * 6.��־����ϸ:��Ϊandroid������֧���Ȳ������,���б���ʱ�ɸ����־����λ����,������Լ�������Android�Ĵ���. <br/>
- * (��)����֮��: <br/>
- * 1.id��ʱֻ֧��int����,��֧��uuid,��sqlite�в�������uuid.
- * 2.����ÿ���������Լ������͹ر�����,��ʱ����֧����һ�����������������Ȼ��ͳһ�ύ����. <br/>
- * (��)���߼���:<br/>
- * ������JavaScript��Java��չ,����Ҳϣ��AHibernate��Hibernate֮��չ.
- * ϣ�������Ŀ�Ժ���Ϊ��Դ�������ҪһԱ,��ϣ�������Ŀ�ܸ�����Android�����ߴ����.
- * ��ӭ�����ҵĲ���:http://blog.csdn.net/lk_blog,
- * �����������ܵ�ʹ�÷����Դ��,ϣ�������Ƕ�ཻ������������,��ͬ�ƶ��й�Դ��ҵ�ķ�չ,AHibernate�ڴ���������δ��!!!
- */
 public class BaseDaoImpl<T> implements BaseDao<T> {
 	private String TAG = "BaseDaoImpl";
 	private SQLiteOpenHelper dbHelper;

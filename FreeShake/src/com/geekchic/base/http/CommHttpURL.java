@@ -2,6 +2,11 @@ package com.geekchic.base.http;
 
 import java.util.HashMap;
 
+import com.geekchic.base.db.annotation.Column;
+import com.geekchic.base.db.annotation.Id;
+import com.geekchic.base.db.annotation.Table;
+
+@Table(name="commHttp")
 public class CommHttpURL
 {
    public static class URLField{
@@ -10,9 +15,16 @@ public class CommHttpURL
        public static final String ETAG="etag";
        public static final String LOCALDATA="localdata";
    }
+   @Id
+   @Column(name = "id")
+   private int id;
+   @Column(name=CommHttpURL.URLField.URL)
    private String url;
+   @Column(name=CommHttpURL.URLField.LASTMODIFIED)
    private String lastModified;
+   @Column(name=CommHttpURL.URLField.ETAG)
    private String etag;
+   @Column(name=CommHttpURL.URLField.LOCALDATA)
    private String localData;
    private HashMap<String, String> postData;
    public CommHttpURL(){
@@ -58,6 +70,9 @@ public void setLocalData(String localData)
 }
 public HashMap<String, String> getPostData()
 {
+    if (postData == null) {
+        postData = new HashMap<String, String>();
+}
     return postData;
 }
 public void setPostData(HashMap<String, String> postData)

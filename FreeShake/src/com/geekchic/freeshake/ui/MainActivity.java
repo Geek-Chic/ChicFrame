@@ -1,6 +1,8 @@
 package com.geekchic.freeshake.ui;
 
-import java.util.ArrayList;
+import java.io.InputStream;
+
+import org.apache.http.HttpResponse;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,13 +10,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import com.geekchic.base.http.CommHttpRequest;
+import com.geekchic.base.http.CommHttpRequest.CommHttpRequestLinstener;
 import com.geekchic.common.view.ctransview.CtransAdapter;
 import com.geekchic.common.view.ctransview.CtransMenu;
-import com.geekchic.common.view.ctransview.CtransMenuItem;
 import com.geekchic.freeshake.R;
-import com.geekchic.freeshake.R.id;
-import com.geekchic.freeshake.R.layout;
-import com.geekchic.freeshake.R.menu;
 import com.geekchic.freeshake.module.BaseActivity;
 
 public class MainActivity extends BaseActivity implements OnClickListener
@@ -22,24 +22,17 @@ public class MainActivity extends BaseActivity implements OnClickListener
     private CtransMenu mCtransMenu;
     private CtransAdapter mCtransAdapter;
     private Button mPopupButton,mRotateButton;
+    static final String PATH_INPUTSTREAM = "http://qiuming.sinaapp.com/";
+    static final String PATH_STRING = "http://qiuming.sinaapp.com/";
+    static final String PATH_BITMAP = "http://tp3.sinaimg.cn/1859125850/180/5628821209/1";
+    static final String PATH_WITHPARAMS = "http://qiuming.sinaapp.com/";
+    static final String PATH_POSTCONTENT = "http://qiuming.sinaapp.com/";
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mCtransMenu=(CtransMenu) findViewById(R.id.main_ctransmenu);
-        ArrayList<CtransMenuItem> items=new ArrayList<CtransMenuItem>();
-        items.add(new CtransMenuItem(0));
-        items.add(new CtransMenuItem(1));
-        items.add(new CtransMenuItem(2));
-        items.add(new CtransMenuItem(3));
-        items.add(new CtransMenuItem(4));
-        items.add(new CtransMenuItem(5));
-        items.add(new CtransMenuItem(6));
-        items.add(new CtransMenuItem(7));
-        items.add(new CtransMenuItem(8));
-        mCtransAdapter=new CtransAdapter(this, items);
-        mCtransMenu.setAdapter(mCtransAdapter);
+       
         
         mPopupButton=(Button) findViewById(R.id.main_popup_button);
         mRotateButton=(Button) findViewById(R.id.main_rotate_button);
@@ -60,7 +53,27 @@ public class MainActivity extends BaseActivity implements OnClickListener
     {
         // TODO Auto-generated method stub
         if(v.getId()==R.id.main_popup_button){
-            mCtransMenu.showDismissItem();
+            CommHttpRequest request;
+            request = CommHttpRequest.requestWithURL(this, PATH_INPUTSTREAM);
+            // 必须先设置回调函数，否则调用异步请求无效
+            request.setCallBack(new CommHttpRequestLinstener()
+            {
+                
+                @Override
+                public void loadFinished(InputStream ins, boolean fromcache)
+                {
+                    // TODO Auto-generated method stub
+                    System.out.println("成功"+ins.toString());
+                }
+                
+                @Override
+                public void loadFailed(HttpResponse response, InputStream cacheInputStream)
+                {
+                    // TODO Auto-generated method stub
+                    System.out.println("failed");
+                }
+            });
+            request.startAsynchronous();
             
         }else if(v.getId()==R.id.main_rotate_button){
             mCtransMenu.circleItems();

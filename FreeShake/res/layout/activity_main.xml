@@ -3,10 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity" >
-<com.geekchic.common.view.particle.ParticleView 
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    />
     <com.geekchic.common.view.ctransview.CtransMenu 
         android:id="@+id/main_ctransmenu"
         android:layout_height="fill_parent"

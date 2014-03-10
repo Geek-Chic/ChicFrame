@@ -84,7 +84,6 @@ public class LogUtil
             writeIntoFile(infoMsg);
         }
     }
-    //������־
     public static void e(String errorMsg){
         e(LOG_TAG,errorMsg);
     }
@@ -96,6 +95,17 @@ public class LogUtil
         if(Log_IN_FILE){
             writeIntoFile(errorMsg);
         }
+    }
+    
+    public static void e(String title,Exception e) {
+            
+            String msg=null;
+            if (e==null) {
+                    msg = title+": "+"null"; 
+            } else {
+                    msg = title+": "+e.toString();
+            }
+            e(msg);
     }
     public static boolean writeIntoFile(String log){
         log=log+"\n";
