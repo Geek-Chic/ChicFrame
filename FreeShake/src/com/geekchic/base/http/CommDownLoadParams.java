@@ -3,9 +3,9 @@ package com.geekchic.base.http;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import com.geekchic.common.LogUtil;
-
 import android.content.Context;
+
+import com.geekchic.common.LogUtil;
 
 public class CommDownLoadParams
 {

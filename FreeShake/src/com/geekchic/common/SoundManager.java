@@ -3,7 +3,6 @@ package com.geekchic.common;
 import java.util.HashMap;
 import java.util.Map;
 
-import android.R.plurals;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.SoundPool;

@@ -1,19 +1,14 @@
 package com.geekchic.common.view.particle;
 
-import java.util.List;
-
-import com.geekchic.common.GlobalUtil;
-
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Point;
-import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+
+import com.geekchic.common.GlobalUtil;
 
 public class ParticleView extends SurfaceView implements SurfaceHolder.Callback
 {

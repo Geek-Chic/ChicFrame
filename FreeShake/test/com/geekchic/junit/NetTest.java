@@ -2,9 +2,9 @@ package com.geekchic.junit;
 
 import java.io.InputStream;
 
-import com.geekchic.base.http.CommHttpRequest;
-
 import android.test.AndroidTestCase;
+
+import com.geekchic.base.http.CommHttpRequest;
 
 public class NetTest extends AndroidTestCase
 {

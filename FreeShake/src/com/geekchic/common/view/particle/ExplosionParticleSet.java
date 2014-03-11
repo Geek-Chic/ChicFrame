@@ -1,6 +1,5 @@
 package com.geekchic.common.view.particle;
 
-import android.R.integer;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;

@@ -10,11 +10,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 
-import com.geekchic.common.LogUtil;
-import com.geekchic.common.NetStringUtil;
-
 import android.content.Context;
 import android.os.AsyncTask;
+
+import com.geekchic.common.LogUtil;
+import com.geekchic.common.NetStringUtil;
 
 public class CommDownloadTask extends AsyncTask<CommDownLoadParams, Integer, Void>
 {
