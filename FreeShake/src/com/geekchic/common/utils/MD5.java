@@ -1,4 +1,4 @@
-package com.geekchic.common;
+package com.geekchic.common.utils;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;

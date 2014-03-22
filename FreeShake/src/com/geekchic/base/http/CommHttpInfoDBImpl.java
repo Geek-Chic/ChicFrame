@@ -6,7 +6,7 @@ import android.content.Context;
 
 import com.geekchic.base.db.BaseDaoImpl;
 import com.geekchic.base.http.CommHttpURL.URLField;
-import com.geekchic.common.LogUtil;
+import com.geekchic.common.utils.LogUtil;
 
 public class CommHttpInfoDBImpl extends BaseDaoImpl<CommHttpURL> implements CommHttpDBOps
 {

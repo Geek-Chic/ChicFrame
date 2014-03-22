@@ -5,7 +5,7 @@ import java.net.URL;
 
 import android.content.Context;
 
-import com.geekchic.common.LogUtil;
+import com.geekchic.common.utils.LogUtil;
 
 public class CommDownLoadParams
 {

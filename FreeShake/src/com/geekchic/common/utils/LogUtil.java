@@ -1,4 +1,4 @@
-package com.geekchic.common;
+package com.geekchic.common.utils;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -15,10 +15,8 @@ public class LogUtil
     private static final int Log_Level_debug = 1;
     private static final int Log_Level_verbose = 0;
 
-    /** Log��Ϣ����>=logLevel����־��Ϣ��ӡ���� */
     private static int logLevel = 0;
 
-    //�Ƿ���־д���ļ���
     private static final boolean Log_IN_FILE = false;
     private static final boolean Log_WITH_POSTION = false;
     private static final String LOG_TAG = "freeshake";
@@ -42,7 +40,6 @@ public class LogUtil
     public static void v(String msg){
         v(LOG_TAG,msg);
     }
-    //��ϸ��Ϣ
     public static void v(String logTag, String msg)
     {
           if(Log_Level_verbose>=logLevel){
@@ -55,7 +52,6 @@ public class LogUtil
               }
           }
     }
-    //������־
     public static void d(String msg){
         d(LOG_TAG,msg);
     }
@@ -70,7 +66,6 @@ public class LogUtil
         }
         
     }
-    //��Ϣ��־
     public static void i(String infoMsg){
            i(LOG_TAG,infoMsg);
     }

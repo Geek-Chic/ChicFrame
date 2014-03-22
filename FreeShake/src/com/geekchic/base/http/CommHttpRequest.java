@@ -30,9 +30,9 @@ import android.graphics.BitmapFactory;
 import android.os.Handler;
 
 import com.geekchic.base.http.CommDownloadTask.CommDownloadTaskListener;
-import com.geekchic.common.LogUtil;
-import com.geekchic.common.MD5;
-import com.geekchic.common.NetStringUtil;
+import com.geekchic.common.utils.LogUtil;
+import com.geekchic.common.utils.MD5;
+import com.geekchic.common.utils.NetStringUtil;
 
 public class CommHttpRequest
 {

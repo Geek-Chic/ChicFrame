@@ -1,9 +1,10 @@
-package com.geekchic.common;
+package com.geekchic.common.utils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+
 
 public class NetStringUtil
 {

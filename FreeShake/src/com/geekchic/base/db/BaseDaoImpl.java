@@ -265,7 +265,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		db.delete(this.tableName, where, whereValue);
 		db.close();
 	}
-
+	
 	public void delete(Integer... ids) {
 		if (ids.length > 0) {
 			StringBuffer sb = new StringBuffer();

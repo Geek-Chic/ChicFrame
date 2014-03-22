@@ -3,12 +3,16 @@ package com.geekchic.freeshake.ui;
 import java.io.InputStream;
 
 import org.apache.http.HttpResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.core.util.StatusPrinter;
 
 import com.geekchic.base.http.CommHttpRequest;
 import com.geekchic.base.http.CommHttpRequest.CommHttpRequestLinstener;
@@ -19,6 +23,7 @@ import com.geekchic.freeshake.module.BaseActivity;
 
 public class MainActivity extends BaseActivity implements OnClickListener
 {
+    Logger log=LoggerFactory.getLogger(MainActivity.class);
     private CtransMenu mCtransMenu;
     private CtransAdapter mCtransAdapter;
     private Button mPopupButton,mRotateButton;
@@ -32,7 +37,12 @@ public class MainActivity extends BaseActivity implements OnClickListener
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       
+        int a=10;
+        log.error("会务奇才在在e{}",a);
+        log.info("会务奇才在在i");
+        log.warn("会务奇才在在w");
+        log.debug("会务奇才在d在");
+        log.error("会务奇才在在");
         
         mPopupButton=(Button) findViewById(R.id.main_popup_button);
         mRotateButton=(Button) findViewById(R.id.main_rotate_button);
@@ -63,14 +73,14 @@ public class MainActivity extends BaseActivity implements OnClickListener
                 public void loadFinished(InputStream ins, boolean fromcache)
                 {
                     // TODO Auto-generated method stub
-                    System.out.println("成功"+ins.toString());
+                    log.info("成功");
                 }
                 
                 @Override
                 public void loadFailed(HttpResponse response, InputStream cacheInputStream)
                 {
                     // TODO Auto-generated method stub
-                    System.out.println("failed");
+                    log.error("失败");
                 }
             });
             request.startAsynchronous();

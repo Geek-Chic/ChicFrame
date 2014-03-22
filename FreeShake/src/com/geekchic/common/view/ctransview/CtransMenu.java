@@ -19,7 +19,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.geekchic.common.GlobalUtil;
+import com.geekchic.common.utils.GlobalUtil;
 import com.geekchic.common.view.particle.ParticleView;
 import com.geekchic.freeshake.R;
 

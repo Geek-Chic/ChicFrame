@@ -8,7 +8,7 @@ import android.util.DisplayMetrics;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.geekchic.common.GlobalUtil;
+import com.geekchic.common.utils.GlobalUtil;
 
 public class ParticleView extends SurfaceView implements SurfaceHolder.Callback
 {

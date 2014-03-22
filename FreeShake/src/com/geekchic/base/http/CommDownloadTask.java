@@ -13,8 +13,8 @@ import java.util.HashMap;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.geekchic.common.LogUtil;
-import com.geekchic.common.NetStringUtil;
+import com.geekchic.common.utils.LogUtil;
+import com.geekchic.common.utils.NetStringUtil;
 
 public class CommDownloadTask extends AsyncTask<CommDownLoadParams, Integer, Void>
 {

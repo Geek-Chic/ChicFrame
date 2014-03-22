@@ -1,4 +1,4 @@
-package com.geekchic.common;
+package com.geekchic.common.utils;
 
 public class MqttUtils
 {

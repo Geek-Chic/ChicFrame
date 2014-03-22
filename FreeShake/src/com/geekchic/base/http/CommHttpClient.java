@@ -31,7 +31,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.text.TextUtils;
 
-import com.geekchic.common.LogUtil;
+import com.geekchic.common.utils.LogUtil;
 
 public class CommHttpClient
 { private static final int TIMEOUT = 10000;

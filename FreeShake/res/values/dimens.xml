@@ -1,7 +1,28 @@
 <resources>
+  <!-- 间距 -->
+    <dimen name="margin_small">7dp</dimen>
+    <dimen name="margin_medium">12dp</dimen>
+    <dimen name="margin_large">17dp</dimen>
+    <dimen name="margin_xlarge">23dp</dimen>
+    <dimen name="margin_xxlarge">27dp</dimen>
 
-    <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
+    <!-- 字体大小 -->
+    <dimen name="font_size_small">12sp</dimen>
+    <dimen name="font_size_medium">13sp</dimen>
+    <dimen name="font_size_large">15sp</dimen>
+    <dimen name="font_size_xlarge">22sp</dimen>
+    <dimen name="font_size_xxlarge">39sp</dimen>
+
+    <!-- 分割线大小 -->
+    <dimen name="line_size">0.5dp</dimen>
+
+    <!-- 按钮最小的宽度 -->
+    <dimen name="small_btn_min_width">60dp</dimen>
+    <dimen name="small_img_btn_min_width">45dp</dimen>
+
+    <!-- 普通按钮的高度 -->
+    <dimen name="common_btn_height">42dp</dimen>
+    <!-- 普通编辑框的高度 -->
+    <dimen name="common_edit_height">42dp</dimen>
 
 </resources>
