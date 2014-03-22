@@ -1,0 +1,8 @@
+<configuration>
+    <includes>
+        <include resource="assets/logback2.xml"/>
+        <include resource="AndroidManifest.xml"/>
+        <include file="/sdcard/logback.xml"/>
+    </includes>
+</configuration>
+ 
