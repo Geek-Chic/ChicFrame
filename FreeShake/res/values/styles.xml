@@ -16,5 +16,92 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
+    <!-- 对话框主题 -->
+     <style name="AppDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowIsFloating">true</item>  <!-- 设置未浮动窗口 -->
+        <item name="android:windowFrame">@null</item>  <!-- 设置无边框 -->
+        <item name="android:windowNoTitle">true</item> <!-- 设置无标题 -->
+        <item name="android:windowBackground">@color/full_transparent</item><!-- 设置完全透明 -->
+        <item name="android:backgroundDimEnabled">true</item>    <!-- 设置屏幕变暗 -->
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowContentOverlay">@null</item> 
+        <item name="android:background">@null</item>
+         
+    </style>
+        <style name="Widget.HorizontalProgressBarStyle" parent="@android:style/Widget.ProgressBar.Horizontal">
+        <item name="android:maxHeight">15.0dip</item>
+        <item name="android:progressDrawable">@drawable/icon_common_shape_horizontalprogress</item>
+        <item name="android:minHeight">15.0dip</item>
+    </style>
+    <!-- 默认主题 -->
+     <style name="Default" parent="@android:style/Theme.Black">
+        <item name="android:textColorPrimaryInverse">@android:color/black</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTitleSize">46.0dip</item>
+        <item name="android:windowTitleBackgroundStyle">@style/Default.CustomWindowTitleBackground</item>
+        <item name="android:editTextStyle">@style/Widget.CustomEditText</item>
+        <item name="android:listViewStyle">@style/Widget.CustomListView</item>
+        <item name="android:checkboxStyle">@style/Widget.CustomCheckBox</item>
+        <item name="android:radioButtonStyle">@style/Widget.CustomRadioButton</item>
+        <item name="android:windowAnimationStyle">@style/Anim.ActyAnimation</item>
+    </style>
+    <!-- 通用CheckBox -->
+    <style name="Widget.CustomCheckBox" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/icon_common_checkbox_selector</item>
+    </style>
+    <!-- 通用RadioButton -->
+    <style name="Widget.CustomRadioButton" parent="@android:style/Widget.CompoundButton.RadioButton">
+        <item name="android:button">@drawable/icon_common_checkbox_selector</item>
+    </style>
+    <!-- 通用EditText -->
+    <style name="Widget.CustomEditText" parent="@android:style/Widget.EditText">
+        <item name="android:background">@drawable/bg_common_edittext_selected</item>
+    </style>
+    <!-- 通用ListView -->
+    <style name="Widget.CustomListView" parent="@android:style/Widget.ListView">
+        <item name="android:scrollingCache">false</item>
+        <item name="android:cacheColorHint">@null</item>
+    </style>
+    <!-- 默认黑色背景 -->
+      <style name="Default.CustomWindowTitleBackground">
+        <item name="android:background">@color/black</item>
+    </style>
+    <!-- 无TitleBar主题  -->
+    <style name="Default.NoTitleBar" parent="@style/Default">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    <!-- 转场动画  -->
+    <style name="Anim.ActyAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/activity_new</item>
+        <item name="android:activityOpenExitAnimation">@anim/activity_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/activity_back</item>
+        <item name="android:activityCloseExitAnimation">@anim/activity_finish</item>
+        <item name="android:taskOpenEnterAnimation">@anim/activity_new</item>
+        <item name="android:taskOpenExitAnimation">@anim/activity_out</item>
+        <item name="android:taskCloseEnterAnimation">@anim/activity_back</item>
+        <item name="android:taskCloseExitAnimation">@anim/activity_finish</item>
+    </style>
+    <style name="Default.NoTitleBar.Fullscreen" parent="@style/Default.NoTitleBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    
+    <style name="Animation" />
+    <style name="Animation.Translucent" parent="@style/Animation">
+        <item name="android:windowEnterAnimation">@anim/transitions_translucent_zoom_out</item>
+        <item name="android:windowExitAnimation">@anim/transitions_translucent_zoom_exit</item>
+    </style>
+    <style name="Animation.SlideTop" parent="@style/Animation">
+        <item name="android:activityOpenEnterAnimation">@anim/transitions_slide_in_up</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@anim/transitions_slide_out_down</item>
+    </style>
+    <style name="Animation.ZoomLight" parent="@style/Animation">
+        <item name="android:activityOpenEnterAnimation">@anim/transitions_translucent_zoom_in</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@anim/transitions_translucent_zoom_exit</item>
+    </style>
 
 </resources>

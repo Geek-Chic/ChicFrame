@@ -14,7 +14,7 @@
     <dimen name="font_size_xxlarge">39sp</dimen>
 
     <!-- 分割线大小 -->
-    <dimen name="line_size">0.5dp</dimen>
+    <dimen name="line_size">1dp</dimen>
 
     <!-- 按钮最小的宽度 -->
     <dimen name="small_btn_min_width">60dp</dimen>
@@ -24,5 +24,6 @@
     <dimen name="common_btn_height">42dp</dimen>
     <!-- 普通编辑框的高度 -->
     <dimen name="common_edit_height">42dp</dimen>
+    
 
 </resources>

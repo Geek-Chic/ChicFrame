@@ -1,4 +1,4 @@
-package com.way.slidingmenu;
+package com.widget.slidingmenu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +26,8 @@ import android.view.ViewGroup;
 import android.view.animation.Interpolator;
 import android.widget.Scroller;
 
-import com.way.slidingmenu.SlidingMenu.OnClosedListener;
-import com.way.slidingmenu.SlidingMenu.OnOpenedListener;
+import com.widget.slidingmenu.SlidingMenu.OnClosedListener;
+import com.widget.slidingmenu.SlidingMenu.OnOpenedListener;
 
 //import com.slidingmenu.lib.SlidingMenu.OnCloseListener;
 //import com.slidingmenu.lib.SlidingMenu.OnOpenListener;

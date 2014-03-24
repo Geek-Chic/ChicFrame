@@ -6,4 +6,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="empty"></string>
 
+    <!-- 反馈信息 -->
+    <string name="feedback_title">反馈信息</string>
+    <string name="feedback_hint_text">说些什么吧....</string>
+    <string name="feedback_commit_btn">提交</string>
 </resources>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color_light_gray"
+    android:orientation="vertical" >
+	 <TextView
+            android:layout_width="match_parent"
+            android:layout_height="46dip"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/feedback_title" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/margin_medium"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginRight="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:background="@drawable/bg_common_shape_corner_bg"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="left"
+            android:paddingBottom="@dimen/margin_small"
+            android:paddingLeft="@dimen/margin_medium"
+            android:paddingTop="@dimen/margin_medium"
+            android:text="@string/feedback_title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_xlarge" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/line_size"
+            android:background="@drawable/separator_shape_line" />
+
+        <ScrollView
+            android:id="@+id/scrollview"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true" >
+            <EditText
+                android:id="@+id/fee_back_edit"
+                android:layout_width="match_parent"
+                android:layout_height="200dip"
+                android:background="@null"
+                android:gravity="left|top"
+                android:inputType="textMultiLine"
+                android:hint="@string/feedback_hint_text"
+                android:paddingBottom="@dimen/margin_small"
+                android:paddingLeft="@dimen/margin_medium"
+                android:paddingRight="@dimen/margin_medium"
+                android:paddingTop="@dimen/margin_small"
+                android:textSize="@dimen/font_size_large" />
+        </ScrollView>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/line_size"
+            android:background="@drawable/separator_shape_line" />
+
+        <Button
+            android:id="@+id/feed_back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/common_btn_height"
+            android:layout_gravity="right|bottom"
+            android:layout_marginBottom="@dimen/font_size_medium"
+            android:layout_marginRight="@dimen/font_size_medium"
+            android:layout_marginTop="@dimen/font_size_medium"
+            android:background="@drawable/bg_common_btn_red_selector"
+            android:paddingLeft="@dimen/font_size_large"
+            android:paddingRight="@dimen/font_size_large"
+            android:textSize="@dimen/font_size_xlarge"
+            android:textColor="@color/white"
+            android:shadowColor="@color/text_shadow_color"
+            android:shadowDy="2.0"
+            android:shadowRadius="1.0"
+            android:text="@string/feedback_commit_btn" />
+    </LinearLayout>
+
+</LinearLayout>

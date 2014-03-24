@@ -1,4 +1,4 @@
-package com.way.slidingmenu;
+package com.widget.slidingmenu;
 
 import android.app.Activity;
 import android.os.Bundle;

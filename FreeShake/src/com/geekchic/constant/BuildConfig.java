@@ -1,4 +1,5 @@
-package com.geekchic;
+package com.geekchic.constant;
+
 
 
 public interface BuildConfig

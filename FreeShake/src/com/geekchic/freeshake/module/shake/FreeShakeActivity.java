@@ -5,8 +5,8 @@ import android.util.DisplayMetrics;
 import android.widget.TextView;
 
 import com.geekchic.freeshake.R;
-import com.way.slidingmenu.SlidingActivity;
-import com.way.slidingmenu.SlidingMenu;
+import com.widget.slidingmenu.SlidingActivity;
+import com.widget.slidingmenu.SlidingMenu;
 
 public class FreeShakeActivity extends SlidingActivity
 {
@@ -16,7 +16,7 @@ public class FreeShakeActivity extends SlidingActivity
     {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.testmain);
+        setContentView(R.layout.feed_back_view);
         
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
