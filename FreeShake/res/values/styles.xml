@@ -103,5 +103,14 @@
         <item name="android:activityCloseEnterAnimation">@null</item>
         <item name="android:activityCloseExitAnimation">@anim/transitions_translucent_zoom_exit</item>
     </style>
-
+    <!-- 对话框按钮 -->
+    <style name="dialog_button_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">40dip</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">@dimen/font_size_medium</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/bg_common_btn_blue_selector</item>
+    </style>
 </resources>

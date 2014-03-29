@@ -16,7 +16,7 @@ public class FreeShakeActivity extends SlidingActivity
     {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.feed_back_view);
+        setContentView(R.layout.activity_main);
         
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
