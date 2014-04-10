@@ -1,14 +1,3 @@
-/*
- * 文件名: PreferencesUtil.java
- * 版    权：  Copyright Paitao Tech. Co. Ltd. All Rights Reserved.
- * 描    述: 轻量级存储一些常用的配置信息的工具类
- * 创建人: chunjiang.shieh <chunjiang.shieh@gmail.com>
- * 创建时间:2013-11-1
- * 
- * 修改人：
- * 修改时间:
- * 修改内容：[修改内容]
- */
 package com.geekchic.common.utils;
 
 import android.annotation.TargetApi;
@@ -18,11 +7,7 @@ import android.os.Build;
 
 import com.geekchic.freeshake.GlobalEnv.Common;
 
-/**
- * 轻量级存储一些常用的配置信息的工具类<BR>
- * @author chunjiang.shieh <chunjiang.shieh@gmail.com>
- * @version [Paitao Client V20130911, 2013-11-4]
- */
+
 public class PreferencesUtil
 {
     

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    	<declare-styleable name="SatelliteMenu">
-		<attr name="expandDuration" format="integer" />
-		<attr name="totalSpacingDegree" format="float" />
-		<attr name="satelliteDistance" format="dimension" />
-		<attr name="mainImage" format="reference" />		
-	</declare-styleable>
-	    <!-- SlidingMenu -->
+
+    <declare-styleable name="SatelliteMenu">
+        <attr name="expandDuration" format="integer" />
+        <attr name="totalSpacingDegree" format="float" />
+        <attr name="satelliteDistance" format="dimension" />
+        <attr name="mainImage" format="reference" />
+    </declare-styleable>
+    <!-- SlidingMenu -->
     <declare-styleable name="SlidingMenu">
         <attr name="mode">
             <enum name="left" value="0" />
@@ -32,8 +33,8 @@
         <attr name="selectorEnabled" format="boolean" />
         <attr name="selectorDrawable" format="reference" />
     </declare-styleable>
-     <!-- swipe listview -->
-        <declare-styleable name="SwipeListView">
+    <!-- swipe listview -->
+    <declare-styleable name="SwipeListView">
         <attr name="swipeOpenOnLongPress" format="boolean" />
         <attr name="swipeAnimationTime" format="integer" />
         <attr name="swipeOffsetLeft" format="dimension" />
@@ -56,7 +57,7 @@
             <enum name="dismiss" value="1" />
         </attr>
     </declare-styleable>
-     <!-- SlidingLayer -->
+    <!-- SlidingLayer -->
     <declare-styleable name="SlidingLayer">
         <attr name="shadow_drawable" format="boolean" />
         <attr name="shadow_width" format="dimension" />
@@ -69,17 +70,27 @@
         </attr>
     </declare-styleable>
     <!-- 圆形百分比进度条 -->
-      <declare-styleable name="RoundProgressBar">  
-        <attr name="roundColor" format="color"/>
-        <attr name="roundProgressColor" format="color"/>
+    <declare-styleable name="RoundProgressBar">
+        <attr name="roundColor" format="color" />
+        <attr name="roundProgressColor" format="color" />
         <attr name="roundWidth" format="dimension"></attr>
-        <attr name="textColor" format="color" />  
-        <attr name="textSize" format="dimension" /> 
-        <attr name="max" format="integer"></attr> 
+        <attr name="textColor" format="color" />
+        <attr name="textSize" format="dimension" />
+        <attr name="max" format="integer"></attr>
         <attr name="textIsDisplayable" format="boolean"></attr>
         <attr name="style">
             <enum name="STROKE" value="0"></enum>
             <enum name="FILL" value="1"></enum>
         </attr>
-    </declare-styleable> 
+    </declare-styleable>
+    <!-- 图角ImageView -->
+    <declare-styleable name="RoundedImageView">
+        <attr name="corner_radius" format="dimension" />
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+        <attr name="round_background" format="boolean" />
+        <attr name="is_oval" format="boolean" />
+        <attr name="android:scaleType" />
+    </declare-styleable>
+
 </resources>

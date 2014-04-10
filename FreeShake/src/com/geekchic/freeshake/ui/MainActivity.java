@@ -23,7 +23,6 @@ import com.geekchic.freeshake.module.BaseActivity;
 
 public class MainActivity extends BaseActivity implements OnClickListener
 {
-    Logger log=LoggerFactory.getLogger(MainActivity.class);
     private CtransMenu mCtransMenu;
     private CtransAdapter mCtransAdapter;
     private Button mPopupButton,mRotateButton;
@@ -37,17 +36,17 @@ public class MainActivity extends BaseActivity implements OnClickListener
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        int a=10;
-        log.error("会务奇才在在e{}",a);
-        log.info("会务奇才在在i");
-        log.warn("会务奇才在在w");
-        log.debug("会务奇才在d在");
-        log.error("会务奇才在在");
-        
-        mPopupButton=(Button) findViewById(R.id.main_popup_button);
-        mRotateButton=(Button) findViewById(R.id.main_rotate_button);
-        mPopupButton.setOnClickListener(this);
-        mRotateButton.setOnClickListener(this);
+//        int a=10;
+//        log.error("会务奇才在在e{}",a);
+//        log.info("会务奇才在在i");
+//        log.warn("会务奇才在在w");
+//        log.debug("会务奇才在d在");
+//        log.error("会务奇才在在");
+//        
+//        mPopupButton=(Button) findViewById(R.id.main_popup_button);
+//        mRotateButton=(Button) findViewById(R.id.main_rotate_button);
+//        mPopupButton.setOnClickListener(this);
+//        mRotateButton.setOnClickListener(this);
     }
     
     @Override
@@ -73,14 +72,12 @@ public class MainActivity extends BaseActivity implements OnClickListener
                 public void loadFinished(InputStream ins, boolean fromcache)
                 {
                     // TODO Auto-generated method stub
-                    log.info("成功");
                 }
                 
                 @Override
                 public void loadFailed(HttpResponse response, InputStream cacheInputStream)
                 {
                     // TODO Auto-generated method stub
-                    log.error("失败");
                 }
             });
             request.startAsynchronous();
