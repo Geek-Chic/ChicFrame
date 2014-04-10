@@ -1,14 +1,4 @@
-/*
- * 文件名: StringUtil.java
- * 版    权：  Copyright Paitao Tech. Co. Ltd. All Rights Reserved.
- * 描    述: 字符串操作的工具类
- * 创建人: deanye
- * 创建时间:2013-9-13
- * 
- * 修改人：
- * 修改时间:
- * 修改内容：[修改内容]
- */
+
 package com.geekchic.common.utils;
 
 import java.text.DecimalFormat;
@@ -29,12 +19,6 @@ import org.slf4j.LoggerFactory;
 import android.text.TextUtils;
 
 
-/**
- * 字符串操作的工具类<BR>
- * 
- * @author deanye
- * @version [Paitao Client V20130911, 2013-9-13]
- */
 public class StringUtil
 {
     private static final Logger logger=LoggerFactory.getLogger("StringUtil");

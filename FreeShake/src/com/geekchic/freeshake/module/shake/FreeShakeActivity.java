@@ -1,9 +1,15 @@
 package com.geekchic.freeshake.module.shake;
 
+import android.R.integer;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import ch.qos.logback.classic.Logger;
+
+import com.geekchic.common.utils.ToastUtil;
+import com.geekchic.constant.AppException;
 import com.geekchic.freeshake.R;
 import com.widget.slidingmenu.SlidingActivity;
 import com.widget.slidingmenu.SlidingMenu;
@@ -17,8 +23,8 @@ public class FreeShakeActivity extends SlidingActivity
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
         DisplayMetrics dm = new DisplayMetrics();
+        com.geekchic.common.log.Logger.d("佳士科技","sf ");
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int mScreenWidth = dm.widthPixels;// 获取屏幕分辨率宽度
         // customize the SlidingMenu
@@ -34,6 +40,19 @@ public class FreeShakeActivity extends SlidingActivity
         mSlidingMenu.setFadeEnabled(true);// 设置滑动时菜单的是否淡入淡出
         mSlidingMenu.setBehindScrollScale(0.333f);// 设置滑动时拖拽效果
         mSlidingMenu.setSecondaryMenu(R.layout.menu_frame);
+        test();
+        throw new NullPointerException();
         
+    }
+    public void test(){
+        try
+        {
+            int dres=5/0;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            ToastUtil.show(this, "哈合", Toast.LENGTH_LONG);
+        }
     }
 }

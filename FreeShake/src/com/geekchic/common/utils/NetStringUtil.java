@@ -5,9 +5,13 @@ import java.io.InputStream;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 
+import com.geekchic.common.log.Logger;
+
+
 
 public class NetStringUtil
 {
+    private static final String TAG=NetStringUtil.class.getName();
     public final static char RCHAR = '\r';
     public final static char NCHAR = '\n';
     public final static char SPACECHAR = ' ';
@@ -51,7 +55,7 @@ public class NetStringUtil
 
         } catch (Exception e) {
             // TODO: handle exception
-            LogUtil.e(e.getMessage());
+            Logger.e(TAG,e.getMessage());
         }
         return str;
 
@@ -64,7 +68,7 @@ public class NetStringUtil
             return buff;
         } catch (Exception e) {
             // TODO: handle exception
-            LogUtil.e(e.getMessage());
+            Logger.e(TAG,e.getMessage());
         }
         return null;
     }
@@ -81,7 +85,7 @@ public class NetStringUtil
 
         } catch (Exception e) {
             // TODO: handle exception
-            LogUtil.e(e.getMessage());
+            Logger.e(TAG,e.getMessage());
             return "";
         }
     }
@@ -97,7 +101,7 @@ public class NetStringUtil
             return str;
         } catch (Exception e) {
             // TODO: handle exception
-            LogUtil.e(e.getMessage());
+            Logger.e(TAG,e.getMessage());
             return "";
         }
     }

@@ -30,13 +30,13 @@ import android.graphics.BitmapFactory;
 import android.os.Handler;
 
 import com.geekchic.base.http.CommDownloadTask.CommDownloadTaskListener;
-import com.geekchic.common.utils.LogUtil;
+import com.geekchic.common.log.Logger;
 import com.geekchic.common.utils.MD5;
 import com.geekchic.common.utils.NetStringUtil;
 
 public class CommHttpRequest
 {
-    public static final String TAG="CommHttpRequest";
+    public static final String TAG=CommHttpRequest.class.getName();
     public static final String CACHE_ROOT="commhttprequest_cache";
     public static final int BUFFER_SIZE=4*1024;
     public static final int DEFAULT_THREAD_POOL_SIZE=10;
@@ -101,7 +101,7 @@ public class CommHttpRequest
                 mHandler = new Handler();
         }
 } catch (Exception e) {
-        LogUtil.e(new Throwable().getStackTrace()[0].toString()
+        Logger.e(TAG,new Throwable().getStackTrace()[0].toString()
                         + " Exception ", e);
         mHandler = null;
 }
@@ -179,7 +179,7 @@ public class CommHttpRequest
                                     }
                                     }
                             } catch (Exception e) {
-                                    LogUtil.e(new Throwable().getStackTrace()[0].toString()
+                                    Logger.e(TAG,new Throwable().getStackTrace()[0].toString()
                                                     + " Exception ", e);
                             }
                     }
@@ -273,7 +273,7 @@ public class CommHttpRequest
                             }
                     }
             } catch (Exception e) {
-                    LogUtil.e(new Throwable().getStackTrace()[0].toString()
+                    Logger.e(TAG,new Throwable().getStackTrace()[0].toString()
                                     + " Exception ", e);
             }
             return null;
@@ -319,7 +319,7 @@ public class CommHttpRequest
                     }
                     is.close();
             } catch (Exception e) {
-                    LogUtil.e(new Throwable().getStackTrace()[0].toString()
+                    Logger.e(TAG,new Throwable().getStackTrace()[0].toString()
                                     + " Exception ", e);
             }
             return baos.toString();
@@ -355,7 +355,7 @@ public class CommHttpRequest
 
     private HttpResponse requestHttp(boolean haveLastModified, boolean haveEtag) {
             if (commHttpURL == null || NetStringUtil.isEmpty(commHttpURL.getUrl())||"null".equals(commHttpURL.getUrl())) {
-                    LogUtil.i("commHttpURL 为空");
+                    Logger.i(TAG,"commHttpURL 为空");
                     return null;
             }
             HttpResponse response = null;
@@ -398,7 +398,7 @@ public class CommHttpRequest
                             response = CommHttpClient.execute(mContext, request);
                     }
             } catch (Exception e) {
-                    LogUtil.e(new Throwable().getStackTrace()[0].toString()
+                    Logger.e(TAG,new Throwable().getStackTrace()[0].toString()
                                     + " Exception ", e);
             }
             return response;
@@ -428,7 +428,7 @@ public class CommHttpRequest
                             return new BufferedInputStream(response.getEntity().getContent());
                     }
             } catch (Exception e) {
-                    LogUtil.e(new Throwable().getStackTrace()[0].toString()
+                    Logger.e(TAG,new Throwable().getStackTrace()[0].toString()
                                     + " Exception ", e);
                     return null;
             }
@@ -478,7 +478,7 @@ public class CommHttpRequest
                     bis.close();
                     return file.getAbsolutePath();
             } catch (Exception e) {
-                    LogUtil.e(new Throwable().getStackTrace()[0].toString()
+                    Logger.e(TAG,new Throwable().getStackTrace()[0].toString()
                                     + " Exception ", e);
                     return null;
             }

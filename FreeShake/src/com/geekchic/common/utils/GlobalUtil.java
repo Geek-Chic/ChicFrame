@@ -20,8 +20,11 @@ import android.text.format.DateFormat;
 import android.util.DisplayMetrics;
 import android.view.View;
 
+import com.geekchic.common.log.Logger;
+
 public class GlobalUtil
 {
+    private static final String TAG=GlobalUtil.class.getName();
     public final static char RCHAR='\r';
     public final static char NCHAR='\n';
     public final static char SPACECHAR=' ';
@@ -54,7 +57,7 @@ public class GlobalUtil
         catch (Exception e)
         {
             // TODO: handle exception
-            LogUtil.e(e.getMessage());
+            Logger.e(TAG,e.getMessage());
         }
         return null;
     }
@@ -72,7 +75,7 @@ public class GlobalUtil
         catch (Exception e)
         {
             // TODO: handle exception
-            LogUtil.e(e.getMessage());
+            Logger.e(TAG,e.getMessage());
         }
         return str;
     }
@@ -90,7 +93,7 @@ public class GlobalUtil
         catch (Exception e)
         {
             // TODO: handle exception
-            LogUtil.e(e.getMessage());
+            Logger.e(TAG,e.getMessage());
         }
         return null;
      }
@@ -203,7 +206,7 @@ public class GlobalUtil
      public static void copyAssetsFile(Context context,String fileName,String targetName) throws IOException{
          File targetFile=new File(targetName);
          if(targetFile.exists()){
-             LogUtil.i("Ŀ���ļ��Ѵ���");
+             Logger.i(TAG,"文件不存在");
              return;
          }
          AssetManager assetManager=context.getAssets();

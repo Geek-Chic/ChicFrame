@@ -19,7 +19,6 @@ import java.util.GregorianCalendar;
 
 import android.annotation.SuppressLint;
 
-
 /**
  * 根据时间格式，获取时间字符串<BR>
  * @author deanye
@@ -77,7 +76,14 @@ public class DateUtil
                 "HHmmssSSS");
         return timeStampMilliSecondDF.format(new Date());
     }
-    
+    /**
+     * 获取日期
+     * @return 日期字符串
+     */
+    public static String getDateStr(){
+        SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
+        return dateFormat.format(new Date());
+    }
     /**
      * 根据给定的格式与时间(Date类型的)，返回时间字符串。最常用。<BR>
      * @param date 指定的日期
@@ -187,28 +193,26 @@ public class DateUtil
      */
     public static ChatTimeType getChatTimeStatus(long currentTime)
     {
-//        if (isToday(currentTime))
-//        {
-//            return ChatTimeType.TODAY;
-//        }
-//        else if (isTheSameWeek(currentTime, RpcUtils.currentTimeMillis()))
-//        {
-//            if (isYesterday(currentTime))
-//            {
-//                return ChatTimeType.YESTERDAY;
-//            }
-//            else
-//            {
-//                return ChatTimeType.WEEK;
-//            }
-//        }
-        return ChatTimeType.DEFAULT;
+        //        if (isToday(currentTime))
+        //        {
+        //            return ChatTimeType.TODAY;
+        //        }
+        //        else if (isTheSameWeek(currentTime, RpcUtils.currentTimeMillis()))
+        //        {
+        //            if (isYesterday(currentTime))
+        //            {
+        //                return ChatTimeType.YESTERDAY;
+        //            }
+        //            else
+        //            {
+        //                return ChatTimeType.WEEK;
+        //            }
+        //        }
+        return ChatTimeType.DEFAULT_TIME;
     }
     
     /**
      * 聊天时间类型<BR>
-     * @author zhaozeyang
-     * @version [Paitao Client V20130911, 2013-11-27]
      */
     public enum ChatTimeType
     {
@@ -246,15 +250,28 @@ public class DateUtil
             }
         },
         /**
-         * 默认
+         * 默认时间
          */
-        DEFAULT
+        DEFAULT_TIME
         {
             @Override
             public String getTimeStr(long timeStamp)
             {
                 return DEFAULT_TIME_FORMAT.format(new Date(timeStamp));
             }
+        },
+        /**
+         * 默认日期
+         */
+        DEFAULT_DATE
+        {
+
+            @Override
+            public String getTimeStr(long timeStamp)
+            {
+                return DEFAULT_DATE_FORMAT.format(new Date(timeStamp));
+            }
+            
         };
         /**
          * 获得时间字符串<BR>
@@ -280,5 +297,10 @@ public class DateUtil
          */
         private static final SimpleDateFormat DEFAULT_TIME_FORMAT = new SimpleDateFormat(
                 "yyyy-MM-dd HH:mm:ss");
+        /**
+         * 默认日期格式化
+         */
+        private static final SimpleDateFormat DEFAULT_DATE_FORMAT = new SimpleDateFormat(
+                "yyyy-MM-dd");
     }
 }

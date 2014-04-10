@@ -47,6 +47,9 @@
 
     <!-- 输入提示色 浅灰色 -->
     <color name="font_color_light_gray">#c4ced6</color>
+    <!-- 好看的浅黑色配白底 -->
+    <color name="font_color_light_black">#656565</color>
+    
 
     <!-- *********背景颜色定义********** -->
 
