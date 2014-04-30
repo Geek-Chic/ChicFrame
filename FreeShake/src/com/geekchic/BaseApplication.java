@@ -1,5 +1,6 @@
 package com.geekchic;
 
+import com.baidu.frontia.FrontiaApplication;
 import com.geekchic.common.log.Logger;
 import com.geekchic.common.utils.PreferencesUtil;
 import com.geekchic.constant.AppException;
@@ -19,6 +20,8 @@ public class BaseApplication extends Application
         AppException.getInstance().init(getBaseContext());
         //初始化Preference
         PreferencesUtil.initContext(getApplicationContext());
+        //初始化百度云推
+        FrontiaApplication.initFrontiaApplication(getApplicationContext());
     }
     
 }

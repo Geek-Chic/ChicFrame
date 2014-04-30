@@ -8,9 +8,15 @@
  */
 package com.geekchic.framework.ui;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.media.AudioManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.view.inputmethod.InputMethodManager;
@@ -20,10 +26,13 @@ import com.geekchic.common.utils.PreferencesUtil;
 import com.geekchic.constant.AppConfig;
 import com.geekchic.constant.AppConstants.Common;
 import com.geekchic.constant.AppManager;
+import com.geekchic.framework.logic.BaseLogicBuilder;
+import com.geekchic.framework.logic.ILogic;
+import com.geekchic.framework.logic.LogicBuilder;
 
 /**
  * @ClassName: BaseActivity
- * @Descritpion: [用一句话描述作用]
+ * @Descritpion: Activity 基类
  * @author evil
  * @date Apr 29, 2014
  */
@@ -32,6 +41,29 @@ public class BaseActivity extends FragmentActivity {
 	 * TAG
 	 */
 	private static final String TAG = "BaseActivity";
+	/**
+	 * Logic管理类
+	 */
+	private static BaseLogicBuilder mBaseLogicBuilder;
+	/**
+	 * 缓存持有的logic对象的集合
+	 */
+	private final Set<ILogic> mLogicSet = new HashSet<ILogic>();
+	/**
+	 * 是否独自控制logic监听
+	 */
+	private boolean isPrivateHandler = false;
+	/**
+	 * 当前activity消息分发handle
+	 */
+	private Handler mHandler = new Handler() {
+
+		@Override
+		public void handleMessage(Message msg) {
+			BaseActivity.this.handleStateMessage(msg);
+		}
+
+	};
 	/**
 	 * 当前Activity是否Pause
 	 */
@@ -42,58 +74,83 @@ public class BaseActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		AppManager.getAppManager().addActivity(this);
 		init();
+		initData();
 	}
 
 	private void init() {
+		  if(mBaseLogicBuilder==null){
+			  mBaseLogicBuilder=LogicBuilder.getInstance(this);
+		  }
+		if (!isHandlerManagerSelf()) {
+			mBaseLogicBuilder.addHandleToLogics(getHandler());
+		}
+		initLogics();
+		// 设置在当前应用界面，调用音量键的时候控制的是多媒体音量
+		setVolumeControlStream(AudioManager.STREAM_MUSIC);
+
+	}
+
+	/**
+	 * 读取常用设置
+	 */
+	private void initData() {
 		AppConfig.getInstance().setSessionId(
 				PreferencesUtil.getAttrString(Common.KEY_SESSION_ID));
 		AppConfig.getInstance().setUid(
 				PreferencesUtil.getAttrString(Common.KEY_USER_ID));
-
 	}
-    /**
-     * 判断是否已经登录
-     * @return
-     */
+
+	/**
+	 * 判断是否已经登录
+	 * 
+	 * @return
+	 */
 	public boolean hasLogined() {
 		return !TextUtils.isEmpty(AppConfig.getInstance().getSessionId());
 	}
-	 /**
-     * 当前Activity是否处于暂停状态<BR>
-     * @return 是否处于暂停状态
-     */
-    protected boolean isActivityPause()
-    {
-        return mPaused;
-    }
-    /**
-     * 返回一个boolean表示展示该页面是否需要登录成功
-     * @return boolean 是否是登录后的页面
-     */
-    protected boolean needLogin()
-    {
-        return true;
-    }
-    /**
-     * 获取shared preferences<BR>
-     * @return SharedPreferences
-     */
-    public SharedPreferences getSharedPreferences()
-    {
-        return getSharedPreferences(Common.SHARED_PREFERENCE_NAME,
-                Context.MODE_PRIVATE);
-    }
-    /**
-     * 设置已经成功登录<BR>
-     * @param sessionid 登陆后纪录sessionid来判断是否登陆
-     */
-    protected void setLogined(String sessionid)
-    {
-        PreferencesUtil.setAttr(Common.KEY_SESSION_ID, sessionid);
-    }
+
+	/**
+	 * 当前Activity是否处于暂停状态<BR>
+	 * 
+	 * @return 是否处于暂停状态
+	 */
+	protected boolean isActivityPause() {
+		return mPaused;
+	}
+
+	/**
+	 * 返回一个boolean表示展示该页面是否需要登录成功
+	 * 
+	 * @return boolean 是否是登录后的页面
+	 */
+	protected boolean needLogin() {
+		return true;
+	}
+
+	/**
+	 * 获取shared preferences<BR>
+	 * 
+	 * @return SharedPreferences
+	 */
+	public SharedPreferences getSharedPreferences() {
+		return getSharedPreferences(Common.SHARED_PREFERENCE_NAME,
+				Context.MODE_PRIVATE);
+	}
+
+	/**
+	 * 设置已经成功登录<BR>
+	 * 
+	 * @param sessionid
+	 *            登陆后纪录sessionid来判断是否登陆
+	 */
+	protected void setLogined(String sessionid) {
+		PreferencesUtil.setAttr(Common.KEY_SESSION_ID, sessionid);
+	}
+
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
+		removeHandler();
+		AppManager.getAppManager().finishActivity(this);
 		super.onDestroy();
 	}
 
@@ -132,7 +189,141 @@ public class BaseActivity extends FragmentActivity {
 
 	@Override
 	public void finish() {
-		AppManager.getAppManager().finishActivity(this);
+		removeHandler();
 		super.finish();
+	}
+     
+	/**
+	 * 根据类名获取Logic
+	 * 
+	 * @param interfaceClass
+	 * @return
+	 */
+	protected final ILogic getLogic(Class<?> interfaceClass) {
+		ILogic logic = mBaseLogicBuilder.getLogic(interfaceClass);
+		// 如果自己管理注册Handler则加缓存
+		if (isHandlerManagerSelf() && null != logic
+				&& !mLogicSet.contains(logic)) {
+			logic.addHandler(getHandler());
+			mLogicSet.add(logic);
+		}
+		if (null == logic) {
+			Logger.e(TAG, "Not found Logic：" + interfaceClass);
+		}
+		return logic;
+	}
+
+	private void removeHandler() {
+		if (mHandler != null) {
+
+			if (mLogicSet.size() > 0 && isHandlerManagerSelf()) {
+				for (ILogic logic : mLogicSet) {
+					logic.removeHandler(getHandler());
+				}
+			} else {
+				mBaseLogicBuilder.removeHandlerFromLogics(getHandler());
+			}
+			this.mHandler = null;
+		}
+
+	}
+
+	/**
+	 * 获取Handler
+	 * 
+	 * @return
+	 */
+	protected final Handler getHandler() {
+		return mHandler;
+	}
+
+	/**
+	 * 是否自己管理Handler
+	 * 
+	 * @return
+	 */
+	protected boolean isHandlerManagerSelf() {
+		return isPrivateHandler;
+	}
+
+	/**
+	 * 发送消息
+	 * 
+	 * @param what
+	 *            消息标识
+	 */
+	protected final void sendEmptyMessage(int what) {
+		if (mHandler != null) {
+			mHandler.sendEmptyMessage(what);
+		}
+	}
+
+	/**
+	 * 延迟发送空消息
+	 * 
+	 * @param what
+	 *            消息标识
+	 * @param delayMillis
+	 *            延迟时间
+	 */
+	protected final void sendEmptyMessageDelayed(int what, long delayMillis) {
+		if (mHandler != null) {
+			mHandler.sendEmptyMessageDelayed(what, delayMillis);
+		}
+	}
+
+	/**
+	 * 
+	 * post一段操作到UI线程
+	 * 
+	 * @param runnable
+	 *            Runnable
+	 */
+	protected final void postRunnable(Runnable runnable) {
+		if (mHandler != null) {
+			mHandler.post(runnable);
+		}
+	}
+
+	/**
+	 * 发送消息
+	 * 
+	 * @param msg
+	 *            消息对象
+	 */
+	protected final void sendMessage(Message msg) {
+		if (mHandler != null) {
+			mHandler.sendMessage(msg);
+		}
+	}
+
+	/**
+	 * 延迟发送消息
+	 * 
+	 * @param msg
+	 *            消息对象
+	 * @param delayMillis
+	 *            延迟时间
+	 */
+	protected final void sendMessageDelayed(Message msg, long delayMillis) {
+		if (mHandler != null) {
+			mHandler.sendMessageDelayed(msg, delayMillis);
+		}
+	}
+
+	/**
+	 * Activity消息接收
+	 * 
+	 * @param msg
+	 */
+	protected void handleStateMessage(Message msg) {
+
+	}
+
+	/**
+	 * 初始化Logic
+	 */
+	protected void initLogics() {
+
 	}
 }

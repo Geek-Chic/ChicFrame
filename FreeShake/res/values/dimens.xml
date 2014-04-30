@@ -24,6 +24,7 @@
     <dimen name="common_btn_height">42dp</dimen>
     <!-- 普通编辑框的高度 -->
     <dimen name="common_edit_height">42dp</dimen>
-    
+    <!-- TitleBar -->
+    <dimen name="title_bar_height">48dip</dimen>
 
 </resources>

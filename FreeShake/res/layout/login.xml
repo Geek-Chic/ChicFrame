@@ -11,9 +11,8 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@drawable/bg_frame_top"
-        android:orientation="vertical" 
         android:gravity="center"
-        >
+        android:orientation="vertical" >
 
         <com.widget.roundimageview.RoundedImageView
             android:layout_width="100dp"
@@ -30,46 +29,49 @@
         android:layout_height="0dp"
         android:layout_weight="2"
         android:background="#FFF"
-        android:padding="@dimen/margin_large"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:padding="@dimen/margin_large" >
 
         <EditText
             android:id="@+id/editText1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:singleLine="true"
+            android:ems="10"
             android:hint="用户名/手机号"
-            android:ems="10" >
+            android:singleLine="true" >
 
             <requestFocus />
         </EditText>
-
         <EditText
             android:id="@+id/editText2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
-            android:singleLine="true"
-            android:inputType="textPassword"
+            android:ems="10"
             android:hint="密码"
-            android:ems="10" />
-     <TextView 
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:textSize="@dimen/font_size_large"
-         android:layout_gravity="right"
-         android:layout_marginTop="@dimen/margin_small"
-         android:textStyle="bold"
-         android:text="用户注册"
-         />
+            android:inputType="textPassword"
+            android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/login_tv_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="@dimen/margin_small"
+            android:text="@string/login_register"
+            android:textSize="@dimen/font_size_large"
+            android:textStyle="bold" />
     </LinearLayout>
-   <Button
-       android:layout_width="fill_parent"
-       android:layout_height="wrap_content"
-       android:layout_margin="@dimen/margin_medium"
-       android:background="@drawable/bg_common_btn_blue_selector"
-       android:textColor="@color/font_color_white"
-       android:textSize="@dimen/font_size_xlarge"
-       android:text="登录"
-       ></Button>
+
+    <Button
+        android:id="@+id/login_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_medium"
+        android:background="@drawable/bg_common_btn_brown_selector"
+        android:text="@string/login_btn"
+        android:textColor="@color/font_color_white"
+        android:textSize="@dimen/font_size_xlarge" >
+    </Button>
+
 </LinearLayout>

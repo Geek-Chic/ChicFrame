@@ -63,7 +63,7 @@ public class AppManager {
 	 * 结束指定的Activity
 	 */
 	public void finishActivity(Activity activity){
-		if(activity!=null){
+		if(activityStack.contains(activity)){
 			activityStack.remove(activity);
 			activity.finish();
 			activity=null;

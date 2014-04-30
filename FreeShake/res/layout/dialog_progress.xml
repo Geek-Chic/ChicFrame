@@ -3,12 +3,13 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="center"
+    android:background="@drawable/bg_common_dialog"
     android:orientation="vertical" >
 
-    <View
+    <ImageView
         android:id="@+id/dialog_loading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="74dp"
+        android:layout_height="74dp"
         android:layout_gravity="center"
         android:layout_marginTop="28dip"
         android:background="@anim/loading_circle" />

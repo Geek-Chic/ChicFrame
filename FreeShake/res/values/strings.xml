@@ -11,4 +11,9 @@
     <string name="feedback_title">反馈信息</string>
     <string name="feedback_hint_text">说些什么吧....</string>
     <string name="feedback_commit_btn">提交</string>
+    <!-- 登录 -->
+     <string name="login_btn">登陆</string>
+    <string name="login_register"><u>注册帐号</u></string>
+    <string name="login_please_input_user">请输入账号</string>
+    <string name="login_please_input_password">请输入密码</string>
 </resources>

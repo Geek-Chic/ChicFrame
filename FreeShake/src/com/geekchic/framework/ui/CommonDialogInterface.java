@@ -14,6 +14,6 @@ package com.geekchic.framework.ui;
  * @author evil
  * @date Apr 29, 2014
  */
-public interface CommDialogInterface {
+public interface CommonDialogInterface {
    public void showProgressDialog(String message,boolean cancelable);
 }

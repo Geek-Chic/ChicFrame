@@ -8,10 +8,9 @@
  */
 package com.geekchic.framework.ui.dialog;
 
+import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface.OnCancelListener;
-import android.content.DialogInterface.OnKeyListener;
-import android.view.LayoutInflater;
+import android.graphics.drawable.AnimationDrawable;
 import android.view.View;
 import android.widget.TextView;
 
@@ -23,53 +22,59 @@ import com.geekchic.wuyou.R;
  * @author evil
  * @date Apr 29, 2014
  */
-public class ProgressDialog {
-	private BasicDialog mBasicDialog;
+public class ProgressDialog extends Dialog {
+	/**
+	 * 基本对话框
+	 */
+	private static ProgressDialog mBasicDialog = null;
+	/**
+	 * 加载动画
+	 */
+	private AnimationDrawable mLoadingAnimationDrawable;
+	/**
+	 * 加载视图
+	 */
+	private View mLoadingView;
+	/**
+	 * context
+	 */
+	private Context mContext;
 
 	public ProgressDialog(Context context) {
-		this(context, 0);
+		super(context);
 	}
 
 	public ProgressDialog(Context context, int theme) {
-		this(context, theme, true);
+		super(context, theme);
 	}
-	
 
-	public ProgressDialog(Context context, int theme, boolean isCancleable) {
-		mBasicDialog = new BasicDialog(context, theme, isCancleable);
-		LayoutInflater inflater = (LayoutInflater) context
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View view = inflater.inflate(R.layout.dialog_progress, null);
-		mBasicDialog.setContentView(view);
+	public static ProgressDialog createProgressDialog(Context context) {
+		mBasicDialog = new ProgressDialog(context, R.style.AppDialog);
+		mBasicDialog.setContentView(R.layout.dialog_progress);
+		return mBasicDialog;
 	}
 	/**
-     * 设置需要显示的消息<BR>
-     * @param strMessage 需要显示的提示消息
-     * @return progressdialog实例
-     */
-    public ProgressDialog setMessage(String message)
-    {
-        TextView contextTextView = (TextView) mBasicDialog.getContentView()
-                .findViewById(R.id.progress_msg);
-        
-        if (null != contextTextView)
-        {
-        	contextTextView.setText(message);
-        }
-        return this;
+	 * 设置对话框点击取消
+	 * @param cancelable
+	 */
+    public void setCancelable(boolean cancelable){
+    	mBasicDialog.setCancelable(cancelable);
     }
 	/**
-	 * showdialog<BR>
+	 * 设置需要显示的消息<BR>
+	 * 
+	 * @param strMessage
+	 *            需要显示的提示消息
+	 * @return progressdialog实例
 	 */
-	public void show() {
-		mBasicDialog.show();
-	}
+	public ProgressDialog setMessage(String message) {
+		TextView contextTextView = (TextView) mBasicDialog
+				.findViewById(R.id.progress_msg);
 
-	/**
-	 * 关闭dialog<BR>
-	 */
-	public void dismiss() {
-		mBasicDialog.dismiss();
+		if (null != contextTextView) {
+			contextTextView.setText(message);
+		}
+		return this;
 	}
 
 	/**
@@ -87,6 +92,19 @@ public class ProgressDialog {
 
 	public void setOnKeyListener(OnKeyListener onKeyListener) {
 		mBasicDialog.setOnKeyListener(onKeyListener);
+	}
+
+	@Override
+	public void onWindowFocusChanged(boolean hasFocus) {
+		// TODO Auto-generated method stub
+		if (mBasicDialog == null) {
+			return;
+		}
+		mLoadingView = mBasicDialog.findViewById(R.id.dialog_loading);
+		mLoadingAnimationDrawable = (AnimationDrawable) mLoadingView
+				.getBackground();
+		mLoadingAnimationDrawable.start();
+
 	}
 
 }
