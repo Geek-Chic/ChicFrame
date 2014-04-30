@@ -1,6 +1,7 @@
 package com.geekchic;
 
 import com.geekchic.common.log.Logger;
+import com.geekchic.common.utils.PreferencesUtil;
 import com.geekchic.constant.AppException;
 
 import android.app.Application;
@@ -16,6 +17,8 @@ public class BaseApplication extends Application
 //        Logger.displayStatus();
         //初始化错误监听
         AppException.getInstance().init(getBaseContext());
+        //初始化Preference
+        PreferencesUtil.initContext(getApplicationContext());
     }
     
 }

@@ -3,23 +3,19 @@ package com.geekchic.freeshake.ui;
 import java.io.InputStream;
 
 import org.apache.http.HttpResponse;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import ch.qos.logback.classic.LoggerContext;
-import ch.qos.logback.core.util.StatusPrinter;
 
 import com.geekchic.base.http.CommHttpRequest;
 import com.geekchic.base.http.CommHttpRequest.CommHttpRequestLinstener;
 import com.geekchic.common.view.ctransview.CtransAdapter;
 import com.geekchic.common.view.ctransview.CtransMenu;
-import com.geekchic.freeshake.R;
 import com.geekchic.freeshake.module.BaseActivity;
+import com.geekchic.wuyou.R;
 
 public class MainActivity extends BaseActivity implements OnClickListener
 {
@@ -35,7 +31,7 @@ public class MainActivity extends BaseActivity implements OnClickListener
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.login);
 //        int a=10;
 //        log.error("会务奇才在在e{}",a);
 //        log.info("会务奇才在在i");

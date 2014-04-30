@@ -1,4 +1,4 @@
-package com.geekchic.freeshake;
+package com.geekchic.wuyou;
 
 /**
  * 全局参数定义
@@ -15,7 +15,7 @@ public class GlobalEnv
         /**
          * 程序保存shared preferences的名字
          */
-        String SHARED_PREFERENCE_NAME = "FreeShake";
+        String SHARED_PREFERENCE_NAME = "WuYou";
         
         /**
          * shared preference 键 存储当前登录userId

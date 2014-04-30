@@ -29,7 +29,7 @@ import android.view.ViewConfiguration;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import com.geekchic.freeshake.R;
+import com.geekchic.wuyou.R;
 
 /**
  * ListView subclass that provides the swipe functionality

@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 
-import com.geekchic.freeshake.R;
+import com.geekchic.wuyou.R;
 
 
 public class SlidingActivityHelper {

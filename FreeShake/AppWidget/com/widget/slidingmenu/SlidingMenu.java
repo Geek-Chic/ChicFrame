@@ -27,7 +27,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
-import com.geekchic.freeshake.R;
+import com.geekchic.wuyou.R;
 import com.widget.slidingmenu.CustomViewAbove.OnPageChangeListener;
 
 

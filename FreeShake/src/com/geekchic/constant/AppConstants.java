@@ -1,11 +1,5 @@
 package com.geekchic.constant;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
-import android.content.Context;
-import android.util.Log;
 
 public class AppConstants
 {
@@ -24,13 +18,26 @@ public class AppConstants
      * 发布版本 debug 属性设置为FALSE
      */
     public static final boolean ISDEBUG_RELEASE_BUILD_VALUE = false;
-    private static final boolean Log_WITH_POSTION = false;
-    
-    private static final String LOG_TAG = "freeshake";
-    private static final String LOG_FILE = LOG_TAG + ".log";
-    
-    private static long curTime;
-    private static Context mContext = null;
+    /**
+     * 一些公共信息
+     */
+    public interface Common
+    {
+        /**
+         * 程序保存shared preferences的名字
+         */
+        String SHARED_PREFERENCE_NAME = "Preferences";
+        
+        /**
+         * shared preference 键 存储当前登录userId
+         */
+        String KEY_USER_ID = "userId";
+        
+        /**
+         * shared preference 键 标识是否登录状态
+         */
+        String KEY_SESSION_ID = "sessionId";
+    }
 //    public LogConstants(){
 //        
 //    }

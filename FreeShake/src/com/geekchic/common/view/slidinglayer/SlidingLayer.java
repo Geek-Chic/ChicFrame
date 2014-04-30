@@ -24,7 +24,7 @@ import android.view.animation.Interpolator;
 import android.widget.FrameLayout;
 import android.widget.Scroller;
 
-import com.geekchic.freeshake.R;
+import com.geekchic.wuyou.R;
 
 @SuppressLint("FloatMath")
 public class SlidingLayer extends FrameLayout {

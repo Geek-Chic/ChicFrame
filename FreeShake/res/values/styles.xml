@@ -36,6 +36,7 @@
     <!-- 默认主题 -->
      <style name="Default" parent="@android:style/Theme.Black">
         <item name="android:textColorPrimaryInverse">@android:color/black</item>
+         <item name="android:windowNoTitle">true</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowTitleSize">46.0dip</item>
         <item name="android:windowTitleBackgroundStyle">@style/Default.CustomWindowTitleBackground</item>
@@ -55,7 +56,7 @@
     </style>
     <!-- 通用EditText -->
     <style name="Widget.CustomEditText" parent="@android:style/Widget.EditText">
-        <item name="android:background">@drawable/bg_common_edittext_selected</item>
+        <item name="android:background">@drawable/bg_common_edittext_selector</item>
     </style>
     <!-- 通用ListView -->
     <style name="Widget.CustomListView" parent="@android:style/Widget.ListView">
@@ -69,6 +70,7 @@
     <!-- 无TitleBar主题  -->
     <style name="Default.NoTitleBar" parent="@style/Default">
         <item name="android:windowNoTitle">true</item>
+         <item name="android:windowContentOverlay">@null</item>
     </style>
     <!-- 转场动画  -->
     <style name="Anim.ActyAnimation" parent="@android:style/Animation.Activity">

@@ -10,7 +10,7 @@ import android.view.animation.Animation;
 import android.widget.FrameLayout;
 
 import com.geekchic.common.view.ctransview.CtransMenu.CTRANS_ANIMI_MODE;
-import com.geekchic.freeshake.R;
+import com.geekchic.wuyou.R;
 
 public class CtransAdapter
 {

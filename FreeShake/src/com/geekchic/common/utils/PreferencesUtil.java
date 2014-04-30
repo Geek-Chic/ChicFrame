@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 
-import com.geekchic.freeshake.GlobalEnv.Common;
+import com.geekchic.wuyou.GlobalEnv.Common;
 
 
 public class PreferencesUtil

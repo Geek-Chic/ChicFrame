@@ -30,6 +30,15 @@ public class AppConfig
      * 日志记录位置
      */
     private boolean isDebug=AppConstants.ISDEBUG_DEBUG_BUILD_VALUE;
+    /**
+     * 登陆后返回的session
+     */
+    private String mSessionId;
+    
+    /**
+     * 用户id
+     */
+    private String mUid;
     
     /**
      * AppConfig私有构造函数
@@ -69,6 +78,22 @@ public class AppConfig
         this.isDebug = isDebug;
     }
 
+	public String getSessionId() {
+		return mSessionId;
+	}
+
+	public void setSessionId(String mSessionId) {
+		this.mSessionId = mSessionId;
+	}
+
+	public String getUid() {
+		return mUid;
+	}
+
+	public void setUid(String mUid) {
+		this.mUid = mUid;
+	}
+   
    
 //    /**
 //     * 是否打印日志

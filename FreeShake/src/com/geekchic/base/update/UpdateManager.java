@@ -58,8 +58,7 @@ public class UpdateManager {
 	}
 	
 	/**
-    * install the apk
-    *
+    * 安装APK<BR>
     * @param context
     * @param filePath
     */

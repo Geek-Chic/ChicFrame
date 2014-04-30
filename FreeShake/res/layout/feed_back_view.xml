@@ -39,7 +39,7 @@
             android:background="@drawable/separator_shape_line" />
 
         <ScrollView
-            android:id="@+id/scrollview"
+            android:id="@+id/dialog_content_scrollview"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_weight="1"

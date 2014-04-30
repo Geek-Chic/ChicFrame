@@ -219,7 +219,7 @@ public class AppException extends Exception implements UncaughtExceptionHandler
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         // 退出
-//                        AppManager.getAppManager().AppExit(cont);
+                        AppManager.getAppManager().AppExit(cont);
                     }
                 });
         builder.show();

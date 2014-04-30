@@ -5,7 +5,8 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="empty"></string>
-
+    <!-- 对话框 -->
+    <string name="dialog_loading">加载中。。。</string>
     <!-- 反馈信息 -->
     <string name="feedback_title">反馈信息</string>
     <string name="feedback_hint_text">说些什么吧....</string>

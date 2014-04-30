@@ -9,7 +9,7 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.view.animation.TranslateAnimation;
 
-import com.geekchic.freeshake.R;
+import com.geekchic.wuyou.R;
 
 public class CtransAnimationCreator
 {

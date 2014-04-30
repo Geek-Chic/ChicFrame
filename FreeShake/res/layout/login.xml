@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color_white"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/bg_frame_top"
+        android:orientation="vertical" 
+        android:gravity="center"
+        >
+
+        <com.widget.roundimageview.RoundedImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/icon_avator"
+            app:border_color="#FFF"
+            app:border_width="3dip"
+            app:corner_radius="30dip"
+            app:is_oval="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:background="#FFF"
+        android:padding="@dimen/margin_large"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/editText1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:hint="用户名/手机号"
+            android:ems="10" >
+
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:singleLine="true"
+            android:inputType="textPassword"
+            android:hint="密码"
+            android:ems="10" />
+     <TextView 
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:textSize="@dimen/font_size_large"
+         android:layout_gravity="right"
+         android:layout_marginTop="@dimen/margin_small"
+         android:textStyle="bold"
+         android:text="用户注册"
+         />
+    </LinearLayout>
+   <Button
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:layout_margin="@dimen/margin_medium"
+       android:background="@drawable/bg_common_btn_blue_selector"
+       android:textColor="@color/font_color_white"
+       android:textSize="@dimen/font_size_xlarge"
+       android:text="登录"
+       ></Button>
+</LinearLayout>

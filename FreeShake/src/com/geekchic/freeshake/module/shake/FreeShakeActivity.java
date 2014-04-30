@@ -2,14 +2,13 @@ package com.geekchic.freeshake.module.shake;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.Response.Listener;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.geekchic.base.update.UpdateFrequent;
@@ -17,8 +16,7 @@ import com.geekchic.base.update.UpdateManager;
 import com.geekchic.base.update.UpdateOptions;
 import com.geekchic.base.update.UpdateOptions.UpdateFormat;
 import com.geekchic.common.utils.ToastUtil;
-import com.geekchic.freeshake.R;
-import com.widget.slidingmenu.SlidingActivity;
+import com.geekchic.wuyou.R;
 import com.widget.slidingmenu.SlidingMenu;
 
 public class FreeShakeActivity extends Activity
@@ -30,7 +28,7 @@ public class FreeShakeActivity extends Activity
     {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.login);
 
     	String urlString="https://raw.githubusercontent.com/snowdream/android-autoupdater/master/docs/test/updateinfo.xml";
     	  UpdateManager manager = new UpdateManager(this);
