@@ -1,7 +1,7 @@
 /**
  * @Title: MainActivity.java
  * @Package com.geekchic.wuyou
- * @Description: [用一句话描述做什么]
+ * @Description: 欢迎界面
  * @author: evil
  * @date: Apr 29, 2014
  * Copyright (c) 2014,Evilester All Rights Reserved. 
@@ -23,11 +23,11 @@ import com.geekchic.wuyou.logic.login.LoginLogic;
 
 /**
  * @ClassName: MainActivity
- * @Descritpion: [用一句话描述作用]
+ * @Descritpion: 欢迎界面
  * @author evil
  * @date Apr 29, 2014
  */
-public class MainActivity extends BaseFrameActivity {
+public class WelcomeActivity extends BaseFrameActivity {
 	private static final int WAIT_SECOND = 500;
 
 	@Override
@@ -35,6 +35,7 @@ public class MainActivity extends BaseFrameActivity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.welcome);
+		bindPush(false);
 		login();
 	}
 

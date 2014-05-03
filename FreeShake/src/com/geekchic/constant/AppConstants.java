@@ -37,6 +37,11 @@ public class AppConstants
          * shared preference 键 标识是否登录状态
          */
         String KEY_SESSION_ID = "sessionId";
+        
+        /**
+         * 推送绑定flag，避免重复绑定
+         */
+        String PUSH_BIND_FLAG="bind_flag";
     }
 //    public LogConstants(){
 //        

@@ -15,7 +15,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.geekchic.common.log.Logger;
 import com.geekchic.constant.AppAction.RegisterAction;
 import com.geekchic.framework.ui.BaseFrameActivity;
@@ -85,5 +87,8 @@ public class LoginActivity extends BaseFrameActivity implements OnClickListener 
 	protected void handleStateMessage(Message msg) {
 		super.handleStateMessage(msg);
 		Logger.d(TAG, "有消息了" + msg.obj);
+		Bundle bundle=(Bundle) msg.obj;
+		JSON.parse(bundle.getString("result"));
+		Toast.makeText(this,bundle.getString("result"), Toast.LENGTH_LONG).show();
 	}
 }

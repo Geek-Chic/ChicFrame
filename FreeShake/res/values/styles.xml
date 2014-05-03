@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -58,7 +58,8 @@
     </style>
     <!-- 通用EditText -->
     <style name="Widget.CustomEditText" parent="@android:style/Widget.EditText">
-        <item name="android:background">@drawable/bg_common_edittext_selector</item>
+        <item name="android:background">@drawable/bg_common_edt_selector</item>
+        <item name="android:textColorHint">@color/font_color_light_gray</item>
     </style>
     <!-- 通用ListView -->
     <style name="Widget.CustomListView" parent="@android:style/Widget.ListView">

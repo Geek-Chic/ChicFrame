@@ -6,7 +6,7 @@
  * @date: Apr 30, 2014
  * Copyright (c) 2014,Evilester All Rights Reserved. 
  */
-package com.geekchic.framework.service;
+package com.geekchic.framework.bean;
 
 import java.io.Serializable;
 

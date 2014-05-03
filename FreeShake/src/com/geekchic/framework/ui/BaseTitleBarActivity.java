@@ -20,7 +20,7 @@ import com.geekchic.wuyou.R;
 
 /**
  * @ClassName: BaseTitleBarActivity
- * @Descritpion: [用一句话描述作用]
+ * @Descritpion: TitleBar基类
  * @author evil
  * @date Apr 30, 2014
  */

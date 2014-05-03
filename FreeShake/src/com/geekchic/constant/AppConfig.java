@@ -39,6 +39,10 @@ public class AppConfig
      * 用户id
      */
     private String mUid;
+    /**
+     * 推送通道标识
+     */
+    private String mChannelId;
     
     /**
      * AppConfig私有构造函数
@@ -92,6 +96,14 @@ public class AppConfig
 
 	public void setUid(String mUid) {
 		this.mUid = mUid;
+	}
+
+	public String getChannelId() {
+		return mChannelId;
+	}
+
+	public void setChannelId(String mChannelId) {
+		this.mChannelId = mChannelId;
 	}
    
    

@@ -8,6 +8,8 @@
  */
 package com.geekchic.framework.service;
 
+import com.geekchic.framework.bean.ImMessage;
+
 
 
 /**

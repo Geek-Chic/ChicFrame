@@ -21,6 +21,8 @@ import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.view.inputmethod.InputMethodManager;
 
+import com.baidu.android.pushservice.PushConstants;
+import com.baidu.android.pushservice.PushManager;
 import com.geekchic.common.log.Logger;
 import com.geekchic.common.utils.PreferencesUtil;
 import com.geekchic.constant.AppConfig;
@@ -309,8 +311,19 @@ public class BaseActivity extends FragmentActivity {
 		if (mHandler != null) {
 			mHandler.sendMessageDelayed(msg, delayMillis);
 		}
+	} 
+	/**
+	 * 是否绑定推送
+	 * @param enableLasPush 是否打开地理位置的推送
+	 */
+	protected void bindPush(boolean enableLasPush){
+		boolean pushFlag=getSharedPreferences().getBoolean(Common.PUSH_BIND_FLAG, false);
+		if(!pushFlag){
+			PushManager.startWork(getApplicationContext(),
+					PushConstants.LOGIN_TYPE_API_KEY, 
+					PreferencesUtil.getMetaValue(this, "api_key"));
+		}
 	}
-
 	/**
 	 * Activity消息接收
 	 * 

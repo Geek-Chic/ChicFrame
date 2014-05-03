@@ -8,16 +8,16 @@
     <ImageView
         android:id="@+id/titlebar_btn_left"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/title_bar_height"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:background="@android:color/transparent"
-        android:paddingLeft="5dp"
+        android:paddingLeft="@dimen/margin_medium"
+        android:paddingRight="@dimen/margin_medium"
         android:textColor="@color/font_color_white"
         android:textSize="@dimen/font_size_medium"
-        android:visibility="visible" 
-         tools:ignore="ContentDescription"
-        />
+        android:visibility="visible"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/titlebar_text_title"
@@ -26,19 +26,19 @@
         android:layout_marginLeft="50dip"
         android:layout_marginRight="50dip"
         android:ellipsize="middle"
+        android:gravity="center"
         android:singleLine="true"
         android:textColor="@color/font_color_white"
-        android:gravity="center"
         android:textSize="@dimen/font_size_xlarge"
         android:textStyle="bold" />
-        
+
     <ImageView
         android:id="@+id/titlebar_btn_right"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/title_bar_height"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
+        android:layout_marginRight="@dimen/margin_small"
+        android:paddingRight="@dimen/margin_medium"
         android:visibility="gone"
         tools:ignore="ContentDescription" />
 

@@ -110,7 +110,7 @@ public class TitleBar extends LinearLayout {
      */
 	public void setLeftButtonDrawable(int id) {
 		mLeftButton.setVisibility(View.VISIBLE);
-		mLeftButton.setBackgroundResource(id);
+		mLeftButton.setImageResource(id);
 	}
     /**
      * 左边按钮图片
@@ -118,7 +118,7 @@ public class TitleBar extends LinearLayout {
      */
 	public void setRightButtonDrawable(int id) {
 		mRightButton.setVisibility(View.VISIBLE);
-		mRightButton.setBackgroundResource(id);
+		mRightButton.setImageResource(id);
 	}
     /**
      * 左边按钮监听器

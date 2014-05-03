@@ -71,7 +71,7 @@ public class AppException extends Exception implements UncaughtExceptionHandler
         mContext=context;
         this.mDefaultHandler=Thread.getDefaultUncaughtExceptionHandler();
         //设置为默认Exception收集器
-        Thread.setDefaultUncaughtExceptionHandler(this);
+//        Thread.setDefaultUncaughtExceptionHandler(this);
     }
     @Override
     public void uncaughtException(Thread thread, Throwable ex)

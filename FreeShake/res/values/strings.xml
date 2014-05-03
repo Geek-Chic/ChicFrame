@@ -16,4 +16,15 @@
     <string name="login_register"><u>注册帐号</u></string>
     <string name="login_please_input_user">请输入账号</string>
     <string name="login_please_input_password">请输入密码</string>
+    <!-- 注册 -->
+    <string name="register_declaration">声明</string>
+    <string name="register_agree_declaration">同意并继续</string>
+    <string name="register_nickname_hint">您的真实姓名</string>
+    <string name="register_start">启动</string>
+    <string name="register_nickname_require_hint">*为方便标识自己，请输入您的真实姓名</string>
+    <string name="register_phone_hint">请输入注册的电话号码</string>
+    <string name="register_verfication_hint">验证码</string>
+    <string name="register_verfication_code">获取验证码</string>
+    <string name="register_verfy_count">%1$d重新获取</string>
+    <string name="register_go_next">下一步</string>
 </resources>

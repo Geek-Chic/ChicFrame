@@ -24,16 +24,36 @@ public interface AppAction {
 	 * @author evil
 	 * @date Apr 30, 2014
 	 */
-	public  interface LoginAction{
+	public interface LoginAction {
 		/**
 		 * ACTION
 		 */
-		public String ACTION="com.geekchic.wuyou.LOGIN";
+		public String ACTION = "com.geekchic.wuyou.LOGIN";
 	}
-	public interface RegisterAction{
+
+	/**
+	 * @ClassName: RegisterAction
+	 * @Descritpion: 注册Action
+	 * @author evil
+	 * @date May 3, 2014
+	 */
+	public interface RegisterAction {
 		/**
 		 * ACTION
 		 */
-		public String ACTION="com.geekchic.wuyou.REGISTER";
+		public String ACTION = "com.geekchic.wuyou.REGISTER";
+	}
+
+	/**
+	 * @ClassName: MainAction
+	 * @Descritpion: 主界面ACTION
+	 * @author evil
+	 * @date May 3, 2014
+	 */
+	public interface MainAction {
+		/**
+		 * ACTION
+		 */
+		public String ACTION = "com.geekchic.wuyou.MAIN";
 	}
 }
