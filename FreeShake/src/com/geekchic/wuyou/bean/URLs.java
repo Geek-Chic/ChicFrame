@@ -24,12 +24,12 @@ public final class URLs {
 	/**
 	 * 主机位置
 	 */
-	public static final String LOCAL_HOST = "192.168.1.106";
+	public static final String LOCAL_HOST = "192.168.1.105/wuyou";
 	public static final String VPS_HOST="evilester.hk.7encc.com/wuyou";
-	public static final String HOST=VPS_HOST;
+	public static final String HOST=LOCAL_HOST;
 	/**
 	 * 登录验证
 	 */
 	public final static String REGISTER_DECLARATION=HTTP+HOST+URL_SPLITTER+"declaration.html";
-	public final static String LOGIN_VALIDATE_HTTP = HTTP + HOST + URL_SPLITTER + "authentication.php";
+	public final static String LOGIN_VALIDATE_HTTP = HTTP + HOST + URL_SPLITTER + "site/remotelogin";
 }

@@ -22,6 +22,7 @@ public class BaseApplication extends Application
         PreferencesUtil.initContext(getApplicationContext());
         //初始化百度云推
         FrontiaApplication.initFrontiaApplication(getApplicationContext());
+        
     }
     
 }

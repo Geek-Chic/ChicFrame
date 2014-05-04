@@ -259,7 +259,8 @@ public class BaseRequestManager {
 		/**
 		 * 活动监听器
 		 */
-		private final WeakReference<RequestListener> mReferenceReference;
+		private  WeakReference<RequestListener> mReferenceReference;
+		private RequestListener listener;
 		/**
 		 * 哈希值
 		 */
@@ -271,7 +272,8 @@ public class BaseRequestManager {
 		 * @param listener
 		 */
 		public ListenerHolder(RequestListener listener) {
-			mReferenceReference = new WeakReference<RequestListener>(listener);
+//			mReferenceReference = new WeakReference<RequestListener>(listener);
+			this.listener=listener;
 			mHashCode = 31 + listener.hashCode();
 		}
 
@@ -285,7 +287,7 @@ public class BaseRequestManager {
 		public void onRequestFinished(Request request, int resultCode,
 				Bundle data) {
 			mRequestReceiverMap.remove(request);
-			RequestListener listener = mReferenceReference.get();
+//			RequestListener listener = mReferenceReference.get();
 			if (null != listener) {
 				switch (resultCode) {
 				case BaseRequestService.CODE_TYPE_SUCCESS:

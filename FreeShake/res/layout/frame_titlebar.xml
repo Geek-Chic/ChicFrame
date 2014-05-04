@@ -37,7 +37,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/margin_small"
+        android:layout_centerVertical="true"
+        android:paddingLeft="@dimen/margin_medium"
         android:paddingRight="@dimen/margin_medium"
         android:visibility="gone"
         tools:ignore="ContentDescription" />

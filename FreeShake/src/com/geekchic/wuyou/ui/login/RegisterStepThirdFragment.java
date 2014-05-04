@@ -8,13 +8,17 @@
  */
 package com.geekchic.wuyou.ui.login;
 
-import com.geekchic.wuyou.R;
-
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
+
+import com.geekchic.wuyou.R;
 
 /**
  * @ClassName: RegisterStepThirdFragment
@@ -22,11 +26,24 @@ import android.view.ViewGroup;
  * @author evil
  * @date May 1, 2014
  */
-public class RegisterStepThirdFragment extends Fragment{
+public class RegisterStepThirdFragment extends Fragment implements OnClickListener{
+	/**
+	 * 完成注册去主界面
+	 */
+	private Button mGoButton;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
     		Bundle savedInstanceState) {
     	View view=inflater.inflate(R.layout.register_step_third, null);
+    	mGoButton=(Button) view.findViewById(R.id.register_nickname_confirm);
+    	mGoButton.setOnClickListener(this);
     	return view;
     }
+	@Override
+	public void onClick(View v) {
+		if(v.getId()==R.id.register_nickname_confirm){
+			RegisterActivity activity=(RegisterActivity) getActivity();
+			activity.stepToMain();
+		}
+	}
 }

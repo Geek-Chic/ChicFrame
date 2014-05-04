@@ -8,6 +8,8 @@
  */
 package com.geekchic.wuyou.ui.login;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -16,6 +18,7 @@ import android.view.View.OnClickListener;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.geekchic.constant.AppAction.MainAction;
 import com.geekchic.framework.ui.BaseTitleBarActivity;
 import com.geekchic.wuyou.R;
 
@@ -48,7 +51,7 @@ public class RegisterActivity extends BaseTitleBarActivity implements
 	 * 步骤组
 	 */
 	private RadioGroup mStepRadioGroup;
-	
+
 	/**
 	 * fragment管理类
 	 */
@@ -60,7 +63,7 @@ public class RegisterActivity extends BaseTitleBarActivity implements
 
 		@Override
 		public void onClick(View v) {
-           onBackPressed();
+			onBackPressed();
 		}
 	};
 
@@ -68,23 +71,25 @@ public class RegisterActivity extends BaseTitleBarActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		initView();
-		
+
 	}
-    private void initView(){
-    	mFragmentManager=getSupportFragmentManager();
-    	RegisterStepOneFragment registerStepOneFragment=new RegisterStepOneFragment();
-    	FragmentTransaction transaction=mFragmentManager.beginTransaction();
-    	transaction.replace(R.id.register_container_fragment, registerStepOneFragment);
-    	transaction.commit();
-    	
-    	
-    	mStepRadioGroup=(RadioGroup) findViewById(R.id.register_tag_radiogroup);
-    	mStepFirstRadioButton=(RadioButton) findViewById(R.id.register_tag_first);
-    	mStepSecondRadioButton=(RadioButton) findViewById(R.id.register_tag_second);
-    	mStepThirdRadioButton=(RadioButton) findViewById(R.id.register_tag_third);
-    	
-    	mStepFirstRadioButton.setChecked(true);
-    }
+
+	private void initView() {
+		mFragmentManager = getSupportFragmentManager();
+		RegisterStepOneFragment registerStepOneFragment = new RegisterStepOneFragment();
+		FragmentTransaction transaction = mFragmentManager.beginTransaction();
+		transaction.replace(R.id.register_container_fragment,
+				registerStepOneFragment);
+		transaction.commit();
+
+		mStepRadioGroup = (RadioGroup) findViewById(R.id.register_tag_radiogroup);
+		mStepFirstRadioButton = (RadioButton) findViewById(R.id.register_tag_first);
+		mStepSecondRadioButton = (RadioButton) findViewById(R.id.register_tag_second);
+		mStepThirdRadioButton = (RadioButton) findViewById(R.id.register_tag_third);
+
+		mStepFirstRadioButton.setChecked(true);
+	}
+
 	@Override
 	public int getLayoutId() {
 		return R.layout.register_container;
@@ -106,28 +111,41 @@ public class RegisterActivity extends BaseTitleBarActivity implements
 	@Override
 	public void onClick(View v) {
 	}
+
 	/**
 	 * 跳转至第二步
 	 */
-    public void stepToSecondFragment(){
-    	RegisterStepTwoFragment registerStepTwoFragment=new RegisterStepTwoFragment();
-    	FragmentTransaction transaction=mFragmentManager.beginTransaction();
-    	transaction.replace(R.id.register_container_fragment, registerStepTwoFragment);
-    	transaction.commit();
-    	
-    	mStepFirstRadioButton.setChecked(false);
-    	mStepSecondRadioButton.setChecked(true);
-    }
-    /**
-     * 跳转至第三步
-     */
-    public void stepToThirdFragment(){
-    	RegisterStepThirdFragment registerStepThirdFragment=new RegisterStepThirdFragment();
-    	FragmentTransaction transaction=mFragmentManager.beginTransaction();
-    	transaction.replace(R.id.register_container_fragment, registerStepThirdFragment);
-    	transaction.commit();
-    	
-    	mStepSecondRadioButton.setChecked(false);
-    	mStepThirdRadioButton.setChecked(true);
-    }
+	public void stepToSecondFragment() {
+		RegisterStepTwoFragment registerStepTwoFragment = new RegisterStepTwoFragment();
+		FragmentTransaction transaction = mFragmentManager.beginTransaction();
+		transaction.replace(R.id.register_container_fragment,
+				registerStepTwoFragment);
+		transaction.commit();
+
+		mStepFirstRadioButton.setChecked(false);
+		mStepSecondRadioButton.setChecked(true);
+	}
+
+	/**
+	 * 跳转至第三步
+	 */
+	public void stepToThirdFragment() {
+		RegisterStepThirdFragment registerStepThirdFragment = new RegisterStepThirdFragment();
+		FragmentTransaction transaction = mFragmentManager.beginTransaction();
+		transaction.replace(R.id.register_container_fragment,
+				registerStepThirdFragment);
+		transaction.commit();
+
+		mStepSecondRadioButton.setChecked(false);
+		mStepThirdRadioButton.setChecked(true);
+	}
+
+	/**
+	 * 跳转到主页面
+	 */
+	public void stepToMain() {
+		Intent intent = new Intent(MainAction.ACTION);
+		startActivity(intent);
+		finishAllAcitivity();
+	}
 }

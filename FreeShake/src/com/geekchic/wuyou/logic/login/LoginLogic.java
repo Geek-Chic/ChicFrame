@@ -16,6 +16,7 @@ import com.geekchic.constant.AppActionCode;
 import com.geekchic.framework.bean.Request;
 import com.geekchic.framework.logic.BaseLogic;
 import com.geekchic.framework.network.RequestListener;
+import com.geekchic.wuyou.bean.UserInfo;
 import com.geekchic.wuyou.logic.RequestManager;
 import com.geekchic.wuyou.service.RequestService;
 
@@ -26,7 +27,7 @@ import com.geekchic.wuyou.service.RequestService;
  * @date Apr 30, 2014
  */
 public class LoginLogic extends BaseLogic implements ILoginLogic {
-	private static final String TAG="LoginLogic";
+	private static final String TAG = "LoginLogic";
 
 	private Context mContext;
 
@@ -37,14 +38,18 @@ public class LoginLogic extends BaseLogic implements ILoginLogic {
 	@Override
 	public void login(String userAccount, String passwd) {
 		Request request = new Request(RequestService.LOGIN);
+		request.put(UserInfo.TYPE_PHONE_MARK, userAccount);
+		request.put(UserInfo.TYPE_PASSWORD_MARK, passwd);
 		RequestManager.getInstance(mContext).execute(request,
 				new RequestListener() {
 
 					@Override
 					public void onRequestFinished(Request request,
 							Bundle resultData) {
-						Logger.d(TAG,resultData.getString("result"));
-                        sendMessage(AppActionCode.LoginCode.MESSAGE_LOGIN_SUCCESS,resultData);
+						Logger.d(TAG, resultData.getString("result"));
+						sendMessage(
+								AppActionCode.LoginCode.MESSAGE_LOGIN_SUCCESS,
+								resultData);
 					}
 
 					@Override
@@ -63,8 +68,7 @@ public class LoginLogic extends BaseLogic implements ILoginLogic {
 					@Override
 					public void onRequestConnectionError(Request request,
 							int statusCode) {
-						// TODO Auto-generated method stub
-
+						sendEmptyMessage(AppActionCode.BaseMessageCode.HTTP_ERROR);
 					}
 				});
 	}

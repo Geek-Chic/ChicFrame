@@ -54,13 +54,6 @@ public class ProgressDialog extends Dialog {
 		return mBasicDialog;
 	}
 	/**
-	 * 设置对话框点击取消
-	 * @param cancelable
-	 */
-    public void setCancelable(boolean cancelable){
-    	mBasicDialog.setCancelable(cancelable);
-    }
-	/**
 	 * 设置需要显示的消息<BR>
 	 * 
 	 * @param strMessage
@@ -77,14 +70,6 @@ public class ProgressDialog extends Dialog {
 		return this;
 	}
 
-	/**
-	 * dialog是否在显示<BR>
-	 * 
-	 * @return true 在显示 ；false 不在显示
-	 */
-	public boolean isShowing() {
-		return mBasicDialog.isShowing();
-	}
 
 	public void setOnCancelListener(OnCancelListener onCancelListener) {
 		mBasicDialog.setOnCancelListener(onCancelListener);

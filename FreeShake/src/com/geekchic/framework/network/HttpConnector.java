@@ -43,7 +43,6 @@ import org.apache.http.protocol.HTTP;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Base64;
-import android.util.Log;
 
 import com.geekchic.common.log.Logger;
 import com.geekchic.framework.bean.HttpRequestBean;
@@ -274,8 +273,8 @@ public class HttpConnector {
 						Math.min(bodyLength - 1, pos + 200)));
 				pos = pos + 200;
 			}
-
-			return new ConnectionResult(connection.getHeaderFields(), body);
+             ConnectionResult result=new ConnectionResult(connection.getHeaderFields(), body);
+			 return result;
 		} catch (IOException e) {
 			Logger.e(TAG, "IOException", e);
 			throw new ConnectionException(e);

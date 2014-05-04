@@ -14,28 +14,40 @@ import com.geekchic.framework.ui.dialog.ProgressDialog;
 
 /**
  * @ClassName: BasicCommDialog
- * @Descritpion: [用一句话描述作用] 
+ * @Descritpion: [用一句话描述作用]
  * @author evil
  * @date Apr 30, 2014
  */
-public class BasicCommDialog implements CommonDialogInterface{
+public class BasicCommDialog implements CommonDialogInterface {
 	/**
-	 * 等待对话框 
+	 * 等待对话框
 	 */
 	private ProgressDialog mProgressDialog;
 	private Context mContext;
+
 	public BasicCommDialog(Context context) {
-		this.mContext=context;
+		this.mContext = context;
 	}
 
 	@Override
 	public void showProgressDialog(String message, boolean cancelable) {
-		if(null == mProgressDialog){
-			mProgressDialog=ProgressDialog.createProgressDialog(mContext);
-		}
+		mProgressDialog = ProgressDialog.createProgressDialog(mContext);
 		mProgressDialog.setMessage(message);
 		mProgressDialog.setCancelable(cancelable);
 		mProgressDialog.show();
+	}
+
+	@Override
+	public void showProgressDialog(int messageId, boolean cancelable) {
+		String message = mContext.getResources().getString(messageId);
+		showProgressDialog(message, cancelable);
+	}
+
+	@Override
+	public void closeProgressDialog() {
+		if (null != mProgressDialog && mProgressDialog.isShowing()) {
+			this.mProgressDialog.dismiss();
+		}
 	}
 
 }

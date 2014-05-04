@@ -1,20 +1,25 @@
 /**
  * @Title: RequestService.java
  * @Package com.geekchic.wuyou.service
- * @Description: [用一句话描述做什么]
+ * @Description: 网络请求服务
  * @author: evil
  * @date: May 2, 2014
  * Copyright (c) 2014,Evilester All Rights Reserved. 
  */
 package com.geekchic.wuyou.service;
 
-import org.apache.http.HttpConnection;
+import java.util.HashMap;
 
 import android.content.Context;
 import android.os.Bundle;
 
-import com.geekchic.base.download.client.HttpRequest;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.geekchic.common.log.Logger;
+import com.geekchic.constant.AppConfig;
 import com.geekchic.framework.bean.HttpRequestBean;
+import com.geekchic.framework.bean.HttpRequestBean.Method;
 import com.geekchic.framework.bean.Request;
 import com.geekchic.framework.network.HttpConnector;
 import com.geekchic.framework.network.HttpConnector.ConnectionResult;
@@ -25,11 +30,11 @@ import com.geekchic.framework.service.core.BaseOperation;
 import com.geekchic.framework.service.core.BaseRequestService;
 import com.geekchic.framework.service.core.Operation;
 import com.geekchic.wuyou.bean.URLs;
-import com.geekchic.wuyou.logic.RequestManager;
+import com.geekchic.wuyou.bean.UserInfo;
 
 /**
  * @ClassName: RequestService
- * @Descritpion: [用一句话描述作用] 
+ * @Descritpion: 网络请求服务
  * @author evil
  * @date May 2, 2014
  */
@@ -52,10 +57,26 @@ public class RequestService extends BaseRequestService{
 		public Bundle execute(Context context, Request request)
 				throws ConnectionException, DataException,
 				CustomRequestException {
+			   HashMap<String, String> params = new HashMap<String, String>();
+			   params.put("phone",request.getString(UserInfo.TYPE_PHONE_MARK));
+			   params.put("password", request.getString(UserInfo.TYPE_PASSWORD_MARK));
+			   
 			HttpRequestBean httpRequestBean=new HttpRequestBean(context, URLs.LOGIN_VALIDATE_HTTP);
+			httpRequestBean.setMethod(Method.POST);
+			httpRequestBean.setParameters(params);
 			ConnectionResult result=HttpConnector.execute(httpRequestBean);
 			Bundle bundle=new Bundle();
-			bundle.putString("result", result.body);
+			JSONObject json=JSON.parseObject(result.body);
+			int code=json.getIntValue("code");
+			if(0==code){
+              String sessionid=json.getString("sessionid");
+              AppConfig.getInstance().setSessionId(sessionid);
+              bundle.putInt("code", 0);
+              bundle.putString("result", "登录成功");
+			}else {
+				bundle.putInt("code", -1);
+			  bundle.putString("result", "登录失败");
+			}
 			return bundle;
 		}
 		

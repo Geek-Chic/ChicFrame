@@ -1,8 +1,23 @@
 package com.geekchic.constant;
 
-import android.R.interpolator;
 
 public interface AppActionCode {
+	/**
+	 * @ClassName: BaseMessageCode
+	 * @Descritpion: 基础返回码
+	 * @author evil
+	 * @date May 4, 2014
+	 */
+	public interface BaseMessageCode{
+		/**
+		 * 基数
+		 */
+		int BASE=0x10000000;
+		/**
+		 * 网络错误
+		 */
+		int HTTP_ERROR=BASE+1;
+	}
    public interface MainMessageCode{
 	   /**
         * 此MainMessageCode的基数

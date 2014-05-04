@@ -8,15 +8,16 @@
  */
 package com.geekchic.framework.service.core;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.ResultReceiver;
+
 import com.geekchic.common.log.Logger;
 import com.geekchic.framework.bean.Request;
 import com.geekchic.framework.network.exception.ConnectionException;
 import com.geekchic.framework.network.exception.CustomRequestException;
 import com.geekchic.framework.network.exception.DataException;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.ResultReceiver;
+import com.geekchic.framework.service.BaseRequestManager;
 
 /**
  * @ClassName: BaseRequestService
@@ -64,12 +65,17 @@ public abstract class BaseRequestService extends WorkerService {
 			sendResult(receiver, operation.execute(this, request), CODE_TYPE_SUCCESS);
 		} catch (ConnectionException e) {
 			e.printStackTrace();
+			Bundle bundle=new Bundle();
+			bundle.putInt(BaseRequestManager.RECEIVER_EXTRA_CONNECTION_ERROR_STATUS_CODE, e.getStatusCode());
+			sendResult(receiver,null,CODE_ERROR_CONNEXION);
 			Logger.e(TAG, "ConnectionException", e);
 		} catch (DataException e) {
 			e.printStackTrace();
+			sendResult(receiver,null,CODE_ERROR_DATA);
 			Logger.e(TAG, "DataException", e);
 		} catch (CustomRequestException e) {
 			e.printStackTrace();
+			sendResult(receiver,null,CODE_ERROR_CUSTOM);
 			Logger.e(TAG, "CustomRequestException");
 
 		}

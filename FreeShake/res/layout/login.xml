@@ -33,7 +33,7 @@
         android:padding="@dimen/margin_large" >
 
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/login_account_edt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -43,7 +43,7 @@
             <requestFocus />
         </EditText>
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/longin_password_edt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"

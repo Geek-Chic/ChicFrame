@@ -55,7 +55,7 @@
         <activity
             android:name=".ui.main.MainActivity"
             android:configChanges="orientation|keyboardHidden|locale"
-            android:launchMode="singleTop"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/Default" >
             <intent-filter>

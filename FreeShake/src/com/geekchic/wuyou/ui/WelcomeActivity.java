@@ -29,7 +29,6 @@ import com.geekchic.wuyou.logic.login.LoginLogic;
  */
 public class WelcomeActivity extends BaseFrameActivity {
 	private static final int WAIT_SECOND = 500;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -55,7 +54,7 @@ public class WelcomeActivity extends BaseFrameActivity {
 		case MainMessageCode.MAIN_MESSAGE_LOGIN:
 			Intent intent = new Intent(LoginAction.ACTION);
 			startActivity(intent);
-			finish();
+			finishActivity();
 			break;
 
 		default:

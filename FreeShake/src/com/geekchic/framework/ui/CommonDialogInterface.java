@@ -16,4 +16,6 @@ package com.geekchic.framework.ui;
  */
 public interface CommonDialogInterface {
    public void showProgressDialog(String message,boolean cancelable);
+   public void showProgressDialog(int messageId, boolean cancelable);
+   public void closeProgressDialog();
 }

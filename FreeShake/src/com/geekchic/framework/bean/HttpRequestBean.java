@@ -104,10 +104,9 @@ public class HttpRequestBean {
 	 * @return
 	 */
 	public void setMethod(Method method) {
-		this.mMethod = method;
+		mMethod = method;
 		if (method != Method.POST) {
 			mPostText = null;
-			mParameterList = null;
 		}
 	}
 
@@ -117,7 +116,7 @@ public class HttpRequestBean {
 	 * @param parameterMap
 	 * @return
 	 */
-	private void setParameters(HashMap<String, String> parameterMap) {
+	public void setParameters(HashMap<String, String> parameterMap) {
 		ArrayList<BasicNameValuePair> parameterList = new ArrayList<BasicNameValuePair>();
 		for (Map.Entry<String, String> entry : parameterMap.entrySet()) {
 			parameterList.add(new BasicNameValuePair(entry.getKey(), entry
@@ -127,13 +126,14 @@ public class HttpRequestBean {
 	}
 
 	/**
-	 * 设置POST参数
+	 * 设置POST参数,有ParameterList就不能有PostText
 	 * 
 	 * @param parameterList
 	 * @return
 	 */
-	private void setParameters(ArrayList<BasicNameValuePair> parameterList) {
+	public void setParameters(ArrayList<BasicNameValuePair> parameterList) {
 		mParameterList = parameterList;
+		mPostText = null;
 	}
 
 	/**
@@ -147,20 +147,19 @@ public class HttpRequestBean {
 	}
 
 	/**
-	 * 设置POST参数
+	 * 设置POST参数,有PostText就不能有ParameterList
 	 * 
 	 * @param postText
 	 * @param method
 	 * @param parameterMap
 	 */
-	public void setPostPutParams(String postText, Method method,
-			HashMap<String, String> parameterMap) {
+	public void setPostText(String postText, Method method) {
 		if (method != Method.POST && method != Method.PUT) {
 			throw new IllegalArgumentException("Method must be POST or PUT");
 		}
 		mPostText = postText;
 		mMethod = method;
-		setParameters(parameterMap);
+		mParameterList = null;
 	}
 
 	/**
@@ -273,5 +272,5 @@ public class HttpRequestBean {
 	public void setCredentials(UsernamePasswordCredentials mCredentials) {
 		this.mCredentials = mCredentials;
 	}
-	
+
 }

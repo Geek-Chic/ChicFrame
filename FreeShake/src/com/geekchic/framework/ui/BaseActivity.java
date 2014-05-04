@@ -24,6 +24,7 @@ import android.view.inputmethod.InputMethodManager;
 import com.baidu.android.pushservice.PushConstants;
 import com.baidu.android.pushservice.PushManager;
 import com.geekchic.common.log.Logger;
+import com.geekchic.common.utils.DisplayInfo;
 import com.geekchic.common.utils.PreferencesUtil;
 import com.geekchic.constant.AppConfig;
 import com.geekchic.constant.AppConstants.Common;
@@ -80,9 +81,9 @@ public class BaseActivity extends FragmentActivity {
 	}
 
 	private void init() {
-		  if(mBaseLogicBuilder==null){
-			  mBaseLogicBuilder=LogicBuilder.getInstance(this);
-		  }
+		if (mBaseLogicBuilder == null) {
+			mBaseLogicBuilder = LogicBuilder.getInstance(this);
+		}
 		if (!isHandlerManagerSelf()) {
 			mBaseLogicBuilder.addHandleToLogics(getHandler());
 		}
@@ -153,6 +154,7 @@ public class BaseActivity extends FragmentActivity {
 	protected void onDestroy() {
 		removeHandler();
 		AppManager.getAppManager().finishActivity(this);
+		Logger.d(TAG, "BaseActivity:" + this + "onDestory");
 		super.onDestroy();
 	}
 
@@ -169,12 +171,16 @@ public class BaseActivity extends FragmentActivity {
 						.getApplicationWindowToken(), 0);
 			}
 		}
+		  // 因为window的尺寸在显示之后才能确定，onCreate 与 onResume 时都无法取得，
+        // 所以选择在启动页的oPause时初始化，便于其他页面使用
+        DisplayInfo.init(this);
 	}
 
 	@Override
 	protected void onResume() {
 		mPaused = false;
 		super.onResume();
+		Logger.d(TAG, "BaseActivity:" + this + "onResume");
 	}
 
 	@Override
@@ -192,9 +198,24 @@ public class BaseActivity extends FragmentActivity {
 	@Override
 	public void finish() {
 		removeHandler();
+		Logger.d(TAG, "BaseActivity:" + this + "finish");
 		super.finish();
 	}
-     
+
+	/**
+	 * 当前Activity出栈
+	 */
+	protected void finishActivity() {
+		AppManager.getAppManager().finishActivity(this);
+	}
+
+	/**
+	 * 清空Task栈
+	 */
+	protected void finishAllAcitivity() {
+		AppManager.getAppManager().finishAllActivity();
+	}
+
 	/**
 	 * 根据类名获取Logic
 	 * 
@@ -311,19 +332,24 @@ public class BaseActivity extends FragmentActivity {
 		if (mHandler != null) {
 			mHandler.sendMessageDelayed(msg, delayMillis);
 		}
-	} 
+	}
+
 	/**
 	 * 是否绑定推送
-	 * @param enableLasPush 是否打开地理位置的推送
+	 * 
+	 * @param enableLasPush
+	 *            是否打开地理位置的推送
 	 */
-	protected void bindPush(boolean enableLasPush){
-		boolean pushFlag=getSharedPreferences().getBoolean(Common.PUSH_BIND_FLAG, false);
-		if(!pushFlag){
+	protected void bindPush(boolean enableLasPush) {
+		boolean pushFlag = getSharedPreferences().getBoolean(
+				Common.PUSH_BIND_FLAG, false);
+		if (!pushFlag) {
 			PushManager.startWork(getApplicationContext(),
-					PushConstants.LOGIN_TYPE_API_KEY, 
+					PushConstants.LOGIN_TYPE_API_KEY,
 					PreferencesUtil.getMetaValue(this, "api_key"));
 		}
 	}
+
 	/**
 	 * Activity消息接收
 	 * 
