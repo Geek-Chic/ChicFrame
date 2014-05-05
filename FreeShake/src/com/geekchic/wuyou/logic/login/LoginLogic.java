@@ -17,6 +17,7 @@ import com.geekchic.framework.bean.Request;
 import com.geekchic.framework.logic.BaseLogic;
 import com.geekchic.framework.network.RequestListener;
 import com.geekchic.wuyou.bean.UserInfo;
+import com.geekchic.wuyou.bean.UserInfo.UserField;
 import com.geekchic.wuyou.logic.RequestManager;
 import com.geekchic.wuyou.service.RequestService;
 
@@ -38,8 +39,8 @@ public class LoginLogic extends BaseLogic implements ILoginLogic {
 	@Override
 	public void login(String userAccount, String passwd) {
 		Request request = new Request(RequestService.LOGIN);
-		request.put(UserInfo.TYPE_PHONE_MARK, userAccount);
-		request.put(UserInfo.TYPE_PASSWORD_MARK, passwd);
+		request.put(UserField.TYPE_PHONE, userAccount);
+		request.put(UserField.TYPE_PASSWORD, passwd);
 		RequestManager.getInstance(mContext).execute(request,
 				new RequestListener() {
 

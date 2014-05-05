@@ -56,4 +56,16 @@ public interface AppAction {
 		 */
 		public String ACTION = "com.geekchic.wuyou.MAIN";
 	}
+	/**
+	 * @ClassName: NavAction
+	 * @Descritpion: 使用导航
+	 * @author evil
+	 * @date May 4, 2014
+	 */
+	public interface NavAction{
+		/**
+		 *  ACTION
+		 */
+		public String ACTION="com.geekchic.wuyou.NAV";
+	}
 }

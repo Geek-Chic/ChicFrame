@@ -3,7 +3,12 @@ package com.geekchic.base.db;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
+/**
+ * @ClassName: BaseDBHelper
+ * @Descritpion: 数据库DDL
+ * @author evil
+ * @date May 4, 2014
+ */
 public class BaseDBHelper extends SQLiteOpenHelper {
 	private Class<?>[] modelClasses;
 

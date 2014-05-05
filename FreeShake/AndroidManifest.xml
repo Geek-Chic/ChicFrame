@@ -64,6 +64,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!-- 注册界面 -->
         <activity
             android:name=".ui.login.RegisterActivity"
             android:configChanges="orientation|keyboardHidden|locale"
@@ -71,6 +72,18 @@
             android:theme="@style/Default" >
             <intent-filter>
                 <action android:name="com.geekchic.wuyou.REGISTER" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+               <!-- 注册界面 -->
+        <activity
+            android:name=".ui.view.NavigateActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/Default" >
+            <intent-filter>
+                <action android:name="com.geekchic.wuyou.NAV" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -131,7 +144,7 @@
 
     <instrumentation
         android:name="android.test.InstrumentationTestRunner"
-        android:label="com.geekchic.freeshake"
-        android:targetPackage="com.geekchic.freeshake" />
+        android:label="com.geekchic.wuyou"
+        android:targetPackage="com.geekchic.wuyou" />
 
 </manifest>

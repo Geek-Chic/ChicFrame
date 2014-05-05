@@ -12,14 +12,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
 
-import com.geekchic.constant.AppAction;
+import com.geekchic.common.utils.PreferencesUtil;
 import com.geekchic.constant.AppAction.LoginAction;
+import com.geekchic.constant.AppAction.MainAction;
+import com.geekchic.constant.AppAction.NavAction;
 import com.geekchic.constant.AppActionCode.MainMessageCode;
-import com.geekchic.framework.ui.BaseActivity;
+import com.geekchic.constant.AppConstants;
 import com.geekchic.framework.ui.BaseFrameActivity;
 import com.geekchic.wuyou.R;
-import com.geekchic.wuyou.R.layout;
-import com.geekchic.wuyou.logic.login.LoginLogic;
 
 /**
  * @ClassName: MainActivity
@@ -29,18 +29,25 @@ import com.geekchic.wuyou.logic.login.LoginLogic;
  */
 public class WelcomeActivity extends BaseFrameActivity {
 	private static final int WAIT_SECOND = 500;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.welcome);
 		bindPush(false);
-		login();
+		boolean nav = PreferencesUtil
+				.getAttrBoolean(AppConstants.Common.NAV_HAS_SHOW);
+		if (nav) {
+			login();
+		} else {
+			sendEmptyMessageDelayed(MainMessageCode.MAIN_MESSAGE_NAV,WAIT_SECOND);
+		}
 	}
 
 	private void login() {
 		if (hasLogined()) {
-			sendEmptyMessage(MainMessageCode.MAIN_MESSAGE_MAIN);
+			sendEmptyMessageDelayed(MainMessageCode.MAIN_MESSAGE_MAIN,WAIT_SECOND);
 		} else {
 			sendEmptyMessageDelayed(MainMessageCode.MAIN_MESSAGE_LOGIN,
 					WAIT_SECOND);
@@ -52,15 +59,26 @@ public class WelcomeActivity extends BaseFrameActivity {
 		super.handleStateMessage(msg);
 		switch (msg.what) {
 		case MainMessageCode.MAIN_MESSAGE_LOGIN:
-			Intent intent = new Intent(LoginAction.ACTION);
-			startActivity(intent);
+			Intent loginIntent = new Intent(LoginAction.ACTION);
+			startActivity(loginIntent);
+			finishActivity();
+			
+			break;
+		case MainMessageCode.MAIN_MESSAGE_NAV:
+			Intent navIntent = new Intent(NavAction.ACTION);
+			startActivity(navIntent);
 			finishActivity();
 			break;
-
+		case MainMessageCode.MAIN_MESSAGE_MAIN:
+			Intent mainIntent = new Intent(MainAction.ACTION);
+			startActivity(mainIntent);
+			finishActivity();
+			break;
 		default:
 			break;
 		}
 	}
+
 	@Override
 	protected boolean needLogin() {
 		// TODO Auto-generated method stub

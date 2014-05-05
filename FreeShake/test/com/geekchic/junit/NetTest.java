@@ -4,7 +4,10 @@ import java.io.InputStream;
 
 import android.test.AndroidTestCase;
 
+import com.alibaba.fastjson.JSON;
 import com.geekchic.base.http.CommHttpRequest;
+import com.geekchic.common.log.Logger;
+import com.geekchic.wuyou.bean.UserInfo;
 
 public class NetTest extends AndroidTestCase
 {
@@ -34,6 +37,14 @@ public class NetTest extends AndroidTestCase
             System.out.println(is.toString());
         }
         
+    }
+    public void testJSON(){
+    	UserInfo userInfo=new UserInfo();
+    	userInfo.setPhone("13163353639");
+    	userInfo.setSessionId("assdfdfvbxsdfasdfasdf");
+    	String testString="{'phone':'13163353639'}";
+    	UserInfo userInfo2=JSON.parseObject(testString, UserInfo.class);
+    	Logger.d("evil", userInfo2.toString());
     }
     public void testStringRequest(){
         

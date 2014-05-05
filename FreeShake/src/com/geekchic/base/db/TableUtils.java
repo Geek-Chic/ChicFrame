@@ -8,27 +8,47 @@ import java.util.List;
 import java.util.Map;
 
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.geekchic.base.db.annotation.Column;
 import com.geekchic.base.db.annotation.Id;
 import com.geekchic.base.db.annotation.Table;
-
+import com.geekchic.common.log.Logger;
+/**
+ * @ClassName: TableUtils
+ * @Descritpion:注释解析帮助类
+ * @author evil
+ * @date May 5, 2014
+ */
 public class TableUtils {
+	/**
+	 * TAG
+	 */
 	private static final String TAG = "TableUtils";
-
+    /**
+     * 建表
+     * @param db
+     * @param clazzs
+     */
 	public static <T> void createTablesByClasses(SQLiteDatabase db,
 			Class<?>[] clazzs) {
 		for (Class<?> clazz : clazzs)
 			createTable(db, clazz);
 	}
-
+    /**
+     * 删除表
+     * @param db
+     * @param clazzs
+     */
 	public static <T> void dropTablesByClasses(SQLiteDatabase db,
 			Class<?>[] clazzs) {
 		for (Class<?> clazz : clazzs)
 			dropTable(db, clazz);
 	}
-     
+     /**
+      * 创建表
+      * @param db
+      * @param clazz
+      */
 	public static <T> void createTable(SQLiteDatabase db, Class<T> clazz) {
 		String tableName = "";
 		if (clazz.isAnnotationPresent(Table.class)) {
@@ -38,7 +58,7 @@ public class TableUtils {
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("CREATE TABLE ").append(tableName).append(" (");
-
+       //拼接属性字段
 		List<Field> allFields = TableUtils
 				.joinFields(clazz.getDeclaredFields(), clazz.getSuperclass()
 						.getDeclaredFields());
@@ -61,8 +81,8 @@ public class TableUtils {
 			if (column.length() != 0) {
 				sb.append("(" + column.length() + ")");
 			}
-
-			if ((field.isAnnotationPresent(Id.class)) // update 2012-06-10 ʵ���ඨ��ΪInteger���ͺ������Id�쳣
+            //int型主键自增
+			if ((field.isAnnotationPresent(Id.class)) 
 					&& ((field.getType() == Integer.TYPE) || (field.getType() == Integer.class)))
 				sb.append(" primary key autoincrement");
 			else if (field.isAnnotationPresent(Id.class)) {
@@ -77,7 +97,7 @@ public class TableUtils {
 
 		String sql = sb.toString();
 
-		Log.d(TAG, "crate table [" + tableName + "]: " + sql);
+		Logger.d(TAG, "crate table [" + tableName + "]: " + sql);
 
 		db.execSQL(sql);
 	}
@@ -89,7 +109,7 @@ public class TableUtils {
 			tableName = table.name();
 		}
 		String sql = "DROP TABLE IF EXISTS " + tableName;
-		Log.d(TAG, "dropTable[" + tableName + "]:" + sql);
+		Logger.d(TAG, "dropTable[" + tableName + "]:" + sql);
 		db.execSQL(sql);
 	}
 
@@ -119,11 +139,15 @@ public class TableUtils {
 		return "TEXT";
 	}
 
-	// �ϲ�Field���鲢ȥ��,��ʵ�ֹ��˵���Column�ֶ�,��ʵ��Id�������ֶ�λ�ù���
+	/**
+	 * 将父类子类的字段合并去重
+	 * @param fields1
+	 * @param fields2
+	 * @return
+	 */
 	public static List<Field> joinFields(Field[] fields1, Field[] fields2) {
 		Map<String, Field> map = new LinkedHashMap<String, Field>();
 		for (Field field : fields1) {
-			// ���˵���Column������ֶ�
 			if (!field.isAnnotationPresent(Column.class)) {
 				continue;
 			}
@@ -131,7 +155,6 @@ public class TableUtils {
 			map.put(column.name(), field);
 		}
 		for (Field field : fields2) {
-			// ���˵���Column������ֶ�
 			if (!field.isAnnotationPresent(Column.class)) {
 				continue;
 			}
@@ -143,7 +166,7 @@ public class TableUtils {
 		List<Field> list = new ArrayList<Field>();
 		for (String key : map.keySet()) {
 			Field tempField = map.get(key);
-			// �����Id�������λ��.
+			//主键放头上
 			if (tempField.isAnnotationPresent(Id.class)) {
 				list.add(0, tempField);
 			} else {

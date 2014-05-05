@@ -1,7 +1,7 @@
 /**
  * @Title: ContactsFragment.java
  * @Package com.geekchic.wuyou.ui.main
- * @Description: [用一句话描述做什么]
+ * @Description: 联系人
  * @author: evil
  * @date: May 3, 2014
  * Copyright (c) 2014,Evilester All Rights Reserved. 
@@ -18,7 +18,7 @@ import com.geekchic.wuyou.R;
 
 /**
  * @ClassName: ContactsFragment
- * @Descritpion: [用一句话描述作用]
+ * @Descritpion:联系人
  * @author evil
  * @date May 3, 2014
  */

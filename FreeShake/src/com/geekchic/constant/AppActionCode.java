@@ -31,6 +31,10 @@ public interface AppActionCode {
         * 主界面
         */
        int MAIN_MESSAGE_MAIN=BASE+2;
+       /**
+        * 导航界面
+        */
+       int MAIN_MESSAGE_NAV=BASE+3;
    }
    public interface LoginCode{
 	   /**

@@ -17,7 +17,9 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.geekchic.common.log.Logger;
+import com.geekchic.common.utils.PreferencesUtil;
 import com.geekchic.constant.AppConfig;
+import com.geekchic.constant.AppConstants.Common;
 import com.geekchic.framework.bean.HttpRequestBean;
 import com.geekchic.framework.bean.HttpRequestBean.Method;
 import com.geekchic.framework.bean.Request;
@@ -31,6 +33,7 @@ import com.geekchic.framework.service.core.BaseRequestService;
 import com.geekchic.framework.service.core.Operation;
 import com.geekchic.wuyou.bean.URLs;
 import com.geekchic.wuyou.bean.UserInfo;
+import com.geekchic.wuyou.bean.UserInfo.UserField;
 
 /**
  * @ClassName: RequestService
@@ -58,8 +61,8 @@ public class RequestService extends BaseRequestService{
 				throws ConnectionException, DataException,
 				CustomRequestException {
 			   HashMap<String, String> params = new HashMap<String, String>();
-			   params.put("phone",request.getString(UserInfo.TYPE_PHONE_MARK));
-			   params.put("password", request.getString(UserInfo.TYPE_PASSWORD_MARK));
+			   params.put("phone",request.getString(UserField.TYPE_PHONE));
+			   params.put("password", request.getString(UserField.TYPE_PASSWORD));
 			   
 			HttpRequestBean httpRequestBean=new HttpRequestBean(context, URLs.LOGIN_VALIDATE_HTTP);
 			httpRequestBean.setMethod(Method.POST);
@@ -70,6 +73,7 @@ public class RequestService extends BaseRequestService{
 			int code=json.getIntValue("code");
 			if(0==code){
               String sessionid=json.getString("sessionid");
+              PreferencesUtil.setAttr(Common.KEY_SESSION_ID, sessionid);
               AppConfig.getInstance().setSessionId(sessionid);
               bundle.putInt("code", 0);
               bundle.putString("result", "登录成功");

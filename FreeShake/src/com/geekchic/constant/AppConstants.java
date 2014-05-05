@@ -42,6 +42,10 @@ public class AppConstants
          * 推送绑定flag，避免重复绑定
          */
         String PUSH_BIND_FLAG="bind_flag";
+        /**
+         * 是否显示导航标志
+         */
+        String NAV_HAS_SHOW="nav_has_show";
     }
 //    public LogConstants(){
 //        

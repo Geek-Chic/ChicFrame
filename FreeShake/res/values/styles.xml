@@ -46,6 +46,7 @@
         <item name="android:listViewStyle">@style/Widget.CustomListView</item>
         <item name="android:checkboxStyle">@style/Widget.CustomCheckBox</item>
         <item name="android:radioButtonStyle">@style/Widget.CustomRadioButton</item>
+        <item name="android:buttonStyle">@style/Widget.CustomButton</item>
         <item name="android:windowAnimationStyle">@style/Anim.ActyAnimation</item>
     </style>
     <!-- 通用CheckBox -->
@@ -65,6 +66,14 @@
     <style name="Widget.CustomListView" parent="@android:style/Widget.ListView">
         <item name="android:scrollingCache">false</item>
         <item name="android:cacheColorHint">@null</item>
+    </style>
+    <!-- 通用Button -->
+    <style name="Widget.CustomButton" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/bg_common_btn_brown_selector</item>
+        <item name="android:paddingLeft">@dimen/margin_large</item>
+        <item name="android:paddingRight">@dimen/margin_large</item>
+        <item name="android:textColor">@color/font_color_white</item>
+        <item name="android:textSize">@dimen/font_size_large</item>
     </style>
     <!-- 默认黑色背景 -->
       <style name="Default.CustomWindowTitleBackground">
