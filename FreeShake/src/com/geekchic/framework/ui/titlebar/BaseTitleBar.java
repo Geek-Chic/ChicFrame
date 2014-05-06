@@ -1,4 +1,4 @@
-package com.geekchic.framework.ui;
+package com.geekchic.framework.ui.titlebar;
 
 import android.view.View.OnClickListener;
 

@@ -6,7 +6,7 @@
  * @date: Apr 30, 2014
  * Copyright (c) 2014,Evilester All Rights Reserved. 
  */
-package com.geekchic.framework.ui;
+package com.geekchic.framework.ui.titlebar;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -133,6 +133,13 @@ public class TitleBar extends LinearLayout {
      */
 	public void setRightButtonListener(OnClickListener listener) {
 		mRightButton.setOnClickListener(listener);
+	}
+	/**
+	 *  获取右键
+	 * @return
+	 */
+	public View getRightButton(){
+		return mRightButton;
 	}
 
 }

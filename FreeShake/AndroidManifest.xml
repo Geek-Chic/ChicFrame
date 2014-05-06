@@ -18,7 +18,31 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.front"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.flash"
+        android:required="false" />
+    <uses-feature android:name="android.hardware.screen.landscape" />
+    <uses-feature
+        android:name="android.hardware.wifi"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+    
     <application
         android:name="com.geekchic.BaseApplication"
         android:allowBackup="true"
@@ -76,7 +100,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-               <!-- 注册界面 -->
+        <!-- 注册界面 -->
         <activity
             android:name=".ui.view.NavigateActivity"
             android:configChanges="orientation|keyboardHidden|locale"
@@ -84,6 +108,19 @@
             android:theme="@style/Default" >
             <intent-filter>
                 <action android:name="com.geekchic.wuyou.NAV" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- 二维码界面 -->
+        <activity
+            android:name=".ui.tools.ZXingActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/Default" >
+            <intent-filter>
+                <action android:name="com.geekchic.wuyou.ZXING" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

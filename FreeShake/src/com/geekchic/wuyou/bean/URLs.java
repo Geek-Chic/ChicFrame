@@ -26,7 +26,7 @@ public final class URLs {
 	 */
 	public static final String LOCAL_HOST = "192.168.1.105/wuyou";
 	public static final String VPS_HOST="evilester.hk.7encc.com/wuyou";
-	public static final String HOST=LOCAL_HOST;
+	public static final String HOST=VPS_HOST;
 	/**
 	 * 登录验证
 	 */

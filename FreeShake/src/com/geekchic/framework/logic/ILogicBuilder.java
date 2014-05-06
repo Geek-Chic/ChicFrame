@@ -27,10 +27,10 @@ public interface ILogicBuilder {
    * 添加Handler
    * @param handler
    */
-  public void addHandleToLogics(Handler handler);
+  public void registerHandleToAllLogics(Handler handler);
   /**
    * 移除Handler
    * @param handler
    */
-  public void  removeHandlerFromLogics(Handler handler);
+  public void  removeAllHandlerRegister(Handler handler);
 }

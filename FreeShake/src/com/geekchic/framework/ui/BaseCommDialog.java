@@ -18,14 +18,14 @@ import com.geekchic.framework.ui.dialog.ProgressDialog;
  * @author evil
  * @date Apr 30, 2014
  */
-public class BasicCommDialog implements CommonDialogInterface {
+public class BaseCommDialog implements CommonDialogInterface {
 	/**
 	 * 等待对话框
 	 */
 	private ProgressDialog mProgressDialog;
 	private Context mContext;
 
-	public BasicCommDialog(Context context) {
+	public BaseCommDialog(Context context) {
 		this.mContext = context;
 	}
 

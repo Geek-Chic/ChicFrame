@@ -8,6 +8,7 @@
  */
 package com.geekchic.wuyou.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -15,8 +16,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 import com.geekchic.common.utils.DisplayInfo;
+import com.geekchic.constant.AppAction;
 import com.geekchic.framework.ui.BaseSlideActivity;
 import com.geekchic.wuyou.R;
+import com.geekchic.wuyou.ui.dialog.QuickAction;
+import com.geekchic.wuyou.ui.dialog.ToolsActionDialog;
+import com.geekchic.wuyou.ui.dialog.ToolsActionWidget;
+import com.geekchic.wuyou.ui.dialog.ToolsActionWidget.OnQuickActionClickListener;
 import com.widget.slidingmenu.SlidingMenu;
 
 /**
@@ -55,16 +61,48 @@ public class MainActivity extends BaseSlideActivity {
 
 		@Override
 		public void onClick(View v) {
-			mSlidingMenu.showSecondaryMenu(true);
+			ToolsActionDialog mGrid = new ToolsActionDialog(MainActivity.this);
+			mGrid.addQuickAction(new QuickAction(MainActivity.this,
+					R.drawable.ic_launcher, "二维码"));
+			mGrid.addQuickAction(new QuickAction(MainActivity.this,
+					R.drawable.ic_launcher, "二维码"));
+			mGrid.addQuickAction(new QuickAction(MainActivity.this,
+					R.drawable.ic_launcher, "二维码"));
+			mGrid.addQuickAction(new QuickAction(MainActivity.this,
+					R.drawable.ic_launcher, "二维码"));
+			mGrid.addQuickAction(new QuickAction(MainActivity.this,
+					R.drawable.ic_launcher, "二维码"));
+			mGrid.addQuickAction(new QuickAction(MainActivity.this,
+					R.drawable.ic_launcher, "二维码"));
+			mGrid.addQuickAction(new QuickAction(MainActivity.this,
+					R.drawable.ic_launcher, "二维码"));
+			mGrid.addQuickAction(new QuickAction(MainActivity.this,
+					R.drawable.ic_launcher, "二维码"));
+			mGrid.addQuickAction(new QuickAction(MainActivity.this,
+					R.drawable.ic_launcher, "二维码"));
+			mGrid.addQuickAction(new QuickAction(MainActivity.this,
+					R.drawable.ic_launcher, "二维码"));
+			mGrid.addQuickAction(new QuickAction(MainActivity.this,
+					R.drawable.ic_launcher, "二维码"));
+			mGrid.show(getTitleBar());
+			mGrid.setOnQuickActionClickListener(quickActionClickListener);
 		}
 	};
-
+    private OnQuickActionClickListener quickActionClickListener=new OnQuickActionClickListener() {
+		
+		@Override
+		public void onQuickActionClicked(ToolsActionWidget widget, int position) {
+			if(position==0){
+				Intent intent=new Intent(AppAction.ZXingAction.ACTION);
+				startActivity(intent);
+			}
+		}
+	};
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		initSlidingMenu();
-		initView();
 	}
 
 	private void initSlidingMenu() {
@@ -78,7 +116,7 @@ public class MainActivity extends BaseSlideActivity {
 		mFragementTransaction.commit();
 		// 初始化SlidingMenu，
 		mSlidingMenu = getSlidingMenu();
-		mSlidingMenu.setMode(SlidingMenu.LEFT_RIGHT);// 设置是左滑还是右滑，还是左右都可以滑，我这里左右都可以滑
+		mSlidingMenu.setMode(SlidingMenu.LEFT);// 设置是左滑
 		mSlidingMenu.setShadowWidth(mScreenWidth / 40);// 设置阴影宽度
 		mSlidingMenu.setBehindOffset(mScreenWidth / 8);// 设置菜单宽度
 		mSlidingMenu.setFadeDegree(0.35f);// 设置淡入淡出的比例
@@ -89,8 +127,6 @@ public class MainActivity extends BaseSlideActivity {
 
 	private void initView() {
 		// 设置二级菜单
-		int mSreenWidth = DisplayInfo.getInstance()
-				.getWindowVisibleDisplayWidth();
 		mSlidingMenu.setSecondaryMenu(R.layout.main_right_layout);
 		FragmentTransaction mRightTransaction = getSupportFragmentManager()
 				.beginTransaction();
@@ -106,11 +142,6 @@ public class MainActivity extends BaseSlideActivity {
 	}
 
 	@Override
-	public int getLayoutId() {
-		return R.layout.main_host;
-	}
-
-	@Override
 	public boolean initializeTitlBar() {
 		setMiddleTitle("主界面");
 		setLeftButton(R.drawable.icon_slider_contact_selector,
@@ -119,4 +150,17 @@ public class MainActivity extends BaseSlideActivity {
 				mRightClickListener);
 		return true;
 	}
+
+	@Override
+	protected TabInfo[] getTabInfos() {
+		TabInfo[] tabInfo = new TabInfo[2];
+		tabInfo[0] = new TabInfo("ContactsFragment", R.string.action_settings,
+				R.drawable.icon_slider_contact_selector,
+				ContactsFragment.class, null);
+		tabInfo[1] = new TabInfo("ProfileFragment", R.string.app_name,
+				R.drawable.icon_slider_profile_selector, ProfileFragment.class,
+				null);
+		return tabInfo;
+	}
+
 }

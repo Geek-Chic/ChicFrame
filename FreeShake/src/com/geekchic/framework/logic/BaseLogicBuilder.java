@@ -38,7 +38,7 @@ public abstract class BaseLogicBuilder implements ILogicBuilder {
 	}
 
 	@Override
-	public void addHandleToLogics(Handler handler) {
+	public void registerHandleToAllLogics(Handler handler) {
 		  Set<Entry<String, ILogic>> logics = mLogicCache.entrySet();
 	        for (Entry<String, ILogic> logicEntry : logics)
 	        {
@@ -48,7 +48,7 @@ public abstract class BaseLogicBuilder implements ILogicBuilder {
 	}
 
 	@Override
-	public void removeHandlerFromLogics(Handler handler) {
+	public void removeAllHandlerRegister(Handler handler) {
 		Set<Entry<String, ILogic>> logics = mLogicCache.entrySet();
         for (Entry<String, ILogic> logicEntry : logics)
         {

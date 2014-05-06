@@ -6,7 +6,7 @@
  * @date: Apr 30, 2014
  * Copyright (c) 2014,Evilester All Rights Reserved. 
  */
-package com.geekchic.framework.ui;
+package com.geekchic.framework.ui.titlebar;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -16,6 +16,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 
+import com.geekchic.framework.ui.BaseFrameActivity;
 import com.geekchic.wuyou.R;
 
 /**
@@ -49,14 +50,14 @@ public abstract class BaseTitleBarActivity extends BaseFrameActivity implements
 
 	private void initView() {
 		LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		mTitleBar=(TitleBar) findViewById(R.id.title_bar_layout);
-		mBasicTitleBar=new BaseTitleBar(mTitleBar);
+		mTitleBar = (TitleBar) findViewById(R.id.title_bar_layout);
+		mBasicTitleBar = new BaseTitleBar(mTitleBar);
 		mContainLayout = (LinearLayout) findViewById(R.id.content_container);
 		View contentView = inflater.inflate(getLayoutId(), null);
 		mContainLayout.addView(contentView, LayoutParams.MATCH_PARENT,
 				LayoutParams.MATCH_PARENT);
-		
-		if(!initializeTitlBar()){
+
+		if (!initializeTitlBar()) {
 			mTitleBar.hideTitleBar();
 			return;
 		}
@@ -64,34 +65,44 @@ public abstract class BaseTitleBarActivity extends BaseFrameActivity implements
 
 	@Override
 	public void setLeftButton(int id, OnClickListener listener) {
-       mBasicTitleBar.setLeftButton(id, listener);
+		mBasicTitleBar.setLeftButton(id, listener);
 	}
 
 	@Override
 	public void setRightButton(int id, OnClickListener listener) {
-       mBasicTitleBar.setRightButton(id, listener);
+		mBasicTitleBar.setRightButton(id, listener);
 	}
 
 	@Override
 	public void setMiddleTitle(String title) {
-       mBasicTitleBar.setMiddleTitle(title);
+		mBasicTitleBar.setMiddleTitle(title);
 	}
-     @Override
-    public void setMiddleTitle(int titleId) {
-    	 mBasicTitleBar.setMiddleTitle(titleId);
-    }
+
+	@Override
+	public void setMiddleTitle(int titleId) {
+		mBasicTitleBar.setMiddleTitle(titleId);
+	}
+
 	@Override
 	public void setTitleBarBackground(int id) {
-       mBasicTitleBar.setTitleBarBackground(id);
+		mBasicTitleBar.setTitleBarBackground(id);
 	}
 
 	@Override
 	public void setTitleVisible(boolean visible) {
-       mBasicTitleBar.setTitleVisible(visible);
+		mBasicTitleBar.setTitleVisible(visible);
 	}
+
 	@Override
 	public void setMiddleTitleDrawable(int id) {
 		mBasicTitleBar.setMiddleTitleDrawable(id);
+	}
+
+	protected View getRightButton() {
+		return mTitleBar.getRightButton();
+	}
+	protected TitleBar getTitleBar(){
+		return mTitleBar;
 	}
 
 	/**
@@ -100,8 +111,10 @@ public abstract class BaseTitleBarActivity extends BaseFrameActivity implements
 	 * @return
 	 */
 	public abstract int getLayoutId();
+
 	/**
 	 * 初始化TitleBar
+	 * 
 	 * @return
 	 */
 	public abstract boolean initializeTitlBar();

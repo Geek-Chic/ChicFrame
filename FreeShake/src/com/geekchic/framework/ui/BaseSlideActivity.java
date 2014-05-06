@@ -22,7 +22,7 @@ import com.widget.slidingmenu.SlidingMenu;
  * @author evil
  * @date May 3, 2014
  */
-public abstract class BaseSlideActivity extends BaseTitleBarActivity {
+public abstract class BaseSlideActivity extends BaseTabHostActivity {
 	/**
 	 * 侧滑操作Helper
 	 */
@@ -120,11 +120,6 @@ public abstract class BaseSlideActivity extends BaseTitleBarActivity {
 
 	@Override
 	protected boolean needLogin() {
-		return false;
-	}
-
-	@Override
-	public boolean initializeTitlBar() {
 		return false;
 	}
 

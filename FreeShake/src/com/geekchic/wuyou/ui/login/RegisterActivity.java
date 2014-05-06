@@ -19,7 +19,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.geekchic.constant.AppAction.MainAction;
-import com.geekchic.framework.ui.BaseTitleBarActivity;
+import com.geekchic.framework.ui.titlebar.BaseTitleBarActivity;
 import com.geekchic.wuyou.R;
 
 /**

@@ -68,4 +68,16 @@ public interface AppAction {
 		 */
 		public String ACTION="com.geekchic.wuyou.NAV";
 	}
+	/**
+	 * @ClassName: ZXingAction
+	 * @Descritpion:二维码 
+	 * @author evil
+	 * @date May 6, 2014
+	 */
+	public interface ZXingAction{
+		/**
+		 * ACTION
+		 */
+		public String ACTION="com.geekchic.wuyou.ZXING";
+	}
 }

@@ -38,7 +38,7 @@ public class BaseFrameActivity extends BaseActivity implements
 			return;
 		}
 		super.onCreate(savedInstanceState);
-		mCommonDialogInterface = new BasicCommDialog(this);
+		mCommonDialogInterface = new BaseCommDialog(this);
 	}
 
 	@Override

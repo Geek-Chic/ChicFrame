@@ -85,7 +85,7 @@ public class BaseActivity extends FragmentActivity {
 			mBaseLogicBuilder = LogicBuilder.getInstance(this);
 		}
 		if (!isHandlerManagerSelf()) {
-			mBaseLogicBuilder.addHandleToLogics(getHandler());
+			mBaseLogicBuilder.registerHandleToAllLogics(getHandler());
 		}
 		initLogics();
 		// 设置在当前应用界面，调用音量键的时候控制的是多媒体音量
@@ -244,7 +244,7 @@ public class BaseActivity extends FragmentActivity {
 					logic.removeHandler(getHandler());
 				}
 			} else {
-				mBaseLogicBuilder.removeHandlerFromLogics(getHandler());
+				mBaseLogicBuilder.removeAllHandlerRegister(getHandler());
 			}
 			this.mHandler = null;
 		}
