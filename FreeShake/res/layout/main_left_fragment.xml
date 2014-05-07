@@ -6,12 +6,22 @@
     android:background="@color/white"
     android:orientation="vertical" >
 
+    <com.handmark.pulltorefresh.library.PullToRefreshExpandableListView
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/pull_refresh_expandable_list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        ptr:ptrHeaderBackground="@android:color/darker_gray"
+        ptr:ptrHeaderTextColor="@android:color/white"
+        ptr:ptrMode="pullUpFromBottom" >
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="horizontal" >
-              <include layout="@layout/main_left_fragment_content" />
+
+            <include layout="@layout/main_left_fragment_content" />
         </LinearLayout>
+    </com.handmark.pulltorefresh.library.PullToRefreshExpandableListView>
 
 </LinearLayout>

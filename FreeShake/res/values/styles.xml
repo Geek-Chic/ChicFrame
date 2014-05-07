@@ -133,9 +133,16 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowBackground">@drawable/welcome</item>
     </style>
+    <!-- 弹窗动画 -->
          <style name="PopupAnimation"/>
       	<style name="PopupAnimation.RightToLeft">
 		<item name="@android:windowEnterAnimation">@anim/transitions_slide_in_right</item>
 		<item name="@android:windowExitAnimation">@anim/transitions_slide_out_right</item>
+	</style>
+	<!-- 标题字体 -->
+	<style name="title_style">
+	    <item name="android:textColor">@color/font_color_white</item>
+	    <item name="android:textSize">@dimen/font_size_xlarge</item>
+	    <item name="android:textStyle">bold</item>
 	</style>
 </resources>

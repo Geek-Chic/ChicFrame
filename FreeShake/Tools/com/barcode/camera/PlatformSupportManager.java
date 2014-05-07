@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.barcode.executor;
+package com.barcode.camera;
 
 import android.os.Build;
 import android.util.Log;

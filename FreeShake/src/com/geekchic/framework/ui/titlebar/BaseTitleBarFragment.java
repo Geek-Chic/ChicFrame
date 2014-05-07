@@ -57,72 +57,72 @@ public abstract class BaseTitleBarFragment extends BaseFrameFragment implements
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-	        initView(inflater);
-	        return mRootView;
+		initView(inflater);
+		return mRootView;
 	}
-     private void initView(LayoutInflater inflater){
-    	 mRootView = inflater.inflate(R.layout.frame_titlebar_contain, null);
-    	 mContainLayout = (LinearLayout) mRootView.findViewById(R.id.content_container);
-    	 mTitlebarInterface=new BaseTitleBar(mTitleBar);
-    		mContainLayout = (LinearLayout) mRootView.findViewById(R.id.content_container);
-    		View contentView = inflater.inflate(getLayoutId(), null);
-    		mContainLayout.addView(contentView, LayoutParams.MATCH_PARENT,
-    				LayoutParams.MATCH_PARENT);
-    		   if (!initializeTitlBar())
-    	        {
-    	            mTitleBar.hideTitleBar();
-    	            return;
-    	        }
-     }
-	@Override 
-	public void setLeftButton(int id, OnClickListener listener) {
-		// TODO Auto-generated method stub
 
+	private void initView(LayoutInflater inflater) {
+		mRootView = inflater.inflate(R.layout.frame_titlebar_contain, null);
+		mContainLayout = (LinearLayout) mRootView
+				.findViewById(R.id.content_container);
+		mTitleBar = (TitleBar) mRootView.findViewById(R.id.title_bar_layout);
+		mTitlebarInterface = new BaseTitleBar(mTitleBar);
+		mContainLayout = (LinearLayout) mRootView
+				.findViewById(R.id.content_container);
+		View contentView = inflater.inflate(getLayoutId(), null);
+		mContainLayout.addView(contentView, LayoutParams.MATCH_PARENT,
+				LayoutParams.MATCH_PARENT);
+		if (!initializeTitlBar()) {
+			mTitleBar.hideTitleBar();
+			return;
+		}
+	}
+
+	@Override
+	public void setLeftButton(int id, OnClickListener listener) {
+		mTitlebarInterface.setLeftButton(id, listener);
 	}
 
 	@Override
 	public void setRightButton(int id, OnClickListener listener) {
-		// TODO Auto-generated method stub
-
+		mTitlebarInterface.setRightButton(id, listener);
 	}
 
 	@Override
 	public void setMiddleTitle(int id) {
-		// TODO Auto-generated method stub
-
+		mTitlebarInterface.setMiddleTitle(id);
 	}
 
 	@Override
 	public void setMiddleTitle(String title) {
-		// TODO Auto-generated method stub
-
+		mTitlebarInterface.setMiddleTitle(title);
 	}
 
 	@Override
 	public void setMiddleTitleDrawable(int id) {
-		// TODO Auto-generated method stub
-
+		mTitlebarInterface.setMiddleTitleDrawable(id);
 	}
 
 	@Override
 	public void setTitleBarBackground(int id) {
-		// TODO Auto-generated method stub
-
+		mTitlebarInterface.setTitleBarBackground(id);
 	}
 
 	@Override
 	public void setTitleVisible(boolean visible) {
-		// TODO Auto-generated method stub
-
+		mTitlebarInterface.setTitleVisible(visible);
 	}
+
 	/**
 	 * 获取布局
 	 * 
 	 * @return
 	 */
 	public abstract int getLayoutId();
+
 	/**
 	 * 初始化TitleBar
+	 * 
 	 * @return
 	 */
 	public abstract boolean initializeTitlBar();

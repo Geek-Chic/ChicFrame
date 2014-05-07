@@ -16,7 +16,6 @@
 
 package com.barcode.camera;
 
-import com.barcode.executor.PlatformSupportManager;
 
 /**
  * Selects an appropriate implementation of {@link OpenCameraInterface} based on the device's

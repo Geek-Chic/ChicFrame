@@ -155,10 +155,10 @@ public class MainActivity extends BaseSlideActivity {
 	protected TabInfo[] getTabInfos() {
 		TabInfo[] tabInfo = new TabInfo[2];
 		tabInfo[0] = new TabInfo("ContactsFragment", R.string.action_settings,
-				R.drawable.icon_slider_contact_selector,
+				R.drawable.icon_tabbar_history_message_selector,
 				ContactsFragment.class, null);
 		tabInfo[1] = new TabInfo("ProfileFragment", R.string.app_name,
-				R.drawable.icon_slider_profile_selector, ProfileFragment.class,
+				R.drawable.icon_tabbar_contacts_selector, ProfileFragment.class,
 				null);
 		return tabInfo;
 	}

@@ -21,8 +21,8 @@ import android.widget.Toast;
 import com.geekchic.common.log.Logger;
 import com.geekchic.common.utils.StringUtil;
 import com.geekchic.constant.AppAction;
-import com.geekchic.constant.AppAction.RegisterAction;
 import com.geekchic.constant.AppActionCode;
+import com.geekchic.constant.AppConstants.REQUESTCODE;
 import com.geekchic.framework.ui.BaseFrameActivity;
 import com.geekchic.wuyou.R;
 import com.geekchic.wuyou.logic.login.ILoginLogic;
@@ -92,8 +92,9 @@ public class LoginActivity extends BaseFrameActivity implements OnClickListener 
 		if (v.getId() == R.id.login_btn) {
 			doLogin();
 		} else if (v.getId() == R.id.login_tv_register) {
-			Intent intent=new Intent(RegisterAction.ACTION);
-			startActivity(intent);
+			mLoginLogic.logout();
+//			Intent intent=new Intent(RegisterAction.ACTION);
+//			startActivity(intent);
 		}
 	}
 	 /**
@@ -129,7 +130,7 @@ public class LoginActivity extends BaseFrameActivity implements OnClickListener 
 		switch (msg.what) {
 		case AppActionCode.LoginCode.MESSAGE_LOGIN_SUCCESS:
 			Bundle bundle=(Bundle) msg.obj;
-			Toast.makeText(this,bundle.getString("result"), Toast.LENGTH_LONG).show();
+			Toast.makeText(this,bundle.getString(REQUESTCODE.REQUEST_RESULT), Toast.LENGTH_LONG).show();
 			closeProgressDialog();
 			if(bundle.getInt("code")==0){
 				Intent intent=new Intent(AppAction.MainAction.ACTION);

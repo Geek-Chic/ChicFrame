@@ -41,7 +41,6 @@ public class NetTest extends AndroidTestCase
     public void testJSON(){
     	UserInfo userInfo=new UserInfo();
     	userInfo.setPhone("13163353639");
-    	userInfo.setSessionId("assdfdfvbxsdfasdfasdf");
     	String testString="{'phone':'13163353639'}";
     	UserInfo userInfo2=JSON.parseObject(testString, UserInfo.class);
     	Logger.d("evil", userInfo2.toString());

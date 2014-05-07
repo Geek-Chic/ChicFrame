@@ -7,6 +7,10 @@
     <string name="empty"></string>
     <!-- 对话框 -->
     <string name="dialog_loading">加载中。。。</string>
+    <string name="dialog_tips">提示</string>
+    <!-- 按钮 -->
+    <string name="btn_confirm">确定</string>
+    <string name="btn_cancel">取消</string>
     <!-- 反馈信息 -->
     <string name="feedback_title">反馈信息</string>
     <string name="feedback_hint_text">说些什么吧....</string>
@@ -33,4 +37,18 @@
     <string name="nav_step_three">朋友再也不担心忍受我灌水了</string>
     <string name="nav_step_four">数据保护不易，且行且珍惜</string>
     <string name="nav_start">启动</string>
+    <!-- 二维码 -->
+    <string name="zxing_title">二维码</string>
+    <string name="zxing_tips">将二维码放入框内，即可自动完成扫描</string>
+    <string name="zxing_camera_error">相机启动失败</string>
+    <string name="zxing_scan_error">扫描失败</string>
+    <!-- PullToFresh -->
+    <string name="pull_to_refresh_pull_label">Pull to refresh…</string>
+    <string name="pull_to_refresh_release_label">Release to refresh…</string>
+    <string name="pull_to_refresh_refreshing_label">Loading…</string>
+
+    <!-- Just use standard Pull Down String when pulling up. These can be set for languages which require it -->
+    <string name="pull_to_refresh_from_bottom_pull_label">@string/pull_to_refresh_pull_label</string>
+    <string name="pull_to_refresh_from_bottom_release_label">@string/pull_to_refresh_release_label</string>
+    <string name="pull_to_refresh_from_bottom_refreshing_label">@string/pull_to_refresh_refreshing_label</string>
 </resources>

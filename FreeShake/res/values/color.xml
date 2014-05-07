@@ -99,8 +99,9 @@
     <color name="alphabet_text_color">@color/font_color_light_gray</color>
     
     <!-- TitleBar -->
-    <color name="tab_widget_bg_color">#23252a</color>
+    <color name="tab_widget_bg_color">#0c0c0d</color>
     <color name="tab_title_font_color">#909589</color>
+    <color name="tab_indicator_bg_color">#000</color>
     
     <!-- 二维码扫描颜色值 -->
 	<color name="contents_text">#ff000000</color>

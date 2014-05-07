@@ -13,6 +13,7 @@ import android.os.Bundle;
 
 import com.geekchic.common.log.Logger;
 import com.geekchic.constant.AppActionCode;
+import com.geekchic.constant.AppConstants.REQUESTCODE;
 import com.geekchic.framework.bean.Request;
 import com.geekchic.framework.logic.BaseLogic;
 import com.geekchic.framework.network.RequestListener;
@@ -39,15 +40,15 @@ public class LoginLogic extends BaseLogic implements ILoginLogic {
 	@Override
 	public void login(String userAccount, String passwd) {
 		Request request = new Request(RequestService.LOGIN);
-		request.put(UserField.TYPE_PHONE, userAccount);
-		request.put(UserField.TYPE_PASSWORD, passwd);
+		request.put(REQUESTCODE.REQUEST_PHONE, userAccount);
+		request.put(REQUESTCODE.REQUEST_PASSWORD, passwd);
 		RequestManager.getInstance(mContext).execute(request,
 				new RequestListener() {
 
 					@Override
 					public void onRequestFinished(Request request,
 							Bundle resultData) {
-						Logger.d(TAG, resultData.getString("result"));
+						Logger.d(TAG, resultData.getString(REQUESTCODE.REQUEST_RESULT));
 						sendMessage(
 								AppActionCode.LoginCode.MESSAGE_LOGIN_SUCCESS,
 								resultData);
@@ -76,7 +77,33 @@ public class LoginLogic extends BaseLogic implements ILoginLogic {
 
 	@Override
 	public void logout() {
-		sendMessage(2, "logout");
+		Request request=new Request(RequestService.DECODE);
+		RequestManager.getInstance(mContext).execute(request, new RequestListener() {
+			
+			@Override
+			public void onRequestFinished(Request request, Bundle resultData) {
+				// TODO Auto-generated method stub
+				Logger.d(TAG, "结束");
+			}
+			
+			@Override
+			public void onRequestDataError(Request request) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onRequestCustomError(Request request, Bundle resultData) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onRequestConnectionError(Request request, int statusCode) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 	}
 
 }

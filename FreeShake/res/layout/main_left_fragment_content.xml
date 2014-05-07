@@ -9,10 +9,19 @@
         android:id="@+id/xxx01"
         android:layout_width="0dip"
         android:layout_height="0dip" />
-
-    <Button
+    
+     <View
         android:id="@+id/xxx02"
-        android:layout_width="100dip"
-        android:layout_height="100dip" />
+        android:layout_width="0dip"
+        android:layout_height="0dip" />
+
+    <com.widget.xlistview.IphoneTreeView
+        android:id="@+id/contacts_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@null"
+        android:transcriptMode="normal" />
 
 </LinearLayout>

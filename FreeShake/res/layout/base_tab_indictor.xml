@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00F" >
+    android:background="@drawable/icon_tabbar_indicator_selector"
+     >
 
     <TextView
         android:id="@+id/tab_title"

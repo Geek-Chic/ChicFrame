@@ -16,96 +16,56 @@
 
 package com.barcode.core;
 
-import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.os.AsyncTask;
-import android.os.BatteryManager;
-import android.util.Log;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.TimeUnit;
 
-import com.barcode.executor.AsyncTaskExecInterface;
-import com.barcode.executor.AsyncTaskExecManager;
+import android.app.Activity;
 
 /**
- * Finishes an activity after a period of inactivity if the device is on battery
- * power.
+ * Finishes an activity after a period of inactivity.
  */
 public final class InactivityTimer {
 
-	private static final String TAG = InactivityTimer.class.getSimpleName();
-	private static final long INACTIVITY_DELAY_MS = 5 * 60 * 1000L;
-	private final Activity activity;
-	private final AsyncTaskExecInterface taskExec;
-	private final BroadcastReceiver powerStatusReceiver;
-	private InactivityAsyncTask inactivityTask;
+  private static final int INACTIVITY_DELAY_SECONDS = 5 * 60;
 
-	public InactivityTimer(Activity activity) {
-		this.activity = activity;
-		taskExec = new AsyncTaskExecManager().build();
-		powerStatusReceiver = new PowerStatusReceiver();
-		onActivity();
-	}
+  private final ScheduledExecutorService inactivityTimer =
+      Executors.newSingleThreadScheduledExecutor(new DaemonThreadFactory());
+  private final Activity activity;
+  private ScheduledFuture<?> inactivityFuture = null;
 
-	public synchronized void onActivity() {
-		cancel();
-		inactivityTask = new InactivityAsyncTask();
-		taskExec.execute(inactivityTask);
-	}
+  public InactivityTimer(Activity activity) {
+    this.activity = activity;
+    onActivity();
+  }
 
-	public void onPause() {
-		cancel();
-		activity.unregisterReceiver(powerStatusReceiver);
-	}
+  public void onActivity() {
+    cancel();
+    inactivityFuture = inactivityTimer.schedule(new FinishListener(activity),
+                                                INACTIVITY_DELAY_SECONDS,
+                                                TimeUnit.SECONDS);
+  }
 
-	public void onResume() {
-		activity.registerReceiver(powerStatusReceiver, new IntentFilter(
-				Intent.ACTION_BATTERY_CHANGED));
-		onActivity();
-	}
+  private void cancel() {
+    if (inactivityFuture != null) {
+      inactivityFuture.cancel(true);
+      inactivityFuture = null;
+    }
+  }
 
-	private synchronized void cancel() {
-		AsyncTask<?, ?, ?> task = inactivityTask;
-		if (task != null) {
-			task.cancel(true);
-			inactivityTask = null;
-		}
-	}
+  public void shutdown() {
+    cancel();
+    inactivityTimer.shutdown();
+  }
 
-	public void shutdown() {
-		cancel();
-	}
-
-	private final class PowerStatusReceiver extends BroadcastReceiver {
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			if (Intent.ACTION_BATTERY_CHANGED.equals(intent.getAction())) {
-				// 0 indicates that we're on battery
-				boolean onBatteryNow = intent.getIntExtra(
-						BatteryManager.EXTRA_PLUGGED, -1) <= 0;
-				if (onBatteryNow) {
-					InactivityTimer.this.onActivity();
-				} else {
-					InactivityTimer.this.cancel();
-				}
-			}
-		}
-	}
-
-	private final class InactivityAsyncTask extends
-			AsyncTask<Object, Object, Object> {
-		@Override
-		protected Object doInBackground(Object... objects) {
-			try {
-				Thread.sleep(INACTIVITY_DELAY_MS);
-				Log.i(TAG, "Finishing activity due to inactivity");
-				activity.finish();
-			} catch (InterruptedException e) {
-				// continue without killing
-			}
-			return null;
-		}
-	}
+  private static final class DaemonThreadFactory implements ThreadFactory {
+    public Thread newThread(Runnable runnable) {
+      Thread thread = new Thread(runnable);
+      thread.setDaemon(true);
+      return thread;
+    }
+  }
 
 }

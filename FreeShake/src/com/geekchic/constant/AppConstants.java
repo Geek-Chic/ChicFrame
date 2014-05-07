@@ -47,6 +47,24 @@ public class AppConstants
          */
         String NAV_HAS_SHOW="nav_has_show";
     }
+    public interface REQUESTCODE{
+    	/**
+    	 * 请求结果
+    	 */
+    	String REQUEST_RESULT="request_result";
+    	/**
+    	 * 返回码
+    	 */
+    	String REQUEST_CODE="request_code";
+    	/**
+    	 * 密码请求
+    	 */
+    	String REQUEST_PASSWORD="password";
+    	/**
+    	 * 电话
+    	 */
+    	String REQUEST_PHONE="phone";
+    }
 //    public LogConstants(){
 //        
 //    }

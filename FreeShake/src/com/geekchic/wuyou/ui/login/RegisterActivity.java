@@ -98,7 +98,7 @@ public class RegisterActivity extends BaseTitleBarActivity implements
 	@Override
 	public boolean initializeTitlBar() {
 		setMiddleTitle("注册");
-		setLeftButton(R.drawable.btn_common_tab_back_selector,
+		setLeftButton(R.drawable.icon_common_tab_back_selector,
 				mBackClickListener);
 		return true;
 	}

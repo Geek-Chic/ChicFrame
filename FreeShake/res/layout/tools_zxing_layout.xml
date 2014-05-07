@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 二维码扫描主界面 -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:oncon="http://schemas.android.com/apk/res/com.sitech.oncon.barcode"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
@@ -15,11 +13,12 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
 
+   
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_marginBottom="50dip"
+        android:layout_marginBottom="80dip"
         android:orientation="vertical" >
 
         <TextView
@@ -29,7 +28,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_margin="5dp"
             android:background="@color/transparent"
-            android:text="将二维码放入框内，即可自动完成扫描"
+            android:text="@string/zxing_tips"
             android:textColor="@color/status_text"
             android:textSize="15sp" />
     </LinearLayout>

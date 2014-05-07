@@ -23,12 +23,12 @@ public class UserInfo {
 	 public static class UserField{
 		 public static final String TYPE_UUID="uuid";
 		 public static final String TYPE_PHONE = "phone";
-		 public static final String TYPE_PASSWORD = "password";
 		 public static final String TYPE_NICKNAME = "nickname";
 		 public static final String TYPE_EMAIL = "email";
 		 public static final String TYPE_TIME = "time";
 		 public static final String TYPE_STATUS = "status";
-		 public static final String TYPE_SESSIONID = "sessionid";
+		 public static final String TYPE_AVATOR="avator";
+		 public static final String TYPE_GROUP="group";
 	   }
 	/**
 	 * 用户ID
@@ -52,6 +52,16 @@ public class UserInfo {
 	@Column(name=UserField.TYPE_EMAIL)
 	private String email;
 	/**
+	 * 头像ID
+	 */
+	@Column(name=UserField.TYPE_AVATOR)
+	private String headicon;
+	/**
+	 * 组别
+	 */
+	@Column(name=UserField.TYPE_GROUP)
+	private int group;
+	/**
 	 * 注册时间
 	 */
 	@Column(name=UserField.TYPE_TIME)
@@ -61,11 +71,6 @@ public class UserInfo {
 	 */
 	@Column(name=UserField.TYPE_STATUS)
 	private int status;
-	/**
-	 * sessionId
-	 */
-	@Column(name=UserField.TYPE_SESSIONID)
-	private String sessionId;
 	
 	public UserInfo(){
 		
@@ -106,11 +111,17 @@ public class UserInfo {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	public String getSessionId() {
-		return sessionId;
+	public String getHeadicon() {
+		return headicon;
 	}
-	public void setSessionId(String sessionId) {
-		this.sessionId = sessionId;
+	public void setHeadicon(String headicon) {
+		this.headicon = headicon;
+	}
+	public int getGroup() {
+		return group;
+	}
+	public void setGroup(int group) {
+		this.group = group;
 	}
   
 }

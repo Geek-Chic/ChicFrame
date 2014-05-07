@@ -1,7 +1,7 @@
 /**
  * @Title: URLs.java
  * @Package com.geekchic.wuyou.bean
- * @Description: [用一句话描述做什么]
+ * @Description: 接口URL集合
  * @author: evil
  * @date: May 2, 2014
  * Copyright (c) 2014,Evilester All Rights Reserved. 
@@ -10,7 +10,7 @@ package com.geekchic.wuyou.bean;
 
 /**
  * @ClassName: URLs
- * @Descritpion: [用一句话描述作用] 
+ * @Descritpion: 接口URL集合
  * @author evil
  * @date May 2, 2014
  */
@@ -32,4 +32,8 @@ public final class URLs {
 	 */
 	public final static String REGISTER_DECLARATION=HTTP+HOST+URL_SPLITTER+"declaration.html";
 	public final static String LOGIN_VALIDATE_HTTP = HTTP + HOST + URL_SPLITTER + "site/remotelogin";
+	/**
+	 * .Net接口
+	 */
+	public final static String NET_ACCESS_URL="http://192.168.56.118:9001/WebServiceForAndroid.asmx?wsdl";
 }
