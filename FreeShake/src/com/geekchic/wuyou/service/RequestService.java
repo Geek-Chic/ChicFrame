@@ -25,6 +25,7 @@ import com.geekchic.common.utils.PreferencesUtil;
 import com.geekchic.constant.AppConfig;
 import com.geekchic.constant.AppConstants.Common;
 import com.geekchic.constant.AppConstants.REQUESTCODE;
+import com.geekchic.constant.AppConstants.SERVICEWORK;
 import com.geekchic.framework.bean.HttpRequestBean;
 import com.geekchic.framework.bean.HttpRequestBean.Method;
 import com.geekchic.framework.bean.Request;
@@ -37,6 +38,7 @@ import com.geekchic.framework.service.core.BaseOperation;
 import com.geekchic.framework.service.core.BaseRequestService;
 import com.geekchic.framework.service.core.Operation;
 import com.geekchic.wuyou.bean.URLs;
+import com.geekchic.wuyou.service.operation.ContactOperation;
 import com.geekchic.wuyou.service.operation.DecodeOperation;
 
 /**
@@ -46,19 +48,20 @@ import com.geekchic.wuyou.service.operation.DecodeOperation;
  * @date May 2, 2014
  */
 public class RequestService extends BaseRequestService {
-	public static final int LOGIN = 1;
-	public static final int DECODE = 2;
 
 	@Override
 	public Operation getOperationForType(int requestType) {
 		Operation operation = null;
 		switch (requestType) {
-		case LOGIN:
+		case SERVICEWORK.WORKER_LOGIN:
 			// operation=new LoginOperation();
 			operation = new LoginOperation();
 			break;
-		case DECODE:
-			operation = new DecodeOperation();
+		case SERVICEWORK.WORKER_REGISTER:
+			operation = new NetLoginOperation();
+			break;
+		case SERVICEWORK.WORKER_CONTACTS_FROM_PROVIDER:
+			operation=new ContactOperation();
 			break;
 		default:
 			break;

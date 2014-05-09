@@ -8,7 +8,7 @@
     <color name="gold">#FFD700</color>
     <color name="yellow">#FFFF00</color>
     <color name="green">#008000</color>
-    <color name="blue">#0000FF</color>
+    <color name="blue">#4bc1d2</color>
     <color name="purple">#800080</color>
     <color name="pink">#FFC0CB</color>
     <color name="orange">#FFA500</color>
@@ -41,6 +41,8 @@
 
     <!-- 标题色 -->
     <color name="font_color_white">#ffffff</color>
+    <!-- 近黑字体，Metra Style -->
+    <color name="font_color_most_black">#626262</color>
 
     <!-- 按钮文字色 深灰色 -->
     <color name="font_color_dark_gray">#737d86</color>
@@ -98,11 +100,11 @@
     <!-- A-Z bar 字母颜色 -->
     <color name="alphabet_text_color">@color/font_color_light_gray</color>
     
-    <!-- TitleBar -->
+    <!-- TabBar -->
     <color name="tab_widget_bg_color">#0c0c0d</color>
     <color name="tab_title_font_color">#909589</color>
-    <color name="tab_indicator_bg_color">#000</color>
-    
+    <color name="tab_indicator_bg_color">#e8e8e8</color>
+    <!-- TabBar -->
     <!-- 二维码扫描颜色值 -->
 	<color name="contents_text">#ff000000</color>
 	<color name="encode_view">#ffffffff</color>
@@ -115,4 +117,8 @@
 	<color name="transparent">#00000000</color>
 	<color name="viewfinder_laser">#ffcc0000</color> <!-- Android standard ICS color -->
 	<color name="viewfinder_mask">#60000000</color>
+	<!-- ExpandList Color -->
+	<color name="expand_list_item_bg">#EFF4F7</color>
+	 <!--  -->
+	   <color name="holo_blue">#FF33E5B5</color>
 </resources>

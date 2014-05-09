@@ -46,7 +46,6 @@
         android:id="@+id/radioGroup1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/progressBar2"
         android:layout_centerHorizontal="true" >
 
         <ProgressBar
@@ -94,7 +93,6 @@
         android:id="@+id/roundProgressBar2"
         android:layout_width="80dip"
         android:layout_height="80dip"
-        android:layout_alignLeft="@+id/roundProgressBar1"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="78dp"
         

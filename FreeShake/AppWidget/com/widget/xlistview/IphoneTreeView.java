@@ -14,6 +14,16 @@ import android.widget.ExpandableListView.OnGroupClickListener;
 
 public class IphoneTreeView extends ExpandableListView implements
 		OnScrollListener, OnGroupClickListener {
+	/**
+	 * TAG
+	 */
+	private static final String TAG="IphoneTreeView";
+	/**
+	 * IphoneTreeView构造函数
+	 * @param context
+	 * @param attrs
+	 * @param defStyle
+	 */
 	public IphoneTreeView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		registerListener();
@@ -228,6 +238,9 @@ public class IphoneTreeView extends ExpandableListView implements
 				.getPackedPositionGroup(flatPostion);
 		final int childPos = ExpandableListView
 				.getPackedPositionChild(flatPostion);
+		if(mAdapter==null){
+			return;
+		}
 		int state = mAdapter.getTreeHeaderState(groupPos, childPos);
 		if (mHeaderView != null && mAdapter != null && state != mOldState) {
 			mOldState = state;

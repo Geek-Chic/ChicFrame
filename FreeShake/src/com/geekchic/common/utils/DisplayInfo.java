@@ -12,6 +12,8 @@
 package com.geekchic.common.utils;
 
 import android.app.Activity;
+import android.content.Context;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
 
@@ -81,6 +83,24 @@ public class DisplayInfo {
 	 */
 	public int getWindowVisibleDisplayHeight() {
 		return mWindowVisibleDisplayHeight;
+	}
+	/**
+	 * 获取屏幕高
+	 * @param context
+	 * @return
+	 */
+	public static int getScreenHeight(Context context){
+		DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+		return displayMetrics.heightPixels;
+	}
+	/**
+	 * 获取屏幕宽
+	 * @param context
+	 * @return
+	 */
+	public static int getScreenWidth(Context context){
+		DisplayMetrics displayMetrics=context.getResources().getDisplayMetrics();
+		return displayMetrics.widthPixels;
 	}
 
 }

@@ -33,6 +33,9 @@
     <dimen name="slidingmenu_offset">60dp</dimen>
     <dimen name="shadow_width">15dp</dimen>
     
+    <!-- Avatar Size -->
+    <dimen name="avatar_medium_size">72dp</dimen>
+    
     <!-- GreenDroid UI Tool -->
     <dimen name="gd_arrow_offset">5dp</dimen>
     

@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main_left_fragment"
+    xmlns:ptr="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_menu_frame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical" >
 
-    <com.handmark.pulltorefresh.library.PullToRefreshExpandableListView
-        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+    <include layout="@layout/user_header" />
+
+    <include
+        android:id="@+id/contact_search_box"
+        android:visibility="gone"
+        layout="@layout/search_box" />
+
+    <com.geekchic.wuyou.ui.main.view.IphoneTreePullToRefreshView
         android:id="@+id/pull_refresh_expandable_list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:fillViewport="true"
         ptr:ptrHeaderBackground="@android:color/darker_gray"
         ptr:ptrHeaderTextColor="@android:color/white"
-        ptr:ptrMode="pullUpFromBottom" >
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="horizontal" >
-
-            <include layout="@layout/main_left_fragment_content" />
-        </LinearLayout>
-    </com.handmark.pulltorefresh.library.PullToRefreshExpandableListView>
+        ptr:ptrMode="pullFromStart" />
 
 </LinearLayout>

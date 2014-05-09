@@ -80,4 +80,16 @@ public interface AppAction {
 		 */
 		public String ACTION="com.geekchic.wuyou.ZXING";
 	}
+	/**
+	 * @ClassName: SettingAction
+	 * @Descritpion: 设置界面
+	 * @author evil
+	 * @date May 9, 2014
+	 */
+	public interface SettingAction{
+		/**
+		 * ACTION
+		 */
+		public String ACTION="com.geekchic.wuyou.SETTING";
+	}
 }

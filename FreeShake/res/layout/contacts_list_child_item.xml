@@ -2,58 +2,75 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@color/bg_color_white" >
 
     <com.widget.roundimageview.RoundedImageView
-        android:id="@+id/child_item_avator"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:id="@+id/contact_item_avator"
+        android:layout_width="@dimen/avatar_medium_size"
+        android:layout_height="@dimen/avatar_medium_size"
+        android:layout_centerVertical="true"
         android:src="@drawable/icon_avator"
-        app:border_color="#FFF"
+        app:border_color="@color/bg_color_white"
         app:border_width="3dip"
         app:corner_radius="100dp"
         app:is_oval="false" />
-     <ImageView
-        android:id="@+id/stateicon"
+
+    <ImageView
+        android:id="@+id/contact_stateicon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/child_item_avator"
-        android:layout_alignRight="@id/child_item_avator" 
         android:duplicateParentState="true"
-        android:src="@drawable/icon_status_online"
-        />
- <TextView
-        android:id="@+id/contact_list_item_name"
-        android:layout_width="fill_parent"
-        android:layout_height="25.0dip"
-        android:layout_marginLeft="10.0dip"
-        android:layout_marginRight="18.0dip"
-        android:layout_toRightOf="@id/child_item_avator"
-        android:ellipsize="end"
-        android:gravity="left|center"
-        android:duplicateParentState="true"
-        android:includeFontPadding="false"
-        android:padding="0.0dip"
-        android:singleLine="true"
-        android:textColor="@color/bg_color_black"
-        android:textSize="16.0sp" />
+        android:paddingBottom="@dimen/margin_medium"
+        android:paddingRight="@dimen/margin_medium" />
 
-    <TextView
-        android:id="@+id/cpntact_list_item_state"
-        android:layout_width="fill_parent"
-        android:layout_height="25.0dip"
+    <ImageView
+        android:id="@+id/contact_vertify_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/contact_list_item_name"
-        android:layout_marginLeft="10.0dip"
-        android:layout_marginRight="18.0dip"
-        android:layout_toRightOf="@id/child_item_avator"
-        android:ellipsize="end"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/margin_medium"
         android:duplicateParentState="true"
-        android:gravity="left|center"
-        android:includeFontPadding="false"
-        android:padding="0.0dip"
-        android:singleLine="true"
-        android:textColor="@color/font_color_black"
-        android:textSize="12.0sp" />
+        android:src="@drawable/icon_style_ios_normal" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/contact_item_avator"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/contact_item_nickname"
+            android:layout_width="fill_parent"
+            android:layout_height="25.0dip"
+            android:layout_marginLeft="10.0dip"
+            android:layout_marginRight="18.0dip"
+            android:duplicateParentState="true"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:padding="0.0dip"
+            android:singleLine="true"
+            android:text="jxp蒋"
+            android:textColor="@color/font_color_most_black"
+            android:textSize="16.0sp" />
+
+        <TextView
+            android:id="@+id/contact_item_phone"
+            android:layout_width="fill_parent"
+            android:layout_height="25.0dip"
+            android:layout_marginLeft="10.0dip"
+            android:layout_marginRight="18.0dip"
+            android:duplicateParentState="true"
+            android:ellipsize="end"
+            android:includeFontPadding="false"
+            android:padding="0.0dip"
+            android:singleLine="true"
+            android:text="1360050265464"
+            android:textColor="@color/font_color_dark_gray"
+            android:textSize="12.0sp" />
+    </LinearLayout>
 
 </RelativeLayout>

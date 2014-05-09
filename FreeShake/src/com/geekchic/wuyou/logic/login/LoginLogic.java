@@ -14,6 +14,7 @@ import android.os.Bundle;
 import com.geekchic.common.log.Logger;
 import com.geekchic.constant.AppActionCode;
 import com.geekchic.constant.AppConstants.REQUESTCODE;
+import com.geekchic.constant.AppConstants.SERVICEWORK;
 import com.geekchic.framework.bean.Request;
 import com.geekchic.framework.logic.BaseLogic;
 import com.geekchic.framework.network.RequestListener;
@@ -39,7 +40,7 @@ public class LoginLogic extends BaseLogic implements ILoginLogic {
 
 	@Override
 	public void login(String userAccount, String passwd) {
-		Request request = new Request(RequestService.LOGIN);
+		Request request = new Request(SERVICEWORK.WORKER_LOGIN);
 		request.put(REQUESTCODE.REQUEST_PHONE, userAccount);
 		request.put(REQUESTCODE.REQUEST_PASSWORD, passwd);
 		RequestManager.getInstance(mContext).execute(request,
@@ -77,7 +78,7 @@ public class LoginLogic extends BaseLogic implements ILoginLogic {
 
 	@Override
 	public void logout() {
-		Request request=new Request(RequestService.DECODE);
+		Request request=new Request(SERVICEWORK.WORKER_REGISTER);
 		RequestManager.getInstance(mContext).execute(request, new RequestListener() {
 			
 			@Override

@@ -56,7 +56,7 @@ public class TitleBar extends LinearLayout {
 	private void initView() {
 		LayoutInflater inflater = (LayoutInflater) mContext
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		mTitlebarLayout = inflater.inflate(R.layout.frame_titlebar, null);
+		mTitlebarLayout = inflater.inflate(R.layout.base_titlebar, null);
 		setOrientation(LinearLayout.VERTICAL);
 		LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
 				ViewGroup.LayoutParams.MATCH_PARENT,

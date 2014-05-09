@@ -8,6 +8,7 @@
  */
 package com.geekchic.wuyou.ui.main;
 
+import com.geekchic.framework.ui.BaseFrameFragment;
 import com.geekchic.wuyou.R;
 
 import android.os.Bundle;
@@ -22,11 +23,19 @@ import android.view.ViewGroup;
  * @author evil
  * @date May 3, 2014
  */
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends BaseFrameFragment {
+	/**
+	 * 创建ProfileFragment
+	 * @return
+	 */
+	public static ProfileFragment newInstance(){
+		ProfileFragment profileFragment=new ProfileFragment();
+		return profileFragment;
+	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.main_right_fragment, null);
+		View view = inflater.inflate(R.layout.profile_fragment_content, null);
 		return view;
 	}
 }

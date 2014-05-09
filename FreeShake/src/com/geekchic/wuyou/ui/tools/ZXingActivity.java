@@ -42,7 +42,7 @@ public class ZXingActivity extends BaseTabHostActivity {
 	@Override
 	public boolean initializeTitlBar() {
 		setMiddleTitle(R.string.zxing_title);
-		setLeftButton(R.drawable.icon_common_tab_back_selector, mBackClickListener);
+		setLeftButton(R.drawable.icon_tab_back_selector, mBackClickListener);
 		return true;
 	}
    @Override

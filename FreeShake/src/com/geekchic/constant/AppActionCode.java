@@ -50,4 +50,18 @@ public interface AppActionCode {
 	    */
 	   int MESSAGE_LOGIN_FAILED=BASE+2;
    }
+   public interface ContactsCode{
+	   /**
+	    * ContactsCode基数
+	    */
+	   int BASE=0x13000000;
+	   /**
+	    * 请求数据库成功
+	    */
+	   int MESSAGE_CONSTACTS_PROVIDE_SUCCESS=BASE+1;
+	   /**
+	    * 清求数据库失败
+	    */
+	   int MESSAGE_CONSTACTS_PROVIDE_FAILED=BASE+2;
+   }
 }

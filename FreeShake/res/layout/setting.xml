@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color_light_gray"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/accountSetting"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/common_strip_setting_top"
+        android:focusable="true" 
+        >
+
+        <FrameLayout
+            android:id="@+id/frameLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10.0dip" >
+
+            <com.widget.roundimageview.RoundedImageView
+                android:id="@+id/face"
+                android:layout_width="@dimen/avatar_medium_size"
+                android:layout_height="@dimen/avatar_medium_size"
+                android:layout_gravity="center"
+                android:contentDescription="@null"
+                android:src="@drawable/icon_avator"
+                app:border_color="@color/bg_color_white"
+                app:border_width="3dip"
+                app:corner_radius="100dp"
+                app:is_oval="false" />
+
+            <com.widget.roundimageview.RoundedImageView
+                android:layout_width="@dimen/avatar_medium_size"
+                android:layout_height="@dimen/avatar_medium_size"
+                android:layout_gravity="center"
+                android:src="@drawable/icon_avator_transparent"
+                android:contentDescription="@null"
+                app:border_color="@color/bg_color_white"
+                app:border_width="3dip"
+                app:corner_radius="100dp"
+                app:is_oval="false" />
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="@dimen/avatar_medium_size"
+            android:layout_height="@dimen/avatar_medium_size"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10.0dip"
+            android:contentDescription="@null"
+            android:duplicateParentState="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/nick"
+            android:layout_marginRight="10.0dip"
+            android:duplicateParentState="true"
+            />
+
+        <TextView
+            android:id="@+id/nick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10.0dip"
+            android:layout_marginRight="69.0dip"
+            android:layout_toRightOf="@id/frameLayout1"
+            android:duplicateParentState="true"
+            android:ellipsize="end"
+            android:singleLine="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/sound_and_vibrate"
+        android:layout_width="fill_parent"
+        android:layout_height="44.0dip"
+        android:background="@drawable/common_strip_setting_bottom"
+        android:layout_marginTop="@dimen/margin_small"
+        android:clickable="false"
+        android:focusable="false" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12.0dip"
+            android:duplicateParentState="true"
+            android:gravity="center_vertical"
+            android:text="消息提醒" />
+
+        <com.widget.switchbutton.SwitchButton
+            android:id="@+id/message_sound_switch"
+            android:layout_width="80dip"
+            android:layout_height="28dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8.0dip" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/set_about"
+            android:layout_width="fill_parent"
+            android:layout_height="44.0dip"
+            android:background="@drawable/common_strip_setting_bottom"
+            android:clickable="true"
+            android:focusable="true" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12.0dip"
+                android:duplicateParentState="true"
+                android:gravity="center_vertical"
+                android:text="检查更新"/>
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="14.0dip"
+                android:layout_height="14.0dip"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8.0dip"
+                android:duplicateParentState="true"
+                android:src="@drawable/arrow_right_gray_white" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/set_feedback"
+            android:layout_width="fill_parent"
+            android:layout_height="44.0dip"
+            android:background="@drawable/common_strip_setting_middle"
+            android:clickable="true"
+            android:focusable="true" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12.0dip"
+                android:duplicateParentState="true"
+                android:gravity="center_vertical"
+                android:text="反馈" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="14.0dip"
+                android:layout_height="14.0dip"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8.0dip"
+                android:duplicateParentState="true"
+                android:src="@drawable/arrow_right_gray_white" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/set_about"
+            android:layout_width="fill_parent"
+            android:layout_height="44.0dip"
+            android:background="@drawable/common_strip_setting_bottom"
+            android:clickable="true"
+            android:focusable="true" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12.0dip"
+                android:duplicateParentState="true"
+                android:gravity="center_vertical"
+                android:text="关于" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="14.0dip"
+                android:layout_height="14.0dip"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8.0dip"
+                android:duplicateParentState="true"
+                android:src="@drawable/arrow_right_gray_white" />
+        </RelativeLayout>
+    </LinearLayout>
+  <Button
+                android:id="@+id/exit_app"
+                android:layout_width="fill_parent"
+                android:layout_height="46.0dip"
+                android:layout_marginBottom="20.0dip"
+                android:layout_marginTop="15.0dip"
+                android:text="退出登录" />
+</LinearLayout>

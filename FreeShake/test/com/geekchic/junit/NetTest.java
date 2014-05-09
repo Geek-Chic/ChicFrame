@@ -2,12 +2,20 @@ package com.geekchic.junit;
 
 import java.io.InputStream;
 
+import org.apache.http.protocol.RequestConnControl;
+
+import android.os.Bundle;
 import android.test.AndroidTestCase;
 
 import com.alibaba.fastjson.JSON;
 import com.geekchic.base.http.CommHttpRequest;
 import com.geekchic.common.log.Logger;
+import com.geekchic.constant.AppConstants.REQUESTCODE;
+import com.geekchic.constant.AppConstants.SERVICEWORK;
+import com.geekchic.framework.bean.Request;
+import com.geekchic.framework.network.RequestListener;
 import com.geekchic.wuyou.bean.UserInfo;
+import com.geekchic.wuyou.logic.RequestManager;
 
 public class NetTest extends AndroidTestCase
 {
@@ -44,6 +52,35 @@ public class NetTest extends AndroidTestCase
     	String testString="{'phone':'13163353639'}";
     	UserInfo userInfo2=JSON.parseObject(testString, UserInfo.class);
     	Logger.d("evil", userInfo2.toString());
+    }
+    public void testHello(){
+    	Request request=new Request(SERVICEWORK.WORKER_REGISTER);
+    	RequestManager.getInstance(mContext).addRequestListener(new RequestListener() {
+			
+			@Override
+			public void onRequestFinished(Request request, Bundle resultData) {
+				Logger.d("evil", (String)resultData.get(REQUESTCODE.REQUEST_RESULT));
+				Logger.d("evil", resultData.toString());
+			}
+			
+			@Override
+			public void onRequestDataError(Request request) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onRequestCustomError(Request request, Bundle resultData) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onRequestConnectionError(Request request, int statusCode) {
+				// TODO Auto-generated method stub
+				
+			}
+		}, request);
     }
     public void testStringRequest(){
         

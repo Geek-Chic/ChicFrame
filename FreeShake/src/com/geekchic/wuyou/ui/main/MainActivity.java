@@ -10,7 +10,6 @@ package com.geekchic.wuyou.ui.main;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -106,13 +105,12 @@ public class MainActivity extends BaseSlideActivity {
 	}
 
 	private void initSlidingMenu() {
-		int mScreenWidth = DisplayInfo.getInstance()
-				.getWindowVisibleDisplayWidth();// 获取屏幕分辨率宽度
+		int mScreenWidth = DisplayInfo.getScreenWidth(this);// 获取屏幕分辨率宽度
 		setBehindContentView(R.layout.main_left_layout);// 设置左菜单
 		FragmentTransaction mFragementTransaction = getSupportFragmentManager()
 				.beginTransaction();
-		Fragment mFrag = new ContactsFragment();
-		mFragementTransaction.replace(R.id.main_left_fragment, mFrag);
+		mContactsFragment  = ContactsFragment.newInstance();
+		mFragementTransaction.replace(R.id.main_left_frame_container, mContactsFragment);
 		mFragementTransaction.commit();
 		// 初始化SlidingMenu，
 		mSlidingMenu = getSlidingMenu();
@@ -125,16 +123,16 @@ public class MainActivity extends BaseSlideActivity {
 		mSlidingMenu.setBehindScrollScale(0.333f);// 设置滑动时拖拽效果
 	}
 
-	private void initView() {
-		// 设置二级菜单
-		mSlidingMenu.setSecondaryMenu(R.layout.main_right_layout);
-		FragmentTransaction mRightTransaction = getSupportFragmentManager()
-				.beginTransaction();
-		mProfileFragment = new ProfileFragment();
-		mRightTransaction.replace(R.id.main_right_fragment, mProfileFragment);
-		mRightTransaction.commit();
-
-	}
+//	private void initView() {
+//		// 设置二级菜单
+//		mSlidingMenu.setSecondaryMenu(R.layout.main_right_layout);
+//		FragmentTransaction mRightTransaction = getSupportFragmentManager()
+//				.beginTransaction();
+//		mProfileFragment = new ProfileFragment();
+//		mRightTransaction.replace(R.id.main_right_fragment, mProfileFragment);
+//		mRightTransaction.commit();
+//
+//	}
 
 	@Override
 	public void onBackPressed() {
@@ -148,17 +146,18 @@ public class MainActivity extends BaseSlideActivity {
 				mLeftClickListener);
 		setRightButton(R.drawable.icon_slider_profile_selector,
 				mRightClickListener);
+		setTitleBarBackground(R.color.blue);
 		return true;
 	}
 
 	@Override
 	protected TabInfo[] getTabInfos() {
 		TabInfo[] tabInfo = new TabInfo[2];
-		tabInfo[0] = new TabInfo("ContactsFragment", R.string.action_settings,
+		tabInfo[0] = new TabInfo("ProfileFragment", R.string.action_settings,
 				R.drawable.icon_tabbar_history_message_selector,
-				ContactsFragment.class, null);
-		tabInfo[1] = new TabInfo("ProfileFragment", R.string.app_name,
-				R.drawable.icon_tabbar_contacts_selector, ProfileFragment.class,
+				ProfileFragment.class, null);
+		tabInfo[1] = new TabInfo("MessageFragment", R.string.app_name,
+				R.drawable.icon_tabbar_contacts_selector, MessageFragment.class,
 				null);
 		return tabInfo;
 	}

@@ -1,7 +1,7 @@
 /**
  * @Title: BaseTitleBarFragment.java
  * @Package com.geekchic.framework.ui.titlebar
- * @Description: [用一句话描述做什么]
+ * @Description: 标题栏Fragment
  * @author: evil
  * @date: May 5, 2014
  * Copyright (c) 2014,Evilester All Rights Reserved. 
@@ -21,7 +21,7 @@ import com.geekchic.wuyou.R;
 
 /**
  * @ClassName: BaseTitleBarFragment
- * @Descritpion: [用一句话描述作用]
+ * @Descritpion: 标题栏Fragment
  * @author evil
  * @date May 5, 2014
  */
@@ -57,18 +57,19 @@ public abstract class BaseTitleBarFragment extends BaseFrameFragment implements
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		super.onCreateView(inflater, container, savedInstanceState);
+		mRootView = inflater.inflate(R.layout.base_titlebar_contain, null);
+		mContainLayout = (LinearLayout) mRootView
+				.findViewById(R.id.content_container);
 		initView(inflater);
 		return mRootView;
 	}
 
 	private void initView(LayoutInflater inflater) {
-		mRootView = inflater.inflate(R.layout.frame_titlebar_contain, null);
 		mContainLayout = (LinearLayout) mRootView
 				.findViewById(R.id.content_container);
 		mTitleBar = (TitleBar) mRootView.findViewById(R.id.title_bar_layout);
 		mTitlebarInterface = new BaseTitleBar(mTitleBar);
-		mContainLayout = (LinearLayout) mRootView
-				.findViewById(R.id.content_container);
 		View contentView = inflater.inflate(getLayoutId(), null);
 		mContainLayout.addView(contentView, LayoutParams.MATCH_PARENT,
 				LayoutParams.MATCH_PARENT);
