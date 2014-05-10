@@ -15,12 +15,13 @@
         layout="@layout/search_box" />
 
     <com.geekchic.wuyou.ui.main.view.IphoneTreePullToRefreshView
-        android:id="@+id/pull_refresh_expandable_list"
+        android:id="@+id/contact_pull_refresh_expandable_list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:fillViewport="true"
         ptr:ptrHeaderBackground="@android:color/darker_gray"
         ptr:ptrHeaderTextColor="@android:color/white"
+        ptr:ptrScrollingWhileRefreshingEnabled="true"
         ptr:ptrMode="pullFromStart" />
 
 </LinearLayout>

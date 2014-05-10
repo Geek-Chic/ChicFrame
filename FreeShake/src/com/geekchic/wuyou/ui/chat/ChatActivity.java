@@ -53,8 +53,6 @@ import com.geekchic.wuyou.ui.chat.adapter.MessageAdapter;
 import com.geekchic.wuyou.ui.chat.view.CirclePageIndicator;
 import com.geekchic.wuyou.ui.chat.view.JazzyViewPager;
 import com.geekchic.wuyou.ui.chat.view.JazzyViewPager.TransitionEffect;
-import com.geekchic.wuyou.ui.chat.view.MsgListView.IXListViewListener;
-import com.geekchic.wuyou.ui.chat.view.MsgListView;
 import com.widget.pulltofresh.PullToRefreshBase;
 import com.widget.pulltofresh.PullToRefreshBase.OnRefreshListener;
 import com.widget.pulltofresh.PullToRefreshListView;
@@ -224,6 +222,7 @@ public class ChatActivity extends BaseTitleBarActivity implements OnClickListene
 		mSendButton=(Button) findViewById(R.id.chat_send_btn);
 		mEmotionButton.setOnClickListener(this);
 		mSendButton.setOnClickListener(this);
+		mChatEditText.setOnTouchListener(mChatListOnTouchListener);
 	}
 
 	private void initFacePage() {
@@ -283,38 +282,40 @@ public class ChatActivity extends BaseTitleBarActivity implements OnClickListene
 						mChatEditText.getText().delete(start, end);
 						return;
 					}
-				}else {
-					int count=mCurrentPage*AppConstants.NUM+position;
-					Map<String, Integer> emotionMaps=AppConfig.getInstance().getFaceMap();
-					
-					int resId=(Integer) emotionMaps.values().toArray()[count];
-					Bitmap bitmap=BitmapFactory.decodeResource(getResources(),resId);
-					if(bitmap!=null){
-						int rawHeigh = bitmap.getHeight();
-						int rawWidth = bitmap.getHeight();
-						int newHeight = 40;
-						int newWidth = 40;
-						// 计算缩放因子
-						float heightScale = ((float) newHeight) / rawHeigh;
-						float widthScale = ((float) newWidth) / rawWidth;
-						// 新建立矩阵
-						Matrix matrix = new Matrix();
-						matrix.postScale(heightScale, widthScale);
-						// 压缩后图片的宽和高以及kB大小均会变化
-						Bitmap newBitmap = Bitmap.createBitmap(bitmap, 0, 0,
-								rawWidth, rawHeigh, matrix, true);
-						ImageSpan imageSpan = new ImageSpan(ChatActivity.this,
-								newBitmap);
-						String emojiStr = mEmotionKeys.get(count);
-						SpannableString spannableString = new SpannableString(
-								emojiStr);
-						spannableString.setSpan(imageSpan,
-								emojiStr.indexOf('['),
-								emojiStr.indexOf(']') + 1,
-								Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-						mChatEditText.append(spannableString);
-					}
 				}
+			}else{
+
+				int count=mCurrentPage*AppConstants.NUM+position;
+				Map<String, Integer> emotionMaps=AppConfig.getInstance().getFaceMap();
+				
+				int resId=(Integer) emotionMaps.values().toArray()[count];
+				Bitmap bitmap=BitmapFactory.decodeResource(getResources(),resId);
+				if(bitmap!=null){
+					int rawHeigh = bitmap.getHeight();
+					int rawWidth = bitmap.getHeight();
+					int newHeight = 40;
+					int newWidth = 40;
+					// 计算缩放因子
+					float heightScale = ((float) newHeight) / rawHeigh;
+					float widthScale = ((float) newWidth) / rawWidth;
+					// 新建立矩阵
+					Matrix matrix = new Matrix();
+					matrix.postScale(heightScale, widthScale);
+					// 压缩后图片的宽和高以及kB大小均会变化
+					Bitmap newBitmap = Bitmap.createBitmap(bitmap, 0, 0,
+							rawWidth, rawHeigh, matrix, true);
+					ImageSpan imageSpan = new ImageSpan(ChatActivity.this,
+							newBitmap);
+					String emojiStr = mEmotionKeys.get(count);
+					SpannableString spannableString = new SpannableString(
+							emojiStr);
+					spannableString.setSpan(imageSpan,
+							emojiStr.indexOf('['),
+							emojiStr.indexOf(']') + 1,
+							Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+					mChatEditText.append(spannableString);
+				}
+			
 			}
 		}
 	};

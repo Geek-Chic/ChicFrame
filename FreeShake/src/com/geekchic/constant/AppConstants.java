@@ -94,7 +94,22 @@ public class AppConstants {
 		int WORKER_CONTACTS_FROM_PROVIDER = 3;
 
 	}
-
+	/**
+	 * @ClassName: QUICKACTION
+	 * @Descritpion: 快速工具栏标识
+	 * @author evil
+	 * @date May 10, 2014
+	 */
+    public interface QUICKACTION{
+    	/**
+    	 * 创建项目
+    	 */
+    	int ACTION_CREATEPROJECT=0;
+    	/**
+    	 * 二维码
+    	 */
+    	int ACTION_QR=1;
+    }
 	/**
 	 * @ClassName: ChatMessageType
 	 * @Descritpion: 聊天消息类型

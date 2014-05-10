@@ -8,7 +8,6 @@
  */
 package com.geekchic.framework.ui;
 
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,7 +37,7 @@ public abstract class BaseTabHostActivity extends BaseTitleBarActivity
 	/**
 	 * TAG
 	 */
-	private static final String TAG="BaseTabhostActivity";
+	private static final String TAG = "BaseTabhostActivity";
 	/**
 	 * TabHost
 	 */
@@ -63,37 +62,45 @@ public abstract class BaseTabHostActivity extends BaseTitleBarActivity
 		initTabHost();
 		initTabContent();
 	}
-	
-	 /**
-     * 初始化TabHost
-     */
-    private void initTabHost()
-    {
-        mTabHost = (TabHost)findViewById(android.R.id.tabhost);
-        mTabHost.setup();
-        mTabHost.setOnTabChangedListener(this);
-    }
+
+	/**
+	 * 初始化TabHost
+	 */
+	private void initTabHost() {
+		mTabHost = (TabHost) findViewById(android.R.id.tabhost);
+		mTabHost.setup();
+		mTabHost.setOnTabChangedListener(this);
+	}
 
 	protected void initTabContent() {
 
 		// tabSpec.setContent(new TabFactory(mActivity));
 		TabInfo[] tabInfos = getTabInfos();
 		for (int i = 0; i < tabInfos.length; i++) {
-			View tabView=getIndicatorView(tabInfos[i].mTitileId, tabInfos[i].mIconId);
-			addTab(mTabHost.newTabSpec(tabInfos[i].mTag).setIndicator(tabView), tabInfos[i]);
+			View tabView = getIndicatorView(tabInfos[i].mTitileId,
+					tabInfos[i].mIconId,tabInfos[i].mShowTabTitle);
+			addTab(mTabHost.newTabSpec(tabInfos[i].mTag).setIndicator(tabView),
+					tabInfos[i]);
 		}
+		mTabHost.setCurrentTab(0);
 
 	}
-	 /**
-     * 获得tab的indicator<BR>
-     * @param textId 文字资源ID
-     * @param drawableId 图片资源ID
-     * @return indicator
-     */
-    private CommTabIndictorView getIndicatorView(int textId, int drawableId)
-    {
-        return new CommTabIndictorView(this, textId, drawableId);
-    }
+
+	/**
+	 * 获得tab的indicator<BR>
+	 * 
+	 * @param textId
+	 *            文字资源ID
+	 * @param drawableId
+	 *            图片资源ID
+	 *  @param showTabTitle
+	 *           是否显示标题
+	 * @return indicator
+	 */
+	private CommTabIndictorView getIndicatorView(int textId, int drawableId,boolean showTabTitle) {
+		return new CommTabIndictorView(this, textId, drawableId,showTabTitle);
+	}
+
 	public void addTab(TabHost.TabSpec tabSpec, TabInfo info) {
 		// tabSpec.setContent(new TabFactory(mActivity));
 		tabSpec.setContent(TabFactory.getInstance(this));
@@ -114,50 +121,47 @@ public abstract class BaseTabHostActivity extends BaseTitleBarActivity
 		mTabs.put(tag, info);
 		mTabHost.addTab(tabSpec);
 	}
+
 	@Override
 	public int getLayoutId() {
 		return R.layout.base_tab_main;
 	}
-     @Override
-    public void onTabChanged(String tabId) {
-         Logger.d(TAG, "----------->onTabChanged tabId: " + tabId);
-         TabInfo newTab = mTabs.get(tabId);
-         if (mLastTab != newTab)
-         {
-             FragmentManager fragmentManager = getSupportFragmentManager();
-             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-             // 脱离之前的tab
-             if (mLastTab != null && mLastTab.mFragment != null)
-             {
-                 fragmentTransaction.hide(mLastTab.mFragment);
-             }
-             if (newTab != null)
-             {
-                 if (newTab.mFragment == null)
-                 {
-                     newTab.mFragment = Fragment.instantiate(this,
-                             newTab.mClss.getName(),
-                             newTab.mArgs);
-                     fragmentTransaction.add(R.id.realcontent,
-                             newTab.mFragment,
-                             newTab.mTag);
-                 }
-                 else
-                 {
-                     fragmentTransaction.show(newTab.mFragment);
-                 }
-             }
-             mLastTab = newTab;
-             fragmentTransaction.commit();
-             setMiddleTitle(newTab.mTitileId);
-             // 会在进程的主线程中，用异步的方式来执行,如果想要立即执行这个等待中的操作，就要调用这个方法
-             // 所有的回调和相关的行为都会在这个调用中被执行完成，因此要仔细确认这个方法的调用位置。
-             fragmentManager.executePendingTransactions();
-         }
-     }
-     protected TabHost getTabHost(){
-    	 return mTabHost;
-     }
+
+	@Override
+	public void onTabChanged(String tabId) {
+		Logger.d(TAG, "----------->onTabChanged tabId: " + tabId);
+		TabInfo newTab = mTabs.get(tabId);
+		if (mLastTab != newTab) {
+			FragmentManager fragmentManager = getSupportFragmentManager();
+			FragmentTransaction fragmentTransaction = fragmentManager
+					.beginTransaction();
+			// 脱离之前的tab
+			if (mLastTab != null && mLastTab.mFragment != null) {
+				fragmentTransaction.hide(mLastTab.mFragment);
+			}
+			if (newTab != null) {
+				if (newTab.mFragment == null) {
+					newTab.mFragment = Fragment.instantiate(this,
+							newTab.mClss.getName(), newTab.mArgs);
+					fragmentTransaction.add(R.id.realcontent, newTab.mFragment,
+							newTab.mTag);
+				} else {
+					fragmentTransaction.show(newTab.mFragment);
+				}
+			}
+			mLastTab = newTab;
+			fragmentTransaction.commit();
+			setMiddleTitle(newTab.mTitileId);
+			// 会在进程的主线程中，用异步的方式来执行,如果想要立即执行这个等待中的操作，就要调用这个方法
+			// 所有的回调和相关的行为都会在这个调用中被执行完成，因此要仔细确认这个方法的调用位置。
+			fragmentManager.executePendingTransactions();
+		}
+	}
+
+	protected TabHost getTabHost() {
+		return mTabHost;
+	}
+
 	/**
 	 * 获取tab配置消息
 	 * 
@@ -171,7 +175,7 @@ public abstract class BaseTabHostActivity extends BaseTitleBarActivity
 	 * @author evil
 	 * @date May 5, 2014
 	 */
-	protected  class TabInfo {
+	protected class TabInfo {
 		/**
 		 * 每一个Tab的Tag
 		 */
@@ -184,6 +188,10 @@ public abstract class BaseTabHostActivity extends BaseTitleBarActivity
 		 * Tab的icon
 		 */
 		private final int mIconId;
+		/**
+		 * 是否显示底部TitleBar名
+		 */
+		private final boolean mShowTabTitle;
 
 		/**
 		 * 每个tab页签要展示的view的类的引用
@@ -210,12 +218,14 @@ public abstract class BaseTabHostActivity extends BaseTitleBarActivity
 		 * @param bundle
 		 *            参数
 		 */
-		public TabInfo(String tag, int titleId, int icon, Class<?> clss, Bundle args) {
+		public TabInfo(String tag, int titleId, int icon, Class<?> clss,
+				Bundle args,boolean showTabTitle) {
 			mTag = tag;
 			mTitileId = titleId;
 			mClss = clss;
 			mArgs = args;
 			mIconId = icon;
+			mShowTabTitle=showTabTitle;
 		}
 	}
 
@@ -273,6 +283,10 @@ public abstract class BaseTabHostActivity extends BaseTitleBarActivity
 		 * 提示消息
 		 */
 		private TextView mMessageTips;
+		/**
+		 * 是否显示t底部tab名
+		 */
+		private boolean mShowTabTitle;
 
 		public CommTabIndictorView(Context context) {
 			super(context);
@@ -282,7 +296,7 @@ public abstract class BaseTabHostActivity extends BaseTitleBarActivity
 		private void initTabHost() {
 			mTabHost = (TabHost) findViewById(android.R.id.tabhost);
 			mTabHost.setup();
-            initTabHost();
+			initTabHost();
 		}
 
 		/**
@@ -292,10 +306,11 @@ public abstract class BaseTabHostActivity extends BaseTitleBarActivity
 		 * @param titleId
 		 * @param iconId
 		 */
-		public CommTabIndictorView(Context context, int titleId, int iconId) {
+		public CommTabIndictorView(Context context, int titleId, int iconId,boolean showTabTitle) {
 			super(context);
 			this.mTabTitleId = titleId;
 			this.mTabIconId = iconId;
+			this.mShowTabTitle=showTabTitle;
 			initView(context);
 		}
 
@@ -303,9 +318,13 @@ public abstract class BaseTabHostActivity extends BaseTitleBarActivity
 			View view = inflate(context, R.layout.base_tab_indictor, null);
 			mTitleView = (TextView) view.findViewById(R.id.tab_title);
 			mMessageTips = (TextView) view.findViewById(R.id.tab_unread_msg);
-			mTitleView.setText(mTabTitleId);
-			mTitleView.setCompoundDrawablesWithIntrinsicBounds(0, mTabIconId,
-					0, 0);
+			if (mShowTabTitle) {
+				mTitleView.setText(mTabTitleId);
+				mTitleView.setCompoundDrawablesWithIntrinsicBounds(0, mTabIconId,
+						0, 0);
+			} else {
+				mTitleView.setBackgroundResource(mTabIconId);
+			}
 			addView(view, new RelativeLayout.LayoutParams(
 					LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 		}

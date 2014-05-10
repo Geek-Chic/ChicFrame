@@ -102,7 +102,9 @@ public class TitleBar extends LinearLayout {
 	 * @param id
 	 */
 	public void setTitle(int id){
-		setTitle(mContext.getString(id));
+		if(mContext!=null){
+			setTitle(mContext.getString(id));
+		}
 	}
     /**
      * 设置左边按钮资源

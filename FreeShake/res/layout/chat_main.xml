@@ -19,6 +19,7 @@
             android:listSelector="@android:color/transparent"
             app:ptrHeaderTextColor="@color/font_color_most_black"
             app:ptrMode="pullFromStart"
+            app:ptrScrollingWhileRefreshingEnabled="true"
             android:transcriptMode="normal" />
     </FrameLayout>
 

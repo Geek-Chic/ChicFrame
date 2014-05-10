@@ -108,4 +108,16 @@ public interface AppAction {
 		 */
 		public String ACTION = "com.geekchic.wuyou.CHAT";
 	}
+	/**
+	 * @ClassName: ProjectCreateAction
+	 * @Descritpion: 创建项目 
+	 * @author evil
+	 * @date May 10, 2014
+	 */
+	public interface ProjectCreateAction{
+		/**
+		 * ACTION
+		 */
+		public String ACTION="com.geekchic.wuyou.PROJECTCREATE";
+	}
 }

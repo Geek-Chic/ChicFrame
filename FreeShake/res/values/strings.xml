@@ -65,5 +65,9 @@
     <string name="chat_title">聊天</string>
     <string name="chat_send">发送</string>
     <!-- 界面标题 -->
-    
+    <string name="project_create_title">创建目标</string>
+    <string name="main_tab_message">消息中心</string>
+    <string name="main_tab_statictic">统计</string>
+    <string name="main_tab_complete">历史</string>
+    <string name="main_tab_going">行进中</string>
 </resources>

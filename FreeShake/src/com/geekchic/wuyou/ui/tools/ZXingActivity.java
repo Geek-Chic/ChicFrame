@@ -54,7 +54,7 @@ protected boolean needLogin() {
 @Override
 protected TabInfo[] getTabInfos() {
 	TabInfo[] tabInfos=new TabInfo[1];
-	tabInfos[0]=new TabInfo("QrScanFragment", R.string.app_name, R.drawable.ic_launcher, QrScanFragment.class, null);
+	tabInfos[0]=new TabInfo("QrScanFragment", R.string.app_name, R.drawable.ic_launcher, QrScanFragment.class, null,false);
 	return tabInfos;
 }
 }

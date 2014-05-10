@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/holo_red" >
 
-<LinearLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content">
+    <FrameLayout
+        android:id="@+id/gdi_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:visibility="gone" />
 
-	<FrameLayout
-		android:id="@+id/gdi_header"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:background="@null" 
-		android:visibility="gone"/>
+    <GridView
+        android:id="@+id/actionbar_gridview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1px"
+        android:background="@color/holo_red"
+        android:fadingEdgeLength="0dp"
+        android:gravity="center"
+        android:numColumns="1"
+        android:padding="7dp"
+        android:scrollbars="none"
+        android:stretchMode="columnWidth"
+        android:textColor="@color/font_color_white"
+        android:verticalSpacing="7dp" />
 
-	<GridView
-		android:id="@+id/actionbar_gridview"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:background="@color/bg_color_black"
-		android:padding="7dp"
-		android:gravity="center"
-		android:fadingEdgeLength="0dp"
-		android:stretchMode="columnWidth"
-		android:verticalSpacing="7dp"
-		android:numColumns="1"
-		android:scrollbars="none"
-		android:layout_marginTop="-1px" />
-
-	<FrameLayout
-		android:id="@+id/gdi_footer"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:background="@null" 
-		android:visibility="gone"/>
+    <FrameLayout
+        android:id="@+id/gdi_footer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:visibility="gone" />
 
 </LinearLayout>

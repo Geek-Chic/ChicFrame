@@ -117,7 +117,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-                <!-- 设置界面 -->
+                <!-- 聊天界面 -->
         <activity
             android:name=".ui.chat.ChatActivity"
             android:configChanges="orientation|keyboardHidden|locale"
@@ -125,6 +125,18 @@
             android:theme="@style/Default" >
             <intent-filter>
                 <action android:name="com.geekchic.wuyou.CHAT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+                  <!-- 项目创建界面 -->
+        <activity
+            android:name=".ui.project.NewProjectActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/Default" >
+            <intent-filter>
+                <action android:name="com.geekchic.wuyou.PROJECTCREATE" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

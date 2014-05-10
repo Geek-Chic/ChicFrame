@@ -16,6 +16,7 @@ import android.view.View.OnClickListener;
 
 import com.geekchic.common.utils.DisplayInfo;
 import com.geekchic.constant.AppAction;
+import com.geekchic.constant.AppConstants.QUICKACTION;
 import com.geekchic.framework.ui.BaseSlideActivity;
 import com.geekchic.wuyou.R;
 import com.geekchic.wuyou.ui.dialog.QuickAction;
@@ -38,7 +39,7 @@ public class MainActivity extends BaseSlideActivity {
 	/**
 	 * 用户Fragment
 	 */
-	private ProfileFragment mProfileFragment;
+	private GoingFragment mProfileFragment;
 	/**
 	 * 联系人Framgment
 	 */
@@ -62,9 +63,9 @@ public class MainActivity extends BaseSlideActivity {
 		public void onClick(View v) {
 			ToolsActionDialog mGrid = new ToolsActionDialog(MainActivity.this);
 			mGrid.addQuickAction(new QuickAction(MainActivity.this,
-					R.drawable.ic_launcher, "二维码"));
+					R.drawable.ic_launcher, "创建目标"));
 			mGrid.addQuickAction(new QuickAction(MainActivity.this,
-					R.drawable.ic_launcher, "二维码"));
+					R.drawable.icon_qr, "二维码"));
 			mGrid.addQuickAction(new QuickAction(MainActivity.this,
 					R.drawable.ic_launcher, "二维码"));
 			mGrid.addQuickAction(new QuickAction(MainActivity.this,
@@ -91,9 +92,18 @@ public class MainActivity extends BaseSlideActivity {
 		
 		@Override
 		public void onQuickActionClicked(ToolsActionWidget widget, int position) {
-			if(position==0){
-				Intent intent=new Intent(AppAction.ZXingAction.ACTION);
-				startActivity(intent);
+			switch (position) {
+			case QUICKACTION.ACTION_CREATEPROJECT:
+				Intent projectIntent=new Intent(AppAction.ProjectCreateAction.ACTION);
+				startActivity(projectIntent);
+
+				break;
+			case QUICKACTION.ACTION_QR:
+				Intent qrIntent=new Intent(AppAction.ZXingAction.ACTION);
+				startActivity(qrIntent);
+				break;
+			default:
+				break;
 			}
 		}
 	};
@@ -152,13 +162,19 @@ public class MainActivity extends BaseSlideActivity {
 
 	@Override
 	protected TabInfo[] getTabInfos() {
-		TabInfo[] tabInfo = new TabInfo[2];
-		tabInfo[0] = new TabInfo("ProfileFragment", R.string.action_settings,
+		TabInfo[] tabInfo = new TabInfo[4];
+		tabInfo[0] = new TabInfo("MessageFragment", R.string.main_tab_message,
 				R.drawable.icon_tabbar_history_message_selector,
-				ProfileFragment.class, null);
-		tabInfo[1] = new TabInfo("MessageFragment", R.string.app_name,
-				R.drawable.icon_tabbar_contacts_selector, MessageFragment.class,
-				null);
+				MessageFragment.class, null,false);
+		tabInfo[1] = new TabInfo("GoingFragment", R.string.app_name,
+				R.drawable.icon_tabbar_going_selector, GoingFragment.class,
+				null,false);
+		tabInfo[2] = new TabInfo("CompleteFragment", R.string.main_tab_complete,
+				R.drawable.icon_tabbar_complete_selector, MessageFragment.class,
+				null,false);
+		tabInfo[3] = new TabInfo("StatisticFragment", R.string.main_tab_statictic,
+				R.drawable.icon_tabbar_statistic_selector, MessageFragment.class,
+				null,false);
 		return tabInfo;
 	}
 

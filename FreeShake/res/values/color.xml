@@ -125,7 +125,17 @@
     <color name="viewfinder_mask">#60000000</color>
     <!-- ExpandList Color -->
     <color name="expand_list_item_bg">#EFF4F7</color>
-    <!--  -->
+    <!--holo蓝 -->
     <color name="holo_blue">#FF33E5B5</color>
-
+    <color name="holo_red">#FC5D61</color>
+    <color name="holo_green">#50C866</color>
+    <color name="holo_purple">#493F58</color>
+    <!-- 添加Task页颜色 -->
+    <color name="task_add_title">#DDDCD7</color>
+    <color name="task_add_title_text">#9E9F99</color>
+    <color name="task_add_sub">#F5F6F0</color>
+    <color name="tast_add_sub_text">#A4A4A6</color>
+    <color name="task_add_bg">#EBECE6</color>
+    <color name="task_notify">#C8CAC5</color>
+    <color name="task_chart">#BBBCB7</color>
 </resources>
