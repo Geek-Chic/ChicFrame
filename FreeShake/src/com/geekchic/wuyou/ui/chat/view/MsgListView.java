@@ -16,6 +16,7 @@ import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -36,7 +37,7 @@ public class MsgListView extends ListView implements OnScrollListener {
 	private MsgHeader mHeaderView;
 	// header view content, use it to calculate the Header's height. And hide it
 	// when disable pull refresh.
-	private RelativeLayout mHeaderViewContent;
+	private LinearLayout mHeaderViewContent;
 //	private TextView mHeaderTimeView;
 	private int mHeaderViewHeight; // header view's height
 	private boolean mEnablePullRefresh = true;//
@@ -89,7 +90,7 @@ public class MsgListView extends ListView implements OnScrollListener {
 
 		// init header view
 		mHeaderView = new MsgHeader(context);
-		mHeaderViewContent = (RelativeLayout) mHeaderView
+		mHeaderViewContent = (LinearLayout) mHeaderView
 				.findViewById(R.id.msg_header_content);
 //		mHeaderTimeView = (TextView) mHeaderView
 //				.findViewById(R.id.xlistview_header_time);

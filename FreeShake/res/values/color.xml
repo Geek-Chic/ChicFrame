@@ -25,6 +25,9 @@
     <color name="dim_foreground_light_disabled">#80323232</color>
     <color name="dim_foreground_light_inverse">#ff006eaa</color>
     <color name="dim_foreground_light_inverse_disabled">#80bebebe</color>
+    <color name="thirty_transparent_black">#4d000000</color>
+    <color name="twenty_transparent_black">#33000000</color>
+    <color name="fifteen_trans_black">#26000000</color>
     <!-- 字体阴影颜色 -->
     <color name="text_shadow_color">#66000000</color>
     <!-- 内容主色 黑色 -->
@@ -99,26 +102,30 @@
 
     <!-- A-Z bar 字母颜色 -->
     <color name="alphabet_text_color">@color/font_color_light_gray</color>
-    
+
     <!-- TabBar -->
     <color name="tab_widget_bg_color">#0c0c0d</color>
     <color name="tab_title_font_color">#909589</color>
     <color name="tab_indicator_bg_color">#e8e8e8</color>
     <!-- TabBar -->
     <!-- 二维码扫描颜色值 -->
-	<color name="contents_text">#ff000000</color>
-	<color name="encode_view">#ffffffff</color>
-	<color name="possible_result_points">#c0ffbd21</color> <!-- Android standard ICS color -->
-	<color name="result_minor_text">#ffc0c0c0</color>
-	<color name="result_points">#c099cc00</color> <!-- Android standard ICS color -->
-	<color name="result_text">#ffffffff</color>
-	<color name="result_view">#b0000000</color>
-	<color name="status_text">#ffffffff</color>
-	<color name="transparent">#00000000</color>
-	<color name="viewfinder_laser">#ffcc0000</color> <!-- Android standard ICS color -->
-	<color name="viewfinder_mask">#60000000</color>
-	<!-- ExpandList Color -->
-	<color name="expand_list_item_bg">#EFF4F7</color>
-	 <!--  -->
-	   <color name="holo_blue">#FF33E5B5</color>
+    <color name="contents_text">#ff000000</color>
+    <color name="encode_view">#ffffffff</color>
+    <color name="possible_result_points">#c0ffbd21</color>
+    <!-- Android standard ICS color -->
+    <color name="result_minor_text">#ffc0c0c0</color>
+    <color name="result_points">#c099cc00</color>
+    <!-- Android standard ICS color -->
+    <color name="result_text">#ffffffff</color>
+    <color name="result_view">#b0000000</color>
+    <color name="status_text">#ffffffff</color>
+    <color name="transparent">#00000000</color>
+    <color name="viewfinder_laser">#ffcc0000</color>
+    <!-- Android standard ICS color -->
+    <color name="viewfinder_mask">#60000000</color>
+    <!-- ExpandList Color -->
+    <color name="expand_list_item_bg">#EFF4F7</color>
+    <!--  -->
+    <color name="holo_blue">#FF33E5B5</color>
+
 </resources>

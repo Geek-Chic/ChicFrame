@@ -1,9 +1,4 @@
-/**
- * @file XListViewHeader.java
- * @create Apr 18, 2012 5:22:27 PM
- * @author Maxwin
- * @description XListView's header
- */
+
 package com.geekchic.wuyou.ui.chat.view;
 
 import android.content.Context;
@@ -13,12 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.geekchic.wuyou.R;
 
 public class MsgHeader extends LinearLayout {
-	private LinearLayout mContainer;
+	private RelativeLayout mContainer;
 	private ProgressBar mProgressBar;
 	private TextView mHintTextView;
 	private int mState = STATE_NORMAL;
@@ -47,7 +43,7 @@ public class MsgHeader extends LinearLayout {
 		// 初始情况，设置下拉刷新view高度为0
 		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
 				LayoutParams.FILL_PARENT, 0);
-		mContainer = (LinearLayout) LayoutInflater.from(context).inflate(
+		mContainer = (RelativeLayout) LayoutInflater.from(context).inflate(
 				R.layout.xlistview_message_header, null);
 		addView(mContainer, lp);
 		setGravity(Gravity.BOTTOM);

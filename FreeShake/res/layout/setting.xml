@@ -23,8 +23,8 @@
 
             <com.widget.roundimageview.RoundedImageView
                 android:id="@+id/face"
-                android:layout_width="@dimen/avatar_medium_size"
-                android:layout_height="@dimen/avatar_medium_size"
+                android:layout_width="@dimen/avator_medium_size"
+                android:layout_height="@dimen/avator_medium_size"
                 android:layout_gravity="center"
                 android:contentDescription="@null"
                 android:src="@drawable/icon_avator"
@@ -34,8 +34,8 @@
                 app:is_oval="false" />
 
             <com.widget.roundimageview.RoundedImageView
-                android:layout_width="@dimen/avatar_medium_size"
-                android:layout_height="@dimen/avatar_medium_size"
+                android:layout_width="@dimen/avator_medium_size"
+                android:layout_height="@dimen/avator_medium_size"
                 android:layout_gravity="center"
                 android:src="@drawable/icon_avator_transparent"
                 android:contentDescription="@null"
@@ -47,8 +47,8 @@
 
         <ImageView
             android:id="@+id/imageView1"
-            android:layout_width="@dimen/avatar_medium_size"
-            android:layout_height="@dimen/avatar_medium_size"
+            android:layout_width="@dimen/avator_medium_size"
+            android:layout_height="@dimen/avator_medium_size"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10.0dip"

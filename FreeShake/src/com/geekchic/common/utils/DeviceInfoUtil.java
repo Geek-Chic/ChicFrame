@@ -1,14 +1,3 @@
-/*
- * 文件名: DeviceInfoUtil.java
- * 版    权：  Copyright Paitao Tech. Co. Ltd. All Rights Reserved.
- * 描    述: 获取设备信息
- * 创建人: deanye
- * 创建时间:2013-9-23
- * 
- * 修改人：
- * 修改时间:
- * 修改内容：[修改内容]
- */
 package com.geekchic.common.utils;
 
 import java.net.InetAddress;
@@ -21,14 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import android.content.Context;
 import android.provider.Settings.Secure;
-import android.util.Log;
 
-/**
- * 获取设备信息<BR>
- * 
- * @author deanye
- * @version [Paitao Client V20130911, 2013-9-23]
- */
 public class DeviceInfoUtil {
 	private static final Logger logger = LoggerFactory
 			.getLogger("DeviceInfoUtil");

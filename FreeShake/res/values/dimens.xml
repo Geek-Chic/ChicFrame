@@ -34,7 +34,8 @@
     <dimen name="shadow_width">15dp</dimen>
     
     <!-- Avatar Size -->
-    <dimen name="avatar_medium_size">72dp</dimen>
+    <dimen name="avator_medium_size">72dp</dimen>
+     <dimen name="avator_small_size">48dp</dimen>
     
     <!-- GreenDroid UI Tool -->
     <dimen name="gd_arrow_offset">5dp</dimen>

@@ -56,40 +56,56 @@ public interface AppAction {
 		 */
 		public String ACTION = "com.geekchic.wuyou.MAIN";
 	}
+
 	/**
 	 * @ClassName: NavAction
 	 * @Descritpion: 使用导航
 	 * @author evil
 	 * @date May 4, 2014
 	 */
-	public interface NavAction{
-		/**
-		 *  ACTION
-		 */
-		public String ACTION="com.geekchic.wuyou.NAV";
-	}
-	/**
-	 * @ClassName: ZXingAction
-	 * @Descritpion:二维码 
-	 * @author evil
-	 * @date May 6, 2014
-	 */
-	public interface ZXingAction{
+	public interface NavAction {
 		/**
 		 * ACTION
 		 */
-		public String ACTION="com.geekchic.wuyou.ZXING";
+		public String ACTION = "com.geekchic.wuyou.NAV";
 	}
+
+	/**
+	 * @ClassName: ZXingAction
+	 * @Descritpion:二维码
+	 * @author evil
+	 * @date May 6, 2014
+	 */
+	public interface ZXingAction {
+		/**
+		 * ACTION
+		 */
+		public String ACTION = "com.geekchic.wuyou.ZXING";
+	}
+
 	/**
 	 * @ClassName: SettingAction
 	 * @Descritpion: 设置界面
 	 * @author evil
 	 * @date May 9, 2014
 	 */
-	public interface SettingAction{
+	public interface SettingAction {
 		/**
 		 * ACTION
 		 */
-		public String ACTION="com.geekchic.wuyou.SETTING";
+		public String ACTION = "com.geekchic.wuyou.SETTING";
+	}
+
+	/**
+	 * @ClassName: ChatAction
+	 * @Descritpion: 聊天ACTION
+	 * @author evil
+	 * @date May 9, 2014
+	 */
+	public interface ChatAction {
+		/**
+		 * ACTION
+		 */
+		public String ACTION = "com.geekchic.wuyou.CHAT";
 	}
 }

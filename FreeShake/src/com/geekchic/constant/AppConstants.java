@@ -16,6 +16,14 @@ public class AppConstants {
 	 * 发布版本 debug 属性设置为FALSE
 	 */
 	public static final boolean ISDEBUG_RELEASE_BUILD_VALUE = false;
+	/**
+	 * 表情页数
+	 */
+	public static final int NUM_PAGE = 6;
+	/**
+	 * 每页表情数量，加最后一个删除
+	 */
+	public static int NUM = 20;
 
 	/**
 	 * 一些公共信息
@@ -85,6 +93,27 @@ public class AppConstants {
 		 */
 		int WORKER_CONTACTS_FROM_PROVIDER = 3;
 
+	}
+
+	/**
+	 * @ClassName: ChatMessageType
+	 * @Descritpion: 聊天消息类型
+	 * @author evil
+	 * @date May 10, 2014
+	 */
+	public interface ChatMessageType {
+		/**
+		 * 文字消息
+		 */
+		int MESSAGE_TYPE_TEXT = 1;
+		/**
+		 * 图片消息
+		 */
+		int MESSAGE_TYPE_IMG = 2;
+		/**
+		 * 文件消息
+		 */
+		int MESSAGE_TYPE_FILE = 3;
 	}
 	// public LogConstants(){
 	//

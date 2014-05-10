@@ -12,8 +12,8 @@
 
         <com.widget.roundimageview.RoundedImageView
             android:id="@+id/contact_people_avator"
-            android:layout_width="@dimen/avatar_medium_size"
-            android:layout_height="@dimen/avatar_medium_size"
+            android:layout_width="@dimen/avator_medium_size"
+            android:layout_height="@dimen/avator_medium_size"
             android:layout_centerVertical="true"
             android:src="@drawable/icon_avator"
             app:border_color="@color/bg_color_white"
@@ -30,16 +30,18 @@
             android:layout_marginTop="@dimen/margin_medium"
             android:layout_toRightOf="@id/contact_people_avator"
             android:text="蒋鹏"
-            android:textStyle="bold"
             android:textColor="@color/font_color_most_black"
-            android:textSize="@dimen/font_size_large" />
-           <TextView
+            android:textSize="@dimen/font_size_large"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/contact_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_medium"
-                 android:layout_marginTop="@dimen/margin_medium"
-            android:layout_toRightOf="@id/contact_people_avator"
             android:layout_below="@id/contact_header_nickname"
+            android:layout_marginLeft="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_toRightOf="@id/contact_people_avator"
             android:text="13163353639"
             android:textColor="@color/font_color_gray"
             android:textSize="@dimen/font_size_large" />
@@ -51,50 +53,51 @@
         android:background="@color/bg_color_white"
         android:orientation="horizontal" >
 
-               <Button
+        <Button
             android:id="@+id/contact_act_profile"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="资料"
             android:background="@null"
             android:drawableTop="@drawable/icon_profile_selector"
-            android:textSize="@dimen/font_size_medium"
             android:padding="@dimen/margin_small"
-            android:textColor="@color/font_color_most_black" />
-        <View
-            android:layout_width="@dimen/line_size"
-            android:layout_height="match_parent"
-            android:background="@color/line_color_light_gray" />
-
-              <Button
-            android:id="@+id/contact_act_profile"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="设置"
-            android:background="@null"
-            android:drawableTop="@drawable/icon_setting_selector"
-            android:textSize="@dimen/font_size_medium"
-            android:padding="@dimen/margin_small"
-            android:textColor="@color/font_color_most_black" />
+            android:text="@string/user_action_profile"
+            android:textColor="@color/font_color_most_black"
+            android:textSize="@dimen/font_size_medium" />
 
         <View
             android:layout_width="@dimen/line_size"
             android:layout_height="match_parent"
             android:background="@color/line_color_light_gray" />
 
-              <Button
+        <Button
             android:id="@+id/contact_act_profile"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="设置"
             android:background="@null"
             android:drawableTop="@drawable/icon_setting_selector"
-            android:textSize="@dimen/font_size_medium"
             android:padding="@dimen/margin_small"
-            android:textColor="@color/font_color_most_black" />
+            android:text="设置"
+            android:textColor="@color/font_color_most_black"
+            android:textSize="@dimen/font_size_medium" />
+
+        <View
+            android:layout_width="@dimen/line_size"
+            android:layout_height="match_parent"
+            android:background="@color/line_color_light_gray" />
+
+        <Button
+            android:id="@+id/contact_act_profile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableTop="@drawable/icon_setting_selector"
+            android:padding="@dimen/margin_small"
+            android:text="设置"
+            android:textColor="@color/font_color_most_black"
+            android:textSize="@dimen/font_size_medium" />
 
         <View
             android:layout_width="@dimen/line_size"
@@ -106,14 +109,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="查找"
-            android:button="@null"
             android:background="@null"
+            android:button="@null"
             android:drawableTop="@drawable/icon_search_selector"
-            android:textSize="@dimen/font_size_medium"
+            android:gravity="center"
             android:padding="@dimen/margin_small"
-            android:textColor="@color/font_color_most_black" />
+            android:text="@string/user_action_search"
+            android:textColor="@color/font_color_most_black"
+            android:textSize="@dimen/font_size_medium" />
     </LinearLayout>
 
     <View

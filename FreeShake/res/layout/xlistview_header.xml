@@ -26,12 +26,12 @@
 
             <ProgressBar
                 android:id="@+id/xlistview_header_progressbar"
-                android:layout_width="16dip"
-                android:layout_height="16dip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:indeterminate="true"
                 android:indeterminateBehavior="repeat"
-                android:indeterminateDrawable="@anim/loading_circle"
+                android:indeterminateDrawable="@anim/loading_horizontal"
                 android:visibility="invisible" />
         </FrameLayout>
 
@@ -47,7 +47,8 @@
                 android:id="@+id/xlistview_header_hint_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                 android:textColor="@color/font_color_most_black"
+                    android:textSize="@dimen/font_size_small"
                 android:text="@string/xlistview_header_hint_normal" />
 
             <LinearLayout
@@ -58,17 +59,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
                     android:text="@string/xlistview_header_last_time"
-                    android:textSize="12sp" />
+                      android:textColor="@color/font_color_most_black"
+                    android:textSize="@dimen/font_size_small"/>
 
                 <TextView
                     android:id="@+id/xlistview_header_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="刚刚"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
+                    android:textColor="@color/font_color_most_black"
+                    android:textSize="@dimen/font_size_small" />
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>

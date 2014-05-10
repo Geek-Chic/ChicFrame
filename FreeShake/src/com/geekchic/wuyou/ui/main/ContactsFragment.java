@@ -106,7 +106,8 @@ public class ContactsFragment extends BaseFrameFragment implements
 		@Override
 		public boolean onChildClick(ExpandableListView parent, View v,
 				int groupPosition, int childPosition, long id) {
-			// TODO Auto-generated method stub
+			Intent intent=new Intent(AppAction.ChatAction.ACTION);
+			startActivity(intent);
 			return false;
 		}
 	};
