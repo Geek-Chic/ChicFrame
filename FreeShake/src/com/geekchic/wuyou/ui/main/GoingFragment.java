@@ -23,6 +23,7 @@ import android.widget.TextView;
 import com.geekchic.framework.ui.BaseFrameFragment;
 import com.geekchic.wuyou.R;
 import com.geekchic.wuyou.bean.Project;
+import com.geekchic.wuyou.ui.main.view.SwipePullToRefreshView;
 import com.widget.pulltofresh.PullToRefreshListView;
 
 /**
@@ -35,7 +36,7 @@ public class GoingFragment extends BaseFrameFragment {
 	/**
 	 * 下拉刷新
 	 */
-	private PullToRefreshListView mPullToRefreshListView;
+	private SwipePullToRefreshView mPullToRefreshListView;
 	/**
 	 * 当前项目列表
 	 */
@@ -65,7 +66,7 @@ public class GoingFragment extends BaseFrameFragment {
 		return view;
 	}
 	private void initView(View view){
-		mPullToRefreshListView=(PullToRefreshListView) view.findViewById(R.id.project_current_listview);
+		mPullToRefreshListView=(SwipePullToRefreshView) view.findViewById(R.id.project_current_listview);
 		mCurProjectListView=mPullToRefreshListView.getRefreshableView();
 		mProjectList=new ArrayList<Project>();
 		mCurProjectAdapter=new CurProjectAdapter(getActivity(), mProjectList);

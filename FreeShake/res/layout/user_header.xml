@@ -104,7 +104,7 @@
             android:layout_height="match_parent"
             android:background="@color/line_color_light_gray" />
 
-        <CheckBox
+        <Button
             android:id="@+id/contact_act_search"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

@@ -82,8 +82,6 @@ public class MainActivity extends BaseSlideActivity {
 					R.drawable.ic_launcher, "二维码"));
 			mGrid.addQuickAction(new QuickAction(MainActivity.this,
 					R.drawable.ic_launcher, "二维码"));
-			mGrid.addQuickAction(new QuickAction(MainActivity.this,
-					R.drawable.ic_launcher, "二维码"));
 			mGrid.show(getTitleBar());
 			mGrid.setOnQuickActionClickListener(quickActionClickListener);
 		}
@@ -170,10 +168,10 @@ public class MainActivity extends BaseSlideActivity {
 				R.drawable.icon_tabbar_going_selector, GoingFragment.class,
 				null,false);
 		tabInfo[2] = new TabInfo("CompleteFragment", R.string.main_tab_complete,
-				R.drawable.icon_tabbar_complete_selector, MessageFragment.class,
+				R.drawable.icon_tabbar_complete_selector, CompleteFragment.class,
 				null,false);
 		tabInfo[3] = new TabInfo("StatisticFragment", R.string.main_tab_statictic,
-				R.drawable.icon_tabbar_statistic_selector, MessageFragment.class,
+				R.drawable.icon_tabbar_statistic_selector, StatisticFragment.class,
 				null,false);
 		return tabInfo;
 	}

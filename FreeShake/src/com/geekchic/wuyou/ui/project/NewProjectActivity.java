@@ -47,7 +47,7 @@ public class NewProjectActivity extends BaseTitleBarActivity{
 		setMiddleTitle(R.string.project_create_title);
 		setLeftButton(R.drawable.icon_tab_metra_back_selector, mBackClickListener);
 		setRightButton(R.drawable.icon_tab_metra_back_selector, mCreateClickLinstener);
-		setMiddleTitleDrawable(R.color.blue);
+		setTitleBarBackground(R.color.blue);
 		return true;
 	}
 

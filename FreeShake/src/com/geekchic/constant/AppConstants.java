@@ -71,6 +71,14 @@ public class AppConstants {
 		 * 电话
 		 */
 		String REQUEST_PHONE = "phone";
+		/**
+		 * list型数据
+		 */
+		String REQUEST_LIST_DATA="list_data";
+		/**
+		 * 查找key
+		 */
+		String REQUEST_KEY="list_key";
 	}
 
 	/**
@@ -92,6 +100,10 @@ public class AppConstants {
 		 * 从ContentProvicer获取联系人
 		 */
 		int WORKER_CONTACTS_FROM_PROVIDER = 3;
+		/**
+		 * 从本地查找联系人
+		 */
+		int WORKER_CONTACTS_LCOAL_SERACH=4;
 
 	}
 	/**

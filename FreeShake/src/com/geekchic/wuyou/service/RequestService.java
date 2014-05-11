@@ -38,6 +38,7 @@ import com.geekchic.framework.service.core.BaseOperation;
 import com.geekchic.framework.service.core.BaseRequestService;
 import com.geekchic.framework.service.core.Operation;
 import com.geekchic.wuyou.bean.URLs;
+import com.geekchic.wuyou.service.operation.ContactLocalSearchOperation;
 import com.geekchic.wuyou.service.operation.ContactOperation;
 import com.geekchic.wuyou.service.operation.DecodeOperation;
 
@@ -62,6 +63,9 @@ public class RequestService extends BaseRequestService {
 			break;
 		case SERVICEWORK.WORKER_CONTACTS_FROM_PROVIDER:
 			operation=new ContactOperation();
+			break;
+		case SERVICEWORK.WORKER_CONTACTS_LCOAL_SERACH:
+			operation=new ContactLocalSearchOperation();
 			break;
 		default:
 			break;

@@ -67,7 +67,7 @@ public class ToolsActionDialog extends ToolsActionWidget {
 				QuickAction quickAction = quickActions.get(position);
 				textView.setText(quickAction.mTitle);
 				textView.setGravity(Gravity.CENTER_HORIZONTAL);
-				textView.setTextColor(getContext().getResources().getColor(R.color.white));
+				textView.setTextColor(getContext().getResources().getColor(R.color.font_color_most_black));
 				textView.setCompoundDrawablesWithIntrinsicBounds(null,
 						quickAction.mDrawable, null, null);
 

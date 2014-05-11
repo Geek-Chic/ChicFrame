@@ -120,4 +120,16 @@ public interface AppAction {
 		 */
 		public String ACTION="com.geekchic.wuyou.PROJECTCREATE";
 	}
+	/**
+	 * @ClassName: ProfileSetting
+	 * @Descritpion: 个人资料设置
+	 * @author evil
+	 * @date May 11, 2014
+	 */
+	public interface ProfileSetting{
+		/**
+		 * ACTION
+		 */
+		public String ACTION="com.geekchic.wuyou.PROFILESETTING";
+	}
 }

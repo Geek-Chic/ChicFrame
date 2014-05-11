@@ -9,6 +9,7 @@
 package com.geekchic.wuyou.logic.contacts;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -74,6 +75,38 @@ public class ContactsLogic extends BaseLogic implements IContactsLogic {
 			
 		}
 	});
+	}
+	@Override
+	public void searchLocalContacts(String key,ArrayList<Person> contacts) {
+		  Request request=new Request(SERVICEWORK.WORKER_CONTACTS_LCOAL_SERACH);
+		  request.put(REQUESTCODE.REQUEST_KEY, key);
+		  request.putList(REQUESTCODE.REQUEST_LIST_DATA,contacts);
+		  RequestManager.getInstance(mContext).execute(request, new RequestListener() {
+			
+			@Override
+			public void onRequestFinished(Request request, Bundle resultData) {
+				ArrayList<CharSequence> contacts=resultData.getCharSequenceArrayList(REQUESTCODE.REQUEST_RESULT);
+				sendMessage(AppActionCode.ContactsCode.MESSAGE_CONSTACTS_LOCAL_SEARCH_SUCCESS,contacts);
+			}
+			
+			@Override
+			public void onRequestDataError(Request request) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onRequestCustomError(Request request, Bundle resultData) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onRequestConnectionError(Request request, int statusCode) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 	}
 
 }

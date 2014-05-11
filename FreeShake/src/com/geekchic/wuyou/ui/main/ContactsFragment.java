@@ -18,6 +18,8 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Message;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,17 +27,15 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
-import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.ExpandableListView.OnChildClickListener;
+import android.widget.ListView;
 
+import com.geekchic.common.log.Logger;
+import com.geekchic.common.utils.StringUtil;
 import com.geekchic.constant.AppAction;
 import com.geekchic.constant.AppActionCode;
 import com.geekchic.framework.ui.BaseFrameFragment;
@@ -43,11 +43,16 @@ import com.geekchic.wuyou.R;
 import com.geekchic.wuyou.bean.Person;
 import com.geekchic.wuyou.bean.UserInfo;
 import com.geekchic.wuyou.logic.contacts.IContactsLogic;
+import com.geekchic.wuyou.ui.main.adapter.ContactSearchAdapter;
+import com.geekchic.wuyou.ui.main.adapter.ContactsExpandableListAdapter;
 import com.geekchic.wuyou.ui.main.view.IphoneTreePullToRefreshView;
 import com.widget.pulltofresh.PullToRefreshBase;
 import com.widget.pulltofresh.PullToRefreshBase.OnRefreshListener;
+import com.widget.slidinglayer.SlidingLayer;
+import com.widget.slidinglayer.SlidingLayer.OnInteractListener;
+import com.widget.slidingmenu.SlidingMenu;
+import com.widget.slidingmenu.SlidingMenu.OnCloseListener;
 import com.widget.xlistview.IphoneTreeView;
-import com.widget.xlistview.IphoneTreeView.IphoneTreeHeaderAdapter;
 
 /**
  * @ClassName: ContactsFragment
@@ -57,6 +62,10 @@ import com.widget.xlistview.IphoneTreeView.IphoneTreeHeaderAdapter;
  */
 public class ContactsFragment extends BaseFrameFragment implements
 		OnClickListener {
+	/**
+	 * TAG
+	 */
+	private static final String TAG="ContactsFragment";
 	private static final String[] groups = { "未分组好友", "我的好友", "我的同学", "我的家人",
 			"我的同事" };
 	private List<String> mGroup;// 组名
@@ -64,9 +73,26 @@ public class ContactsFragment extends BaseFrameFragment implements
 	private List<Map<String, String>> groupData = new ArrayList<Map<String, String>>();
 	private List<List<Map<String, String>>> childData = new ArrayList<List<Map<String, String>>>();
 	private LayoutInflater mInflater;
+	/**
+	 * 本地联系人
+	 */
+	private ArrayList<Person> mContactArrayList;
+	/**
+	 * 下拉多级列表
+	 */
 	private IphoneTreePullToRefreshView mIphoneTreePullToRefreshView;;
+	/**
+	 * 多级列表
+	 */
 	private IphoneTreeView xListView;
+	/**
+	 * 多级列表Adapter
+	 */
 	private ContactsExpandableListAdapter mContactsExpandableListAdapter;
+	/**
+	 * 侧滑图层
+	 */
+	private SlidingLayer mSlidingLayer;
 	/**
 	 * 查找框
 	 */
@@ -76,13 +102,29 @@ public class ContactsFragment extends BaseFrameFragment implements
 	 */
 	private EditText mSearchEditText;
 	/**
+	 * 查找结果List
+	 */
+	private ListView mSearchResultListView;
+	/**
+	 * 查找结果Apdater
+	 */
+	private ContactSearchAdapter mContactSearchAdapter;
+	/**
+	 * 查找结果值
+	 */
+	private ArrayList<Person> mSearchList;
+	/**
 	 * 设置
 	 */
 	private Button mSettingButton;
 	/**
 	 * 查找设定
 	 */
-	private CheckBox mCheckBox;
+	private Button mLocalSearchButton;
+	/**
+	 * 头像ImageView
+	 */
+	private ImageView mAvatorImageView;
 	/**
 	 * 联系人Logic
 	 */
@@ -106,7 +148,7 @@ public class ContactsFragment extends BaseFrameFragment implements
 		@Override
 		public boolean onChildClick(ExpandableListView parent, View v,
 				int groupPosition, int childPosition, long id) {
-			Intent intent=new Intent(AppAction.ChatAction.ACTION);
+			Intent intent = new Intent(AppAction.ChatAction.ACTION);
 			startActivity(intent);
 			return false;
 		}
@@ -123,19 +165,75 @@ public class ContactsFragment extends BaseFrameFragment implements
 			return false;
 		}
 	};
-	private OnCheckedChangeListener mSearchChangeListener = new OnCheckedChangeListener() {
+	/**
+	 * 监听SlideMenu关闭
+	 */
+	private OnCloseListener mSlideClosedListener = new OnCloseListener() {
 
 		@Override
-		public void onCheckedChanged(CompoundButton buttonView,
-				boolean isChecked) {
-			if (isChecked) {
-				mSearchBox.setVisibility(View.VISIBLE);
-			} else {
-				mSearchBox.setVisibility(View.GONE);
+		public void onClose() {
+			if (null != mSlidingLayer && mSlidingLayer.isOpened()) {
+				mSlidingLayer.closeLayer(true);
 			}
 		}
 	};
-
+	/**
+	 * SlideLayer状态监听器
+	 */
+   public OnInteractListener mOnInteractListener=new OnInteractListener() {
+	
+	@Override
+	public void onOpened() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void onOpen() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void onClosed() {
+		mSlidingLayer.removeAllViews();
+	}
+	
+	@Override
+	public void onClose() {
+		// TODO Auto-generated method stub
+		
+	}
+};
+/**
+ * 搜索监听
+ */
+private TextWatcher mSearchTextWatcher=new TextWatcher() {
+	
+	@Override
+	public void onTextChanged(CharSequence s, int start, int before, int count) {
+		 String key=s.toString().trim();
+		 if(!StringUtil.isNullOrEmpty(key)){
+			 mContactsLogic.searchLocalContacts(key, mContactArrayList);
+		 }else {
+			mSearchList.clear();
+			mContactSearchAdapter.updateListView(mSearchList);
+		}
+	}
+	
+	@Override
+	public void beforeTextChanged(CharSequence s, int start, int count,
+			int after) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void afterTextChanged(Editable s) {
+		// TODO Auto-generated method stub
+		
+	}
+};
 	public static ContactsFragment newInstance() {
 		ContactsFragment fragment = new ContactsFragment();
 		// Bundle args = new Bundle();
@@ -186,20 +284,40 @@ public class ContactsFragment extends BaseFrameFragment implements
 
 		mGroup = new ArrayList<String>();
 		mChildren = new HashMap<Integer, List<UserInfo>>();
-		mContactsExpandableListAdapter = new ContactsExpandableListAdapter(
-				mGroup, mChildren);
+		mContactsExpandableListAdapter = new ContactsExpandableListAdapter(getActivity(),
+				mGroup, mChildren,xListView);
 		xListView.setAdapter(mContactsExpandableListAdapter);
 		mContactsExpandableListAdapter.notifyDataSetChanged();
 
-		mSearchBox = view.findViewById(R.id.contact_search_box);
+		// mSearchBox = view.findViewById(R.id.contact_search_box);
 		mSettingButton = (Button) view.findViewById(R.id.contact_act_profile);
 		mSettingButton.setOnClickListener(this);
-		mCheckBox = (CheckBox) view.findViewById(R.id.contact_act_search);
-		mCheckBox.setOnCheckedChangeListener(mSearchChangeListener);
+		mLocalSearchButton = (Button) view
+				.findViewById(R.id.contact_act_search);
+		mLocalSearchButton.setOnClickListener(this);
+
+		mSlidingLayer = (SlidingLayer) view
+				.findViewById(R.id.contact_sliding_layer);
+		SlidingMenu slidingMenu = ((MainActivity) getActivity())
+				.getSlidingMenu();
+		slidingMenu.setOnCloseListener(mSlideClosedListener);
+
+		mSearchBox = mInflater.inflate(R.layout.search_local_layout, null);
+		mSearchEditText=(EditText) mSearchBox.findViewById(R.id.contact_local_search_edt);
+		mSearchEditText.addTextChangedListener(mSearchTextWatcher);
+		mSearchResultListView=(ListView) mSearchBox.findViewById(R.id.contact_search_result);
+		//初始化查找
+		mSearchList=new ArrayList<Person>();
+        mContactSearchAdapter=new ContactSearchAdapter(getActivity(), mSearchList);	
+        mSearchResultListView.setAdapter(mContactSearchAdapter);
+        
+        mAvatorImageView=(ImageView) view.findViewById(R.id.contact_people_avator);
+        mAvatorImageView.setOnClickListener(this);
 
 	}
 
-	private void onDataLoad(List<Person> cantacts) {
+	private void onDataLoad(ArrayList<Person> cantacts) {
+		mContactArrayList=cantacts;
 		mGroup.add("未分组");
 		List<UserInfo> list = new ArrayList<UserInfo>();
 		for (Person person : cantacts) {
@@ -226,232 +344,29 @@ public class ContactsFragment extends BaseFrameFragment implements
 			ArrayList<Person> contacts = (ArrayList<Person>) msg.obj;
 			onDataLoad(contacts);
 			break;
-
+		case AppActionCode.ContactsCode.MESSAGE_CONSTACTS_LOCAL_SEARCH_SUCCESS:
+			ArrayList<Person> searchRes=(ArrayList<Person>)msg.obj;
+			mContactSearchAdapter.updateListView(searchRes);
+			Logger.d(TAG, searchRes.size()+"asdfasdfasdf");
 		default:
 			break;
 		}
-	}
-
-	/**
-	 * @ClassName: ContactsExpandableListAdapter
-	 * @Descritpion: 联系人Adapter
-	 * @author evil
-	 * @date May 8, 2014
-	 */
-	public class ContactsExpandableListAdapter extends
-			BaseExpandableListAdapter implements IphoneTreeHeaderAdapter {
-		/**
-		 * 用户组
-		 */
-		private List<String> mGroup;
-		/**
-		 * 用户组成员
-		 */
-		private Map<Integer, List<UserInfo>> mChildrenMap;
-		/**
-		 * 上下文
-		 */
-		private Context mContext;
-		/**
-		 * 组状态
-		 */
-		private HashMap<Integer, Integer> groupStatusMap = new HashMap<Integer, Integer>();
-
-		/**
-		 * ContactsExpandableListAdapter构造函数
-		 * 
-		 * @param group
-		 * @param children
-		 */
-		public ContactsExpandableListAdapter(List<String> group,
-				Map<Integer, List<UserInfo>> children) {
-			this.mGroup = group;
-			this.mChildrenMap = children;
-		}
-
-		public void addUser(UserInfo userInfo) {
-			int groupID = userInfo.getGroup();
-			if (mChildrenMap.containsKey(groupID)) {
-				mChildrenMap.get(groupID).add(userInfo);
-				notifyDataSetChanged();
-			}
-		}
-
-		@Override
-		public int getGroupCount() {
-			return mGroup.size();
-		}
-
-		@Override
-		public int getChildrenCount(int groupPosition) {
-			int count = 0;
-			if (mChildrenMap.get(groupPosition) != null) {
-				count = mChildrenMap.get(groupPosition).size();
-			}
-			return count;
-		}
-
-		@Override
-		public Object getGroup(int groupPosition) {
-			return mGroup.get(groupPosition);
-		}
-
-		@Override
-		public Object getChild(int groupPosition, int childPosition) {
-			return mChildrenMap.get(groupPosition).get(childPosition);
-		}
-
-		@Override
-		public long getGroupId(int groupPosition) {
-			// TODO Auto-generated method stub
-			return groupPosition;
-		}
-
-		@Override
-		public long getChildId(int groupPosition, int childPosition) {
-			return childPosition;
-		}
-
-		@Override
-		public boolean hasStableIds() {
-			return true;
-		}
-
-		@Override
-		public View getGroupView(int groupPosition, boolean isExpanded,
-				View convertView, ViewGroup parent) {
-
-			if (convertView == null) {
-				convertView = mInflater.inflate(R.layout.contacts_list_group,
-						null);
-			}
-			TextView groupName = (TextView) convertView
-					.findViewById(R.id.group_name);
-			groupName.setText(getGroup(groupPosition).toString());
-			TextView groupNum = (TextView) convertView
-					.findViewById(R.id.group_child_count);
-			groupNum.setText("人数：" + getChildrenCount(groupPosition));
-			ImageView indicator = (ImageView) convertView
-					.findViewById(R.id.group_indicator);
-			if (isExpanded) {
-				indicator.setImageResource(R.drawable.icon_indicator_expanded);
-			} else {
-				indicator
-						.setImageResource(R.drawable.icon_indicator_unexpanded);
-			}
-			convertView.setTag(R.id.groupid, groupPosition);
-			convertView.setTag(R.id.childid, -1);
-			return convertView;
-
-		}
-
-		@Override
-		public View getChildView(int groupPosition, int childPosition,
-				boolean isLastChild, View convertView, ViewGroup parent) {
-
-			ChildHolder childHolder = null;
-			if (convertView == null) {
-				childHolder = new ChildHolder();
-				convertView = mInflater.inflate(
-						R.layout.contacts_list_child_item, null);
-				childHolder.avator = (ImageView) convertView
-						.findViewById(R.id.contact_item_avator);
-				childHolder.nickName = (TextView) convertView
-						.findViewById(R.id.contact_item_nickname);
-				UserInfo userInfo = mChildrenMap.get(groupPosition).get(
-						childPosition);
-				childHolder.nickName.setText(userInfo.getNickName());
-				childHolder.phone = (TextView) convertView
-						.findViewById(R.id.contact_item_phone);
-				childHolder.phone.setText(userInfo.getPhone());
-				childHolder.state = (ImageView) convertView
-						.findViewById(R.id.contact_vertify_level);
-				convertView.setTag(R.id.groupid, groupPosition);
-				convertView.setTag(R.id.childid, childPosition);
-				convertView.setTag(childHolder);
-			} else {
-				childHolder = (ChildHolder) convertView.getTag();
-			}
-
-			return convertView;
-
-		}
-
-		@Override
-		public boolean isChildSelectable(int groupPosition, int childPosition) {
-			return true;
-		}
-
-		@Override
-		public int getTreeHeaderState(int groupPosition, int childPosition) {
-			final int childCount = getChildrenCount(groupPosition);
-			if (childPosition == childCount - 1) {
-				return PINNED_HEADER_PUSHED_UP;
-			} else if (childPosition == -1
-					&& !xListView.isGroupExpanded(groupPosition)) {
-				return PINNED_HEADER_GONE;
-			} else {
-				return PINNED_HEADER_VISIBLE;
-			}
-		}
-
-		@Override
-		public void configureTreeHeader(View header, int groupPosition,
-				int childPosition, int alpha) {
-			if (groupPosition < 0) {
-				return;
-			}
-			((TextView) header.findViewById(R.id.group_name))
-					.setText(groups[groupPosition]);
-			((TextView) header.findViewById(R.id.group_child_count))
-					.setText("人数：" + getChildrenCount(groupPosition));
-		}
-
-		@Override
-		public void onHeadViewClick(int groupPosition, int status) {
-			groupStatusMap.put(groupPosition, status);
-		}
-
-		@Override
-		public int getHeadViewClickStatus(int groupPosition) {
-			if (groupStatusMap.containsKey(groupPosition)) {
-				return groupStatusMap.get(groupPosition);
-			} else {
-				return 0;
-			}
-		}
-
-		/**
-		 * @ClassName: ChildHolder
-		 * @Descritpion: Child Holder
-		 * @author evil
-		 * @date May 8, 2014
-		 */
-		class ChildHolder {
-			/**
-			 * 头像
-			 */
-			ImageView avator;
-			/**
-			 * 姓名
-			 */
-			TextView nickName;
-			/**
-			 * 电话
-			 */
-			TextView phone;
-			/**
-			 * 认证
-			 */
-			ImageView state;
-		}
-
 	}
 
 	@Override
 	public void onClick(View v) {
 		if (v.getId() == R.id.contact_act_profile) {
 			Intent intent = new Intent(AppAction.SettingAction.ACTION);
+			startActivity(intent);
+		} else if (v.getId() == R.id.contact_act_search) {
+			mSlidingLayer.removeAllViews();
+			if (!mSlidingLayer.isOpened()) {
+				mSlidingLayer.addView(mSearchBox);
+				mSlidingLayer.openLayer(true);
+			}
+		}else if(v.getId()==R.id.contact_people_avator){
+			//跳转至个人资料设置界面
+			Intent intent=new Intent(AppAction.ProfileSetting.ACTION);
 			startActivity(intent);
 		}
 	}

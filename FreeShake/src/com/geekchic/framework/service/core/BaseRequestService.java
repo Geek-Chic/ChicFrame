@@ -58,24 +58,28 @@ public abstract class BaseRequestService extends WorkerService {
 	@Override
 	protected void onHandleIntent(Intent intent) {
 		Request request = intent.getParcelableExtra(INTENT_EXTRA_REQUEST);
+		request.setClassLoader(getClassLoader());
 		ResultReceiver receiver = intent
 				.getParcelableExtra(INTENT_EXTRA_RECEIVER);
 		Operation operation = getOperationForType(request.getRequestType());
 		try {
-			sendResult(receiver, operation.execute(this, request), CODE_TYPE_SUCCESS);
+			sendResult(receiver, operation.execute(this, request),
+					CODE_TYPE_SUCCESS);
 		} catch (ConnectionException e) {
 			e.printStackTrace();
-			Bundle bundle=new Bundle();
-			bundle.putInt(BaseRequestManager.RECEIVER_EXTRA_CONNECTION_ERROR_STATUS_CODE, e.getStatusCode());
-			sendResult(receiver,null,CODE_ERROR_CONNEXION);
+			Bundle bundle = new Bundle();
+			bundle.putInt(
+					BaseRequestManager.RECEIVER_EXTRA_CONNECTION_ERROR_STATUS_CODE,
+					e.getStatusCode());
+			sendResult(receiver, null, CODE_ERROR_CONNEXION);
 			Logger.e(TAG, "ConnectionException", e);
 		} catch (DataException e) {
 			e.printStackTrace();
-			sendResult(receiver,null,CODE_ERROR_DATA);
+			sendResult(receiver, null, CODE_ERROR_DATA);
 			Logger.e(TAG, "DataException", e);
 		} catch (CustomRequestException e) {
 			e.printStackTrace();
-			sendResult(receiver,null,CODE_ERROR_CUSTOM);
+			sendResult(receiver, null, CODE_ERROR_CUSTOM);
 			Logger.e(TAG, "CustomRequestException");
 
 		}

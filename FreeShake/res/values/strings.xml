@@ -70,4 +70,6 @@
     <string name="main_tab_statictic">统计</string>
     <string name="main_tab_complete">历史</string>
     <string name="main_tab_going">行进中</string>
+    <string name="setting">设置</string>
+    <string name="profile_setting">资料设置</string>
 </resources>

@@ -8,11 +8,10 @@
  */
 package com.geekchic.wuyou.bean;
 
-import com.geekchic.framework.bean.Request;
+import java.util.Comparator;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable.Creator;
 
 /**
  * @ClassName: People
@@ -83,5 +82,15 @@ public class Person implements Parcelable {
 			return new Person[size];
 		}
 	};
+	//根据姓名首字母的排序
+	public static class ComparatorPY implements Comparator<Person>{
+
+		@Override
+		public int compare(Person lhs, Person rhs) {
+			String str1 = lhs.pY;
+			String str2 = rhs.pY;
+			return str1.compareToIgnoreCase(str2);
+		}
+	}
 
 }

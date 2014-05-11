@@ -22,7 +22,7 @@
         android:visibility="gone" />
 
     <EditText
-        android:id="@+id/et_search_keyword"
+        android:id="@+id/contact_local_search_edt"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
@@ -48,7 +48,7 @@
         android:id="@+id/ib_clear_text"
         android:layout_width="20.0dip"
         android:layout_height="20.0dip"
-        android:layout_alignRight="@id/et_search_keyword"
+        android:layout_alignRight="@id/contact_local_search_edt"
         android:layout_centerVertical="true"
         android:layout_marginRight="8.0dip"
         android:padding="0.0dip"

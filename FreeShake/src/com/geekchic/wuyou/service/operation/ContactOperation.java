@@ -9,6 +9,7 @@
 package com.geekchic.wuyou.service.operation;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -25,6 +26,7 @@ import com.geekchic.framework.network.exception.CustomRequestException;
 import com.geekchic.framework.network.exception.DataException;
 import com.geekchic.framework.service.core.BaseOperation;
 import com.geekchic.wuyou.bean.Person;
+import com.geekchic.wuyou.bean.Person.ComparatorPY;
 
 /**
  * @ClassName: ContactOperation
@@ -61,6 +63,7 @@ public class ContactOperation extends BaseOperation {
 				person.phone = cursor.getString(phoneColumn);
               contacts.add(person);
 			}
+			Collections.sort(contacts, new ComparatorPY());
 			bundle.putParcelableArrayList(
 					AppConstants.REQUESTCODE.REQUEST_RESULT, contacts);
 		}

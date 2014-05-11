@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <com.widget.pulltofresh.PullToRefreshListView
+    <com.geekchic.wuyou.ui.main.view.SwipePullToRefreshView
         android:id="@+id/project_current_listview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -13,6 +13,13 @@
         android:transcriptMode="normal"
         app:ptrHeaderTextColor="@color/font_color_most_black"
         app:ptrMode="pullFromStart"
-        app:ptrScrollingWhileRefreshingEnabled="true" />
+        app:ptrScrollingWhileRefreshingEnabled="true"
+        app:swipeActionRight="reveal"
+        app:swipeBackView="@+id/swipe_project_item_back"
+        app:swipeCloseAllItemsWhenMoveList="true"
+        app:swipeFrontView="@+id/swipe_project_item_front"
+        app:swipeMode="right"
+        app:swipeOffsetRight="200dip"
+        app:swipeOpenOnLongPress="false" />
 
 </LinearLayout>

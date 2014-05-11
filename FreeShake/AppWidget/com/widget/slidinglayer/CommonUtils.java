@@ -1,4 +1,4 @@
-package com.geekchic.common.view.slidinglayer;
+package com.widget.slidinglayer;
 
 import java.util.Random;
 

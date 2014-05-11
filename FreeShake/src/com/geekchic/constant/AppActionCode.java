@@ -63,5 +63,13 @@ public interface AppActionCode {
 	    * 清求数据库失败
 	    */
 	   int MESSAGE_CONSTACTS_PROVIDE_FAILED=BASE+2;
+	   /**
+	    * 本地检索成功
+	    */
+	   int MESSAGE_CONSTACTS_LOCAL_SEARCH_SUCCESS=BASE+3;
+	   /**
+	    * 本地检索失败
+	    */
+	   int MESSAGE_CONSTACTS_LOCAL_SEARCH_FAILED=BASE+4;
    }
 }
