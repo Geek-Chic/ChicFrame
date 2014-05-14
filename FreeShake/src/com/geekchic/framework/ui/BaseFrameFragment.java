@@ -33,6 +33,7 @@ public  class BaseFrameFragment extends BaseFragment implements CommonDialogInte
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		mCommonDialogInterface=new BaseCommDialog(getActivity());
+		
 		return super.onCreateView(inflater, container, savedInstanceState);
 	}
 	@Override

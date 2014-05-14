@@ -12,6 +12,9 @@ import java.util.List;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import com.geekchic.constant.AppConstants;
+import com.geekchic.framework.network.exception.CustomRequestException;
+import com.geekchic.framework.network.exception.DataException;
 
 /**
  * @ClassName: BaseOperation
@@ -50,6 +53,29 @@ public abstract class BaseOperation implements Parser,Operation {
 	public String packListStringToJson(List<String> list) {
 		return JSON.toJSONString(list);
 	}
-    
+	/**
+	 * 普通错误码处理
+	 * @param returnCode
+	 * @throws DataException
+	 */
+    protected void handelReturnCode(int returnCode) throws DataException{
+    	String errorMessage="";
+       switch (returnCode) {
+	case AppConstants.ReturnCode.CODE_DB_ERROR:
+		errorMessage="Server_Db_Error";
+		break;
+	case AppConstants.ReturnCode.CODE_DATA_ERROR:
+		errorMessage="Request_Data_Error";
+		break;
+	case AppConstants.ReturnCode.CODE_USER_ERROR:
+		errorMessage="User_Invalidate";
+	case AppConstants.ReturnCode.CODE_UNKNOW_ERROR:
+		errorMessage="Unknow error";
+		break;
+	default:
+		break;
+	}
+       throw new DataException(errorMessage);
+    }
     
 }

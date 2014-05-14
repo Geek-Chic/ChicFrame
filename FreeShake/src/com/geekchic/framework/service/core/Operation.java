@@ -33,5 +33,5 @@ public interface Operation {
 	 * @throws CustomRequestException
 	 */
 	public Bundle execute(Context context, Request request)
-			throws ConnectionException, DataException, CustomRequestException;;
+			throws ConnectionException, DataException, CustomRequestException;
 }

@@ -8,7 +8,6 @@
  */
 package com.geekchic.wuyou.ui.login;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -57,6 +56,10 @@ public class RegisterActivity extends BaseTitleBarActivity implements
 	 */
 	private FragmentManager mFragmentManager;
 	/**
+	 * 电话
+	 */
+	private String phone;
+	/**
 	 * 后退
 	 */
 	private OnClickListener mBackClickListener = new OnClickListener() {
@@ -97,9 +100,10 @@ public class RegisterActivity extends BaseTitleBarActivity implements
 
 	@Override
 	public boolean initializeTitlBar() {
-		setMiddleTitle("注册");
-		setLeftButton(R.drawable.icon_tab_back_selector,
+		setMiddleTitle(R.string.registration);
+		setLeftButton(R.drawable.icon_tab_metra_back_selector,
 				mBackClickListener);
+		setTitleBarBackground(R.color.blue);
 		return true;
 	}
 
@@ -110,6 +114,15 @@ public class RegisterActivity extends BaseTitleBarActivity implements
 
 	@Override
 	public void onClick(View v) {
+	}
+
+	/**
+	 * 缓存电话号码
+	 * 
+	 * @param phone
+	 */
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	/**
@@ -130,7 +143,8 @@ public class RegisterActivity extends BaseTitleBarActivity implements
 	 * 跳转至第三步
 	 */
 	public void stepToThirdFragment() {
-		RegisterStepThirdFragment registerStepThirdFragment = new RegisterStepThirdFragment();
+		RegisterStepThirdFragment registerStepThirdFragment = RegisterStepThirdFragment
+				.newInstance(phone);
 		FragmentTransaction transaction = mFragmentManager.beginTransaction();
 		transaction.replace(R.id.register_container_fragment,
 				registerStepThirdFragment);

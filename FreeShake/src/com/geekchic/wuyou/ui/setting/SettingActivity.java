@@ -12,8 +12,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 
+import com.geekchic.common.utils.PreferencesUtil;
 import com.geekchic.constant.AppAction;
+import com.geekchic.constant.AppConfig;
+import com.geekchic.constant.AppConstants.Common;
 import com.geekchic.framework.ui.titlebar.BaseTitleBarActivity;
 import com.geekchic.wuyou.R;
 
@@ -28,6 +32,10 @@ public class SettingActivity extends BaseTitleBarActivity implements OnClickList
 	 * 个人资料设置
 	 */
 	private View mAccountSettingView;
+	/**
+	 * 登出
+	 */
+	private Button mLogout;
     /**
      * 后退
      */
@@ -49,6 +57,8 @@ public class SettingActivity extends BaseTitleBarActivity implements OnClickList
     private void initView(){
     	mAccountSettingView=findViewById(R.id.setting_self_profile);
     	mAccountSettingView.setOnClickListener(this);
+    	mLogout=(Button) findViewById(R.id.setting_logout);
+    	mLogout.setOnClickListener(this);
     	
     }
 	@Override
@@ -63,11 +73,28 @@ public class SettingActivity extends BaseTitleBarActivity implements OnClickList
 		setTitleBarBackground(R.color.blue);
 		return true;
 	}
+	/**
+	 * 登出
+	 */
+	private void logOut(){
+		//清除 userid和 sessionid
+        PreferencesUtil.setAttr(Common.KEY_USER_ID, "");
+        PreferencesUtil.setAttr(Common.KEY_SESSION_ID, "");
+        //清除账户信息
+        AppConfig.getInstance().setSessionId("");
+        AppConfig.getInstance().setUid("");
+	}
 	@Override
 	public void onClick(View v) {
 		if(v.getId()==R.id.setting_self_profile){
 			Intent intent=new Intent(AppAction.ProfileSetting.ACTION);
 			startActivity(intent);
+		}else if(v.getId()==R.id.setting_logout){
+           logOut();
+           Intent intent=new Intent(AppAction.LoginAction.ACTION);
+           intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+           startActivity(intent);
+           finishAllAcitivity();
 		}
 	}
 

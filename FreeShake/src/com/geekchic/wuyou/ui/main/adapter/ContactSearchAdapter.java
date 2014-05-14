@@ -11,10 +11,16 @@ package com.geekchic.wuyou.ui.main.adapter;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.geekchic.wuyou.R;
@@ -63,7 +69,7 @@ public class ContactSearchAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(final int position, View convertView, ViewGroup parent) {
 		if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.search_local_item, null);
 		}
@@ -76,10 +82,11 @@ public class ContactSearchAdapter extends BaseAdapter {
 				.findViewById(R.id.search_contacts_name);
 		name.setText(persons.get(position).name);
 
+		final String phoneNum=persons.get(position).phone;
 		TextView number = (TextView) convertView
 				.findViewById(R.id.search_contacts_number);
-		number.setText(persons.get(position).phone);
-
+		number.setText(phoneNum);
+       
 		// 字母提示textview的显示
 		TextView letterTag = (TextView) convertView
 				.findViewById(R.id.search_item_LetterTag);
@@ -103,7 +110,28 @@ public class ContactSearchAdapter extends BaseAdapter {
 				letterTag.setText(firstLetter);
 			}
 		}
-
+		ImageButton button=(ImageButton) convertView.findViewById(R.id.search_dial);
+        button.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent=new Intent();
+				intent.setAction(Intent.ACTION_CALL);  
+				intent.setData(Uri.parse("tel:"+phoneNum));
+				context.startActivity(intent);
+			
+			}
+		});
+        button.setOnLongClickListener(new OnLongClickListener() {
+			
+			@Override
+			public boolean onLongClick(View v) {
+				Intent intent=new Intent(Intent.ACTION_DIAL);
+				intent.setData(Uri.parse("tel:"+phoneNum));
+				context.startActivity(intent);
+				return false;
+			}
+		});
 		return convertView;
 	}
 

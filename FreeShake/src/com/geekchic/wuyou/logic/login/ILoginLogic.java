@@ -17,10 +17,10 @@ package com.geekchic.wuyou.logic.login;
 public interface ILoginLogic {
 	/**
 	 * 登录
-	 * @param userAccount
-	 * @param passwd
+	 * @param username
+	 * @param password
 	 */
-	void login(String userAccount, String passwd);
+	void login(String username, String password);
 	/**
 	 * 登出
 	 */

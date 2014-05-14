@@ -9,16 +9,13 @@
 package com.geekchic.wuyou.logic.contacts;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import android.content.Context;
 import android.os.Bundle;
 
 import com.geekchic.common.log.Logger;
-import com.geekchic.constant.AppAction;
 import com.geekchic.constant.AppActionCode;
-import com.geekchic.constant.AppConstants;
-import com.geekchic.constant.AppConstants.REQUESTCODE;
+import com.geekchic.constant.AppConstants.RequestCode;
 import com.geekchic.constant.AppConstants.SERVICEWORK;
 import com.geekchic.framework.bean.Request;
 import com.geekchic.framework.logic.BaseLogic;
@@ -52,7 +49,7 @@ public class ContactsLogic extends BaseLogic implements IContactsLogic {
 		
 		@Override
 		public void onRequestFinished(Request request, Bundle resultData) {
-			ArrayList<CharSequence> contacts=resultData.getCharSequenceArrayList(REQUESTCODE.REQUEST_RESULT);
+			ArrayList<CharSequence> contacts=resultData.getCharSequenceArrayList(RequestCode.REQUEST_RESULT);
 			sendMessage(AppActionCode.ContactsCode.MESSAGE_CONSTACTS_PROVIDE_SUCCESS,contacts);
 			 Logger.d(TAG, contacts.toString());
 		}
@@ -79,13 +76,13 @@ public class ContactsLogic extends BaseLogic implements IContactsLogic {
 	@Override
 	public void searchLocalContacts(String key,ArrayList<Person> contacts) {
 		  Request request=new Request(SERVICEWORK.WORKER_CONTACTS_LCOAL_SERACH);
-		  request.put(REQUESTCODE.REQUEST_KEY, key);
-		  request.putList(REQUESTCODE.REQUEST_LIST_DATA,contacts);
+		  request.put("key", key);
+		  request.putList("contacts",contacts);
 		  RequestManager.getInstance(mContext).execute(request, new RequestListener() {
 			
 			@Override
 			public void onRequestFinished(Request request, Bundle resultData) {
-				ArrayList<CharSequence> contacts=resultData.getCharSequenceArrayList(REQUESTCODE.REQUEST_RESULT);
+				ArrayList<CharSequence> contacts=resultData.getCharSequenceArrayList(RequestCode.REQUEST_RESULT);
 				sendMessage(AppActionCode.ContactsCode.MESSAGE_CONSTACTS_LOCAL_SEARCH_SUCCESS,contacts);
 			}
 			

@@ -54,7 +54,7 @@ public class AppConstants {
 		String NAV_HAS_SHOW = "nav_has_show";
 	}
 
-	public interface REQUESTCODE {
+	public interface RequestCode {
 		/**
 		 * 请求结果
 		 */
@@ -63,23 +63,54 @@ public class AppConstants {
 		 * 返回码
 		 */
 		String REQUEST_CODE = "request_code";
-		/**
-		 * 密码请求
-		 */
-		String REQUEST_PASSWORD = "password";
-		/**
-		 * 电话
-		 */
-		String REQUEST_PHONE = "phone";
-		/**
-		 * list型数据
-		 */
-		String REQUEST_LIST_DATA="list_data";
-		/**
-		 * 查找key
-		 */
-		String REQUEST_KEY="list_key";
 	}
+	public interface ReturnCode{
+		/**
+		 * 成功
+		 */
+		int CODE_SUCCESS=0;
+		/**
+		 * 未知错误
+		 */
+		int CODE_UNKNOW_ERROR=-1;
+		/**
+		 * 用户错误
+		 */
+		int CODE_USER_ERROR=1;
+		/**
+		 * 数据请求错误
+		 */
+		int CODE_DATA_ERROR=2;
+		/**
+		 * 数据库错误
+		 */
+		int CODE_DB_ERROR=3;
+	}
+//		/**
+//		 * 密码请求
+//		 */
+//		String REQUEST_PASSWORD = "password";
+//		/**
+//		 * 电话
+//		 */
+//		String REQUEST_PHONE = "phone";
+//		/**
+//		 * list型数据
+//		 */
+//		String REQUEST_LIST_DATA="list_data";
+//		/**
+//		 * 姓名
+//		 */
+//		String REQUEST_NAME="name";
+//		/**
+//		 * 查找key
+//		 */
+//		String REQUEST_KEY="list_key";
+//		/**
+//		 * sessionid
+//		 */
+//		String REQUSET_SESSION="sessionid";
+//	}
 
 	/**
 	 * @ClassName: SERVICEWORK
@@ -104,7 +135,14 @@ public class AppConstants {
 		 * 从本地查找联系人
 		 */
 		int WORKER_CONTACTS_LCOAL_SERACH=4;
-
+		/**
+		 * 请求验证码
+		 */
+		int WORKDER_REQUEST_CHAPTCHA=5;
+		/**
+		 * 登出
+		 */
+		int WORKER_LOGOUT=6;
 	}
 	/**
 	 * @ClassName: QUICKACTION

@@ -1,5 +1,7 @@
 package com.geekchic.constant;
 
+import android.R.interpolator;
+
 
 public interface AppActionCode {
 	/**
@@ -71,5 +73,27 @@ public interface AppActionCode {
 	    * 本地检索失败
 	    */
 	   int MESSAGE_CONSTACTS_LOCAL_SEARCH_FAILED=BASE+4;
+   }
+   public interface RegistrationCode{
+	   /**
+	    * ContactsCode基数
+	    */
+	   int BASE=0x14000000;
+	   /**
+	    * 获取验证码成功
+	    */
+	   int AUTH_REQUEST_SUCCESS=BASE+1;
+	   /**
+	    * 获取验证码失败
+	    */
+	   int AUTH_REQUEST_FAILED=BASE+2;
+	   /**
+	    * 验证成功
+	    */
+	   int REGISTER_SUCCESS=BASE+3;
+	   /**
+	    * 验证失败
+	    */
+	   int REGISETER_FAILED=BASE+4;
    }
 }

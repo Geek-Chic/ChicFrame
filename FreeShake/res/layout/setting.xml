@@ -185,7 +185,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/exit_app"
+            android:id="@+id/setting_logout"
             android:layout_width="fill_parent"
             android:layout_height="46.0dip"
             android:layout_marginBottom="20.0dip"

@@ -16,6 +16,7 @@ import java.util.Map;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
 import android.text.Editable;
@@ -26,13 +27,15 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
-import android.widget.ImageView;
 import android.widget.ExpandableListView.OnChildClickListener;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.geekchic.common.log.Logger;
 import com.geekchic.common.utils.StringUtil;
@@ -125,6 +128,10 @@ public class ContactsFragment extends BaseFrameFragment implements
 	 * 头像ImageView
 	 */
 	private ImageView mAvatorImageView;
+	/**
+	 * 姓名地址
+	 */
+	private TextView mNickNameTextView;
 	/**
 	 * 联系人Logic
 	 */
@@ -234,6 +241,18 @@ private TextWatcher mSearchTextWatcher=new TextWatcher() {
 		
 	}
 };
+/**
+ * 查找点击
+ */
+public OnItemClickListener mSearchItemClickListener=new OnItemClickListener() {
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
+		// TODO Auto-generated method stub
+		
+	}
+};
 	public static ContactsFragment newInstance() {
 		ContactsFragment fragment = new ContactsFragment();
 		// Bundle args = new Bundle();
@@ -241,7 +260,6 @@ private TextWatcher mSearchTextWatcher=new TextWatcher() {
 		// fragment.setArguments(args);
 		return fragment;
 	}
-
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -310,12 +328,19 @@ private TextWatcher mSearchTextWatcher=new TextWatcher() {
 		mSearchList=new ArrayList<Person>();
         mContactSearchAdapter=new ContactSearchAdapter(getActivity(), mSearchList);	
         mSearchResultListView.setAdapter(mContactSearchAdapter);
-        
+        mSearchResultListView.setOnItemClickListener(mSearchItemClickListener);        
         mAvatorImageView=(ImageView) view.findViewById(R.id.contact_people_avator);
         mAvatorImageView.setOnClickListener(this);
-
+        mNickNameTextView=(TextView) view.findViewById(R.id.contact_header_nickname_loc);
+        mNickNameTextView.setText(String.format(getString(R.string.user_info),"蒋鹏",""));
 	}
-
+	/**
+	 * 设置位置
+	 * @param city
+	 */
+    public void setLoc(String city){
+    	 mNickNameTextView.setText(String.format(getString(R.string.user_info),"蒋鹏",city));
+    }
 	private void onDataLoad(ArrayList<Person> cantacts) {
 		mContactArrayList=cantacts;
 		mGroup.add("未分组");

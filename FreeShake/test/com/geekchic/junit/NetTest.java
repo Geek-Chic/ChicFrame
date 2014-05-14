@@ -10,7 +10,7 @@ import android.test.AndroidTestCase;
 import com.alibaba.fastjson.JSON;
 import com.geekchic.base.http.CommHttpRequest;
 import com.geekchic.common.log.Logger;
-import com.geekchic.constant.AppConstants.REQUESTCODE;
+import com.geekchic.constant.AppConstants.RequestCode;
 import com.geekchic.constant.AppConstants.SERVICEWORK;
 import com.geekchic.framework.bean.Request;
 import com.geekchic.framework.network.RequestListener;
@@ -59,7 +59,7 @@ public class NetTest extends AndroidTestCase
 			
 			@Override
 			public void onRequestFinished(Request request, Bundle resultData) {
-				Logger.d("evil", (String)resultData.get(REQUESTCODE.REQUEST_RESULT));
+				Logger.d("evil", (String)resultData.get(RequestCode.REQUEST_RESULT));
 				Logger.d("evil", resultData.toString());
 			}
 			

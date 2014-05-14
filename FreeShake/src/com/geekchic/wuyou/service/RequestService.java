@@ -24,7 +24,7 @@ import com.geekchic.common.log.Logger;
 import com.geekchic.common.utils.PreferencesUtil;
 import com.geekchic.constant.AppConfig;
 import com.geekchic.constant.AppConstants.Common;
-import com.geekchic.constant.AppConstants.REQUESTCODE;
+import com.geekchic.constant.AppConstants.RequestCode;
 import com.geekchic.constant.AppConstants.SERVICEWORK;
 import com.geekchic.framework.bean.HttpRequestBean;
 import com.geekchic.framework.bean.HttpRequestBean.Method;
@@ -40,7 +40,9 @@ import com.geekchic.framework.service.core.Operation;
 import com.geekchic.wuyou.bean.URLs;
 import com.geekchic.wuyou.service.operation.ContactLocalSearchOperation;
 import com.geekchic.wuyou.service.operation.ContactOperation;
-import com.geekchic.wuyou.service.operation.DecodeOperation;
+import com.geekchic.wuyou.service.operation.GetCaptchaOperation;
+import com.geekchic.wuyou.service.operation.LogoutOperation;
+import com.geekchic.wuyou.service.operation.RegisterOperation;
 
 /**
  * @ClassName: RequestService
@@ -59,13 +61,19 @@ public class RequestService extends BaseRequestService {
 			operation = new LoginOperation();
 			break;
 		case SERVICEWORK.WORKER_REGISTER:
-			operation = new NetLoginOperation();
+			operation=new RegisterOperation();
 			break;
 		case SERVICEWORK.WORKER_CONTACTS_FROM_PROVIDER:
 			operation=new ContactOperation();
 			break;
 		case SERVICEWORK.WORKER_CONTACTS_LCOAL_SERACH:
 			operation=new ContactLocalSearchOperation();
+			break;
+		case SERVICEWORK.WORKDER_REQUEST_CHAPTCHA:
+			operation=new GetCaptchaOperation();
+			break;
+		case SERVICEWORK.WORKER_LOGOUT:
+			operation=new LogoutOperation();
 			break;
 		default:
 			break;
@@ -74,18 +82,22 @@ public class RequestService extends BaseRequestService {
 	}
 
 	public class LoginOperation extends BaseOperation {
+		/**
+		 * TAG
+		 */
+		private static final String TAG="LoginOperation";
 		@Override
 		public Bundle execute(Context context, Request request)
 				throws ConnectionException, DataException,
 				CustomRequestException {
 			HashMap<String, String> params = new HashMap<String, String>();
-			params.put("phone", request.getString(REQUESTCODE.REQUEST_PHONE));
+			params.put("username", request.getString("username"));
 			params.put("password",
-					request.getString(REQUESTCODE.REQUEST_PASSWORD));
+					request.getString("password"));
 
 			HttpRequestBean httpRequestBean = new HttpRequestBean(context,
 					URLs.LOGIN_VALIDATE_HTTP);
-			httpRequestBean.setMethod(Method.POST);
+			httpRequestBean.setMethod(Method.GET);
 			httpRequestBean.setParameters(params);
 			ConnectionResult result = HttpConnector.execute(httpRequestBean);
 			Bundle bundle = new Bundle();
@@ -94,18 +106,20 @@ public class RequestService extends BaseRequestService {
 			if (0 == code) {
 				String sessionid = json.getString("sessionid");
 				PreferencesUtil.setAttr(Common.KEY_SESSION_ID, sessionid);
+				String uuid=json.getString("uuid");
 				AppConfig.getInstance().setSessionId(sessionid);
+				AppConfig.getInstance().setUid(uuid);
+				Logger.d(TAG, uuid);
 				bundle.putInt("code", 0);
-				bundle.putString(REQUESTCODE.REQUEST_RESULT, "登录成功");
+				bundle.putString(RequestCode.REQUEST_RESULT, "登录成功");
 			} else {
-				bundle.putInt("code", -1);
-				bundle.putString(REQUESTCODE.REQUEST_RESULT, "登录失败");
+				handelReturnCode(code);
 			}
 			return bundle;
 		}
 
 	}
-
+    
 	public class NetLoginOperation extends BaseOperation {
 		@Override
 		public Bundle execute(Context context, Request request)

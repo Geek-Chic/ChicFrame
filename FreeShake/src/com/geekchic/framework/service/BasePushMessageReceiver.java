@@ -85,7 +85,7 @@ public abstract class BasePushMessageReceiver extends FrontiaPushMessageReceiver
           if(errorCode==0){
         	  PreferencesUtil.setAttr(Common.PUSH_BIND_FLAG,true);
         	  AppConfig.getInstance().setChannelId(channelId);
-        	  AppConfig.getInstance().setUid(userId);
+        	  AppConfig.getInstance().setPushUid(userId);
           }
 	}
 

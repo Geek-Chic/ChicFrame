@@ -23,6 +23,10 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.baidu.android.pushservice.PushConstants;
 import com.baidu.android.pushservice.PushManager;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
+import com.geekchic.BaseApplication;
 import com.geekchic.common.log.Logger;
 import com.geekchic.common.utils.DisplayInfo;
 import com.geekchic.common.utils.PreferencesUtil;
@@ -348,6 +352,24 @@ public class BaseActivity extends FragmentActivity {
 					PushConstants.LOGIN_TYPE_API_KEY,
 					PreferencesUtil.getMetaValue(this, "api_key"));
 		}
+	}
+	/**
+	 * 开始定位
+	 * @return
+	 */
+	protected void  requestLocation(BDLocationListener mBdLocationListener){
+		LocationClient mClient=((BaseApplication)getApplication()).mLocationClient;
+		mClient.registerLocationListener(mBdLocationListener);
+		LocationClientOption option = new LocationClientOption();
+		option.setOpenGps(true);
+		option.setPoiExtraInfo(true);	
+		option.setPriority(LocationClientOption.NetWorkFirst); 
+		option.setAddrType("all");
+		option.setPoiNumber(5);
+		option.disableCache(true);
+		mClient.setLocOption(option);
+		mClient.start();
+		mClient.requestLocation();
 	}
 
 	/**

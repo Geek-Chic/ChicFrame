@@ -20,6 +20,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
+import com.geekchic.BaseApplication;
 import com.geekchic.common.log.Logger;
 import com.geekchic.framework.logic.BaseLogicBuilder;
 import com.geekchic.framework.logic.ILogic;
@@ -139,7 +143,24 @@ public abstract class BaseFragment extends Fragment {
 		}
 		return logic;
 	}
-
+	/**
+	 * 开始定位
+	 * @return
+	 */
+	protected void  requestLocation(BDLocationListener mBdLocationListener){
+		LocationClient mClient=((BaseApplication)getActivity().getApplication()).mLocationClient;
+		mClient.registerLocationListener(mBdLocationListener);
+		LocationClientOption option = new LocationClientOption();
+		option.setOpenGps(true);
+		option.setPoiExtraInfo(true);	
+		option.setPriority(LocationClientOption.NetWorkFirst); 
+		option.setAddrType("all");
+		option.setPoiNumber(5);
+		option.disableCache(true);
+		mClient.setLocOption(option);
+		mClient.start();
+		mClient.requestLocation();
+	}
 	/**
 	 * logic通过handler回调的方法<BR>
 	 * 通过子类重载可以实现各个logic的sendMessage到handler里的回调方法

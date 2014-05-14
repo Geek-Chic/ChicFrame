@@ -1,14 +1,18 @@
 package com.geekchic;
 
+import android.app.Application;
+
 import com.baidu.frontia.FrontiaApplication;
+import com.baidu.location.GeofenceClient;
+import com.baidu.location.LocationClient;
 import com.geekchic.common.log.Logger;
 import com.geekchic.common.utils.PreferencesUtil;
 import com.geekchic.constant.AppException;
 
-import android.app.Application;
-
 public class BaseApplication extends Application
 {
+	public LocationClient mLocationClient = null;
+	public GeofenceClient mGeofenceClient;
     @Override
     public void onCreate()
     {
@@ -22,7 +26,10 @@ public class BaseApplication extends Application
         PreferencesUtil.initContext(getApplicationContext());
         //初始化百度云推
         FrontiaApplication.initFrontiaApplication(getApplicationContext());
-        
+        //初始化百度定位
+        mLocationClient = new LocationClient( this );
+        mLocationClient.setAK(PreferencesUtil.getMetaValue(this, "api_key"));
+        mGeofenceClient = new GeofenceClient(this);
     }
     
 }

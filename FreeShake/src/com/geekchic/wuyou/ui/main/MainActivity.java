@@ -14,6 +14,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.View.OnClickListener;
 
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
 import com.geekchic.common.utils.DisplayInfo;
 import com.geekchic.constant.AppAction;
 import com.geekchic.constant.AppConstants.QUICKACTION;
@@ -105,11 +107,40 @@ public class MainActivity extends BaseSlideActivity {
 			}
 		}
 	};
+	/**
+	 * 定位监听
+	 */
+	private BDLocationListener mBdLocationListener=new BDLocationListener() {
+		
+		@Override
+		public void onReceivePoi(BDLocation paramBDLocation) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void onReceiveLocation(BDLocation paramBDLocation) {
+			//如果Fragment被添加至Activity中则设置地址
+			if(null!=paramBDLocation&&mContactsFragment.isAdded()){
+				mContactsFragment.setLoc(paramBDLocation.getCity());
+			}
+		}
+	};
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		initSlidingMenu();
+		
+	}
+	
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		try {
+			super.onRestoreInstanceState(savedInstanceState);
+		} catch (Exception e) {
+			savedInstanceState=null;
+		}
 	}
 
 	private void initSlidingMenu() {
@@ -141,7 +172,11 @@ public class MainActivity extends BaseSlideActivity {
 //		mRightTransaction.commit();
 //
 //	}
-
+	@Override
+	protected void onResumeFragments() {
+		super.onResumeFragments();
+		requestLocation(mBdLocationListener);
+	}
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();

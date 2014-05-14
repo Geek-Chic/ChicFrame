@@ -13,7 +13,7 @@ import android.os.Bundle;
 
 import com.geekchic.common.log.Logger;
 import com.geekchic.constant.AppActionCode;
-import com.geekchic.constant.AppConstants.REQUESTCODE;
+import com.geekchic.constant.AppConstants.RequestCode;
 import com.geekchic.constant.AppConstants.SERVICEWORK;
 import com.geekchic.framework.bean.Request;
 import com.geekchic.framework.logic.BaseLogic;
@@ -39,17 +39,17 @@ public class LoginLogic extends BaseLogic implements ILoginLogic {
 	}
 
 	@Override
-	public void login(String userAccount, String passwd) {
+	public void login(String username, String password) {
 		Request request = new Request(SERVICEWORK.WORKER_LOGIN);
-		request.put(REQUESTCODE.REQUEST_PHONE, userAccount);
-		request.put(REQUESTCODE.REQUEST_PASSWORD, passwd);
+		request.put("username", username);
+		request.put("password", password);
 		RequestManager.getInstance(mContext).execute(request,
 				new RequestListener() {
 
 					@Override
 					public void onRequestFinished(Request request,
 							Bundle resultData) {
-						Logger.d(TAG, resultData.getString(REQUESTCODE.REQUEST_RESULT));
+						Logger.d(TAG, resultData.getString(RequestCode.REQUEST_RESULT));
 						sendMessage(
 								AppActionCode.LoginCode.MESSAGE_LOGIN_SUCCESS,
 								resultData);
@@ -78,7 +78,7 @@ public class LoginLogic extends BaseLogic implements ILoginLogic {
 
 	@Override
 	public void logout() {
-		Request request=new Request(SERVICEWORK.WORKER_REGISTER);
+		Request request=new Request(SERVICEWORK.WORKER_LOGOUT);
 		RequestManager.getInstance(mContext).execute(request, new RequestListener() {
 			
 			@Override

@@ -40,11 +40,14 @@ public class AppConfig
      */
     private String mSessionId;
 
-    
     /**
      * 用户id
      */
     private String mUid;
+    /**
+     * 用户推送ID
+     */
+    private String mPushUid;
     /**
      * 推送通道标识
      */
@@ -115,6 +118,15 @@ public class AppConfig
 	public void setChannelId(String mChannelId) {
 		this.mChannelId = mChannelId;
 	}
+	
+	public String getPushUid() {
+		return mPushUid;
+	}
+
+	public void setPushUid(String mPushUid) {
+		this.mPushUid = mPushUid;
+	}
+
 	public Map<String, Integer> getFaceMap() {
 		if (!mFaceMap.isEmpty())
 			return mFaceMap;
