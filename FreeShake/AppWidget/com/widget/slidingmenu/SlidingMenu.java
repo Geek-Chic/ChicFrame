@@ -910,9 +910,6 @@ public class SlidingMenu extends RelativeLayout {
 			return mItem;
 		}
 
-		/* (non-Javadoc)
-		 * @see android.view.AbsSavedState#writeToParcel(android.os.Parcel, int)
-		 */
 		public void writeToParcel(Parcel out, int flags) {
 			super.writeToParcel(out, flags);
 			out.writeInt(mItem);

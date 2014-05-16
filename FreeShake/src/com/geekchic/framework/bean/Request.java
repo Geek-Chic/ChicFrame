@@ -202,11 +202,13 @@ public class Request implements Parcelable {
 		mBundle.putCharSequence(name, value);
 		return this;
 	}
-    public Request putList(String name,ArrayList value){
-    	removeFromRequestData(name);
-    	mBundle.putParcelableArrayList(name, value);
+
+	public Request putList(String name, ArrayList<? extends Parcelable> value) {
+		removeFromRequestData(name);
+		mBundle.putParcelableArrayList(name, value);
 		return this;
-    }
+	}
+
 	/**
 	 * 存储Parcelable
 	 * 
@@ -430,14 +432,17 @@ public class Request implements Parcelable {
 		double value = getDouble(name);
 		return String.valueOf(value);
 	}
+
 	/**
 	 * 获取Arraylist型数据
+	 * 
 	 * @param name
 	 * @return
 	 */
-    public ArrayList<? extends Parcelable> getArrayList(String name){
-    	return mBundle.getParcelableArrayList(name);
-    }
+	public<T extends Parcelable>  ArrayList<T> getArrayList(String name) {
+		return mBundle.getParcelableArrayList(name);
+	}
+
 	/**
 	 * Returns the value associated with the given name, or null if no mapping
 	 * of the desired type exists for the given name.

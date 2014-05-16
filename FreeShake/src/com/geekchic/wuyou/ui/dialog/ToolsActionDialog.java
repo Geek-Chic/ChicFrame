@@ -25,7 +25,9 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.geekchic.common.log.Logger;
 import com.geekchic.common.utils.DeviceInfoUtil;
+import com.geekchic.common.utils.DisplayInfo;
 import com.geekchic.wuyou.R;
 
 /**
@@ -102,9 +104,13 @@ public class ToolsActionDialog extends ToolsActionWidget {
 
 		int rootHeight = contentView.getMeasuredHeight();
 		setWidth(rootHeight);
+		int screenHeight=DisplayInfo.getScreenHeight(getContext());
 		//高度为Screen高-TitleBar高-TabHost高
-		setHeight(getScreenHeight() - anchorRect.bottom-DeviceInfoUtil.dip2px(getContext(), 55));
-         
+		setHeight(screenHeight - anchorRect.bottom-DeviceInfoUtil.dip2px(getContext(), 55));
+         Logger.d(TAG, "弹窗高height:"+(getScreenHeight() - anchorRect.bottom-DeviceInfoUtil.dip2px(getContext(), 55)));
+         Logger.d(TAG, "总高"+getScreenHeight());
+         Logger.d(TAG, "下边框高"+DeviceInfoUtil.dip2px(getContext(), 55));
+         Logger.d(TAG, "上边框"+anchorRect.bottom);
 		setWidgetSpecs(getScreenWidth() - rootHeight, anchorRect.bottom);
 	}
 

@@ -20,6 +20,7 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -41,12 +42,14 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import com.geekchic.common.utils.StringUtil;
 import com.geekchic.constant.AppConfig;
 import com.geekchic.constant.AppConstants;
 import com.geekchic.constant.AppConstants.ChatMessageType;
 import com.geekchic.framework.ui.titlebar.BaseTitleBarActivity;
 import com.geekchic.wuyou.R;
 import com.geekchic.wuyou.bean.MessageItem;
+import com.geekchic.wuyou.logic.chat.IChatLogic;
 import com.geekchic.wuyou.ui.chat.adapter.EmotionItemAdapter;
 import com.geekchic.wuyou.ui.chat.adapter.EmotionPageAdeapter;
 import com.geekchic.wuyou.ui.chat.adapter.MessageAdapter;
@@ -109,11 +112,18 @@ public class ChatActivity extends BaseTitleBarActivity implements OnClickListene
 	 */
 //	private MsgListView mMsgListView;
 	private PullToRefreshListView mPullToRefreshListView;
+	/**
+	 * 消息列表
+	 */
 	private ListView mMessageListView;
 	/**
 	 * 聊天内容List的Adapter
 	 */
 	private com.geekchic.wuyou.ui.chat.adapter.MessageAdapter adapter;
+	/**
+	 * 聊天Logic
+	 */
+	private IChatLogic mChatLogic;
 	/**
 	 * 输入法管理
 	 */
@@ -180,6 +190,7 @@ public class ChatActivity extends BaseTitleBarActivity implements OnClickListene
 			mPullToRefreshListView.onRefreshComplete();
 		}
 	};
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -187,6 +198,7 @@ public class ChatActivity extends BaseTitleBarActivity implements OnClickListene
 		initViw();
 		initFacePage();
 	}
+	
     private void loadData(){
     	adapter = new MessageAdapter(this, loadCacheData());
     }
@@ -376,8 +388,20 @@ public class ChatActivity extends BaseTitleBarActivity implements OnClickListene
 				isEmotionShow = false;
 			}
 		}else if(v.getId()==R.id.chat_send_btn){
-			
+			String sendText=mChatEditText.getText().toString();
+			if(!StringUtil.isNullOrEmpty(sendText)){
+				
+			}
 		}
+	}
+	@Override
+	protected void initLogics() {
+		super.initLogics();
+		mChatLogic=(IChatLogic) getLogic(IChatLogic.class);
+	}
+	@Override
+	protected void handleStateMessage(Message msg) {
+		super.handleStateMessage(msg);
 	}
 
 }

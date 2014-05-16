@@ -9,6 +9,7 @@
 package com.geekchic.wuyou.ui.main;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +17,6 @@ import java.util.Map;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
 import android.text.Editable;
@@ -43,7 +43,7 @@ import com.geekchic.constant.AppAction;
 import com.geekchic.constant.AppActionCode;
 import com.geekchic.framework.ui.BaseFrameFragment;
 import com.geekchic.wuyou.R;
-import com.geekchic.wuyou.bean.Person;
+import com.geekchic.wuyou.bean.Contact;
 import com.geekchic.wuyou.bean.UserInfo;
 import com.geekchic.wuyou.logic.contacts.IContactsLogic;
 import com.geekchic.wuyou.ui.main.adapter.ContactSearchAdapter;
@@ -69,17 +69,13 @@ public class ContactsFragment extends BaseFrameFragment implements
 	 * TAG
 	 */
 	private static final String TAG="ContactsFragment";
-	private static final String[] groups = { "未分组好友", "我的好友", "我的同学", "我的家人",
-			"我的同事" };
 	private List<String> mGroup;// 组名
 	private Map<Integer, List<UserInfo>> mChildren;
-	private List<Map<String, String>> groupData = new ArrayList<Map<String, String>>();
-	private List<List<Map<String, String>>> childData = new ArrayList<List<Map<String, String>>>();
 	private LayoutInflater mInflater;
 	/**
 	 * 本地联系人
 	 */
-	private ArrayList<Person> mContactArrayList;
+	private ArrayList<Contact> mContactArrayList;
 	/**
 	 * 下拉多级列表
 	 */
@@ -115,7 +111,7 @@ public class ContactsFragment extends BaseFrameFragment implements
 	/**
 	 * 查找结果值
 	 */
-	private ArrayList<Person> mSearchList;
+	private ArrayList<Contact> mSearchList;
 	/**
 	 * 设置
 	 */
@@ -325,7 +321,7 @@ public OnItemClickListener mSearchItemClickListener=new OnItemClickListener() {
 		mSearchEditText.addTextChangedListener(mSearchTextWatcher);
 		mSearchResultListView=(ListView) mSearchBox.findViewById(R.id.contact_search_result);
 		//初始化查找
-		mSearchList=new ArrayList<Person>();
+		mSearchList=new ArrayList<Contact>();
         mContactSearchAdapter=new ContactSearchAdapter(getActivity(), mSearchList);	
         mSearchResultListView.setAdapter(mContactSearchAdapter);
         mSearchResultListView.setOnItemClickListener(mSearchItemClickListener);        
@@ -341,20 +337,52 @@ public OnItemClickListener mSearchItemClickListener=new OnItemClickListener() {
     public void setLoc(String city){
     	 mNickNameTextView.setText(String.format(getString(R.string.user_info),"蒋鹏",city));
     }
-	private void onDataLoad(ArrayList<Person> cantacts) {
-		mContactArrayList=cantacts;
-		mGroup.add("未分组");
-		List<UserInfo> list = new ArrayList<UserInfo>();
-		for (Person person : cantacts) {
-			UserInfo userInfo = new UserInfo();
-			userInfo.setNickName(person.name);
-			userInfo.setPhone(person.phone);
-			list.add(userInfo);
-		}
-		mChildren.put(0, list);
-		mContactsExpandableListAdapter.notifyDataSetChanged();
+	private void onDataLoad(ArrayList<Contact> contacts) {
+	   initSearchList(contacts);
+	   initMainList(contacts);
 	}
-
+	private void initSearchList(ArrayList<Contact> contacts){
+		mContactArrayList=new ArrayList<Contact>();
+		for(Contact contact:contacts){
+			for(String phone:contact.phone){
+				Contact search=new Contact();
+				search.pY=contact.pY;
+				search.fisrtSpell=contact.fisrtSpell;
+				search.searchPhone=phone;
+				search.name=contact.name;
+				mContactArrayList.add(search);
+			}
+		}
+	}
+    private void initMainList(ArrayList<Contact> contacts){
+    	mGroup.add("默认分组");
+		mChildren.put(0, new ArrayList<UserInfo>());
+		for (Contact person : contacts) {
+			if(person.groups.size()>0){
+				for(String groupName:person.groups){
+					UserInfo userInfo = new UserInfo();
+					userInfo.setNickName(person.name);
+					userInfo.setPhone(person.phone.get(0));
+					int gIndex=mGroup.indexOf(groupName);
+					if(gIndex<0){
+						mGroup.add(groupName);
+						ArrayList<UserInfo> list=new ArrayList<UserInfo>();
+						list.add(userInfo);
+						mChildren.put(mGroup.size()-1,list);
+					}else {
+						mChildren.get(gIndex).add(userInfo);
+						 
+					}
+				}
+			}else {
+				UserInfo userInfo = new UserInfo();
+				userInfo.setNickName(person.name);
+				userInfo.setPhone(person.phone.get(0));
+				mChildren.get(0).add(userInfo);
+			}
+		}
+		mContactsExpandableListAdapter.notifyDataSetChanged();
+    }
 	@Override
 	protected void initLogics() {
 		super.initLogics();
@@ -366,11 +394,11 @@ public OnItemClickListener mSearchItemClickListener=new OnItemClickListener() {
 		super.handleStateMessage(msg);
 		switch (msg.what) {
 		case AppActionCode.ContactsCode.MESSAGE_CONSTACTS_PROVIDE_SUCCESS:
-			ArrayList<Person> contacts = (ArrayList<Person>) msg.obj;
+			ArrayList<Contact> contacts = (ArrayList<Contact>) msg.obj;
 			onDataLoad(contacts);
 			break;
 		case AppActionCode.ContactsCode.MESSAGE_CONSTACTS_LOCAL_SEARCH_SUCCESS:
-			ArrayList<Person> searchRes=(ArrayList<Person>)msg.obj;
+			ArrayList<Contact> searchRes=(ArrayList<Contact>)msg.obj;
 			mContactSearchAdapter.updateListView(searchRes);
 			Logger.d(TAG, searchRes.size()+"asdfasdfasdf");
 		default:

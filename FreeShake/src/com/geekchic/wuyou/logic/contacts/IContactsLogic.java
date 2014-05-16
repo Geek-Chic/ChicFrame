@@ -11,7 +11,8 @@ package com.geekchic.wuyou.logic.contacts;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.geekchic.wuyou.bean.Person;
+import com.geekchic.wuyou.bean.Contact;
+import com.geekchic.wuyou.bean.UserInfo;
 
 /**
  * @ClassName: IContactsLogic
@@ -28,5 +29,9 @@ public interface IContactsLogic {
    * 查找本地联系人
    * @param contacts
    */
-  public void searchLocalContacts(String key,ArrayList<Person> contacts);
+  public void searchLocalContacts(String key,ArrayList<Contact> contacts);
+  /**
+   *  同步联系人
+   */
+  public void syncContacts(UserInfo userInfo);
 }

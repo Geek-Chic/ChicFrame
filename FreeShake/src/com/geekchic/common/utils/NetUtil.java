@@ -5,17 +5,32 @@ import java.io.InputStream;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+
 import com.geekchic.common.log.Logger;
 
-
-
-public class NetStringUtil
+/**
+ * @ClassName: NetUtil
+ * @Descritpion: 网络工具类
+ * @author evil
+ * @date May 16, 2014
+ */
+public class NetUtil
 {
-    private static final String TAG=NetStringUtil.class.getName();
+	/**
+	 * TAG
+	 */
+    private static final String TAG="NetUtil";
     public final static char RCHAR = '\r';
     public final static char NCHAR = '\n';
     public final static char SPACECHAR = ' ';
-    //���������ж����ַ���װΪUTF-8��ʽ���ַ�
+    /**
+     * inputStream类UTF8转String
+     * @param inputStream
+     * @return
+     */
     public static String decodeUTF8String(InputStream inputStream) {
         try {
             if (inputStream == null) {
@@ -46,7 +61,11 @@ public class NetStringUtil
 
         return null;
     }
-    //ת��ΪUTF-8����
+    /**
+     * String转UTF8
+     * @param str
+     * @return
+     */
     public static String toUtf_8String(String str) {
         try {
             byte[] buff = str.getBytes("utf-8");
@@ -60,7 +79,11 @@ public class NetStringUtil
         return str;
 
     }
-     //��ȡUTF-8�ַ�ı�������
+    /**
+     * 获取utf8型byte数组
+     * @param str
+     * @return
+     */
     public static byte[] getUtf_8bytes(String str) {
         try {
             byte[] buff = str.getBytes("utf-8");
@@ -72,7 +95,11 @@ public class NetStringUtil
         }
         return null;
     }
-     //url����
+    /**
+     * 编码URL
+     * @param url
+     * @return
+     */
     public static String urlEncode(String url ) {
         try {
             String str = URLEncoder.encode(url, "UTF-8");
@@ -89,7 +116,11 @@ public class NetStringUtil
             return "";
         }
     }
-     //���� 
+    /**
+     * URL解码
+     * @param src
+     * @return
+     */
     public static String urlDeocde(String src) {
         try {
             if (src.indexOf("%20") > -1) {
@@ -105,6 +136,7 @@ public class NetStringUtil
             return "";
         }
     }
+    
     public static String getMaxChunked(char[] content,String[] headstring) {
         String contentStr = new String(content);
         int len = content.length;
@@ -130,5 +162,26 @@ public class NetStringUtil
         }
         return false;
     }
+    /**
+     * 网络是否连接
+     * @param context
+     * @return
+     */
+    public static boolean isNetConnected(Context context) {
+		boolean isNetConnected;
+		// 获得网络连接服务
+		ConnectivityManager connManager = (ConnectivityManager) context
+				.getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo info = connManager.getActiveNetworkInfo();
+		if (info != null && info.isAvailable()) {
+//			String name = info.getTypeName();
+//			L.i("当前网络名称：" + name);
+			isNetConnected = true;
+		} else {
+			Logger.i(TAG,"没有可用网络");
+			isNetConnected = false;
+		}
+		return isNetConnected;
+	}
     
 }

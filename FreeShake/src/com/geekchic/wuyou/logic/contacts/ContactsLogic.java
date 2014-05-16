@@ -13,15 +13,17 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.os.Bundle;
 
-import com.geekchic.common.log.Logger;
+import com.geekchic.base.mutitask.TaskListener;
 import com.geekchic.constant.AppActionCode;
 import com.geekchic.constant.AppConstants.RequestCode;
 import com.geekchic.constant.AppConstants.SERVICEWORK;
 import com.geekchic.framework.bean.Request;
 import com.geekchic.framework.logic.BaseLogic;
 import com.geekchic.framework.network.RequestListener;
-import com.geekchic.wuyou.bean.Person;
+import com.geekchic.wuyou.bean.Contact;
+import com.geekchic.wuyou.bean.UserInfo;
 import com.geekchic.wuyou.logic.RequestManager;
+import com.geekchic.wuyou.service.operation.ContactLocalSearchOperation;
 
 /**
  * @ClassName: ContactsLogic
@@ -49,9 +51,8 @@ public class ContactsLogic extends BaseLogic implements IContactsLogic {
 		
 		@Override
 		public void onRequestFinished(Request request, Bundle resultData) {
-			ArrayList<CharSequence> contacts=resultData.getCharSequenceArrayList(RequestCode.REQUEST_RESULT);
+			ArrayList<Contact> contacts=resultData.getParcelableArrayList(RequestCode.REQUEST_RESULT);
 			sendMessage(AppActionCode.ContactsCode.MESSAGE_CONSTACTS_PROVIDE_SUCCESS,contacts);
-			 Logger.d(TAG, contacts.toString());
 		}
 		
 		@Override
@@ -74,7 +75,7 @@ public class ContactsLogic extends BaseLogic implements IContactsLogic {
 	});
 	}
 	@Override
-	public void searchLocalContacts(String key,ArrayList<Person> contacts) {
+	public void searchLocalContacts(String key,ArrayList<Contact> contacts) {
 		  Request request=new Request(SERVICEWORK.WORKER_CONTACTS_LCOAL_SERACH);
 		  request.put("key", key);
 		  request.putList("contacts",contacts);
@@ -82,8 +83,8 @@ public class ContactsLogic extends BaseLogic implements IContactsLogic {
 			
 			@Override
 			public void onRequestFinished(Request request, Bundle resultData) {
-				ArrayList<CharSequence> contacts=resultData.getCharSequenceArrayList(RequestCode.REQUEST_RESULT);
-				sendMessage(AppActionCode.ContactsCode.MESSAGE_CONSTACTS_LOCAL_SEARCH_SUCCESS,contacts);
+				ArrayList<Contact> contacts=resultData.getParcelableArrayList(RequestCode.REQUEST_RESULT);
+				sendMessage(AppActionCode.ContactsCode.MESSAGE_CONSTACTS_LOCAL_SEARCH_SUCCESS, contacts);
 			}
 			
 			@Override
@@ -104,6 +105,11 @@ public class ContactsLogic extends BaseLogic implements IContactsLogic {
 				
 			}
 		});
+	}
+	@Override
+	public void syncContacts(UserInfo userInfo) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

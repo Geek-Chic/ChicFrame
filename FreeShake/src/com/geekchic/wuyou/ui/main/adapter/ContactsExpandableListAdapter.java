@@ -20,8 +20,10 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.geekchic.common.log.Logger;
 import com.geekchic.wuyou.R;
 import com.geekchic.wuyou.bean.UserInfo;
+import com.hp.hpl.sparta.xpath.PositionEqualsExpr;
 import com.widget.xlistview.IphoneTreeView;
 import com.widget.xlistview.IphoneTreeView.IphoneTreeHeaderAdapter;
 
@@ -33,6 +35,10 @@ import com.widget.xlistview.IphoneTreeView.IphoneTreeHeaderAdapter;
  */
 public class ContactsExpandableListAdapter  extends
 BaseExpandableListAdapter implements IphoneTreeHeaderAdapter{
+	/**
+	 * TAG
+	 */
+	private static final String TAG="ContactsExpandableListAdapter";
     private LayoutInflater mInflater;
 	/**
 	 * 用户组
@@ -54,6 +60,7 @@ BaseExpandableListAdapter implements IphoneTreeHeaderAdapter{
 	 * 多级列表
 	 */
     private IphoneTreeView mXListView;
+    int tempPosition;
 	/**
 	 * ContactsExpandableListAdapter构造函数
 	 * 
@@ -84,7 +91,7 @@ BaseExpandableListAdapter implements IphoneTreeHeaderAdapter{
 
 	@Override
 	public int getChildrenCount(int groupPosition) {
-		int count = 0;
+		int count = -1;
 		if (mChildrenMap.get(groupPosition) != null) {
 			count = mChildrenMap.get(groupPosition).size();
 		}
@@ -158,12 +165,8 @@ BaseExpandableListAdapter implements IphoneTreeHeaderAdapter{
 					.findViewById(R.id.contact_item_avator);
 			childHolder.nickName = (TextView) convertView
 					.findViewById(R.id.contact_item_nickname);
-			UserInfo userInfo = mChildrenMap.get(groupPosition).get(
-					childPosition);
-			childHolder.nickName.setText(userInfo.getNickName());
 			childHolder.phone = (TextView) convertView
 					.findViewById(R.id.contact_item_phone);
-			childHolder.phone.setText(userInfo.getPhone());
 			childHolder.state = (ImageView) convertView
 					.findViewById(R.id.contact_vertify_level);
 			convertView.setTag(R.id.groupid, groupPosition);
@@ -172,7 +175,12 @@ BaseExpandableListAdapter implements IphoneTreeHeaderAdapter{
 		} else {
 			childHolder = (ChildHolder) convertView.getTag();
 		}
-
+		UserInfo userInfo = mChildrenMap.get(groupPosition).get(
+				childPosition);
+		childHolder.nickName.setText(userInfo.getNickName());
+	
+		childHolder.phone.setText(userInfo.getPhone());
+		tempPosition=childPosition;
 		return convertView;
 
 	}
@@ -184,15 +192,19 @@ BaseExpandableListAdapter implements IphoneTreeHeaderAdapter{
 
 	@Override
 	public int getTreeHeaderState(int groupPosition, int childPosition) {
-		final int childCount = getChildrenCount(groupPosition);
-		if (childPosition == childCount - 1) {
-			return PINNED_HEADER_PUSHED_UP;
-		} else if (childPosition == -1
-				&& !mXListView.isGroupExpanded(groupPosition)) {
-			return PINNED_HEADER_GONE;
-		} else {
-			return PINNED_HEADER_VISIBLE;
-		}
+		return PINNED_HEADER_GONE;
+//		final int childCount = getChildrenCount(groupPosition);
+//		childPosition=tempPosition;
+//		if(childCount<0|| groupPosition<0){
+//			return PINNED_HEADER_GONE;
+//		}else if (childPosition == childCount - 1) {
+//			return PINNED_HEADER_PUSHED_UP;
+//		} else if (childPosition == -1
+//				&& !mXListView.isGroupExpanded(groupPosition)) {
+//			return PINNED_HEADER_GONE;
+//		} else {
+//			return PINNED_HEADER_VISIBLE;
+//		}
 	}
 
 	@Override
@@ -201,10 +213,10 @@ BaseExpandableListAdapter implements IphoneTreeHeaderAdapter{
 		if (groupPosition < 0) {
 			return;
 		}
-		((TextView) header.findViewById(R.id.group_name))
-				.setText(mGroup.get(groupPosition));
-		((TextView) header.findViewById(R.id.group_child_count))
-				.setText("人数：" + getChildrenCount(groupPosition));
+//		((TextView) header.findViewById(R.id.group_name))
+//				.setText(mGroup.get(groupPosition));
+//		((TextView) header.findViewById(R.id.group_child_count))
+//				.setText("人数：" + getChildrenCount(groupPosition));
 	}
 
 	@Override

@@ -17,9 +17,9 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.PopupWindow;
 
+import com.geekchic.common.log.Logger;
 import com.geekchic.common.utils.DisplayInfo;
 import com.geekchic.wuyou.R;
 
@@ -30,7 +30,10 @@ import com.geekchic.wuyou.R;
  * @date May 6, 2014
  */
 public abstract class ToolsActionWidget extends PopupWindow {
-
+	/**
+	 * TAG
+	 */
+    private static final String TAG="ToolsActionWidget";
 	private static final int MEASURE_AND_LAYOUT_DONE = 1 << 1;
 
 	private final int[] mLocation = new int[2];
@@ -219,6 +222,7 @@ public abstract class ToolsActionWidget extends PopupWindow {
 
 		final int[] loc = mLocation;
 		anchor.getLocationOnScreen(loc);
+		Logger.d(TAG, "height:"+anchor.getHeight());
 		mRect.set(loc[0], loc[1], loc[0] + anchor.getWidth(),
 				loc[1] + anchor.getHeight());
 
@@ -235,6 +239,7 @@ public abstract class ToolsActionWidget extends PopupWindow {
 		}
 
 		prepareAnimationStyle();
+		Logger.d(TAG, "Y:"+mPopupY);
 		showAtLocation(anchor, Gravity.NO_GRAVITY, mPopupX, mPopupY);
 	}
 

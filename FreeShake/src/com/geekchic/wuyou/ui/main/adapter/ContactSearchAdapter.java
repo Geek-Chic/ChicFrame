@@ -19,12 +19,11 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.geekchic.wuyou.R;
-import com.geekchic.wuyou.bean.Person;
+import com.geekchic.wuyou.bean.Contact;
 
 /**
  * @ClassName: ContactSearchAdapter
@@ -35,17 +34,17 @@ import com.geekchic.wuyou.bean.Person;
 public class ContactSearchAdapter extends BaseAdapter {
 
 	private LayoutInflater mInflater;
-	private ArrayList<Person> persons;
+	private ArrayList<Contact> persons;
 	private Context context;
 
-	public ContactSearchAdapter(Context context, ArrayList<Person> persons) {
+	public ContactSearchAdapter(Context context, ArrayList<Contact> persons) {
 		this.mInflater = LayoutInflater.from(context);
 		this.persons = persons;
 		this.context = context;
 	}
 
 	// 当联系人列表数据发生变化时,用此方法来更新列表
-	public void updateListView(ArrayList<Person> persons) {
+	public void updateListView(ArrayList<Contact> persons) {
 		this.persons = persons;
 		notifyDataSetChanged();
 	}
@@ -82,11 +81,11 @@ public class ContactSearchAdapter extends BaseAdapter {
 				.findViewById(R.id.search_contacts_name);
 		name.setText(persons.get(position).name);
 
-		final String phoneNum=persons.get(position).phone;
+		final String phoneNum = persons.get(position).searchPhone;
 		TextView number = (TextView) convertView
 				.findViewById(R.id.search_contacts_number);
 		number.setText(phoneNum);
-       
+
 		// 字母提示textview的显示
 		TextView letterTag = (TextView) convertView
 				.findViewById(R.id.search_item_LetterTag);
@@ -110,24 +109,25 @@ public class ContactSearchAdapter extends BaseAdapter {
 				letterTag.setText(firstLetter);
 			}
 		}
-		ImageButton button=(ImageButton) convertView.findViewById(R.id.search_dial);
-        button.setOnClickListener(new OnClickListener() {
-			
+		ImageButton button = (ImageButton) convertView
+				.findViewById(R.id.search_dial);
+		button.setOnClickListener(new OnClickListener() {
+
 			@Override
 			public void onClick(View v) {
-				Intent intent=new Intent();
-				intent.setAction(Intent.ACTION_CALL);  
-				intent.setData(Uri.parse("tel:"+phoneNum));
+				Intent intent = new Intent();
+				intent.setAction(Intent.ACTION_CALL);
+				intent.setData(Uri.parse("tel:" + phoneNum));
 				context.startActivity(intent);
-			
+
 			}
 		});
-        button.setOnLongClickListener(new OnLongClickListener() {
-			
+		button.setOnLongClickListener(new OnLongClickListener() {
+
 			@Override
 			public boolean onLongClick(View v) {
-				Intent intent=new Intent(Intent.ACTION_DIAL);
-				intent.setData(Uri.parse("tel:"+phoneNum));
+				Intent intent = new Intent(Intent.ACTION_DIAL);
+				intent.setData(Uri.parse("tel:" + phoneNum));
 				context.startActivity(intent);
 				return false;
 			}

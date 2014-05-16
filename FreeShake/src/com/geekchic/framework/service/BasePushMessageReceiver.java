@@ -17,7 +17,6 @@ import com.baidu.frontia.api.FrontiaPushMessageReceiver;
 import com.geekchic.common.log.Logger;
 import com.geekchic.common.utils.PreferencesUtil;
 import com.geekchic.constant.AppConfig;
-import com.geekchic.constant.AppConstants;
 import com.geekchic.constant.AppConstants.Common;
 
 /**
@@ -210,4 +209,5 @@ public abstract class BasePushMessageReceiver extends FrontiaPushMessageReceiver
 			PreferencesUtil.setAttr(Common.PUSH_BIND_FLAG, false);
 		}
 	}
+	
 }

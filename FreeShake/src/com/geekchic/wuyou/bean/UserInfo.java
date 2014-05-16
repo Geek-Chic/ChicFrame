@@ -8,6 +8,8 @@
  */
 package com.geekchic.wuyou.bean;
 
+import java.util.ArrayList;
+
 import com.geekchic.base.db.annotation.Column;
 import com.geekchic.base.db.annotation.Id;
 import com.geekchic.base.db.annotation.Table;
@@ -28,7 +30,7 @@ public class UserInfo {
 		 public static final String TYPE_TIME = "time";
 		 public static final String TYPE_STATUS = "status";
 		 public static final String TYPE_AVATOR="avator";
-		 public static final String TYPE_GROUP="group";
+		 public static final String TYPE_GROUP="groupid";
 	   }
 	/**
 	 * 用户ID
@@ -60,12 +62,14 @@ public class UserInfo {
 	 * 组别
 	 */
 	@Column(name=UserField.TYPE_GROUP)
-	private int group;
+	private int groupid;
 	/**
 	 * 注册时间
 	 */
 	@Column(name=UserField.TYPE_TIME)
 	private String time;
+	@Column(name="test")
+	private ArrayList<String > test;
 	/**
 	 * 验证状态
 	 */
@@ -73,7 +77,6 @@ public class UserInfo {
 	private int status;
 	
 	public UserInfo(){
-		
 	}
 	public String getUuid() {
 		return uuid;
@@ -118,10 +121,10 @@ public class UserInfo {
 		this.headicon = headicon;
 	}
 	public int getGroup() {
-		return group;
+		return groupid;
 	}
 	public void setGroup(int group) {
-		this.group = group;
+		this.groupid = group;
 	}
   
 }

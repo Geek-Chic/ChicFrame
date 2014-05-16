@@ -53,7 +53,52 @@ public class AppConstants {
 		 */
 		String NAV_HAS_SHOW = "nav_has_show";
 	}
-
+	/**
+	 * @ClassName: MessageType
+	 * @Descritpion: 消息种类
+	 * @author evil
+	 * @date May 16, 2014
+	 */
+    public interface MessageType{
+    	/**
+    	 * 文字
+    	 */
+    	public static final int MESSAGE_TYPE_TEXT = 1;
+    	/**
+    	 * 图片
+    	 */
+    	public static final int MESSAGE_TYPE_IMG = 2;
+    	/**
+    	 * 文档
+    	 */
+    	public static final int MESSAGE_TYPE_FILE = 3;
+    }
+    /**
+     * @ClassName: ChageType
+     * @Descritpion: 推送形式
+     * @author evil
+     * @date May 16, 2014
+     */
+    public interface ChageType{
+    	/**
+    	 * 单播
+    	 */
+    	int CHAT_TYPE_SINGLE=1;
+    	/**
+    	 * 组播
+    	 */
+    	int CHAT_TYPE_TAG=2;
+    	/**
+    	 * 广播
+    	 */
+    	int CHAT_TYPE_BROADCAST=3;
+    }
+    /**
+     * @ClassName: RequestCode
+     * @Descritpion: 请求码
+     * @author evil
+     * @date May 16, 2014
+     */
 	public interface RequestCode {
 		/**
 		 * 请求结果
@@ -64,6 +109,12 @@ public class AppConstants {
 		 */
 		String REQUEST_CODE = "request_code";
 	}
+	/**
+	 * @ClassName: ReturnCode
+	 * @Descritpion: 返回码
+	 * @author evil
+	 * @date May 16, 2014
+	 */
 	public interface ReturnCode{
 		/**
 		 * 成功

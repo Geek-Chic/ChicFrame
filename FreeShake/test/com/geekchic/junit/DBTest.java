@@ -32,6 +32,7 @@ public class DBTest extends AndroidTestCase
     	UserInfo userInfo=new UserInfo();
     	userInfo.setUuid("xcvzlxkjvalsdf");
     	userInfo.setPhone("13163353639");
+    	
     	userDao.insert(userInfo);
     }
     @Override

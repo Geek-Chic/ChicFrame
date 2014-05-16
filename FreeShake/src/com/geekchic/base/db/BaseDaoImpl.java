@@ -12,7 +12,6 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import com.geekchic.base.db.annotation.Column;
 import com.geekchic.base.db.annotation.Id;
@@ -229,7 +228,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
 					int c = cursor.getColumnIndex(column.name());
 					if (c < 0) {
-						continue; // ������ѭ���¸�����ֵ
+						continue; 
 					} else if ((Integer.TYPE == fieldType)
 							|| (Integer.class == fieldType)) {
 						field.set(entity, cursor.getInt(c));
@@ -247,7 +246,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 					} else if ((Double.TYPE == fieldType)
 							|| (Double.class == fieldType)) {
 						field.set(entity, Double.valueOf(cursor.getDouble(c)));
-					} else if (Date.class == fieldType) {// ����java.util.Date����,update2012-06-10
+					} else if (Date.class == fieldType) {//java.util.Date
 						Date date = new Date();
 						date.setTime(cursor.getLong(c));
 						field.set(entity, date);

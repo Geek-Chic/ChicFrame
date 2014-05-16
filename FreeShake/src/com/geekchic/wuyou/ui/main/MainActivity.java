@@ -47,6 +47,10 @@ public class MainActivity extends BaseSlideActivity {
 	 */
 	private ContactsFragment mContactsFragment;
 	/**
+	 * ACTION BAR
+	 */
+	private ToolsActionDialog mToolsActionDialog;
+	/**
 	 * 联系人click
 	 */
 	private OnClickListener mLeftClickListener = new OnClickListener() {
@@ -63,29 +67,8 @@ public class MainActivity extends BaseSlideActivity {
 
 		@Override
 		public void onClick(View v) {
-			ToolsActionDialog mGrid = new ToolsActionDialog(MainActivity.this);
-			mGrid.addQuickAction(new QuickAction(MainActivity.this,
-					R.drawable.ic_launcher, "创建目标"));
-			mGrid.addQuickAction(new QuickAction(MainActivity.this,
-					R.drawable.icon_qr, "二维码"));
-			mGrid.addQuickAction(new QuickAction(MainActivity.this,
-					R.drawable.ic_launcher, "二维码"));
-			mGrid.addQuickAction(new QuickAction(MainActivity.this,
-					R.drawable.ic_launcher, "二维码"));
-			mGrid.addQuickAction(new QuickAction(MainActivity.this,
-					R.drawable.ic_launcher, "二维码"));
-			mGrid.addQuickAction(new QuickAction(MainActivity.this,
-					R.drawable.ic_launcher, "二维码"));
-			mGrid.addQuickAction(new QuickAction(MainActivity.this,
-					R.drawable.ic_launcher, "二维码"));
-			mGrid.addQuickAction(new QuickAction(MainActivity.this,
-					R.drawable.ic_launcher, "二维码"));
-			mGrid.addQuickAction(new QuickAction(MainActivity.this,
-					R.drawable.ic_launcher, "二维码"));
-			mGrid.addQuickAction(new QuickAction(MainActivity.this,
-					R.drawable.ic_launcher, "二维码"));
-			mGrid.show(getTitleBar());
-			mGrid.setOnQuickActionClickListener(quickActionClickListener);
+			initActionBar();
+			mToolsActionDialog.show(getTitleBar());
 		}
 	};
     private OnQuickActionClickListener quickActionClickListener=new OnQuickActionClickListener() {
@@ -161,7 +144,32 @@ public class MainActivity extends BaseSlideActivity {
 		mSlidingMenu.setFadeEnabled(true);// 设置滑动时菜单的是否淡入淡出
 		mSlidingMenu.setBehindScrollScale(0.333f);// 设置滑动时拖拽效果
 	}
-
+    private void initActionBar(){
+    	if(null==mToolsActionDialog){
+    		mToolsActionDialog = new ToolsActionDialog(MainActivity.this);
+    		mToolsActionDialog.addQuickAction(new QuickAction(MainActivity.this,
+					R.drawable.ic_launcher, "创建目标"));
+    		mToolsActionDialog.addQuickAction(new QuickAction(MainActivity.this,
+					R.drawable.icon_qr, "二维码"));
+    		mToolsActionDialog.addQuickAction(new QuickAction(MainActivity.this,
+					R.drawable.ic_launcher, "二维码"));
+    		mToolsActionDialog.addQuickAction(new QuickAction(MainActivity.this,
+					R.drawable.ic_launcher, "二维码"));
+    		mToolsActionDialog.addQuickAction(new QuickAction(MainActivity.this,
+					R.drawable.ic_launcher, "二维码"));
+    		mToolsActionDialog.addQuickAction(new QuickAction(MainActivity.this,
+					R.drawable.ic_launcher, "二维码"));
+    		mToolsActionDialog.addQuickAction(new QuickAction(MainActivity.this,
+					R.drawable.ic_launcher, "二维码"));
+    		mToolsActionDialog.addQuickAction(new QuickAction(MainActivity.this,
+					R.drawable.ic_launcher, "二维码"));
+    		mToolsActionDialog.addQuickAction(new QuickAction(MainActivity.this,
+					R.drawable.ic_launcher, "二维码"));
+    		mToolsActionDialog.addQuickAction(new QuickAction(MainActivity.this,
+					R.drawable.ic_launcher, "二维码"));
+    		mToolsActionDialog.setOnQuickActionClickListener(quickActionClickListener);
+    	}
+    }
 //	private void initView() {
 //		// 设置二级菜单
 //		mSlidingMenu.setSecondaryMenu(R.layout.main_right_layout);

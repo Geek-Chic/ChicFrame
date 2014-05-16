@@ -14,7 +14,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import com.geekchic.common.log.Logger;
-import com.geekchic.common.utils.NetStringUtil;
+import com.geekchic.common.utils.NetUtil;
 
 public class CommDownloadTask extends
         AsyncTask<CommDownLoadParams, Integer, Void>
@@ -98,12 +98,12 @@ public class CommDownloadTask extends
                     .getUrl(downloadURL.toString());
             if (commHttpURL != null)
             {
-                if (!NetStringUtil.isEmpty(commHttpURL.getLastModified()))
+                if (!NetUtil.isEmpty(commHttpURL.getLastModified()))
                 {
                     connection.setRequestProperty("If-Modified-Since",
                             commHttpURL.getLastModified());
                 }
-                if (!NetStringUtil.isEmpty(commHttpURL.getEtag()))
+                if (!NetUtil.isEmpty(commHttpURL.getEtag()))
                 {
                     connection.setRequestProperty("If-None-Match",
                             commHttpURL.getEtag());
