@@ -61,5 +61,11 @@ public class mTitleTabHostActivity extends BaseFrameActivity implements CommonTi
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void setMiddleTitleAndListener(int id, OnClickListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
    
 }

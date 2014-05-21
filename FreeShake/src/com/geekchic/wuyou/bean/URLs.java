@@ -24,7 +24,7 @@ public final class URLs {
 	/**
 	 * 主机位置
 	 */
-	public static final String LOCAL_HOST = "192.168.1.105/wuyou";
+	public static final String LOCAL_HOST = "192.168.56.254/wuyou";
 	public static final String VPS_HOST="evilester.hk.7encc.com/wuyou";
 	public static final String HOST=LOCAL_HOST;
 	/**
@@ -38,6 +38,12 @@ public final class URLs {
 	public final static String REGISTER_DECLARATION=HTTP+HOST+URL_SPLITTER+"declaration.html";
 	public final static String REGISTER_AUTH_CODE=HTTP+HOST+URL_SPLITTER+"user/registration/ApiGetCaptcha";
 	public final static String REGISTER_REGISTERATION=HTTP+HOST+URL_SPLITTER+"user/registration/ApiRegistration";
+	
+	public final static String CONTACT_SYNC=HTTP+HOST+URL_SPLITTER+"contact/sync/ApiSync";
+	/**
+	 * 反馈
+	 */
+	public final static String FEEDBACK=HTTP+HOST+URL_SPLITTER+"user/feedback/ApiFeedback";
 	/**
 	 * .Net接口
 	 */

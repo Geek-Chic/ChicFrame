@@ -9,7 +9,6 @@
 package com.geekchic.wuyou.ui.main;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,8 +43,8 @@ import com.geekchic.constant.AppActionCode;
 import com.geekchic.framework.ui.BaseFrameFragment;
 import com.geekchic.wuyou.R;
 import com.geekchic.wuyou.bean.Contact;
-import com.geekchic.wuyou.bean.UserInfo;
 import com.geekchic.wuyou.logic.contacts.IContactsLogic;
+import com.geekchic.wuyou.ui.dialog.FuzzySearchDialog;
 import com.geekchic.wuyou.ui.main.adapter.ContactSearchAdapter;
 import com.geekchic.wuyou.ui.main.adapter.ContactsExpandableListAdapter;
 import com.geekchic.wuyou.ui.main.view.IphoneTreePullToRefreshView;
@@ -70,12 +69,16 @@ public class ContactsFragment extends BaseFrameFragment implements
 	 */
 	private static final String TAG="ContactsFragment";
 	private List<String> mGroup;// 组名
-	private Map<Integer, List<UserInfo>> mChildren;
+	private Map<Integer, List<Contact>> mChildren;
 	private LayoutInflater mInflater;
 	/**
 	 * 本地联系人
 	 */
-	private ArrayList<Contact> mContactArrayList;
+	private ArrayList<Contact> mContactsArrayList;
+	/**
+	 * 本地查找联系人
+	 */
+	private ArrayList<Contact> mSearchContactArrayList;
 	/**
 	 * 下拉多级列表
 	 */
@@ -121,6 +124,14 @@ public class ContactsFragment extends BaseFrameFragment implements
 	 */
 	private Button mLocalSearchButton;
 	/**
+	 * 联系人管理
+	 */
+	private Button mContactManagerButton;
+	/**
+	 * 联系人模糊查找
+	 */
+	private Button mContactfuzzySearchButton;
+	/**
 	 * 头像ImageView
 	 */
 	private ImageView mAvatorImageView;
@@ -139,8 +150,12 @@ public class ContactsFragment extends BaseFrameFragment implements
 
 		@Override
 		public void onRefresh(PullToRefreshBase<IphoneTreeView> refreshView) {
+			ArrayList<Contact> list=new ArrayList<Contact>(10);
+			for(Contact contact:mContactsArrayList){
+				mContactsLogic.syncContacts(contact);
+			}
 			mIphoneTreePullToRefreshView.onRefreshComplete();
-
+			showProgressDialog(R.string.dialog_loading, true);
 		}
 	};
 	/**
@@ -217,7 +232,7 @@ private TextWatcher mSearchTextWatcher=new TextWatcher() {
 	public void onTextChanged(CharSequence s, int start, int before, int count) {
 		 String key=s.toString().trim();
 		 if(!StringUtil.isNullOrEmpty(key)){
-			 mContactsLogic.searchLocalContacts(key, mContactArrayList);
+			 mContactsLogic.searchLocalContacts(key, mSearchContactArrayList);
 		 }else {
 			mSearchList.clear();
 			mContactSearchAdapter.updateListView(mSearchList);
@@ -297,7 +312,7 @@ public OnItemClickListener mSearchItemClickListener=new OnItemClickListener() {
 		mContactsLogic.getContactsFromProvider();
 
 		mGroup = new ArrayList<String>();
-		mChildren = new HashMap<Integer, List<UserInfo>>();
+		mChildren = new HashMap<Integer, List<Contact>>();
 		mContactsExpandableListAdapter = new ContactsExpandableListAdapter(getActivity(),
 				mGroup, mChildren,xListView);
 		xListView.setAdapter(mContactsExpandableListAdapter);
@@ -306,6 +321,10 @@ public OnItemClickListener mSearchItemClickListener=new OnItemClickListener() {
 		// mSearchBox = view.findViewById(R.id.contact_search_box);
 		mSettingButton = (Button) view.findViewById(R.id.contact_act_profile);
 		mSettingButton.setOnClickListener(this);
+		mContactManagerButton=(Button) view.findViewById(R.id.contact_act_manager);
+		mContactfuzzySearchButton=(Button) view.findViewById(R.id.contact_act_fuzzysearch);
+		mContactManagerButton.setOnClickListener(this);
+		mContactfuzzySearchButton.setOnClickListener(this);
 		mLocalSearchButton = (Button) view
 				.findViewById(R.id.contact_act_search);
 		mLocalSearchButton.setOnClickListener(this);
@@ -335,14 +354,16 @@ public OnItemClickListener mSearchItemClickListener=new OnItemClickListener() {
 	 * @param city
 	 */
     public void setLoc(String city){
+    	city="武汉";
     	 mNickNameTextView.setText(String.format(getString(R.string.user_info),"蒋鹏",city));
     }
 	private void onDataLoad(ArrayList<Contact> contacts) {
+		this.mContactsArrayList=contacts;
 	   initSearchList(contacts);
 	   initMainList(contacts);
 	}
 	private void initSearchList(ArrayList<Contact> contacts){
-		mContactArrayList=new ArrayList<Contact>();
+		mSearchContactArrayList=new ArrayList<Contact>();
 		for(Contact contact:contacts){
 			for(String phone:contact.phone){
 				Contact search=new Contact();
@@ -350,35 +371,30 @@ public OnItemClickListener mSearchItemClickListener=new OnItemClickListener() {
 				search.fisrtSpell=contact.fisrtSpell;
 				search.searchPhone=phone;
 				search.name=contact.name;
-				mContactArrayList.add(search);
+				mSearchContactArrayList.add(search);
 			}
 		}
 	}
     private void initMainList(ArrayList<Contact> contacts){
     	mGroup.add("默认分组");
-		mChildren.put(0, new ArrayList<UserInfo>());
+		mChildren.put(0, new ArrayList<Contact>());
 		for (Contact person : contacts) {
 			if(person.groups.size()>0){
 				for(String groupName:person.groups){
-					UserInfo userInfo = new UserInfo();
-					userInfo.setNickName(person.name);
-					userInfo.setPhone(person.phone.get(0));
 					int gIndex=mGroup.indexOf(groupName);
+					person.listGroup=groupName;
 					if(gIndex<0){
 						mGroup.add(groupName);
-						ArrayList<UserInfo> list=new ArrayList<UserInfo>();
-						list.add(userInfo);
+						ArrayList<Contact> list=new ArrayList<Contact>();
+						list.add(person);
 						mChildren.put(mGroup.size()-1,list);
 					}else {
-						mChildren.get(gIndex).add(userInfo);
+						mChildren.get(gIndex).add(person);
 						 
 					}
 				}
 			}else {
-				UserInfo userInfo = new UserInfo();
-				userInfo.setNickName(person.name);
-				userInfo.setPhone(person.phone.get(0));
-				mChildren.get(0).add(userInfo);
+				mChildren.get(0).add(person);
 			}
 		}
 		mContactsExpandableListAdapter.notifyDataSetChanged();
@@ -401,6 +417,10 @@ public OnItemClickListener mSearchItemClickListener=new OnItemClickListener() {
 			ArrayList<Contact> searchRes=(ArrayList<Contact>)msg.obj;
 			mContactSearchAdapter.updateListView(searchRes);
 			Logger.d(TAG, searchRes.size()+"asdfasdfasdf");
+			break;
+		case AppActionCode.ContactsCode.MESSAGE_CONTACTS_SYNC_SUCCESS:
+			closeProgressDialog();
+			break;
 		default:
 			break;
 		}
@@ -421,6 +441,15 @@ public OnItemClickListener mSearchItemClickListener=new OnItemClickListener() {
 			//跳转至个人资料设置界面
 			Intent intent=new Intent(AppAction.ProfileSetting.ACTION);
 			startActivity(intent);
+		}else if(v.getId()==R.id.contact_act_fuzzysearch){
+			FuzzySearchDialog fuzzySearchDialog=new FuzzySearchDialog(getActivity());
+			fuzzySearchDialog=fuzzySearchDialog.create();
+			fuzzySearchDialog.show();
+		}else if(v.getId()==R.id.contact_act_manager){
+		     Intent intent = new Intent(); 
+	          intent.setAction(Intent.ACTION_GET_CONTENT); 
+	          intent.setType("vnd.android.cursor.item/phone"); 
+	          startActivity(intent);
 		}
 	}
 }

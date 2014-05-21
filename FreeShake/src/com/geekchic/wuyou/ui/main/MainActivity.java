@@ -148,25 +148,9 @@ public class MainActivity extends BaseSlideActivity {
     	if(null==mToolsActionDialog){
     		mToolsActionDialog = new ToolsActionDialog(MainActivity.this);
     		mToolsActionDialog.addQuickAction(new QuickAction(MainActivity.this,
-					R.drawable.ic_launcher, "创建目标"));
+					R.drawable.icon_project_add, "创建目标"));
     		mToolsActionDialog.addQuickAction(new QuickAction(MainActivity.this,
 					R.drawable.icon_qr, "二维码"));
-    		mToolsActionDialog.addQuickAction(new QuickAction(MainActivity.this,
-					R.drawable.ic_launcher, "二维码"));
-    		mToolsActionDialog.addQuickAction(new QuickAction(MainActivity.this,
-					R.drawable.ic_launcher, "二维码"));
-    		mToolsActionDialog.addQuickAction(new QuickAction(MainActivity.this,
-					R.drawable.ic_launcher, "二维码"));
-    		mToolsActionDialog.addQuickAction(new QuickAction(MainActivity.this,
-					R.drawable.ic_launcher, "二维码"));
-    		mToolsActionDialog.addQuickAction(new QuickAction(MainActivity.this,
-					R.drawable.ic_launcher, "二维码"));
-    		mToolsActionDialog.addQuickAction(new QuickAction(MainActivity.this,
-					R.drawable.ic_launcher, "二维码"));
-    		mToolsActionDialog.addQuickAction(new QuickAction(MainActivity.this,
-					R.drawable.ic_launcher, "二维码"));
-    		mToolsActionDialog.addQuickAction(new QuickAction(MainActivity.this,
-					R.drawable.ic_launcher, "二维码"));
     		mToolsActionDialog.setOnQuickActionClickListener(quickActionClickListener);
     	}
     }

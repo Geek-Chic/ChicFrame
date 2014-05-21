@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg_common_edt_selector"
+    android:orientation="vertical"
+     >
+
+    <ImageView
+        android:id="@+id/chat_pop_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_color_gray"
+         />
+
+    <ListView
+        android:id="@+id/chat_pop_list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:clickable="true"
+          />
+
+</LinearLayout>

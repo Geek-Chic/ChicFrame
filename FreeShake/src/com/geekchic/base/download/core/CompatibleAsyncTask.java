@@ -29,9 +29,9 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
-
 import com.geekchic.common.log.Logger;
-
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Process;
@@ -221,7 +221,8 @@ public abstract class CompatibleAsyncTask<Params, Progress, Result> {
     private final AtomicBoolean mCancelled = new AtomicBoolean();
     private final AtomicBoolean mTaskInvoked = new AtomicBoolean();
 
-    private static class SerialExecutor implements Executor {
+    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
+	private static class SerialExecutor implements Executor {
         final ArrayDeque<Runnable> mTasks = new ArrayDeque<Runnable>();
         Runnable mActive;
 

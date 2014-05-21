@@ -16,7 +16,7 @@ import com.geekchic.base.db.annotation.Table;
 
 /**
  * @ClassName: UserInfo
- * @Descritpion: [用一句话描述作用]
+ * @Descritpion: 用户id
  * @author evil
  * @date May 3, 2014
  */

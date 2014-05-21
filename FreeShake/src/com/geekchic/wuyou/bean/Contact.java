@@ -14,21 +14,37 @@ import java.util.Comparator;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.geekchic.base.db.annotation.Column;
+import com.geekchic.base.db.annotation.Id;
+import com.geekchic.base.db.annotation.Table;
+
 /**
  * @ClassName: Contact
  * @Descritpion: 联系人
  * @author evil
  * @date May 8, 2014
  */
+@Table(name="contact")
 public class Contact implements Parcelable {
 	/**
 	 * 数据库中的标识ID
 	 */
+	@Id
+	@Column(name="_id")
 	public String id; 
+	/**
+	 * 用户网络标识
+	 */
+	@Column(name="uuid")
+	public String uuid;
 	/**
 	 * 姓名
 	 */
 	public String name;
+	/**
+	 * 是否匹配确定身份
+	 */
+	public int status;
 	/**
 	 * 拼音
 	 */
@@ -36,6 +52,7 @@ public class Contact implements Parcelable {
 	/**
 	 * 电话号码
 	 */
+	@Column(name="phone")
 	public ArrayList<String> phone;
 	/**
 	 * 组群
@@ -46,6 +63,10 @@ public class Contact implements Parcelable {
 	 */
 	public String searchPhone;
 	/**
+	 * 缓存组名
+	 */
+	public String listGroup;
+	/**
 	 * 中文首字母
 	 */
 	public String fisrtSpell;
@@ -53,6 +74,14 @@ public class Contact implements Parcelable {
 	 * 电子邮件
 	 */
 	public String email;
+	/**
+	 * 同步标记
+	 */
+	public int sync;
+	/**
+	 * 同步时间戳
+	 */
+	public long  timestamp;
 	/**
 	 * Person构造函数
 	 */
@@ -68,11 +97,15 @@ public class Contact implements Parcelable {
 	 */
 	public Contact(Parcel in) {
 		this.id = in.readString();
+		this.uuid=in.readString();
 		this.name = in.readString();
+		this.status=in.readInt();
 		this.pY = in.readString();
 		this.fisrtSpell = in.readString();
 		this.searchPhone=in.readString();
 		this.email=in.readString();
+		this.sync=in.readInt();
+		this.timestamp=in.readLong();
 		phone=new ArrayList<String>();
 		groups=new ArrayList<String>();
 		in.readStringList(phone);
@@ -88,11 +121,15 @@ public class Contact implements Parcelable {
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
 		dest.writeString(id);
+		dest.writeString(uuid);
 		dest.writeString(name);
+		dest.writeInt(status);
 		dest.writeString(pY);
 		dest.writeString(fisrtSpell);
 		dest.writeString(searchPhone);
 		dest.writeString(email);
+		dest.writeInt(sync);
+		dest.writeLong(timestamp);
 		dest.writeStringList(phone);
 		dest.writeStringList(groups);
 	}
@@ -116,5 +153,16 @@ public class Contact implements Parcelable {
 			return str1.compareToIgnoreCase(str2);
 		}
 	}
-
+@Override
+public boolean equals(Object o) {
+	if(o instanceof Contact){
+		Contact dest=(Contact) o;
+		for(String p:phone){
+			if(dest.phone.contains(p)){
+				return true;
+			}
+		}
+	}
+	return false;
+}
 }

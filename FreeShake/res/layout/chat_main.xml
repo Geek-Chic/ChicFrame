@@ -82,9 +82,9 @@
                 android:shadowDx="0.0"
                 android:shadowDy="-1.0"
                 android:shadowRadius="0.2"
-                android:text="发送"
                 android:singleLine="true"
-                android:textSize="14.0sp" />
+                android:background="@drawable/icon_chat_send_selector"
+                 />
         </LinearLayout>
     </LinearLayout>
 

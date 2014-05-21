@@ -1,7 +1,7 @@
 /**
  * @Title: RegisterStepTwo.java
  * @Package com.geekchic.wuyou.ui.login
- * @Description:  注册步骤二
+ * @Description:  注册步骤二--号码验证
  * @author: evil
  * @date: May 1, 2014
  * Copyright (c) 2014,Evilester All Rights Reserved. 
@@ -29,7 +29,7 @@ import com.geekchic.wuyou.logic.registration.IRegistrationLogic;
 
 /**
  * @ClassName: RegisterStepTwo
- * @Descritpion: 注册步骤二
+ * @Descritpion: 注册步骤二--号码验证
  * @author evil
  * @date May 1, 2014
  */
@@ -197,7 +197,8 @@ public class RegisterStepTwoFragment extends BaseFrameFragment implements
 		case AppActionCode.RegistrationCode.AUTH_REQUEST_SUCCESS:
 			mCaptcha = bundle.getString("captcha");
 			break;
-
+		case AppActionCode.RegistrationCode.AUTH_REQUEST_FAILED:
+			showShortToast("获取验证码失败");
 		default:
 			break;
 		}

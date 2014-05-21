@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color_white"
+    android:orientation="vertical" >
+<TextView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:textSize="@dimen/font_size_xlarge"
+    android:textColor="@color/font_color_most_black"
+    android:text="用户权限"
+    android:textStyle="bold"
+    />
+<View
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/line_size"
+    android:background="@color/line_color_light_gray"
+    />
+    <RadioGroup
+        android:id="@+id/radioGroup1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <RadioButton
+            android:id="@+id/radio0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="级别1：禁止一切请求授权"
+            android:textColor="@color/font_color_most_black" />
+
+        <RadioButton
+            android:id="@+id/radio1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="级别2：一切请求，通知认证"
+            android:textColor="@color/font_color_most_black" />
+
+        <RadioButton
+            android:id="@+id/radio2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="级别3：对认证好友和群内好友，自动授权，其他通知认证"
+            android:textColor="@color/font_color_most_black" />
+
+        <RadioButton
+            android:id="@+id/radio2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="级别4：对知道旧号姓名好友，自动授权"
+            android:textColor="@color/font_color_most_black" />
+    </RadioGroup>
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/bg_color_light_gray"
+    android:padding="@dimen/margin_medium"
+    android:gravity="center"
+    >
+    <Button
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="确定"
+        />
+     <Button
+          android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginLeft="@dimen/margin_medium"
+        android:text="取消"
+        />
+</LinearLayout>
+</LinearLayout>

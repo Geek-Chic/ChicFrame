@@ -1,5 +1,6 @@
 package com.geekchic.framework.ui.dialog;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
@@ -13,10 +14,10 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
 import com.geekchic.common.utils.StringUtil;
 import com.geekchic.wuyou.R;
 
+@SuppressLint("WrongViewCast")
 public class DialogController
 {
     /**
@@ -172,7 +173,7 @@ public class DialogController
     	}
     	if(null!=mNegativeButtonText){
     		bottomPanel.setVisibility(View.VISIBLE);
-    		mNegativeButton=(Button) bottomPanel.findViewById(R.id.bottompanel);
+    		mNegativeButton= (Button) bottomPanel.findViewById(R.id.negativeButton);
     		mNegativeButton.setVisibility(View.VISIBLE);
     		mNegativeButton.setText(mNegativeButtonText);
     		mNegativeButton.setOnClickListener(new OnClickListener() {

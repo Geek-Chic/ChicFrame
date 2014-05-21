@@ -122,6 +122,15 @@ public class TitleBar extends LinearLayout {
 		mRightButton.setVisibility(View.VISIBLE);
 		mRightButton.setImageResource(id);
 	}
+	/**
+	 *  设置标题加监听器
+	 * @param id
+	 * @param listener
+	 */
+	public void setMiddleTitle(int id,OnClickListener listener){
+		setTitle(id);
+		setMiddleTitleListener(listener);
+	}
     /**
      * 左边按钮监听器
      * @param listener
@@ -135,6 +144,13 @@ public class TitleBar extends LinearLayout {
      */
 	public void setRightButtonListener(OnClickListener listener) {
 		mRightButton.setOnClickListener(listener);
+	}
+	/**
+	 * 设置中间标题监听器
+	 * @param listener
+	 */
+	public void setMiddleTitleListener(OnClickListener listener){
+		mMiddleTitleView.setOnClickListener(listener);
 	}
 	/**
 	 *  获取右键

@@ -10,8 +10,8 @@ package com.geekchic.wuyou.logic;
 
 import android.content.Context;
 
+import com.geekchic.RequestService;
 import com.geekchic.framework.service.BaseRequestManager;
-import com.geekchic.wuyou.service.RequestService;
 
 /**
  * @ClassName: RequestManager

@@ -9,10 +9,8 @@
 package com.geekchic.wuyou.logic.contacts;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.geekchic.wuyou.bean.Contact;
-import com.geekchic.wuyou.bean.UserInfo;
 
 /**
  * @ClassName: IContactsLogic
@@ -33,5 +31,5 @@ public interface IContactsLogic {
   /**
    *  同步联系人
    */
-  public void syncContacts(UserInfo userInfo);
+  public void syncContacts(Contact contact);
 }

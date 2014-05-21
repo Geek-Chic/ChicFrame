@@ -6,10 +6,19 @@
     <string name="empty"></string>
     <!-- 对话框 -->
     <string name="dialog_loading">加载中。。。</string>
+    <string name="dialog_upload">正在上传中。。。。</string>
     <string name="dialog_tips">提示</string>
+    <string name="toast_http_error">网络错误</string>
+    <string name="toast_success">提交成功</string>
+      <string name="toast_failed">提交失败,请检查网络状态</string>
     <!-- 按钮 -->
     <string name="btn_confirm">确定</string>
     <string name="btn_cancel">取消</string>
+    <!-- 关于 -->
+    <string name="about">关于</string>
+    <string name="about_app">“吾友”是一款辅助型APP，是基于手机原生通讯录搭建的换号管理系统，在保护基本通讯数据安全的前提，利用网络实时同步备份，实时查找，最大限度的减少丢失联系人的风险。并且设计了更为科学的群聊方式--基于事件驱动的通信方式，可减少在信息量大时的混乱和干扰，提高工作生活效率。</string>
+    <string name="about_name">作者</string>
+    <string name="about_mail">邮箱</string>
     <!-- 反馈信息 -->
     <string name="feedback_title">反馈信息</string>
     <string name="feedback_hint_text">说些什么吧....</string>
@@ -19,6 +28,7 @@
     <string name="login_register"><u>注册帐号</u></string>
     <string name="login_please_input_user">请输入账号</string>
     <string name="login_please_input_password">请输入密码</string>
+    <string name="logout">退出登录</string>
     <!-- 注册 -->
     <string name="register_declaration">声明</string>
     <string name="register_agree_declaration">同意并继续</string>
@@ -81,4 +91,21 @@
     <string name="notify_captcha_title">注册验证</string>
     <string name="notify_register">有一条注册通知</string>
     <string name="notify_captcha_content">您的验证码为[%1$s]，感谢您使用手机注册验证功能，如果不是本人操作，请忽略本信息</string>
+    <!-- 时间选择器 -->
+        <string name="done_label">Done</string>
+    <string name="day_picker_description">Month grid of days</string>
+    <string name="year_picker_description">Year list</string>
+    <string name="select_day">Select month and day</string>
+    <string name="select_year">Select year</string>
+    <string name="item_is_selected">%1$s selected</string>
+    <string name="sans_serif" translatable="false">sans-serif</string>
+    <string name="day_of_week_label_typeface" translatable="false">sans-serif</string>
+    <string name="time_placeholder" translatable="false">--</string>
+    <string name="time_separator" translatable="false">:</string>
+    <string name="deleted_key">deleted</string>
+    <string name="hour_picker_description">Hours circular slider</string>
+    <string name="minute_picker_description">Minutes circular slider</string>
+    <string name="radial_numbers_typeface" translatable="false">sans-serif</string>
+    <string name="select_hours">Select hours</string>
+    <string name="select_minutes">Select minutes</string>
 </resources>

@@ -1,7 +1,7 @@
 /**
  * @Title: RegisterStepThirdFragment.java
  * @Package com.geekchic.wuyou.ui.login
- * @Description: 注册步骤三
+ * @Description: 注册步骤三--个人信息
  * @author: evil
  * @date: May 1, 2014
  * Copyright (c) 2014,Evilester All Rights Reserved. 
@@ -26,7 +26,7 @@ import com.geekchic.wuyou.logic.registration.IRegistrationLogic;
 
 /**
  * @ClassName: RegisterStepThirdFragment
- * @Descritpion: 注册步骤三
+ * @Descritpion: 注册步骤三--个人信息
  * @author evil
  * @date May 1, 2014
  */

@@ -145,4 +145,15 @@
 	    <item name="android:textSize">@dimen/font_size_xlarge</item>
 	    <item name="android:textStyle">bold</item>
 	</style>
+	<!-- 时间选择器 -->
+	    <style name="time_label">
+        <item name="android:textSize">@dimen/time_label_size</item>
+        <item name="android:textColor">@color/numbers_text_color</item>
+    </style>
+
+    <style name="ampm_label">
+        <item name="android:textSize">@dimen/ampm_label_size</item>
+        <item name="android:textColor">@color/ampm_text_color</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

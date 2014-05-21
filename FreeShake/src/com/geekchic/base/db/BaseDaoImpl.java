@@ -278,11 +278,13 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 			db = this.dbHelper.getWritableDatabase();
 			ContentValues cv = new ContentValues();
 			if (flag) {
+				//id自增
 				sql = setContentValues(entity, cv, TYPE_INCREMENT,
-						METHOD_INSERT);// id����
+						METHOD_INSERT);
 			} else {
+				//id不自增
 				sql = setContentValues(entity, cv, TYPE_NOT_INCREMENT,
-						METHOD_INSERT);// id��ָ��
+						METHOD_INSERT);
 			}
 			Logger.d(TAG, "[insert]: insert into " + this.tableName + " " + sql);
 			long row = db.insert(this.tableName, null, cv);

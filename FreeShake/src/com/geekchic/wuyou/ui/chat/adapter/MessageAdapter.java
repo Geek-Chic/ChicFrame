@@ -66,7 +66,6 @@ public class MessageAdapter extends BaseAdapter {
 
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
 		return mMsgList.size();
 	}
 
@@ -86,7 +85,7 @@ public class MessageAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
 		MessageItem item = mMsgList.get(position);
-		boolean isComMsg = item.isComMeg();
+		boolean isComMsg = item.isComMsg();
 		ViewHolder holder;
 		if (convertView == null
 				|| convertView.getTag(R.drawable.ic_launcher + position) == null) {
@@ -106,7 +105,7 @@ public class MessageAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag(R.drawable.ic_launcher
 					+ position);
 		}
-		holder.time.setText(DateUtil.getChatTime(item.getDate()));
+		holder.time.setText(DateUtil.getChatTime(item.getTime()));
 		// L.i("time: " + item.getDate());
 		holder.time.setVisibility(View.VISIBLE);
 		// holder.head.setBackgroundResource(PushApplication.heads[item

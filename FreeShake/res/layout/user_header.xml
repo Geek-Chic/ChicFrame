@@ -70,14 +70,14 @@
             android:background="@color/line_color_light_gray" />
 
         <Button
-            android:id="@+id/contact_act_profile"
+            android:id="@+id/contact_act_manager"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
-            android:drawableTop="@drawable/icon_setting_selector"
+            android:drawableTop="@drawable/icon_manager_selector"
             android:padding="@dimen/margin_small"
-            android:text="设置"
+            android:text="管理"
             android:textColor="@color/font_color_most_black"
             android:textSize="@dimen/font_size_medium" />
 
@@ -87,14 +87,14 @@
             android:background="@color/line_color_light_gray" />
 
         <Button
-            android:id="@+id/contact_act_profile"
+            android:id="@+id/contact_act_fuzzysearch"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
-            android:drawableTop="@drawable/icon_setting_selector"
+            android:drawableTop="@drawable/icon_fuzzy_search_selector"
             android:padding="@dimen/margin_small"
-            android:text="设置"
+            android:text="模糊查找"
             android:textColor="@color/font_color_most_black"
             android:textSize="@dimen/font_size_medium" />
 

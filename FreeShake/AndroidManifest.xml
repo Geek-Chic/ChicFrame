@@ -162,6 +162,54 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+           <!--时间轴 -->
+        <activity
+            android:name="com.geekchic.wuyou.ui.project.TimerActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/Default" >
+            <intent-filter>
+                <action android:name="com.geekchic.wuyou.TIMER" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+          <!--新建Task -->
+        <activity
+            android:name=".ui.project.NewTaskActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/Default" >
+            <intent-filter>
+                <action android:name="com.geekchic.wuyou.TASK" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+          <!--关于 -->
+        <activity
+            android:name=".ui.feedback.AboutActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/Default" >
+            <intent-filter>
+                <action android:name="com.geekchic.wuyou.ABOUT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+           <!--反馈 -->
+        <activity
+            android:name=".ui.feedback.FeedbackActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/Default" >
+            <intent-filter>
+                <action android:name="com.geekchic.wuyou.FEEDBACK" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <!-- 二维码界面 -->
         <activity
             android:name=".ui.tools.ZXingActivity"
@@ -186,12 +234,11 @@
         </activity>
         <!-- 工作服务 -->
         <service
-            android:name=".service.RequestService"
+            android:name="com.geekchic.RequestService"
             android:exported="false" />
         <!-- 百度推送接收广播 -->
-        <receiver android:name=".service.PushReceiver" >
+        <receiver android:name="com.geekchic.PushReceiver" >
             <intent-filter>
-
                 <!-- 接收 push 消息 -->
                 <action android:name="com.baidu.android.pushservice.action.MESSAGE" />
                 <!-- 接收 bind、setTags 等 method 的返回结果 -->
@@ -214,11 +261,11 @@
                 <data android:scheme="package" />
             </intent-filter>
         </receiver>
-
-        <service
+         <service
             android:name="com.baidu.android.pushservice.PushService"
             android:exported="true"
             android:process=":bdservice_v1" />
+
         <!-- 定位 -->
         <service
             android:name="com.baidu.location.f"

@@ -10,9 +10,13 @@ package com.geekchic.wuyou.logic.contacts;
 
 import java.util.ArrayList;
 
+import org.apache.http.ProtocolVersion;
+import org.apache.http.RequestLine;
+
 import android.content.Context;
 import android.os.Bundle;
 
+import com.alibaba.fastjson.JSON;
 import com.geekchic.base.mutitask.TaskListener;
 import com.geekchic.constant.AppActionCode;
 import com.geekchic.constant.AppConstants.RequestCode;
@@ -20,10 +24,11 @@ import com.geekchic.constant.AppConstants.SERVICEWORK;
 import com.geekchic.framework.bean.Request;
 import com.geekchic.framework.logic.BaseLogic;
 import com.geekchic.framework.network.RequestListener;
+import com.geekchic.operation.ContactLocalSearchOperation;
 import com.geekchic.wuyou.bean.Contact;
 import com.geekchic.wuyou.bean.UserInfo;
 import com.geekchic.wuyou.logic.RequestManager;
-import com.geekchic.wuyou.service.operation.ContactLocalSearchOperation;
+import com.geekchic.wuyou.model.ContactDao;
 
 /**
  * @ClassName: ContactsLogic
@@ -107,9 +112,32 @@ public class ContactsLogic extends BaseLogic implements IContactsLogic {
 		});
 	}
 	@Override
-	public void syncContacts(UserInfo userInfo) {
-		// TODO Auto-generated method stub
-		
+	public void syncContacts(Contact contacts) {
+		Request request=new Request(SERVICEWORK.WORKER_CONTACT_SYNC);
+		request.put("contacts", contacts);
+		JSON.toJSONString(contacts);
+		RequestManager.getInstance(mContext).execute(request, new RequestListener() {
+			
+			@Override
+			public void onRequestFinished(Request request, Bundle resultData) {
+               sendMessage(AppActionCode.ContactsCode.MESSAGE_CONTACTS_SYNC_SUCCESS,0);			
+			}
+			
+			@Override
+			public void onRequestDataError(Request request) {
+				sendEmptyMessage(AppActionCode.ContactsCode.MESSAGE_CONTACTS_SYNC_FAILED);
+			}
+			
+			@Override
+			public void onRequestCustomError(Request request, Bundle resultData) {
+				sendEmptyMessage(AppActionCode.ContactsCode.MESSAGE_CONTACTS_SYNC_FAILED);
+			}
+			
+			@Override
+			public void onRequestConnectionError(Request request, int statusCode) {
+				sendMessage(AppActionCode.BaseMessageCode.HTTP_ERROR, statusCode);
+			}
+		});
 	}
 
 }

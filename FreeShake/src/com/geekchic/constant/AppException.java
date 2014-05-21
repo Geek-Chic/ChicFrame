@@ -102,7 +102,7 @@ public class AppException extends Exception implements UncaughtExceptionHandler
      */
     public File saveErrorLog(String excp) {
         String savePath = getErrorPath(mContext);
-        String date = DateUtil.getDateStr();
+        String date = DateUtil.getDateStr(System.currentTimeMillis());
         String logFilePath = "appexception";
         FileWriter fw = null;
         PrintWriter pw = null;

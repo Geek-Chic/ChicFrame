@@ -4,13 +4,6 @@
     android:layout_height="match_parent"
     android:background="@color/bg_color_light_gray"
     android:orientation="vertical" >
-	 <TextView
-            android:layout_width="match_parent"
-            android:layout_height="46dip"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:singleLine="true"
-            android:text="@string/feedback_title" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -45,7 +38,7 @@
             android:layout_weight="1"
             android:fillViewport="true" >
             <EditText
-                android:id="@+id/fee_back_edit"
+                android:id="@+id/feed_back_edit"
                 android:layout_width="match_parent"
                 android:layout_height="200dip"
                 android:background="@null"
@@ -72,7 +65,6 @@
             android:layout_marginBottom="@dimen/font_size_medium"
             android:layout_marginRight="@dimen/font_size_medium"
             android:layout_marginTop="@dimen/font_size_medium"
-            android:background="@drawable/bg_common_btn_red_selector"
             android:paddingLeft="@dimen/font_size_large"
             android:paddingRight="@dimen/font_size_large"
             android:textSize="@dimen/font_size_xlarge"

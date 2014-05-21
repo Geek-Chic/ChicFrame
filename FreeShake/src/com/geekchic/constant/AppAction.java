@@ -132,4 +132,52 @@ public interface AppAction {
 		 */
 		public String ACTION="com.geekchic.wuyou.PROFILESETTING";
 	}
+	/**
+	 * @ClassName: About
+	 * @Descritpion:关于
+	 * @author evil
+	 * @date May 17, 2014
+	 */
+	public interface About{
+		/**
+		 * ACTION
+		 */
+		public String ACTION="com.geekchic.wuyou.ABOUT";
+	}
+	/**
+	 * @ClassName: FeekBack
+	 * @Descritpion: 反馈
+	 * @author evil
+	 * @date May 17, 2014
+	 */
+	public interface FeekBack{
+		/**
+		 * ACTION
+		 */
+		public String ACTION="com.geekchic.wuyou.FEEDBACK";
+	}
+	/**
+	 * @ClassName: Timer
+	 * @Descritpion: 时间轴
+	 * @author evil
+	 * @date May 17, 2014
+	 */
+	public interface Timer{
+		/**
+		 * ACTION
+		 */
+		public String ACTION="com.geekchic.wuyou.TIMER";
+	}
+	/**
+	 * @ClassName: Task
+	 * @Descritpion: 添加Task
+	 * @author evil
+	 * @date May 19, 2014
+	 */
+	public interface Task{
+		/**
+		 * ACTION
+		 */
+		public String ACTION="com.geekchic.wuyou.TASK";
+	}
 }

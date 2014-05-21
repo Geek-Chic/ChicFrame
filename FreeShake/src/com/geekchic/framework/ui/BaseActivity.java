@@ -156,10 +156,10 @@ public class BaseActivity extends FragmentActivity {
 
 	@Override
 	protected void onDestroy() {
-		removeHandler();
-		AppManager.getAppManager().finishActivity(this);
-		Logger.d(TAG, "BaseActivity:" + this + "onDestory");
 		super.onDestroy();
+		removeHandler();
+		Logger.d(TAG, "BaseActivity:" + this + "onDestory");
+		AppManager.getAppManager().finishActivity(this);
 	}
 
 	@Override

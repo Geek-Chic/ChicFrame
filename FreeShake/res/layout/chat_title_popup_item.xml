@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/title_bar_height"
+    android:orientation="vertical" 
+    android:descendantFocusability="blocksDescendants"
+    >
+
+    <TextView
+        android:id="@+id/chat_popup_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_color_light_gray"
+        android:paddingLeft="@dimen/margin_small"
+        android:textColor="@color/font_color_white"
+        android:visibility="visible" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <RadioButton
+            android:id="@+id/chat_popup_select_rbt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true" />
+
+        <TextView
+            android:id="@+id/chat_popup_phone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/chat_popup_select_rbt"
+            android:textSize="@dimen/font_size_large"
+            android:layout_centerVertical="true"
+            android:paddingLeft="@dimen/margin_medium"
+            android:text="65464556464"
+            android:textColor="@color/font_color_gray" />
+    </RelativeLayout>
+
+</LinearLayout>

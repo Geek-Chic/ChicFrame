@@ -1,7 +1,7 @@
 /**
  * @Title: SetpOneFragment.java
  * @Package com.geekchic.wuyou.ui.login
- * @Description: [用一句话描述做什么]
+ * @Description: 注册步骤一--申明
  * @author: evil
  * @date: May 1, 2014
  * Copyright (c) 2014,Evilester All Rights Reserved. 
@@ -22,7 +22,7 @@ import com.geekchic.wuyou.bean.URLs;
 
 /**
  * @ClassName: SetpOneFragment
- * @Descritpion: [用一句话描述作用] 
+ * @Descritpion: 注册步骤一--申明
  * @author evil
  * @date May 1, 2014
  */

@@ -10,26 +10,28 @@
         android:orientation="vertical"
         android:tag="back" >
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="0dp"
+            android:layout_gravity="right"
             android:layout_weight="1"
             android:background="@color/holo_green"
             android:orientation="vertical" >
 
             <TextView
+                android:id="@+id/project_going_complete"
                 android:layout_width="64dip"
                 android:layout_height="match_parent"
-                android:layout_gravity="left"
-                android:layout_marginLeft="@dimen/margin_medium"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/margin_large"
                 android:drawableTop="@drawable/icon_project_right"
                 android:gravity="center"
                 android:padding="@dimen/margin_small"
                 android:text="完成"
                 android:textColor="@color/font_color_white" />
-        </LinearLayout>
+        </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -37,104 +39,20 @@
             android:orientation="vertical" >
 
             <TextView
+                android:id="@+id/project_going_newtask"
                 android:layout_width="64dip"
                 android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
                 android:layout_gravity="left"
-                android:layout_marginLeft="@dimen/margin_medium"
+               android:layout_marginRight="@dimen/margin_large"
                 android:drawableTop="@drawable/icon_task_add"
                 android:gravity="center"
                 android:padding="@dimen/margin_small"
                 android:text="新Task"
                 android:textColor="@color/font_color_white" />
-        </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/swipe_project_item_front"
-        android:layout_width="fill_parent"
-        android:layout_height="150dip"
-        android:background="@color/task_add_sub"
-        android:orientation="horizontal" >
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_project_color_gray_blue_selector"
-                android:padding="@dimen/margin_medium"
-                android:src="@drawable/icon_task" />
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_project_color_darkgray_green_selector"
-                android:padding="@dimen/margin_medium"
-                android:src="@drawable/icon_notification" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/proejct_item_name"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/icon_project_name"
-                android:drawablePadding="@dimen/margin_small"
-                android:gravity="center_vertical"
-                android:paddingLeft="@dimen/margin_small"
-                android:text="新项目"
-                android:textColor="@color/blue"
-                android:textSize="@dimen/font_size_large"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/icon_project_people"
-                android:drawablePadding="@dimen/margin_small"
-                android:gravity="center_vertical"
-                android:paddingLeft="@dimen/margin_small"
-                android:paddingTop="@dimen/margin_small"
-                android:text="Evil，我是谁"
-                android:textColor="@color/font_color_black"
-                android:textSize="@dimen/font_size_medium"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/icon_project_note"
-                android:drawablePadding="@dimen/margin_small"
-                android:gravity="center_vertical"
-                android:paddingLeft="@dimen/margin_small"
-                android:paddingTop="@dimen/margin_small"
-                android:text="说明：这是一个测试项目dfgsdfgsdfgsdfhsdfghsdgdsfgdsfgdsfg"
-                android:textColor="@color/font_color_black"
-                android:textSize="@dimen/font_size_medium"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/icon_project_time"
-                android:drawablePadding="@dimen/margin_small"
-                android:gravity="center_vertical"
-                android:paddingLeft="@dimen/margin_small"
-                android:paddingTop="@dimen/margin_small"
-                android:text="时间"
-                android:textColor="@color/font_color_black"
-                android:textSize="@dimen/font_size_large"
-                android:textStyle="bold" />
-        </LinearLayout>
-    </LinearLayout>
+    <include layout="@layout/project_list_item"/>
 
 </FrameLayout>

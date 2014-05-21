@@ -65,9 +65,9 @@ public class DateUtil
      * 获取日期
      * @return 日期字符串
      */
-    public static String getDateStr(){
+    public static String getDateStr(long time){
         SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
-        return dateFormat.format(new Date());
+        return dateFormat.format(new Date(time));
     }
     /**
      * 根据给定的格式与时间(Date类型的)，返回时间字符串。最常用。<BR>

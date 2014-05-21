@@ -11,6 +11,7 @@ package com.geekchic.wuyou.logic.login;
 import android.content.Context;
 import android.os.Bundle;
 
+import com.geekchic.RequestService;
 import com.geekchic.common.log.Logger;
 import com.geekchic.constant.AppActionCode;
 import com.geekchic.constant.AppConstants.RequestCode;
@@ -21,7 +22,6 @@ import com.geekchic.framework.network.RequestListener;
 import com.geekchic.wuyou.bean.UserInfo;
 import com.geekchic.wuyou.bean.UserInfo.UserField;
 import com.geekchic.wuyou.logic.RequestManager;
-import com.geekchic.wuyou.service.RequestService;
 
 /**
  * @ClassName: LoginLogic

@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.geekchic.common.log.Logger;
 import com.geekchic.wuyou.R;
+import com.geekchic.wuyou.bean.Contact;
 import com.geekchic.wuyou.bean.UserInfo;
 import com.hp.hpl.sparta.xpath.PositionEqualsExpr;
 import com.widget.xlistview.IphoneTreeView;
@@ -47,7 +48,7 @@ BaseExpandableListAdapter implements IphoneTreeHeaderAdapter{
 	/**
 	 * 用户组成员
 	 */
-	private Map<Integer, List<UserInfo>> mChildrenMap;
+	private Map<Integer, List<Contact>> mChildrenMap;
 	/**
 	 * 上下文
 	 */
@@ -68,20 +69,12 @@ BaseExpandableListAdapter implements IphoneTreeHeaderAdapter{
 	 * @param children
 	 */
 	public ContactsExpandableListAdapter(Context context,List<String> group,
-			Map<Integer, List<UserInfo>> children,IphoneTreeView xListView) {
+			Map<Integer, List<Contact>> children,IphoneTreeView xListView) {
 		this.mContext=context;
 		this.mGroup = group;
 		this.mChildrenMap = children;
 		this.mXListView=xListView;
 		mInflater=LayoutInflater.from(mContext);
-	}
-
-	public void addUser(UserInfo userInfo) {
-		int groupID = userInfo.getGroup();
-		if (mChildrenMap.containsKey(groupID)) {
-			mChildrenMap.get(groupID).add(userInfo);
-			notifyDataSetChanged();
-		}
 	}
 
 	@Override
@@ -175,11 +168,11 @@ BaseExpandableListAdapter implements IphoneTreeHeaderAdapter{
 		} else {
 			childHolder = (ChildHolder) convertView.getTag();
 		}
-		UserInfo userInfo = mChildrenMap.get(groupPosition).get(
+		Contact userInfo = mChildrenMap.get(groupPosition).get(
 				childPosition);
-		childHolder.nickName.setText(userInfo.getNickName());
+		childHolder.nickName.setText(userInfo.name);
 	
-		childHolder.phone.setText(userInfo.getPhone());
+		childHolder.phone.setText(userInfo.phone.get(0));
 		tempPosition=childPosition;
 		return convertView;
 

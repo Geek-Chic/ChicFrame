@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/holo_red" >
+    android:background="@color/bg_color_white"
+     >
 
     <FrameLayout
         android:id="@+id/gdi_header"

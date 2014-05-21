@@ -16,7 +16,7 @@ public class BaseDBHelper extends SQLiteOpenHelper {
 			SQLiteDatabase.CursorFactory factory, int databaseVersion,
 			Class<?>[] modelClasses) {
 		super(context, databaseName, factory, databaseVersion);
-		this.modelClasses = modelClasses;
+		this.modelClasses = modelClasses; 
 	}
  
 	public void onCreate(SQLiteDatabase db) {

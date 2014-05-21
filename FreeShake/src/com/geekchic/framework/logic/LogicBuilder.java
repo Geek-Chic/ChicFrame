@@ -10,6 +10,8 @@ package com.geekchic.framework.logic;
 
 import com.geekchic.wuyou.logic.contacts.ContactsLogic;
 import com.geekchic.wuyou.logic.contacts.IContactsLogic;
+import com.geekchic.wuyou.logic.feedback.FeedbackLogic;
+import com.geekchic.wuyou.logic.feedback.IFeedbackLogic;
 import com.geekchic.wuyou.logic.login.ILoginLogic;
 import com.geekchic.wuyou.logic.login.LoginLogic;
 import com.geekchic.wuyou.logic.registration.IRegistrationLogic;
@@ -57,6 +59,7 @@ public class LogicBuilder extends BaseLogicBuilder {
 		registerLogic(ILoginLogic.class, new LoginLogic(context));
 		registerLogic(IContactsLogic.class, new ContactsLogic(context));
 		registerLogic(IRegistrationLogic.class, new RegistrationLogic(context));
+		registerLogic(IFeedbackLogic.class,new FeedbackLogic(context));
 	}
 
 }

@@ -28,6 +28,7 @@
     <color name="thirty_transparent_black">#4d000000</color>
     <color name="twenty_transparent_black">#33000000</color>
     <color name="fifteen_trans_black">#26000000</color>
+    
     <!-- 字体阴影颜色 -->
     <color name="text_shadow_color">#66000000</color>
     <!-- 内容主色 黑色 -->
@@ -72,6 +73,8 @@
     <color name="bg_color_view">#EAEFF5</color>
     <!-- 青色背景 -->
     <color name="bg_list_color">#EAEFF5</color>
+    <!-- 淡棕色背景 -->
+    <color name="bg_color_light_brown">#FCF2DA</color>
     <!-- 系统消息未读时的颜色值 -->
     <color name="bg_color_sysmsg_unread">#E9FFE8</color>
     <color name="bg_color_list_pressed">#ECF1F4</color>
@@ -138,4 +141,19 @@
     <color name="task_add_bg">#EBECE6</color>
     <color name="task_notify">#C8CAC5</color>
     <color name="task_chart">#BBBCB7</color>
+    <!-- 时间选择器 -->
+     <color name="circle_background">#fff2f2f2</color>
+    <color name="line_background">#ffcccccc</color>
+    <color name="done_text_color_normal">#ff333333</color>
+    <color name="done_text_color_disabled">#ffcccccc</color>
+    <color name="date_blue">#ff33b5e5</color>
+    <color name="darker_blue">#ff0099cc</color>
+    <color name="date_picker_text_normal">#ff999999</color>
+    <color name="calendar_header">#ff999999</color>
+    <color name="date_picker_view_animator">#fff2f2f2</color>
+
+    <color name="ampm_text_color">#8c8c8c</color>
+    <color name="numbers_text_color">#8c8c8c</color>
+
+    <color name="transparent_black">#7F000000</color>
 </resources>

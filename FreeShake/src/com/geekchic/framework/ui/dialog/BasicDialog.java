@@ -27,6 +27,9 @@ public class BasicDialog extends Dialog
     public BasicDialog(Context context, int theme)
     {
         super(context, theme);
+        mDialogController=new DialogController(getContext(), this, getWindow());
+        setCanceledOnTouchOutside(true);
+        mCancelable=true;
     }
     /**
      * 构造函数，是否可出取消

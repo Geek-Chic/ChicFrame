@@ -7,7 +7,6 @@ import com.geekchic.base.http.CommHttpInfoDBImpl;
 import com.geekchic.base.http.CommHttpURL;
 import com.geekchic.wuyou.bean.UserInfo;
 import com.geekchic.wuyou.model.UserDao;
-import com.geekchic.wuyou.model.UserDaoHelper;
 
 public class DBTest extends AndroidTestCase
 {

@@ -1,5 +1,11 @@
 package com.geekchic.common.utils;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,14 +18,12 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.geekchic.common.log.Logger;
 
 import android.text.TextUtils;
 
 public class StringUtil {
-	private static final Logger logger = LoggerFactory.getLogger("StringUtil");
-
+   private static final String TAG="StringUtil";
 	/**
 	 * 手机号码 正则验证
 	 */
@@ -203,7 +207,7 @@ public class StringUtil {
 			textStr = htmlStr;
 
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Logger.e(TAG,e.getMessage());
 		}
 
 		return textStr;
@@ -719,7 +723,7 @@ public class StringUtil {
 	 */
 	public static String getXmlValue(String xml, String tag) {
 		if (xml == null || tag == null) {
-			logger.error("XML OR TAG is null!");
+			Logger.e(TAG,"XML OR TAG is null!");
 			return null;
 		}
 
@@ -735,7 +739,7 @@ public class StringUtil {
 			}
 		}
 
-		logger.error("No such tag : " + tag + " was found!");
+		Logger.e(TAG,"No such tag : " + tag + " was found!");
 		return null;
 	}
 
@@ -886,7 +890,7 @@ public class StringUtil {
 			htmlStr = mHtml.replaceAll("");
 
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			Logger.e(TAG,e.getMessage());
 		}
 
 		return htmlStr;
@@ -1001,6 +1005,7 @@ public class StringUtil {
 
 	/**
 	 * 字符串中是否包含关键字
+	 * 
 	 * @param bigStr
 	 * @param smallStr
 	 * @return
@@ -1011,5 +1016,48 @@ public class StringUtil {
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * 序列化
+	 * 
+	 * @param o
+	 * @return
+	 */
+	public static byte[] serializeObject(Object o) {
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		try {
+			ObjectOutput out = new ObjectOutputStream(bos);
+			out.writeObject(o);
+			out.close();
+			// Get the bytes of the serialized object
+			byte[] buf = bos.toByteArray();
+			return buf;
+		} catch (IOException ioe) {
+			Logger.e("serializeObject", "error", ioe);
+		}
+		return null;
+	}
+
+	/**
+	 * 反序列化
+	 * 
+	 * @param b
+	 * @return
+	 */
+	public static Object deserializeObject(byte[] b) {
+		try {
+			ObjectInputStream in = new ObjectInputStream(
+					new ByteArrayInputStream(b));
+			Object object = in.readObject();
+			in.close();
+			return object;
+		} catch (ClassNotFoundException cnfe) {
+			Logger.e("deserializeObject", "class not found error", cnfe);
+			return null;
+		} catch (IOException ioe) {
+			Logger.e("deserializeObject", "io error", ioe);
+		}
+		return null;
 	}
 }

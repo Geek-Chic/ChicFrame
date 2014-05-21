@@ -97,6 +97,11 @@ public abstract class BaseTitleBarActivity extends BaseFrameActivity implements
 	public void setMiddleTitleDrawable(int id) {
 		mBasicTitleBar.setMiddleTitleDrawable(id);
 	}
+	
+	@Override
+	public void setMiddleTitleAndListener(int id, OnClickListener listener) {
+		mBasicTitleBar.setMiddleTitleAndListener(id, listener);
+	}
 
 	protected View getRightButton() {
 		return mTitleBar.getRightButton();

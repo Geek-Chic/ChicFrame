@@ -48,5 +48,9 @@ public class BaseTitleBar implements CommonTitleBarInterface{
 	public void setMiddleTitleDrawable(int id) {
 		mTitleBar.setTitleDrawable(id);
 	}
+	@Override
+	public void setMiddleTitleAndListener(int id, OnClickListener listener) {
+		mTitleBar.setMiddleTitle(id, listener);
+	}
 
 }

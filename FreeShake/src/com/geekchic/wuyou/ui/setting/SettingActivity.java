@@ -33,6 +33,14 @@ public class SettingActivity extends BaseTitleBarActivity implements OnClickList
 	 */
 	private View mAccountSettingView;
 	/**
+	 * 关于
+	 */
+	private View mAboutView;
+	/**
+	 * 反馈
+	 */
+	private View mFeedBackView;
+	/**
 	 * 登出
 	 */
 	private Button mLogout;
@@ -48,7 +56,7 @@ public class SettingActivity extends BaseTitleBarActivity implements OnClickList
 		
 	};
 	
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -59,6 +67,10 @@ public class SettingActivity extends BaseTitleBarActivity implements OnClickList
     	mAccountSettingView.setOnClickListener(this);
     	mLogout=(Button) findViewById(R.id.setting_logout);
     	mLogout.setOnClickListener(this);
+    	mAboutView=findViewById(R.id.setting_about);
+    	mAboutView.setOnClickListener(this);
+    	mFeedBackView=findViewById(R.id.setting_feedback);
+    	mFeedBackView.setOnClickListener(this);
     	
     }
 	@Override
@@ -69,6 +81,7 @@ public class SettingActivity extends BaseTitleBarActivity implements OnClickList
 	@Override
 	public boolean initializeTitlBar() {
 		setMiddleTitle(R.string.setting);
+		setTitleBarBackground(R.color.blue);
 		setLeftButton(R.drawable.icon_tab_metra_back_selector, mBackClickListener);
 		setTitleBarBackground(R.color.blue);
 		return true;
@@ -95,6 +108,12 @@ public class SettingActivity extends BaseTitleBarActivity implements OnClickList
            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
            startActivity(intent);
            finishAllAcitivity();
+		}else if(v.getId()==R.id.setting_about){
+			Intent intent=new Intent(AppAction.About.ACTION);
+			startActivity(intent);
+		}else if(v.getId()==R.id.setting_feedback){
+			Intent intent=new Intent(AppAction.FeekBack.ACTION);
+			startActivity(intent);
 		}
 	}
 

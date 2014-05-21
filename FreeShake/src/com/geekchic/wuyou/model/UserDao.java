@@ -35,7 +35,7 @@ public class UserDao extends BaseDaoImpl<UserInfo>{
 	        return sInstance;
 	    }
 	private  UserDao(Context context) {
-		super(new UserDaoHelper(context), UserInfo.class);
+		super(new WuyouDbHelper(context), UserInfo.class);
 	}
 
 }

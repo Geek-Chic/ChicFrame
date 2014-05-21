@@ -40,6 +40,12 @@ public interface CommonTitleBarInterface {
       */
      public void setMiddleTitle(String title);
      /**
+      * 设置title，并添加监听器
+      * @param id
+      * @param listener
+      */
+     public void setMiddleTitleAndListener(int id,OnClickListener listener);
+     /**
       * 设置Title资源
       * @param id
       */

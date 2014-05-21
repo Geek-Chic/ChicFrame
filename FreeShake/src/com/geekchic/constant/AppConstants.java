@@ -194,6 +194,14 @@ public class AppConstants {
 		 * 登出
 		 */
 		int WORKER_LOGOUT=6;
+		/**
+		 * 同步联系人
+		 */
+		int WORKER_CONTACT_SYNC=7;
+		/**
+		 * 反馈
+		 */
+		int WORKER_FEEDBACK=8;
 	}
 	/**
 	 * @ClassName: QUICKACTION
