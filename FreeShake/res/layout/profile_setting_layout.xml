@@ -122,15 +122,15 @@
                 android:gravity="center_vertical"
                 android:text="权限设置" />
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="14.0dip"
-                android:layout_height="14.0dip"
+            <TextView
+                android:id="@+id/profile_permission"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="8.0dip"
-                android:duplicateParentState="true"
-                android:src="@drawable/arrow_right_gray_white" />
+                android:text="Level1"
+                />
         </RelativeLayout>
 
         <RelativeLayout
@@ -152,7 +152,7 @@
         </RelativeLayout>
 
          <RelativeLayout
-            android:id="@+id/set_bind_account"
+            android:id="@+id/set_bind_mail"
             android:layout_width="fill_parent"
             android:layout_height="44.0dip"
             android:layout_marginTop="@dimen/margin_medium"
@@ -166,21 +166,19 @@
                 android:gravity="center_vertical"
                 android:text="邮箱：" />
 
-            <EditText
+            <TextView
+                android:id="@+id/set_bind_mail_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:background="@color/bg_color_white"
-                android:ems="10"
                 android:gravity="right"
-                android:hint="您的邮箱"
-                android:inputType="textEmailAddress"
                 />
         </RelativeLayout>
 
            <RelativeLayout
-            android:id="@+id/set_bind_account"
+            android:id="@+id/set_bind_qq"
             android:layout_width="fill_parent"
             android:layout_height="44.0dip"
             android:background="@drawable/common_strip_setting_bottom" >
@@ -193,21 +191,19 @@
                 android:gravity="center_vertical"
                 android:text="QQ号" />
 
-            <EditText
+               <TextView
+                android:id="@+id/set_bind_qq_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:background="@color/bg_color_white"
-                android:ems="10"
                 android:gravity="right"
-                android:hint="您的QQ号"
-                android:inputType="number"
                 />
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/set_bind_account"
+            android:id="@+id/set_bind_tag"
             android:layout_width="fill_parent"
             android:layout_height="44.0dip"
             android:background="@drawable/common_strip_setting_bottom" >
@@ -220,15 +216,14 @@
                 android:gravity="center_vertical"
                 android:text="喜好标签" />
 
-            <EditText
+            <TextView
+                android:id="@+id/set_bind_tag_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:background="@color/bg_color_white"
-                android:ems="10"
                 android:gravity="right"
-                android:hint="您的的喜好标签"
                 />
         </RelativeLayout>
     </LinearLayout>

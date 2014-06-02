@@ -25,43 +25,51 @@ public class FuzzySearchDialog {
 	/**
 	 * 上下文
 	 */
-  private Context mContext;
-  /**
-   * RootView
-   */
-  private View mRootView;
-  /**
-   * 模糊查找Dialog
-   */
-  private BasicDialog mFuzzySearchBasicDialog;
-  /**
-   * FuzzySearchDialog构造函数
-   * @param context
-   */
-  public FuzzySearchDialog(Context context){
-	  this.mContext=context;
-	  initView();
-  }
-  private void initView(){
-	  LayoutInflater inflater=LayoutInflater.from(mContext);
-	  mRootView=inflater.inflate(R.layout.fuzzy_search_dialog, null);
-  }
-  public FuzzySearchDialog create(){
-	  mFuzzySearchBasicDialog=new BasicDialog(mContext, R.style.AppDialog);
-	  mFuzzySearchBasicDialog.setContentView(mRootView);
-	  return this;
-  }
-  /**
-   * 显示对话框 
-   */
-  public void show(){
-	  mFuzzySearchBasicDialog.show();
-  }
-  /**
-   * 隐藏对话框
-   */
-  public void dismiss(){
-	  mFuzzySearchBasicDialog.dismiss();
-  }
-  
+	private Context mContext;
+	/**
+	 * RootView
+	 */
+	private View mRootView;
+	/**
+	 * 模糊查找Dialog
+	 */
+	private BasicDialog mFuzzySearchBasicDialog;
+
+	/**
+	 * FuzzySearchDialog构造函数
+	 * 
+	 * @param context
+	 */
+	public FuzzySearchDialog(Context context) {
+		this.mContext = context;
+		initView();
+	}
+
+	private void initView() {
+		LayoutInflater inflater = LayoutInflater.from(mContext);
+		mRootView = inflater.inflate(R.layout.fuzzy_search_dialog, null);
+	}
+
+	public FuzzySearchDialog create() {
+		mFuzzySearchBasicDialog = new BasicDialog.Builder(mContext)
+				.setContentView(R.layout.fuzzy_search_dialog)
+				.setTitle(R.string.dlg_fuzzy_search)
+				.create();
+		return this;
+	}
+
+	/**
+	 * 显示对话框
+	 */
+	public void show() {
+		mFuzzySearchBasicDialog.show();
+	}
+
+	/**
+	 * 隐藏对话框
+	 */
+	public void dismiss() {
+		mFuzzySearchBasicDialog.dismiss();
+	}
+
 }

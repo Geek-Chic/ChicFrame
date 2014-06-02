@@ -69,7 +69,7 @@
     </style>
     <!-- 通用Button -->
     <style name="Widget.CustomButton" parent="@android:style/Widget.Button">
-        <item name="android:background">@drawable/bg_common_btn_brown_selector</item>
+        <item name="android:background">@drawable/bg_common_btn_blue_selector</item>
         <item name="android:paddingLeft">@dimen/margin_large</item>
         <item name="android:paddingRight">@dimen/margin_large</item>
         <item name="android:textColor">@color/font_color_white</item>
@@ -118,14 +118,13 @@
         <item name="android:activityCloseExitAnimation">@anim/transitions_translucent_zoom_exit</item>
     </style>
     <!-- 对话框按钮 -->
-    <style name="dialog_button_style">
-        <item name="android:layout_width">wrap_content</item>
+    <style name="dialog_button_style" parent="@style/Widget.CustomButton">
+        <item name="android:layout_width">0dip</item>
         <item name="android:layout_height">40dip</item>
         <item name="android:layout_weight">1</item>
         <item name="android:textColor">#ffffff</item>
         <item name="android:textSize">@dimen/font_size_medium</item>
         <item name="android:gravity">center</item>
-        <item name="android:background">@drawable/bg_common_btn_blue_selector</item>
     </style>
     <!-- 启动画面 -->
       <style name="AppStart" parent="android:style/Theme.NoTitleBar">
@@ -138,6 +137,11 @@
       	<style name="PopupAnimation.RightToLeft">
 		<item name="@android:windowEnterAnimation">@anim/transitions_slide_in_right</item>
 		<item name="@android:windowExitAnimation">@anim/transitions_slide_out_right</item>
+	</style>
+	<!-- 向上出现，向下退出动画 -->
+	<style name="dialog_animn_from_top_sytle" parent="android:Animation">
+	     <item name="@android:windowEnterAnimation">@anim/transitions_slide_in_up</item>
+        <item name="@android:windowExitAnimation">@anim/transitions_slide_out_down</item>
 	</style>
 	<!-- 标题字体 -->
 	<style name="title_style">

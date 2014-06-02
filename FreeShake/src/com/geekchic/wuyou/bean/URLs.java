@@ -24,7 +24,7 @@ public final class URLs {
 	/**
 	 * 主机位置
 	 */
-	public static final String LOCAL_HOST = "192.168.56.254/wuyou";
+	public static final String LOCAL_HOST = "192.168.1.104/wuyou";
 	public static final String VPS_HOST="evilester.hk.7encc.com/wuyou";
 	public static final String HOST=LOCAL_HOST;
 	/**
@@ -41,9 +41,22 @@ public final class URLs {
 	
 	public final static String CONTACT_SYNC=HTTP+HOST+URL_SPLITTER+"contact/sync/ApiSync";
 	/**
+	 * 个人资料
+	 */
+	public final static String PROFILE_UPAVATOR_UPL=HTTP+HOST+URL_SPLITTER+"user/profile/apiavator";
+	public final static String PROFILE_SET_AVATOR=HTTP+HOST+URL_SPLITTER+"user/profile/apiupdateavator";
+	/**
 	 * 反馈
 	 */
 	public final static String FEEDBACK=HTTP+HOST+URL_SPLITTER+"user/feedback/ApiFeedback";
+	/**
+	 * 图片头像
+	 */
+	public final static String AICON=HTTP+HOST+URL_SPLITTER+"uploads/avators/";
+	/**
+	 * 项目
+	 */
+	public final static String PROJECT_CREATE=HTTP+HOST+URL_SPLITTER+"";
 	/**
 	 * .Net接口
 	 */

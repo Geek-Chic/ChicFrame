@@ -300,7 +300,6 @@ public class HttpConnector {
 				+ Base64.encodeToString(sb.toString().getBytes(),
 						Base64.NO_WRAP);
 	}
-
 	private static SSLSocketFactory sAllHostsValidSocketFactory;
 
 	private static SSLSocketFactory getAllHostsValidSocketFactory()

@@ -20,7 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.geekchic.common.utils.StringUtil;
+import com.geekchic.common.utils.StringUtils;
 import com.geekchic.common.utils.ToastUtil;
 import com.geekchic.constant.AppActionCode;
 import com.geekchic.framework.ui.BaseFrameFragment;
@@ -101,7 +101,7 @@ public class RegisterStepTwoFragment extends BaseFrameFragment implements
 
 		@Override
 		public void afterTextChanged(Editable s) {
-			if (!StringUtil.isNullOrEmpty(mCaptcha)
+			if (!StringUtils.isNullOrEmpty(mCaptcha)
 					&& s.toString().equals(mCaptcha)) {
 				stopCountDown();
 				tempPhone=mPhoneEditText.getText().toString().trim();
@@ -169,7 +169,7 @@ public class RegisterStepTwoFragment extends BaseFrameFragment implements
 		if (v.getId() == R.id.register_verification_btn) {
 			if (!isVerficated) {
 				String phone = mPhoneEditText.getText().toString().trim();
-				if (!StringUtil.isNullOrEmpty(phone)) {
+				if (!StringUtils.isNullOrEmpty(phone)) {
 					startCountDown();
 					mIRegistrationLogic.getCaptcha(phone);
 				} else {

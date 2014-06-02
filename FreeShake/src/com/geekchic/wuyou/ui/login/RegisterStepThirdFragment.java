@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.geekchic.common.utils.StringUtil;
+import com.geekchic.common.utils.StringUtils;
 import com.geekchic.constant.AppActionCode;
 import com.geekchic.constant.AppConfig;
 import com.geekchic.framework.ui.BaseFrameFragment;
@@ -86,12 +86,12 @@ public class RegisterStepThirdFragment extends BaseFrameFragment implements OnCl
     }
 	private void doRegister(){
 		String trueName=mTrueNameEditText.getText().toString().trim();
-		if(StringUtil.isNullOrEmpty(trueName)){
+		if(StringUtils.isNullOrEmpty(trueName)){
 			showShortToast(R.string.register_error_name);
 			return;
 		}
 		String password=mPasswordEditText.getText().toString().trim();
-		if(StringUtil.isNullOrEmpty(password)){
+		if(StringUtils.isNullOrEmpty(password)){
 			showShortToast(R.string.register_error_password);
 			return;
 		}

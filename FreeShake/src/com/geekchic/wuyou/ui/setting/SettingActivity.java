@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-import com.geekchic.common.utils.PreferencesUtil;
+import com.geekchic.common.utils.PreferencesUtils;
 import com.geekchic.constant.AppAction;
 import com.geekchic.constant.AppConfig;
 import com.geekchic.constant.AppConstants.Common;
@@ -91,8 +91,8 @@ public class SettingActivity extends BaseTitleBarActivity implements OnClickList
 	 */
 	private void logOut(){
 		//清除 userid和 sessionid
-        PreferencesUtil.setAttr(Common.KEY_USER_ID, "");
-        PreferencesUtil.setAttr(Common.KEY_SESSION_ID, "");
+        PreferencesUtils.setAttr(Common.KEY_USER_ID, "");
+        PreferencesUtils.setAttr(Common.KEY_SESSION_ID, "");
         //清除账户信息
         AppConfig.getInstance().setSessionId("");
         AppConfig.getInstance().setUid("");

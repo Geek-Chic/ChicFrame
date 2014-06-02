@@ -12,13 +12,13 @@ import android.os.Bundle;
 import com.geekchic.wuyou.GlobalEnv.Common;
 
 
-public class PreferencesUtil
+public class PreferencesUtils
 {
     
     /**
      * PreferencesUtil单例对象
      */
-    private static PreferencesUtil mInstance;
+    private static PreferencesUtils mInstance;
     
     /**
      * Context对象
@@ -33,7 +33,7 @@ public class PreferencesUtil
     /**
      * 构造器
      */
-    private PreferencesUtil()
+    private PreferencesUtils()
     {
         if (mContext == null)
         {
@@ -74,11 +74,11 @@ public class PreferencesUtil
      * 获取PreferencesUtil单例对象<BR>
      * @return 返回PreferencesUtil对象
      */
-    private static PreferencesUtil getInstance()
+    private static PreferencesUtils getInstance()
     {
         if (mInstance == null)
         {
-            mInstance = new PreferencesUtil();
+            mInstance = new PreferencesUtils();
         }
         return mInstance;
     }

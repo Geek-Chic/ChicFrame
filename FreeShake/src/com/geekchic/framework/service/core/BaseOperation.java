@@ -10,12 +10,15 @@ package com.geekchic.framework.service.core;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import android.content.Context;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import com.geekchic.common.utils.PreferencesUtils;
 import com.geekchic.constant.AppConstants;
+import com.geekchic.constant.AppConstants.Common;
 import com.geekchic.framework.bean.HttpRequestBean;
 import com.geekchic.framework.bean.HttpRequestBean.Method;
 import com.geekchic.framework.network.HttpConnector;
@@ -103,5 +106,19 @@ public abstract class BaseOperation implements Parser,Operation {
 	}
        throw new DataException(errorMessage);
     }
+    /**
+     * 初始化参数
+     * @return
+     */
+    protected HashMap<String,String> getParamMap() {
+		HashMap<String,String> params=new HashMap<String, String>();
+		String uuid=PreferencesUtils.getAttrString(AppConstants.Common.KEY_USER_ID);
+		String sessionid=PreferencesUtils.getAttrString(AppConstants.Common.KEY_SESSION_ID);
+		String pushid=PreferencesUtils.getAttrString(Common.PUSH_BIND_FLAG);
+		params.put("uuid", uuid);
+		params.put("sessionid", sessionid);
+		params.put("pushid",pushid);
+		return params;
+	}
     
 }

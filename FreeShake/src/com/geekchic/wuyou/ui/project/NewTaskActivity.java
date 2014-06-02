@@ -87,7 +87,7 @@ public class NewTaskActivity extends BaseTitleBarActivity implements
 
 	@Override
 	public boolean initializeTitlBar() {
-		setMiddleTitle("新建Task");
+		setMiddleTitle("新建任务");
 		setLeftButton(R.drawable.icon_tab_metra_back_selector,
 				mBackClickListener);
 		setRightButton(R.drawable.icon_tab_metra_add_selector,

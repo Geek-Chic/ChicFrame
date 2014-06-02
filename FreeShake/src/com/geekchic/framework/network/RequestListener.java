@@ -1,7 +1,7 @@
 /**
  * @Title: RequestListener.java
  * @Package com.geekchic.framework.network
- * @Description: [用一句话描述做什么]
+ * @Description: 网络请求监听器
  * @author: evil
  * @date: May 2, 2014
  * Copyright (c) 2014,Evilester All Rights Reserved. 

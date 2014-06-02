@@ -22,7 +22,7 @@ import com.geekchic.common.log.Logger;
 
 import android.text.TextUtils;
 
-public class StringUtil {
+public class StringUtils {
    private static final String TAG="StringUtil";
 	/**
 	 * 手机号码 正则验证
@@ -434,7 +434,7 @@ public class StringUtil {
 	 */
 	public static List<String> parseStringToList(String srcString, String split) {
 		List<String> list = null;
-		if (!StringUtil.isNullOrEmpty(srcString)) {
+		if (!StringUtils.isNullOrEmpty(srcString)) {
 			if (split == null) {
 				split = ",";
 			}
@@ -769,7 +769,7 @@ public class StringUtil {
 	 * @return 拼装后的电话号码
 	 */
 	public static String fixPortalPhoneNumber(String number) {
-		if (StringUtil.isNullOrEmpty(number)) {
+		if (StringUtils.isNullOrEmpty(number)) {
 			return number;
 		}
 
@@ -921,7 +921,7 @@ public class StringUtil {
 	 * @return 是否包含中文
 	 */
 	public static boolean containChinese(String string) {
-		if (StringUtil.isNullOrEmpty(string)) {
+		if (StringUtils.isNullOrEmpty(string)) {
 			return false;
 		} else {
 			for (char ch : string.toCharArray()) {

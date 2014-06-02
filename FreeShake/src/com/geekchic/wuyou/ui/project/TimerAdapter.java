@@ -19,7 +19,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.geekchic.common.utils.DateUtil;
-import com.geekchic.common.utils.StringUtil;
+import com.geekchic.common.utils.StringUtils;
 import com.geekchic.constant.AppAction.Timer;
 import com.geekchic.wuyou.R;
 
@@ -76,7 +76,7 @@ public class TimerAdapter extends BaseAdapter {
 		com.geekchic.wuyou.bean.Timer timer=timerList.get(position);
 		viewHolder.mNameTextView.setText(timer.name);
 		viewHolder.mTimeTextView.setText(DateUtil.getTime(timer.time));
-		if(!StringUtil.isNullOrEmpty(timer.note)){
+		if(!StringUtils.isNullOrEmpty(timer.note)){
 			viewHolder.mNoteTextView.setText(timer.note);
 		}
 		return convertView;

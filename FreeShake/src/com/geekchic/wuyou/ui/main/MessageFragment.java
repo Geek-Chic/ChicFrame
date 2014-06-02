@@ -12,15 +12,19 @@ import java.util.List;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.geekchic.framework.ui.BaseFrameFragment;
+import com.geekchic.framework.ui.dialog.BasicDialog;
 import com.geekchic.wuyou.R;
 import com.geekchic.wuyou.bean.MessageItem;
 import com.geekchic.wuyou.model.MessageItemDao;
@@ -49,6 +53,21 @@ public class MessageFragment extends BaseFrameFragment{
     * 消息Adapter
     */
    private MessageAdapter mMessageAdapter;
+   private OnItemClickListener mMessageClickListener=new OnItemClickListener() {
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
+//		FriendAuthDialog friendAuthDialog=new FriendAuthDialog(getActivity());
+//		friendAuthDialog=friendAuthDialog.create();
+//		friendAuthDialog.show();
+		BasicDialog basicDialog = new BasicDialog.Builder(getActivity())
+		.setContentView(R.layout.friend_info_dialog)
+		.setTitle("成功获取新好友")
+		.create();
+basicDialog.show();
+	}
+};
    @Override
 public View onCreateView(LayoutInflater inflater, ViewGroup container,
 		Bundle savedInstanceState) {
@@ -59,14 +78,16 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	return view;
 }
 	private void initView(View view) {
-	mPullToRefreshListView=(PullToRefreshListView) view.findViewById(R.id.message_listview);
+	mPullToRefreshListView=(PullToRefreshListView) view.findViewById(R.id.message_refersh_layout);
 	mMessageListView=mPullToRefreshListView.getRefreshableView();
+	mMessageListView.setOnItemClickListener(mMessageClickListener);
 	
 } 
 	private void initData(){
 		mMessageItems=MessageItemDao.getInstance(getActivity()).find();
 		MessageItem messageItem=new MessageItem();
-		messageItem.setMessage("xx要加您为好友");
+		messageItem.setMessage("蒋鹏已确认加您为好友，点击可查看对方信息");
+		messageItem.setMsgtype(0);
 		mMessageItems.add(messageItem);
 		mMessageAdapter=new MessageAdapter(getActivity(), mMessageItems);
 	    mMessageListView.setAdapter(mMessageAdapter);
@@ -126,6 +147,13 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				viewHolder=(ViewHolder) convertView.getTag();
 			}
 			viewHolder.mContenTextView.setText(messageItems.get(position).getMessage());
+			if(messageItems.get(position).getMsgtype()==0){
+				viewHolder.mTitleTextView.setText("新好友通知");
+			}else if(messageItems.get(position).getMsgtype()==1){
+				viewHolder.mTitleTextView.setText("新任务通知");
+			}else {
+				viewHolder.mTitleTextView.setText("好友确认通知");
+			}
 			return convertView;
 		}
 		/**

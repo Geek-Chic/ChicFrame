@@ -21,7 +21,7 @@ import android.os.Bundle;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.geekchic.common.log.Logger;
-import com.geekchic.common.utils.PreferencesUtil;
+import com.geekchic.common.utils.PreferencesUtils;
 import com.geekchic.constant.AppConfig;
 import com.geekchic.constant.AppConstants.Common;
 import com.geekchic.constant.AppConstants.RequestCode;
@@ -37,12 +37,15 @@ import com.geekchic.framework.network.exception.DataException;
 import com.geekchic.framework.service.core.BaseOperation;
 import com.geekchic.framework.service.core.BaseRequestService;
 import com.geekchic.framework.service.core.Operation;
+import com.geekchic.operation.AvatorOperation;
 import com.geekchic.operation.ContactLocalSearchOperation;
 import com.geekchic.operation.ContactOperation;
+import com.geekchic.operation.CreateProjectOperation;
 import com.geekchic.operation.FeedBackOperation;
 import com.geekchic.operation.GetCaptchaOperation;
 import com.geekchic.operation.LogoutOperation;
 import com.geekchic.operation.RegisterOperation;
+import com.geekchic.operation.SetAvatorOperation;
 import com.geekchic.operation.SyncContactOperation;
 import com.geekchic.wuyou.bean.URLs;
 
@@ -59,7 +62,6 @@ public class RequestService extends BaseRequestService {
 		Operation operation = null;
 		switch (requestType) {
 		case SERVICEWORK.WORKER_LOGIN:
-			// operation=new LoginOperation();
 			operation = new LoginOperation();
 			break;
 		case SERVICEWORK.WORKER_REGISTER:
@@ -82,6 +84,15 @@ public class RequestService extends BaseRequestService {
 			break;
 		case SERVICEWORK.WORKER_FEEDBACK:
 			operation=new FeedBackOperation();
+			break;
+		case SERVICEWORK.PROFILE_UPAVATOR:
+			operation=new AvatorOperation();
+			break;
+		case SERVICEWORK.PROFILE_SET_AVATORID:
+			operation=new SetAvatorOperation();
+			break;
+		case SERVICEWORK.PROJECT_CREATE:
+			operation=new CreateProjectOperation();
 			break;
 		default:
 			break;
@@ -114,8 +125,8 @@ public class RequestService extends BaseRequestService {
 			if (0 == code) {
 				String sessionid = json.getString("sessionid");
 				String uuid=json.getString("uuid");
-				PreferencesUtil.setAttr(Common.KEY_SESSION_ID, sessionid);
-				PreferencesUtil.setAttr(Common.KEY_USER_ID, uuid);
+				PreferencesUtils.setAttr(Common.KEY_SESSION_ID, sessionid);
+				PreferencesUtils.setAttr(Common.KEY_USER_ID, uuid);
 				AppConfig.getInstance().setSessionId(sessionid);
 				AppConfig.getInstance().setUid(uuid);
 				Logger.d(TAG, uuid);

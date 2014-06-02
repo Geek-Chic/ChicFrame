@@ -3,7 +3,11 @@ package com.geekchic.framework.ui.dialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 
 import com.geekchic.wuyou.R;
 
@@ -17,7 +21,7 @@ public class BasicDialog extends Dialog
      */
     public BasicDialog(Context context)
     {
-        super(context, 0);
+        super(context, R.style.AppDialog);
     }
     /**
      * 构造函数
@@ -44,12 +48,51 @@ public class BasicDialog extends Dialog
         setCanceledOnTouchOutside(cancelable);
         mCancelable=cancelable;
     }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+    	super.onCreate(savedInstanceState);
+    	mDialogController.initView();
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_MENU)
+        {
+            // 屏蔽Menu键
+            return true;
+        }
+        else if ((keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_SEARCH)
+                && !mCancelable)
+        {
+            // 如果是返回键或搜索键，并且设置了不可取消，则返回不再处理
+            return true;
+        }
+        
+        return super.onKeyDown(keyCode, event);
+    }
+    /**
+     * @ClassName: OnCheckStateChangeListener
+     * @Descritpion: 多选状态监听器
+     * @author evil
+     * @date May 30, 2014
+     */
+    public interface OnCheckStateChangeListener
+    {
+         /**
+          * 多选状态监听器
+          * @param which
+          * @param isChecked
+          */
+        public void onCheckedChanged(int which, boolean isChecked);
+    }
     /**
      * 获取自定义视图
      * @return
      */
     public View getContentView(){
     	return mDialogController.getContentView();
+    }
+    public ListView getListView(){
+    	return mDialogController.getListView();
     }
     public static class Builder{
     	/**
@@ -117,6 +160,19 @@ public class BasicDialog extends Dialog
     		params.mCustomViewID=viewID;
     		return this;
     	}
+        /**
+         * 设置listview的adapter<BR>
+         * @param adapter listview的adapter
+         * @param listener listview的点击事件监听
+         * @return builder
+         */
+        public Builder setAdapter(final ListAdapter adapter,
+                DialogInterface.OnClickListener listener)
+        {
+            params.mAdapter = adapter;
+            params.mOnClickListener = listener;
+            return this;
+        }
     	/**
     	 * 创建确定按钮
     	 * @param positiveButtonText
@@ -183,5 +239,5 @@ public class BasicDialog extends Dialog
         	return dialog;
         }
     }
-    
+   
 }

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.os.Bundle;
 
-import com.geekchic.common.utils.StringUtil;
+import com.geekchic.common.utils.StringUtils;
 import com.geekchic.constant.AppConstants.RequestCode;
 import com.geekchic.framework.bean.Request;
 import com.geekchic.framework.network.exception.ConnectionException;
@@ -61,10 +61,10 @@ public class ContactLocalSearchOperation extends BaseOperation {
         //遍历所有联系人数组,筛选出包含关键字的联系人
         for (Contact person:contacts) {  
             //过滤的条件
-              if (  StringUtil.isStrInString(person.searchPhone, key)
-            		||StringUtil.isStrInString(person.pY,key)
+              if (  StringUtils.isStrInString(person.searchPhone, key)
+            		||StringUtils.isStrInString(person.pY,key)
             		||person.name.contains(key)
-            		||StringUtil.isStrInString(person.fisrtSpell,key)){
+            		||StringUtils.isStrInString(person.fisrtSpell,key)){
                 //将筛选出来的联系人重新添加到filterpersons数组中
             	  Contact filterperson = new Contact();
             	filterperson.name = person.name;

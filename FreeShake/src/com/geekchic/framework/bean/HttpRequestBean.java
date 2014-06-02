@@ -81,6 +81,18 @@ public class HttpRequestBean {
 	 * 是否支持SSL
 	 */
 	private boolean mIsSslValidationEnabled = true;
+	/**
+	 * 服务期端最后被修改的时间
+	 */
+	   private String lastModified;
+	   /**
+	    *  ETag是一个可以与Web资源关联的记号（token）,Etag主要在断点下载时比较有用。
+	    */
+	   private String etag;
+	   /**
+	    * 本地数据
+	    */
+	   private String localData;
 
 	/**
 	 * HttpBean构造函数
@@ -241,6 +253,30 @@ public class HttpRequestBean {
 	 */
 	public boolean isSslValidationEnabled() {
 		return mIsSslValidationEnabled;
+	}
+    
+	public String getLastModified() {
+		return lastModified;
+	}
+
+	public void setLastModified(String lastModified) {
+		this.lastModified = lastModified;
+	}
+
+	public String getEtag() {
+		return etag;
+	}
+
+	public void setEtag(String etag) {
+		this.etag = etag;
+	}
+
+	public String getLocalData() {
+		return localData;
+	}
+
+	public void setLocalData(String localData) {
+		this.localData = localData;
 	}
 
 	/**

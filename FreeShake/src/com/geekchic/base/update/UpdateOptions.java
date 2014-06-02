@@ -8,7 +8,7 @@
  */
 package com.geekchic.base.update;
 
-import com.geekchic.common.utils.PreferencesUtil;
+import com.geekchic.common.utils.PreferencesUtils;
 import com.geekchic.constant.AppConfig;
 
 import android.content.Context;

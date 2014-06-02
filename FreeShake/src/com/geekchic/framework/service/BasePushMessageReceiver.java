@@ -15,7 +15,7 @@ import android.util.Log;
 
 import com.baidu.frontia.api.FrontiaPushMessageReceiver;
 import com.geekchic.common.log.Logger;
-import com.geekchic.common.utils.PreferencesUtil;
+import com.geekchic.common.utils.PreferencesUtils;
 import com.geekchic.constant.AppConfig;
 import com.geekchic.constant.AppConstants.Common;
 
@@ -82,7 +82,7 @@ public abstract class BasePushMessageReceiver extends FrontiaPushMessageReceiver
 				+ " requestId=" + requestId;
 		Logger.d(TAG, responseString);
           if(errorCode==0){
-        	  PreferencesUtil.setAttr(Common.PUSH_BIND_FLAG,true);
+        	  PreferencesUtils.setAttr(Common.PUSH_BIND_FLAG,true);
         	  AppConfig.getInstance().setChannelId(channelId);
         	  AppConfig.getInstance().setPushUid(userId);
           }
@@ -206,7 +206,7 @@ public abstract class BasePushMessageReceiver extends FrontiaPushMessageReceiver
 				+ " requestId = " + requestId;
 		Logger.d(TAG, responseString);
 		if(errorCode==0){
-			PreferencesUtil.setAttr(Common.PUSH_BIND_FLAG, false);
+			PreferencesUtils.setAttr(Common.PUSH_BIND_FLAG, false);
 		}
 	}
 	

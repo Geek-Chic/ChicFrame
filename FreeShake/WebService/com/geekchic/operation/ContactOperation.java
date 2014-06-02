@@ -24,7 +24,7 @@ import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.RawContacts.Data;
 
 import com.geekchic.common.utils.PinyinUtils;
-import com.geekchic.common.utils.StringUtil;
+import com.geekchic.common.utils.StringUtils;
 import com.geekchic.constant.AppConstants;
 import com.geekchic.framework.bean.Request;
 import com.geekchic.framework.network.exception.ConnectionException;
@@ -91,7 +91,7 @@ public class ContactOperation extends BaseOperation {
 				person.fisrtSpell = PinyinUtils.getFirstSpell(person.name).trim();
 				String tPhone=cursor.getString(phoneColumn).trim();
 				person.phone.add(tPhone);
-				if(!StringUtil.isNullOrEmpty(person.uuid)){
+				if(!StringUtils.isNullOrEmpty(person.uuid)){
 					continue;
 				}
 				for(Contact reg:regLists){

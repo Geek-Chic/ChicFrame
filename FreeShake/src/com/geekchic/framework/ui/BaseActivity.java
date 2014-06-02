@@ -29,7 +29,7 @@ import com.baidu.location.LocationClientOption;
 import com.geekchic.BaseApplication;
 import com.geekchic.common.log.Logger;
 import com.geekchic.common.utils.DisplayInfo;
-import com.geekchic.common.utils.PreferencesUtil;
+import com.geekchic.common.utils.PreferencesUtils;
 import com.geekchic.constant.AppConfig;
 import com.geekchic.constant.AppConstants.Common;
 import com.geekchic.constant.AppManager;
@@ -102,9 +102,9 @@ public class BaseActivity extends FragmentActivity {
 	 */
 	private void initData() {
 		AppConfig.getInstance().setSessionId(
-				PreferencesUtil.getAttrString(Common.KEY_SESSION_ID));
+				PreferencesUtils.getAttrString(Common.KEY_SESSION_ID));
 		AppConfig.getInstance().setUid(
-				PreferencesUtil.getAttrString(Common.KEY_USER_ID));
+				PreferencesUtils.getAttrString(Common.KEY_USER_ID));
 	}
 
 	/**
@@ -151,7 +151,7 @@ public class BaseActivity extends FragmentActivity {
 	 *            登陆后纪录sessionid来判断是否登陆
 	 */
 	protected void setLogined(String sessionid) {
-		PreferencesUtil.setAttr(Common.KEY_SESSION_ID, sessionid);
+		PreferencesUtils.setAttr(Common.KEY_SESSION_ID, sessionid);
 	}
 
 	@Override
@@ -350,7 +350,7 @@ public class BaseActivity extends FragmentActivity {
 		if (!pushFlag) {
 			PushManager.startWork(getApplicationContext(),
 					PushConstants.LOGIN_TYPE_API_KEY,
-					PreferencesUtil.getMetaValue(this, "api_key"));
+					PreferencesUtils.getMetaValue(this, "api_key"));
 		}
 	}
 	/**

@@ -55,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:text="用户"
+                android:text="组员"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/tast_add_sub_text" />
 

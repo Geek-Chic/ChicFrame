@@ -46,7 +46,7 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 
 import com.geekchic.common.utils.DisplayInfo;
-import com.geekchic.common.utils.StringUtil;
+import com.geekchic.common.utils.StringUtils;
 import com.geekchic.constant.AppConfig;
 import com.geekchic.constant.AppConstants;
 import com.geekchic.framework.ui.titlebar.BaseTitleBarActivity;
@@ -228,6 +228,16 @@ public class ChatActivity extends BaseTitleBarActivity implements
 
 	private void loadData() {
 		mMessageItems=MessageItemDao.getInstance(this).find();
+		MessageItem item=new MessageItem();
+		item.setMessage("你好！");
+		item.setTime(System.currentTimeMillis());
+		item.setIsComMsg(1);
+		mMessageItems.add(item);
+		MessageItem item2=new MessageItem();
+		item2.setMessage("你好！Metoo");
+		item2.setTime(System.currentTimeMillis());
+		item2.setIsComMsg(0);
+		mMessageItems.add(item2);		
 		mMessageAdapter=new MessageAdapter(this, mMessageItems);
 		mMessageListView.setSelection(mMessageAdapter.getCount() - 1);
 		mMessageListView.setAdapter(mMessageAdapter);
@@ -486,7 +496,7 @@ public class ChatActivity extends BaseTitleBarActivity implements
 			}
 		} else if (v.getId() == R.id.chat_send_btn) {
 			String sendText = mChatEditText.getText().toString();
-			if (!StringUtil.isNullOrEmpty(sendText)) {
+			if (!StringUtils.isNullOrEmpty(sendText)) {
 
 			}
 		}

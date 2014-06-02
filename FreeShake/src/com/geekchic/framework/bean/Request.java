@@ -202,6 +202,11 @@ public class Request implements Parcelable {
 		mBundle.putCharSequence(name, value);
 		return this;
 	}
+	public Request putByteArray(String name,byte[] bytes){
+		removeFromRequestData(name);
+		mBundle.putByteArray(name, bytes);
+		return this;
+	}
 
 	public Request putList(String name, ArrayList<? extends Parcelable> value) {
 		removeFromRequestData(name);
@@ -466,7 +471,9 @@ public class Request implements Parcelable {
 	public CharSequence getCharSequence(String name) {
 		return mBundle.getCharSequence(name);
 	}
-
+      public byte[] getByteArray(String name){
+    	  return mBundle.getByteArray(name);
+      }
 	/**
 	 * Returns the value associated with the given name, or null if no mapping
 	 * of the desired type exists for the given name.

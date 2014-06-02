@@ -119,4 +119,34 @@ public interface AppActionCode {
 	    */
 	   int FEED_BACK_FAILED=BASE+2;
    }
+   public interface ProfileCode{
+	   /**
+	    * ContactsCode基数
+	    */
+	   int BASE=0x15000000;
+	   /**
+	    * 上传头像成功
+	    */
+	   int PROFILE_AVATOR_SUCCESS=BASE+1;
+	   /**
+	    * 上传头像失败
+	    */
+	   int PROFILE_AVATOR_FAILED=BASE+2;
+	   /**
+	    * 设置头像ID成功
+	    */
+	   int PROFILE_AVATORID_SUCCESS=BASE+3;
+	   /**
+	    * 设置头像ID失败
+	    */
+	   int PROFILE_AVATORID_FAILED=BASE+4;
+	   /**
+	    * 检查更新获取成功
+	    */
+	   int PROFILE_UPDATE_SUCCESS=BASE+3;
+	   /**
+	    * 检查更新获取失败 
+	    */
+	   int PROFILE_UPDATE_FAILED=BASE+4;
+   }
 }

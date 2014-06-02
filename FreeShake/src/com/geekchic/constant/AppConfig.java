@@ -11,6 +11,8 @@ package com.geekchic.constant;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import android.content.Context;
+
 import com.geekchic.wuyou.R;
 
 
@@ -35,6 +37,7 @@ public class AppConfig
      * 日志记录位置
      */
     private boolean isDebug=AppConstants.ISDEBUG_DEBUG_BUILD_VALUE;
+
     /**
      * 登陆后返回的session
      */
@@ -249,7 +252,7 @@ public class AppConfig
 		mFaceMap.put("[右太极]", R.drawable.f105);
 		mFaceMap.put("[闭嘴]", R.drawable.f106);
 	}
-
+ 
    
 //    /**
 //     * 是否打印日志

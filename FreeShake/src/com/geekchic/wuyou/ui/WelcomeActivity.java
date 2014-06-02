@@ -12,7 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
 
-import com.geekchic.common.utils.PreferencesUtil;
+import com.geekchic.common.utils.PreferencesUtils;
 import com.geekchic.constant.AppAction.LoginAction;
 import com.geekchic.constant.AppAction.MainAction;
 import com.geekchic.constant.AppAction.NavAction;
@@ -36,7 +36,7 @@ public class WelcomeActivity extends BaseFrameActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.welcome);
 		bindPush(false);
-		boolean nav = PreferencesUtil
+		boolean nav = PreferencesUtils
 				.getAttrBoolean(AppConstants.Common.NAV_HAS_SHOW);
 		if (nav) {
 			login();

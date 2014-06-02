@@ -1,5 +1,7 @@
 package com.geekchic.constant;
 
+import android.content.Context;
+
 public class AppConstants {
 	public static final int LOG_LEVEL_ERROR = 4;
 	public static final int LOG_LEVEL_WARN = 3;
@@ -24,7 +26,11 @@ public class AppConstants {
 	 * 每页表情数量，加最后一个删除
 	 */
 	public static int NUM = 20;
-
+	/**
+	 * 文件SD缓存地址
+	 */
+	private static final String SDCARD_FILE_ROOT = "/%packagename%/";
+    
 	/**
 	 * 一些公共信息
 	 */
@@ -37,12 +43,12 @@ public class AppConstants {
 		/**
 		 * shared preference 键 存储当前登录userId
 		 */
-		String KEY_USER_ID = "userId";
+		String KEY_USER_ID = "uuid";
 
 		/**
 		 * shared preference 键 标识是否登录状态
 		 */
-		String KEY_SESSION_ID = "sessionId";
+		String KEY_SESSION_ID = "sessionid";
 
 		/**
 		 * 推送绑定flag，避免重复绑定
@@ -202,6 +208,22 @@ public class AppConstants {
 		 * 反馈
 		 */
 		int WORKER_FEEDBACK=8;
+		/**
+		 * 上传头像
+		 */
+		int PROFILE_UPAVATOR=9;
+		/**
+		 * 设置头像ID
+		 */
+		int PROFILE_SET_AVATORID=10;
+		/**
+		 * 检查更新
+		 */
+		int PROFILE_UPDATE=11;
+		/**
+		 * 创建项目
+		 */
+		int PROJECT_CREATE=12;
 	}
 	/**
 	 * @ClassName: QUICKACTION
@@ -239,6 +261,15 @@ public class AppConstants {
 		 */
 		int MESSAGE_TYPE_FILE = 3;
 	}
+	/**
+	 * 获取SD卡路径
+	 * @param context
+	 * @return
+	 */
+	  public static String getSDPackagePath(Context context){
+		   return SDCARD_FILE_ROOT.replaceFirst("%packagename%",
+	               context.getPackageName());
+	   }
 	// public LogConstants(){
 	//
 	// }

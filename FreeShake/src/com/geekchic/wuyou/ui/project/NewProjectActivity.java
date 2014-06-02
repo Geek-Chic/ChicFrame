@@ -22,13 +22,14 @@ import android.widget.TextView;
 import com.fourmob.datetimepicker.date.DatePickerDialog;
 import com.fourmob.datetimepicker.date.DatePickerDialog.OnDateSetListener;
 import com.geekchic.common.utils.DateUtil;
-import com.geekchic.common.utils.StringUtil;
+import com.geekchic.common.utils.StringUtils;
 import com.geekchic.constant.AppActionCode;
 import com.geekchic.framework.ui.titlebar.BaseTitleBarActivity;
 import com.geekchic.wuyou.R;
 import com.geekchic.wuyou.bean.Contact;
 import com.geekchic.wuyou.bean.Project;
 import com.geekchic.wuyou.logic.contacts.IContactsLogic;
+import com.geekchic.wuyou.logic.project.IProjectLogic;
 import com.geekchic.wuyou.model.ProjectDao;
 import com.geekchic.wuyou.ui.dialog.PeopleAddDialog;
 import com.sleepbot.datetimepicker.time.RadialPickerLayout;
@@ -118,6 +119,10 @@ public class NewProjectActivity extends BaseTitleBarActivity implements
 	 */
 	private IContactsLogic mContactsLogic;
 	/**
+	 * 项目Logic
+	 */
+	private IProjectLogic mProjectLogic;
+	/**
 	 * 后退
 	 */
 	private OnClickListener mBackClickListener = new OnClickListener() {
@@ -139,7 +144,8 @@ public class NewProjectActivity extends BaseTitleBarActivity implements
 				mProject.setProjectNote(mProjectNote.getText().toString().trim());
 				mProject.setStartTime(mStartDate.getTimeInMillis());
 				ProjectDao.getInstance(NewProjectActivity.this).insert(mProject);
-				finishActivity();
+				mProjectLogic.createProject(mProject);
+				showProgressDialog("正在创建，请稍等", true);
 			}
 		}
 	};
@@ -152,7 +158,7 @@ public class NewProjectActivity extends BaseTitleBarActivity implements
 			return false;
 		}
 		String projectName=mProjectName.getText().toString();
-		if(StringUtil.isNullOrEmpty(projectName)){
+		if(StringUtils.isNullOrEmpty(projectName)){
 			showShortToast("任务名不能为空");
 			return false;
 		}
@@ -226,6 +232,7 @@ public class NewProjectActivity extends BaseTitleBarActivity implements
     protected void initLogics() {
     	super.initLogics();
     	mContactsLogic=(IContactsLogic) getLogic(IContactsLogic.class);
+    	mProjectLogic=(IProjectLogic) getLogic(IProjectLogic.class);
     }
      @Override
     protected void handleStateMessage(Message msg) {

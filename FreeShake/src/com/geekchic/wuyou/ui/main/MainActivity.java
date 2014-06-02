@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -148,7 +149,7 @@ public class MainActivity extends BaseSlideActivity {
     	if(null==mToolsActionDialog){
     		mToolsActionDialog = new ToolsActionDialog(MainActivity.this);
     		mToolsActionDialog.addQuickAction(new QuickAction(MainActivity.this,
-					R.drawable.icon_project_add, "创建目标"));
+					R.drawable.icon_project_add, "创建项目"));
     		mToolsActionDialog.addQuickAction(new QuickAction(MainActivity.this,
 					R.drawable.icon_qr, "二维码"));
     		mToolsActionDialog.setOnQuickActionClickListener(quickActionClickListener);
@@ -191,7 +192,7 @@ public class MainActivity extends BaseSlideActivity {
 		tabInfo[0] = new TabInfo("MessageFragment", R.string.main_tab_message,
 				R.drawable.icon_tabbar_history_message_selector,
 				MessageFragment.class, null,false);
-		tabInfo[1] = new TabInfo("GoingFragment", R.string.app_name,
+		tabInfo[1] = new TabInfo("GoingFragment",R.string.main_tab_going,
 				R.drawable.icon_tabbar_going_selector, GoingFragment.class,
 				null,false);
 		tabInfo[2] = new TabInfo("CompleteFragment", R.string.main_tab_complete,

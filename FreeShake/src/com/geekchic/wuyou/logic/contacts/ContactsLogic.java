@@ -10,25 +10,18 @@ package com.geekchic.wuyou.logic.contacts;
 
 import java.util.ArrayList;
 
-import org.apache.http.ProtocolVersion;
-import org.apache.http.RequestLine;
-
 import android.content.Context;
 import android.os.Bundle;
 
 import com.alibaba.fastjson.JSON;
-import com.geekchic.base.mutitask.TaskListener;
 import com.geekchic.constant.AppActionCode;
 import com.geekchic.constant.AppConstants.RequestCode;
 import com.geekchic.constant.AppConstants.SERVICEWORK;
 import com.geekchic.framework.bean.Request;
 import com.geekchic.framework.logic.BaseLogic;
 import com.geekchic.framework.network.RequestListener;
-import com.geekchic.operation.ContactLocalSearchOperation;
 import com.geekchic.wuyou.bean.Contact;
-import com.geekchic.wuyou.bean.UserInfo;
 import com.geekchic.wuyou.logic.RequestManager;
-import com.geekchic.wuyou.model.ContactDao;
 
 /**
  * @ClassName: ContactsLogic

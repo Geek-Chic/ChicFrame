@@ -19,7 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.geekchic.common.log.Logger;
-import com.geekchic.common.utils.StringUtil;
+import com.geekchic.common.utils.StringUtils;
 import com.geekchic.constant.AppAction;
 import com.geekchic.constant.AppAction.RegisterAction;
 import com.geekchic.constant.AppActionCode;
@@ -105,19 +105,19 @@ public class LoginActivity extends BaseFrameActivity implements OnClickListener 
         String accountText = mAccountEditText.getText().toString().trim();
         String passwordText = mPasswordEditText.getText().toString();
         
-        if (StringUtil.isNullOrEmpty(accountText))
+        if (StringUtils.isNullOrEmpty(accountText))
         {
             //用户名为空
             showShortToast("用户名为空");
             return;
         }
-        else if (StringUtil.isNullOrEmpty(passwordText))
+        else if (StringUtils.isNullOrEmpty(passwordText))
         {
             //密码为空
             showShortToast("密码不能为空");
             return;
         }
-        if (!StringUtil.isNullOrEmpty(passwordText))
+        if (!StringUtils.isNullOrEmpty(passwordText))
         {
             showProgressDialog(R.string.dialog_loading, true);
             mLoginLogic.login(accountText, passwordText);

@@ -191,5 +191,14 @@ public class Project implements Parcelable {
          dest.writeString(tag);
          dest.writeList(people);
 	}
+	public static final Creator<Project> CREATOR = new Creator<Project>() {
+		public Project createFromParcel(final Parcel in) {
+			return new Project(in);
+		}
+
+		public Project[] newArray(final int size) {
+			return new Project[size];
+		}
+	};
 
 }

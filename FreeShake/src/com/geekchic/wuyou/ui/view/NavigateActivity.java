@@ -14,7 +14,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
-import com.geekchic.common.utils.PreferencesUtil;
+import com.geekchic.common.utils.PreferencesUtils;
 import com.geekchic.constant.AppConstants;
 import com.geekchic.framework.ui.BaseFrameActivity;
 import com.geekchic.wuyou.R;
@@ -37,7 +37,7 @@ public class NavigateActivity extends BaseFrameActivity {
 		setContentView(R.layout.navigate_layout);
 		initView();
 		//标记为已显示
-		PreferencesUtil.setAttr(AppConstants.Common.NAV_HAS_SHOW, true);
+		PreferencesUtils.setAttr(AppConstants.Common.NAV_HAS_SHOW, true);
 	}
 
 	private void initView() {

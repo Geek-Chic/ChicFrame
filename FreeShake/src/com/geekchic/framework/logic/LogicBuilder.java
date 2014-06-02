@@ -14,6 +14,10 @@ import com.geekchic.wuyou.logic.feedback.FeedbackLogic;
 import com.geekchic.wuyou.logic.feedback.IFeedbackLogic;
 import com.geekchic.wuyou.logic.login.ILoginLogic;
 import com.geekchic.wuyou.logic.login.LoginLogic;
+import com.geekchic.wuyou.logic.profile.IProfileLogic;
+import com.geekchic.wuyou.logic.profile.ProfileLogic;
+import com.geekchic.wuyou.logic.project.IProjectLogic;
+import com.geekchic.wuyou.logic.project.ProjectLogic;
 import com.geekchic.wuyou.logic.registration.IRegistrationLogic;
 import com.geekchic.wuyou.logic.registration.RegistrationLogic;
 
@@ -60,6 +64,8 @@ public class LogicBuilder extends BaseLogicBuilder {
 		registerLogic(IContactsLogic.class, new ContactsLogic(context));
 		registerLogic(IRegistrationLogic.class, new RegistrationLogic(context));
 		registerLogic(IFeedbackLogic.class,new FeedbackLogic(context));
+		registerLogic(IProfileLogic.class, new ProfileLogic(context));
+		registerLogic(IProjectLogic.class, new ProjectLogic(context));
 	}
 
 }

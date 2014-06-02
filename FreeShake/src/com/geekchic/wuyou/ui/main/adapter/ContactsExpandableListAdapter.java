@@ -171,13 +171,25 @@ BaseExpandableListAdapter implements IphoneTreeHeaderAdapter{
 		Contact userInfo = mChildrenMap.get(groupPosition).get(
 				childPosition);
 		childHolder.nickName.setText(userInfo.name);
-	
+	     handleState(childHolder.state,userInfo.status);
 		childHolder.phone.setText(userInfo.phone.get(0));
 		tempPosition=childPosition;
+		
+		convertView.setTag(R.id.groupid, groupPosition);
+		convertView.setTag(R.id.childid, childPosition);
 		return convertView;
 
 	}
+    private void handleState(ImageView icon,int state){
+    	switch (state) {
+		case 1:
+			 icon.setImageResource(R.drawable.icon_mark_rocket);
+			break;
 
+		default:
+			break;
+		}
+    }
 	@Override
 	public boolean isChildSelectable(int groupPosition, int childPosition) {
 		return true;

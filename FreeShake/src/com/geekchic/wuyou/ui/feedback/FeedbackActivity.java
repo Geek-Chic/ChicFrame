@@ -15,8 +15,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.geekchic.common.utils.PreferencesUtil;
-import com.geekchic.common.utils.StringUtil;
+import com.geekchic.common.utils.PreferencesUtils;
+import com.geekchic.common.utils.StringUtils;
 import com.geekchic.constant.AppActionCode;
 import com.geekchic.constant.AppConfig;
 import com.geekchic.constant.AppConstants.Common;
@@ -86,8 +86,8 @@ public class FeedbackActivity extends BaseTitleBarActivity implements OnClickLis
 	public void onClick(View v) {
 		  if(v.getId()==R.id.feed_back_btn){
 			  String message=mEditText.getText().toString().trim();
-			  if(!StringUtil.isNullOrEmpty(message)){
-				  String uuid=PreferencesUtil.getAttrString(Common.KEY_USER_ID);
+			  if(!StringUtils.isNullOrEmpty(message)){
+				  String uuid=PreferencesUtils.getAttrString(Common.KEY_USER_ID);
 				  mFeedbackLogic.setFeedBack(uuid, message);
 				  showProgressDialog(R.string.dialog_upload,true);
 			  }
