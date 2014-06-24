@@ -17,12 +17,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import dalvik.system.DexFile;
+import com.geekchic.base.share.sinaweibo.SinaWeibo;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.test.AndroidTestRunner;
+import dalvik.system.DexFile;
 
 /**
  * @ClassName: ShareManager
@@ -51,10 +51,10 @@ public class ShareManager
     public ShareService[] init(Context context)
     {
         Context appContext = context.getApplicationContext();
-        if (mShareServices != null)
-        {
-            return mShareServices;
-        }
+//        if (mShareServices != null)
+//        {
+//            return mShareServices;
+//        }
         ArrayList<ShareService> arrayList = null;
         if (mShareServiceLists != null && mShareServiceLists.size() > 0)
         {
@@ -229,24 +229,25 @@ public class ShareManager
                 "cn.sharesdk.twitter.Twitter",
                 "cn.sharesdk.wechat.friends.Wechat",
                 "cn.sharesdk.wechat.moments.WechatMoments" };
-        ArrayList arraylist = new ArrayList();
-        String as1[] = as;
-        for (int i = 0; i < as1.length; i++)
-        {
-            String shareClassName = as1[i];
-            try
-            {
-                Class class1 = Class.forName(shareClassName);
-                mShareServiceLists.add(class1);
-                Constructor constructor = class1.getConstructor(new Class[] { Context.class });
-                Object obj = constructor.newInstance(new Object[] { context });
-                arraylist.add((ShareService) obj);
-            }
-            catch (Exception e)
-            {
-                // TODO: handle exception
-            }
-        }
+        ArrayList<ShareService> arraylist = new ArrayList<ShareService>();
+//        String as1[] = as;
+//        for (int i = 0; i < as1.length; i++)
+//        {
+//            String shareClassName = as1[i];
+//            try
+//            {
+//                Class class1 = Class.forName(shareClassName);
+//                mShareServiceLists.add(class1);
+//                Constructor constructor = class1.getConstructor(new Class[] { Context.class });
+//                Object obj = constructor.newInstance(new Object[] { context });
+//                arraylist.add((ShareService) obj);
+//            }
+//            catch (Exception e)
+//            {
+//                // TODO: handle exception
+//            }
+//        }
+        arraylist.add(new SinaWeibo(context));
         return arraylist;
     }
     

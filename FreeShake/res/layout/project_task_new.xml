@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     android:background="@color/task_add_bg"
+    android:orientation="vertical" >
+     <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/task_add_title"
+        android:gravity="center"
+        android:padding="@dimen/margin_small"
+        android:text="新任务"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/task_add_title_text" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_small" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="任务内容"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/tast_add_sub_text" />
+
+        <EditText
+            android:id="@+id/task_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:background="@null"
+            android:gravity="right"
+            android:text="交程序"
+            android:textColor="@color/tast_add_sub_text" />
+    </RelativeLayout>
+     <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/task_add_sub"
+        android:padding="@dimen/margin_small" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="结束时间"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/tast_add_sub_text" />
+
+        <TextView
+            android:id="@+id/task_new_endtime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@null"
+            android:gravity="right"
+            android:text="12:00"
+            android:textColor="@color/tast_add_sub_text" />
+
+        <TextView
+            android:id="@+id/task_new_enddate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/task_new_endtime"
+            android:background="@null"
+            android:gravity="right"
+            android:paddingRight="@dimen/margin_medium"
+            android:text="2014-6-1"
+            android:textColor="@color/tast_add_sub_text" />
+    </RelativeLayout>
+
+</LinearLayout>

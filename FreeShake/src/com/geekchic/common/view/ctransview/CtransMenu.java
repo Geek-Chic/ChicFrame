@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 import com.geekchic.common.utils.GlobalUtil;
 import com.geekchic.common.view.particle.ParticleView;
-import com.geekchic.freeshake.R;
+import com.geekchic.wuyou.R;
 
 public class CtransMenu extends FrameLayout
 {

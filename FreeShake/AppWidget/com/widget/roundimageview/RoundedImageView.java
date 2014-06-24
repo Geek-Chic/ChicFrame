@@ -8,9 +8,6 @@
  */
 package com.widget.roundimageview;
 
-import org.apache.commons.logging.Log;
-import org.slf4j.Logger;
-
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
@@ -22,7 +19,7 @@ import android.net.Uri;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import com.geekchic.freeshake.R;
+import com.geekchic.wuyou.R;
 
 /**
  * @ClassName: RoundedImageView

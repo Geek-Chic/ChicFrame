@@ -35,7 +35,6 @@ public class UpdateManager {
 	}
 	public void check(Context context,UpdateOptions options){
 		RequestQueue requestQueue=Volley.newRequestQueue(context);
-		Logger.d(TAG, "fuck");
 		StringRequest stringRequest=new StringRequest(Request.Method.GET,options.getCheckURL(), new Listener<String>() {
 
 			@Override
@@ -58,8 +57,7 @@ public class UpdateManager {
 	}
 	
 	/**
-    * install the apk
-    *
+    * 安装APK<BR>
     * @param context
     * @param filePath
     */

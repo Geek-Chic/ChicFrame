@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_list_item_selector" >
+
+    <com.widget.roundimageview.RoundedImageView
+        android:id="@+id/contact_item_avator"
+        android:layout_width="@dimen/avator_medium_size"
+        android:layout_height="@dimen/avator_medium_size"
+        android:layout_centerVertical="true"
+        android:src="@drawable/icon_avator"
+        app:border_color="@color/bg_color_white"
+        app:border_width="3dip"
+        app:corner_radius="100dp"
+        app:is_oval="false" />
+
+    <ImageView
+        android:id="@+id/contact_stateicon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:duplicateParentState="true"
+        android:paddingBottom="@dimen/margin_medium"
+        android:paddingRight="@dimen/margin_medium" />
+
+    <ImageView
+        android:id="@+id/contact_vertify_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/margin_medium"
+        android:duplicateParentState="true"
+        android:src="@drawable/icon_style_ios_normal" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/contact_item_avator"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/contact_item_nickname"
+            android:layout_width="fill_parent"
+            android:layout_height="25.0dip"
+            android:layout_marginLeft="10.0dip"
+            android:layout_marginRight="18.0dip"
+            android:duplicateParentState="true"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:padding="0.0dip"
+            android:singleLine="true"
+            android:text="jxp蒋"
+            android:textColor="@color/font_color_most_black"
+            android:textSize="16.0sp" />
+
+        <TextView
+            android:id="@+id/contact_item_phone"
+            android:layout_width="fill_parent"
+            android:layout_height="25.0dip"
+            android:layout_marginLeft="10.0dip"
+            android:layout_marginRight="18.0dip"
+            android:duplicateParentState="true"
+            android:ellipsize="end"
+            android:includeFontPadding="false"
+            android:padding="0.0dip"
+            android:singleLine="true"
+            android:text="1360050265464"
+            android:textColor="@color/font_color_dark_gray"
+            android:textSize="12.0sp" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,7 +1,7 @@
 /**
  * @Title:UpdateInfo.java
  * @Package com.geekchic.base.xml
- * @Description:[用一句话描述做什么]
+ * @Description:更新实体类
  * @author:evil
  * @date:Apr 12, 2014
  * Copyright (c) 2014,Evilester All Rights Reserved. 
@@ -13,7 +13,7 @@ import java.util.Map;
 
 /**
  * @ClassName: UpdateInfo
- * @Descritpion:[用一句话描述作用]
+ * @Descritpion:更新实体类
  * @author evil
  * @date Apr 12, 2014
  */

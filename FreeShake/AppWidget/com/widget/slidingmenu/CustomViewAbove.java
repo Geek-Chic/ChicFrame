@@ -26,6 +26,7 @@ import android.view.ViewGroup;
 import android.view.animation.Interpolator;
 import android.widget.Scroller;
 
+import com.geekchic.common.log.Logger;
 import com.widget.slidingmenu.SlidingMenu.OnClosedListener;
 import com.widget.slidingmenu.SlidingMenu.OnOpenedListener;
 
@@ -579,7 +580,9 @@ public class CustomViewAbove extends ViewGroup {
 
 	private boolean thisTouchAllowed(MotionEvent ev) {
 		int x = (int) (ev.getX() + mScrollX);
+		Logger.d(TAG, "isMenuOpen"+isMenuOpen());
 		if (isMenuOpen()) {
+			Logger.d(TAG, "behind:"+mViewBehind.menuOpenTouchAllowed(mContent, mCurItem, x));
 			return mViewBehind.menuOpenTouchAllowed(mContent, mCurItem, x);
 		} else {
 			switch (mTouchMode) {
@@ -674,6 +677,7 @@ public class CustomViewAbove extends ViewGroup {
 			} else {
 				mIsUnableToDrag = true;
 			}
+			Logger.d(TAG, "可滑："+thisTouchAllowed(ev));
 			break;
 		case MotionEventCompat.ACTION_POINTER_UP:
 			onSecondaryPointerUp(ev);

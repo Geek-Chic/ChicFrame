@@ -1,14 +1,4 @@
-/*
- * 文件名: DateUtil.java
- * 版    权：  Copyright Paitao Tech. Co. Ltd. All Rights Reserved.
- * 描    述: 根据时间格式，获取时间字符串
- * 创建人: deanye
- * 创建时间:2013-9-13ˇ
- * 
- * 修改人：
- * 修改时间:
- * 修改内容：[修改内容]
- */
+
 package com.geekchic.common.utils;
 
 import java.text.ParseException;
@@ -19,11 +9,6 @@ import java.util.GregorianCalendar;
 
 import android.annotation.SuppressLint;
 
-/**
- * 根据时间格式，获取时间字符串<BR>
- * @author deanye
- * @version [Paitao Client V20130911, 2013-9-13] 
- */
 @SuppressLint("SimpleDateFormat")
 public class DateUtil
 {
@@ -80,9 +65,9 @@ public class DateUtil
      * 获取日期
      * @return 日期字符串
      */
-    public static String getDateStr(){
+    public static String getDateStr(long time){
         SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
-        return dateFormat.format(new Date());
+        return dateFormat.format(new Date(time));
     }
     /**
      * 根据给定的格式与时间(Date类型的)，返回时间字符串。最常用。<BR>
@@ -303,4 +288,44 @@ public class DateUtil
         private static final SimpleDateFormat DEFAULT_DATE_FORMAT = new SimpleDateFormat(
                 "yyyy-MM-dd");
     }
+
+
+	public static String getTime(long time) {
+		SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd HH:mm");
+		return format.format(new Date(time));
+	}
+
+	public static String getHourAndMin(long time) {
+		SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+		return format.format(new Date(time));
+	}
+
+	public static String getChatTime(long timesamp) {
+		String result = "";
+		SimpleDateFormat sdf = new SimpleDateFormat("dd");
+		Date today = new Date(System.currentTimeMillis());
+		Date otherDay = new Date(timesamp);
+		int temp = Integer.parseInt(sdf.format(today))
+				- Integer.parseInt(sdf.format(otherDay));
+
+		switch (temp) {
+		case 0:
+			result = "今天 " + getHourAndMin(timesamp);
+			break;
+		case 1:
+			result = "昨天 " + getHourAndMin(timesamp);
+			break;
+		case 2:
+			result = "前天 " + getHourAndMin(timesamp);
+			break;
+
+		default:
+			// result = temp + "天前 ";
+			result = getTime(timesamp);
+			break;
+		}
+
+		return result;
+	}
+
 }

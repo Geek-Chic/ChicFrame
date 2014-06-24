@@ -12,25 +12,67 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import com.geekchic.base.db.annotation.Column;
 import com.geekchic.base.db.annotation.Id;
 import com.geekchic.base.db.annotation.Table;
+import com.geekchic.common.log.Logger;
 
+/**
+ * @ClassName: BaseDaoImpl
+ * @Descritpion: 数据库基础实现
+ * @author evil
+ * @date May 4, 2014
+ * @param <T>
+ */
 public class BaseDaoImpl<T> implements BaseDao<T> {
+	/**
+	 * TAG
+	 */
 	private String TAG = "BaseDaoImpl";
+	/**
+	 * 数据库帮助类
+	 */
 	private SQLiteOpenHelper dbHelper;
+	/**
+	 * 表名
+	 */
 	private String tableName;
+	/**
+	 * 主键列名
+	 */
 	private String idColumn;
+	/**
+	 * 实体类
+	 */
 	private Class<T> clazz;
+	/**
+	 * 列名
+	 */
 	private List<Field> allFields;
+	/**
+	 * 查入方法标记
+	 */
 	private static final int METHOD_INSERT = 0;
+	/**
+	 * 更新方法标记
+	 */
 	private static final int METHOD_UPDATE = 1;
-
+	/**
+	 * 不自增
+	 */
 	private static final int TYPE_NOT_INCREMENT = 0;
+	/**
+	 * 自增
+	 */
 	private static final int TYPE_INCREMENT = 1;
 
+	/**
+	 * BaseDaoImpl构造函数
+	 * 
+	 * @param dbHelper
+	 * @param clazz
+	 */
 	public BaseDaoImpl(SQLiteOpenHelper dbHelper, Class<T> clazz) {
 		this.dbHelper = dbHelper;
 		if (clazz == null) {
@@ -45,12 +87,10 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 			Table table = (Table) this.clazz.getAnnotation(Table.class);
 			this.tableName = table.name();
 		}
-
-		// ���������ֶ�
+		// 父类子类字段合并
 		this.allFields = TableUtils.joinFields(this.clazz.getDeclaredFields(),
 				this.clazz.getSuperclass().getDeclaredFields());
-
-		// �ҵ�����
+		// 找出主键
 		for (Field field : this.allFields) {
 			if (field.isAnnotationPresent(Id.class)) {
 				Column column = (Column) field.getAnnotation(Column.class);
@@ -59,10 +99,15 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 			}
 		}
 
-		Log.d(TAG, "clazz:" + this.clazz + " tableName:" + this.tableName
+		Logger.d(TAG, "clazz:" + this.clazz + " tableName:" + this.tableName
 				+ " idColumn:" + this.idColumn);
 	}
 
+	/**
+	 * BaseDaoImpl构造函数
+	 * 
+	 * @param dbHelper
+	 */
 	public BaseDaoImpl(SQLiteOpenHelper dbHelper) {
 		this(dbHelper, null);
 	}
@@ -74,7 +119,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	public T get(int id) {
 		String selection = this.idColumn + " = ?";
 		String[] selectionArgs = { Integer.toString(id) };
-		Log.d(TAG, "[get]: select * from " + this.tableName + " where "
+		Logger.d(TAG, "[get]: select * from " + this.tableName + " where "
 				+ this.idColumn + " = '" + id + "'");
 		List<T> list = find(null, selection, selectionArgs, null, null, null,
 				null);
@@ -85,7 +130,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	}
 
 	public List<T> rawQuery(String sql, String[] selectionArgs) {
-		Log.d(TAG, "[rawQuery]: " + getLogSql(sql, selectionArgs));
+		Logger.d(TAG, "[rawQuery]: " + getLogSql(sql, selectionArgs));
 
 		List<T> list = new ArrayList<T>();
 		SQLiteDatabase db = null;
@@ -96,7 +141,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
 			getListFromCursor(list, cursor);
 		} catch (Exception e) {
-			Log.e(this.TAG, "[rawQuery] from DB Exception.");
+			Logger.e(this.TAG, "[rawQuery] from DB Exception.");
 			e.printStackTrace();
 		} finally {
 			if (cursor != null) {
@@ -111,7 +156,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	}
 
 	public boolean isExist(String sql, String[] selectionArgs) {
-		Log.d(TAG, "[isExist]: " + getLogSql(sql, selectionArgs));
+		Logger.d(TAG, "[isExist]: " + getLogSql(sql, selectionArgs));
 
 		SQLiteDatabase db = null;
 		Cursor cursor = null;
@@ -122,7 +167,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 				return true;
 			}
 		} catch (Exception e) {
-			Log.e(this.TAG, "[isExist] from DB Exception.");
+			Logger.e(this.TAG, "[isExist] from DB Exception.");
 			e.printStackTrace();
 		} finally {
 			if (cursor != null) {
@@ -142,7 +187,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	public List<T> find(String[] columns, String selection,
 			String[] selectionArgs, String groupBy, String having,
 			String orderBy, String limit) {
-		Log.d(TAG, "[find]");
+		Logger.d(TAG, "[find]");
 
 		List<T> list = new ArrayList<T>();
 		SQLiteDatabase db = null;
@@ -154,7 +199,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
 			getListFromCursor(list, cursor);
 		} catch (Exception e) {
-			Log.e(this.TAG, "[find] from DB Exception");
+			Logger.e(this.TAG, "[find] from DB Exception");
 			e.printStackTrace();
 		} finally {
 			if (cursor != null) {
@@ -183,7 +228,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
 					int c = cursor.getColumnIndex(column.name());
 					if (c < 0) {
-						continue; // ������ѭ���¸�����ֵ
+						continue; 
 					} else if ((Integer.TYPE == fieldType)
 							|| (Integer.class == fieldType)) {
 						field.set(entity, cursor.getInt(c));
@@ -201,7 +246,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 					} else if ((Double.TYPE == fieldType)
 							|| (Double.class == fieldType)) {
 						field.set(entity, Double.valueOf(cursor.getDouble(c)));
-					} else if (Date.class == fieldType) {// ����java.util.Date����,update2012-06-10
+					} else if (Date.class == fieldType) {//java.util.Date
 						Date date = new Date();
 						date.setTime(cursor.getLong(c));
 						field.set(entity, date);
@@ -211,8 +256,8 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 						String fieldValue = cursor.getString(c);
 
 						if ((fieldValue != null) && (fieldValue.length() > 0)) {
-							field.set(entity, Character.valueOf(fieldValue
-									.charAt(0)));
+							field.set(entity,
+									Character.valueOf(fieldValue.charAt(0)));
 						}
 					}
 				}
@@ -233,17 +278,19 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 			db = this.dbHelper.getWritableDatabase();
 			ContentValues cv = new ContentValues();
 			if (flag) {
+				//id自增
 				sql = setContentValues(entity, cv, TYPE_INCREMENT,
-						METHOD_INSERT);// id����
+						METHOD_INSERT);
 			} else {
+				//id不自增
 				sql = setContentValues(entity, cv, TYPE_NOT_INCREMENT,
-						METHOD_INSERT);// id��ָ��
+						METHOD_INSERT);
 			}
-			Log.d(TAG, "[insert]: insert into " + this.tableName + " " + sql);
+			Logger.d(TAG, "[insert]: insert into " + this.tableName + " " + sql);
 			long row = db.insert(this.tableName, null, cv);
 			return row;
 		} catch (Exception e) {
-			Log.d(this.TAG, "[insert] into DB Exception.");
+			Logger.d(this.TAG, "[insert] into DB Exception.");
 			e.printStackTrace();
 		} finally {
 			if (db != null) {
@@ -259,13 +306,13 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		String where = this.idColumn + " = ?";
 		String[] whereValue = { Integer.toString(id) };
 
-		Log.d(TAG, "[delete]: delelte from " + this.tableName + " where "
+		Logger.d(TAG, "[delete]: delelte from " + this.tableName + " where "
 				+ where.replace("?", String.valueOf(id)));
 
 		db.delete(this.tableName, where, whereValue);
 		db.close();
 	}
-	
+
 	public void delete(Integer... ids) {
 		if (ids.length > 0) {
 			StringBuffer sb = new StringBuffer();
@@ -277,7 +324,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 			String sql = "delete from " + this.tableName + " where "
 					+ this.idColumn + " in (" + sb + ")";
 
-			Log.d(TAG, "[delete]: " + getLogSql(sql, ids));
+			Logger.d(TAG, "[delete]: " + getLogSql(sql, ids));
 
 			db.execSQL(sql, (Object[]) ids);
 			db.close();
@@ -297,13 +344,13 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 			int id = Integer.parseInt(cv.get(this.idColumn).toString());
 			cv.remove(this.idColumn);
 
-			Log.d(TAG, "[update]: update " + this.tableName + " set " + sql
+			Logger.d(TAG, "[update]: update " + this.tableName + " set " + sql
 					+ " where " + where.replace("?", String.valueOf(id)));
 
 			String[] whereValue = { Integer.toString(id) };
 			db.update(this.tableName, cv, where, whereValue);
 		} catch (Exception e) {
-			Log.d(this.TAG, "[update] DB Exception.");
+			Logger.d(this.TAG, "[update] DB Exception.");
 			e.printStackTrace();
 		} finally {
 			if (db != null)
@@ -341,8 +388,8 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 				strField.append(column.name()).append(",");
 				strValue.append("'").append(value).append("',");
 			} else {
-				strUpdate.append(column.name()).append("=").append("'").append(
-						value).append("',");
+				strUpdate.append(column.name()).append("=").append("'")
+						.append(value).append("',");
 			}
 
 		}
@@ -356,18 +403,9 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		}
 	}
 
-	/**
-	 * ����ѯ�Ľ���Ϊ��ֵ��map.
-	 * 
-	 * @param sql
-	 *            ��ѯsql
-	 * @param selectionArgs
-	 *            ����ֵ
-	 * @return ���ص�Map�е�keyȫ����Сд��ʽ.
-	 */
 	public List<Map<String, String>> query2MapList(String sql,
 			String[] selectionArgs) {
-		Log.d(TAG, "[query2MapList]: " + getLogSql(sql, selectionArgs));
+		Logger.d(TAG, "[query2MapList]: " + getLogSql(sql, selectionArgs));
 		SQLiteDatabase db = null;
 		Cursor cursor = null;
 		List<Map<String, String>> retList = new ArrayList<Map<String, String>>();
@@ -387,7 +425,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 				retList.add(map);
 			}
 		} catch (Exception e) {
-			Log.e(TAG, "[query2MapList] from DB exception");
+			Logger.e(TAG, "[query2MapList] from DB exception");
 			e.printStackTrace();
 		} finally {
 			if (cursor != null) {
@@ -401,15 +439,9 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		return retList;
 	}
 
-	/**
-	 * ��װִ��sql����.
-	 * 
-	 * @param sql
-	 * @param selectionArgs
-	 */
 	public void execSql(String sql, Object[] selectionArgs) {
 		SQLiteDatabase db = null;
-		Log.d(TAG, "[execSql]: " + getLogSql(sql, selectionArgs));
+		Logger.d(TAG, "[execSql]: " + getLogSql(sql, selectionArgs));
 		try {
 			db = this.dbHelper.getWritableDatabase();
 			if (selectionArgs == null) {
@@ -418,7 +450,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 				db.execSQL(sql, selectionArgs);
 			}
 		} catch (Exception e) {
-			Log.e(TAG, "[execSql] DB exception.");
+			Logger.e(TAG, "[execSql] DB exception.");
 			e.printStackTrace();
 		} finally {
 			if (db != null) {
@@ -427,6 +459,13 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		}
 	}
 
+	/**
+	 * sql 日志
+	 * 
+	 * @param sql
+	 * @param args
+	 * @return
+	 */
 	private String getLogSql(String sql, Object[] args) {
 		if (args == null || args.length == 0) {
 			return sql;

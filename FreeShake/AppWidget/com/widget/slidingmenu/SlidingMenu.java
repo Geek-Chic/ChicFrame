@@ -27,7 +27,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
-import com.geekchic.freeshake.R;
+import com.geekchic.wuyou.R;
 import com.widget.slidingmenu.CustomViewAbove.OnPageChangeListener;
 
 
@@ -910,9 +910,6 @@ public class SlidingMenu extends RelativeLayout {
 			return mItem;
 		}
 
-		/* (non-Javadoc)
-		 * @see android.view.AbsSavedState#writeToParcel(android.os.Parcel, int)
-		 */
 		public void writeToParcel(Parcel out, int flags) {
 			super.writeToParcel(out, flags);
 			out.writeInt(mItem);

@@ -60,7 +60,7 @@ public abstract class ShareService
     /**
      * 分享参数管理类
      */
-    private static ShareManager shareManager;
+    private static ShareManager mShareManager;
     /**
      * @ClassName: ShareParams
      * @Descritpion:分享参数
@@ -89,11 +89,11 @@ public abstract class ShareService
     
     public static void initSDK(Context context, String share, boolean flag)
     {
-        if(shareManager==null){
-            shareManager=new ShareManager();
+        if(mShareManager==null){
+            mShareManager=new ShareManager();
             String s1=share;
             if(s1==null){
-                s1=shareManager.getParam(context, "AppKey");
+                s1=mShareManager.getParam(context, "AppKey");
             }
             if(flag){
                 
@@ -134,7 +134,14 @@ public abstract class ShareService
     
     public static ShareService[] getShareServices(Context context)
     {
-        return null;
+        long start=System.currentTimeMillis();
+        if(null==mShareManager){
+            String s = "Please call ShareService.initSDK(Context) before any action.";
+            throw new NullPointerException(s);
+        }else{
+            ShareService[] shareServices=mShareManager.init(context);
+            return shareServices;
+        }
         
     }
     
@@ -145,24 +152,24 @@ public abstract class ShareService
     
     public void setShareParam(String key, String value)
     {
-        if (shareManager == null)
+        if (mShareManager == null)
         {
             String tips = "Please call ShareService.initSDK(Context) before any action.";
             throw new NullPointerException(tips);
         }
         String shareName = getName();
-        shareManager.setShareParam(getContext(), shareName, key, value);
+        mShareManager.setShareParam(getContext(), shareName, key, value);
         setParam(shareName);
     }
     
     private void setParam(String shareName)
     {
-        if (shareManager == null)
+        if (mShareManager == null)
         {
             String tips = "Please call ShareService.initSDK(Context) before any action.";
             throw new NullPointerException(tips);
         }
-        String idParam = shareManager.getParam(mContext, shareName, "Id");
+        String idParam = mShareManager.getParam(mContext, shareName, "Id");
         try
         {
             id = Integer.parseInt(idParam);
@@ -171,7 +178,7 @@ public abstract class ShareService
         {
             System.err.println("Failed to parse Id, this will cause method getId() always returens 0");
         }
-        String sortIdParam = shareManager.getParam(mContext,
+        String sortIdParam = mShareManager.getParam(mContext,
                 shareName,
                 "SortId");
         try
@@ -192,14 +199,14 @@ public abstract class ShareService
      */
     protected String getParamByKey(String key)
     {
-        if (shareManager == null)
+        if (mShareManager == null)
         {
             String s1 = "Please call AbstractWeibo.initSDK(Context) before any action.";
             throw new NullPointerException(s1);
         }
         else
         {
-            return shareManager.getParam(mContext, getName(), key);
+            return mShareManager.getParam(mContext, getName(), key);
         }
     }
     
@@ -247,9 +254,9 @@ public abstract class ShareService
                         Integer.valueOf(l), s })));
     }
     
-    protected void startAction(int k, Object obj)
+    protected void startAction(int actionId, Object obj)
     {
-        (new ActionThread(this, k, obj)).start();
+        (new ActionThread(this, actionId, obj)).start();
     }
     
     protected void handle(int what, Object obj)
@@ -273,9 +280,21 @@ public abstract class ShareService
                         ((Integer) aobj[1]).intValue(),
                         (String) aobj[2]);
                 break;
+            case ACTION_USER_INFOR:
+                authUser(obj!=null?(String)obj:null);
+                break;
             default:
                 break;
         }
+    }
+    public boolean isValid(){
+        /**
+         * 由数据库判断
+         */
+        return false;
+    }
+    public void removeAccount(){
+        //从数据库中移除数据
     }
     protected abstract void a();
     
@@ -284,6 +303,12 @@ public abstract class ShareService
     protected abstract void a(int k, int l, String shareName);
     
     protected abstract void b(String s);
+    
+    /**
+     * 验证获取授权用户信息
+     * @param name
+     */
+    protected abstract void authUser(String name);
     
     public abstract void initShareService(String shareName);
     

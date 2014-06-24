@@ -7,7 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.geekchic.base.http.CommDownloadTask.CommDownloadTaskListener;
-import com.geekchic.freeshake.R;
+import com.geekchic.wuyou.R;
 
 public class SimpleDownloadLinstener implements CommDownloadTaskListener
 {

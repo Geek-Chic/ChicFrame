@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color_white"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/bg_frame_top"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <com.widget.roundimageview.RoundedImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/icon_avator"
+            app:border_color="#FFF"
+            app:border_width="3dip"
+            app:corner_radius="30dip"
+            app:is_oval="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:background="#FFF"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_large" >
+
+        <EditText
+            android:id="@+id/login_account_edt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="手机号"
+            android:singleLine="true" >
+
+            <requestFocus />
+        </EditText>
+        <EditText
+            android:id="@+id/longin_password_edt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:ems="10"
+            android:hint="密码"
+            android:inputType="textPassword"
+            android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/login_tv_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="@dimen/margin_small"
+            android:text="@string/login_register"
+            android:textSize="@dimen/font_size_large"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/login_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_medium"
+        android:background="@drawable/bg_common_btn_brown_selector"
+        android:text="@string/login_btn"
+        android:textColor="@color/font_color_white"
+        android:textSize="@dimen/font_size_xlarge" >
+    </Button>
+
+</LinearLayout>

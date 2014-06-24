@@ -32,7 +32,7 @@ import android.os.Handler;
 import com.geekchic.base.http.CommDownloadTask.CommDownloadTaskListener;
 import com.geekchic.common.log.Logger;
 import com.geekchic.common.utils.MD5;
-import com.geekchic.common.utils.NetStringUtil;
+import com.geekchic.common.utils.NetUtil;
 
 public class CommHttpRequest
 {
@@ -354,7 +354,7 @@ public class CommHttpRequest
     }
 
     private HttpResponse requestHttp(boolean haveLastModified, boolean haveEtag) {
-            if (commHttpURL == null || NetStringUtil.isEmpty(commHttpURL.getUrl())||"null".equals(commHttpURL.getUrl())) {
+            if (commHttpURL == null || NetUtil.isEmpty(commHttpURL.getUrl())||"null".equals(commHttpURL.getUrl())) {
                     Logger.i(TAG,"commHttpURL 为空");
                     return null;
             }
@@ -369,12 +369,12 @@ public class CommHttpRequest
                                     String value = params.get(key);
                                     nameValuePairs.add(new BasicNameValuePair(key, value));
                             }
-                            if (!NetStringUtil.isEmpty(commHttpURL.getLastModified())
+                            if (!NetUtil.isEmpty(commHttpURL.getLastModified())
                                             && haveLastModified) {
                                     request.addHeader("If-Modified-Since",
                                                     commHttpURL.getLastModified());
                             }
-                            if (!NetStringUtil.isEmpty(commHttpURL.getEtag()) && haveEtag) {
+                            if (!NetUtil.isEmpty(commHttpURL.getEtag()) && haveEtag) {
                                     request.addHeader("If-None-Match", commHttpURL.getEtag());
                             }
                             if (httpHeaders!=null) {
@@ -388,11 +388,11 @@ public class CommHttpRequest
                             response = CommHttpClient.execute(mContext, request);
                     } else {
                             HttpGet request = new HttpGet(commHttpURL.getUrl());
-                            if (!NetStringUtil.isEmpty(commHttpURL.getLastModified())) {
+                            if (!NetUtil.isEmpty(commHttpURL.getLastModified())) {
                                     request.addHeader("If-Modified-Since",
                                                     commHttpURL.getLastModified());
                             }
-                            if (!NetStringUtil.isEmpty(commHttpURL.getEtag())) {
+                            if (!NetUtil.isEmpty(commHttpURL.getEtag())) {
                                     request.addHeader("If-None-Match", commHttpURL.getEtag());
                             }
                             response = CommHttpClient.execute(mContext, request);
@@ -409,7 +409,7 @@ public class CommHttpRequest
                     if (writeToCache) {
                             String filepath = writeInputSteamToCache(response.getEntity()
                                             .getContent());
-                            if (!NetStringUtil.isEmpty(filepath)) {
+                            if (!NetUtil.isEmpty(filepath)) {
                                     String lastModified = getHeader(response, "Last-Modified");
                                     String etag = getHeader(response, "ETag");
                                     commHttpURL.setLastModified(lastModified);
@@ -436,7 +436,7 @@ public class CommHttpRequest
     }
 
     private Bitmap getBitmapFromCache() {
-            if (commHttpURL == null || NetStringUtil.isEmpty(commHttpURL.getLocalData())) {
+            if (commHttpURL == null || NetUtil.isEmpty(commHttpURL.getLocalData())) {
                     return null;
             }
             try {
@@ -447,7 +447,7 @@ public class CommHttpRequest
             }
     }
     private InputStream getISFromCache() {
-            if (commHttpURL == null || NetStringUtil.isEmpty(commHttpURL.getLocalData())) {
+            if (commHttpURL == null || NetUtil.isEmpty(commHttpURL.getLocalData())) {
                     return null;
             }
             File cache = new File(commHttpURL.getLocalData());
@@ -485,7 +485,7 @@ public class CommHttpRequest
     }
 
     private String getHeader(HttpResponse responese, String headerName) {
-            if (NetStringUtil.isEmpty(headerName) || responese == null) {
+            if (NetUtil.isEmpty(headerName) || responese == null) {
                     return null;
             }
             Header[] headers = responese.getHeaders(headerName);

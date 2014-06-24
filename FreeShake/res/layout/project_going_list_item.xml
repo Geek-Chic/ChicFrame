@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/swipe_project_item_back"
+        android:layout_width="fill_parent"
+        android:layout_height="150dip"
+        android:orientation="vertical"
+        android:tag="back" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="right"
+            android:layout_weight="1"
+            android:background="@color/holo_green"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/project_going_complete"
+                android:layout_width="64dip"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/margin_large"
+                android:drawableTop="@drawable/icon_project_right"
+                android:gravity="center"
+                android:padding="@dimen/margin_small"
+                android:text="完成"
+                android:textColor="@color/font_color_white" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/holo_purple"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/project_going_newtask"
+                android:layout_width="64dip"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="left"
+               android:layout_marginRight="@dimen/margin_large"
+                android:drawableTop="@drawable/icon_task_add"
+                android:gravity="center"
+                android:padding="@dimen/margin_small"
+                android:text="新Task"
+                android:textColor="@color/font_color_white" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <include layout="@layout/project_list_item"/>
+
+</FrameLayout>

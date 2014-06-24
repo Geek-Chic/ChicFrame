@@ -1,0 +1,131 @@
+/**
+ * @Title: BaseTitleBarFragment.java
+ * @Package com.geekchic.framework.ui.titlebar
+ * @Description: 标题栏Fragment
+ * @author: evil
+ * @date: May 5, 2014
+ * Copyright (c) 2014,Evilester All Rights Reserved. 
+ */
+package com.geekchic.framework.ui.titlebar;
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.LinearLayout;
+
+import com.geekchic.framework.ui.BaseFrameFragment;
+import com.geekchic.wuyou.R;
+
+/**
+ * @ClassName: BaseTitleBarFragment
+ * @Descritpion: 标题栏Fragment
+ * @author evil
+ * @date May 5, 2014
+ */
+public abstract class BaseTitleBarFragment extends BaseFrameFragment implements
+		CommonTitleBarInterface {
+	/**
+	 * TitleBar
+	 */
+	private TitleBar mTitleBar;
+
+	/**
+	 * 子视图的容器
+	 */
+	private LinearLayout mContainLayout;
+
+	/**
+	 * 根视图
+	 */
+	private View mRootView = null;
+
+	/**
+	 * 默认视图 在未登录的时候展示
+	 */
+	// private DefaultView mDefaultView;
+
+	/**
+	 * 登录后显示的真实数据视图
+	 */
+	private View mContentView;
+
+	private CommonTitleBarInterface mTitlebarInterface;
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		super.onCreateView(inflater, container, savedInstanceState);
+		mRootView = inflater.inflate(R.layout.base_titlebar_contain, null);
+		mContainLayout = (LinearLayout) mRootView
+				.findViewById(R.id.content_container);
+		initView(inflater);
+		return mRootView;
+	}
+
+	private void initView(LayoutInflater inflater) {
+		mContainLayout = (LinearLayout) mRootView
+				.findViewById(R.id.content_container);
+		mTitleBar = (TitleBar) mRootView.findViewById(R.id.title_bar_layout);
+		mTitlebarInterface = new BaseTitleBar(mTitleBar);
+		View contentView = inflater.inflate(getLayoutId(), null);
+		mContainLayout.addView(contentView, LayoutParams.MATCH_PARENT,
+				LayoutParams.MATCH_PARENT);
+		if (!initializeTitlBar()) {
+			mTitleBar.hideTitleBar();
+			return;
+		}
+	}
+
+	@Override
+	public void setLeftButton(int id, OnClickListener listener) {
+		mTitlebarInterface.setLeftButton(id, listener);
+	}
+
+	@Override
+	public void setRightButton(int id, OnClickListener listener) {
+		mTitlebarInterface.setRightButton(id, listener);
+	}
+
+	@Override
+	public void setMiddleTitle(int id) {
+		mTitlebarInterface.setMiddleTitle(id);
+	}
+
+	@Override
+	public void setMiddleTitle(String title) {
+		mTitlebarInterface.setMiddleTitle(title);
+	}
+
+	@Override
+	public void setMiddleTitleDrawable(int id) {
+		mTitlebarInterface.setMiddleTitleDrawable(id);
+	}
+
+	@Override
+	public void setTitleBarBackground(int id) {
+		mTitlebarInterface.setTitleBarBackground(id);
+	}
+
+	@Override
+	public void setTitleVisible(boolean visible) {
+		mTitlebarInterface.setTitleVisible(visible);
+	}
+
+	/**
+	 * 获取布局
+	 * 
+	 * @return
+	 */
+	public abstract int getLayoutId();
+
+	/**
+	 * 初始化TitleBar
+	 * 
+	 * @return
+	 */
+	public abstract boolean initializeTitlBar();
+
+}

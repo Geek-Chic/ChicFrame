@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:weightSum="1" >
+
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_weight=".2"
+            android:background="@color/full_transparent" />
+
+        <TextView
+            android:id="@+id/time_task_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="12:50"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:background="@color/full_transparent" />
+    </LinearLayout>
+
+    <include
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        layout="@layout/project_timer_item_sepeartor" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/icon_chat_balloon_left"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_medium" >
+
+        <TextView
+            android:id="@+id/time_task_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/icon_task_name"
+            android:drawablePadding="@dimen/margin_small"
+            android:text="任务名：翻译1篇10000的论文"
+            android:textIsSelectable="false" />
+
+        <TextView
+            android:id="@+id/time_task_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/icon_project_people"
+            android:drawablePadding="@dimen/margin_small"
+            android:text="李四：完成率99.99%\n张三：完成率90.99%"
+            android:textIsSelectable="false" />
+    </LinearLayout>
+
+</LinearLayout>

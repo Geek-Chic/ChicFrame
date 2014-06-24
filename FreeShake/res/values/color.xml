@@ -8,7 +8,7 @@
     <color name="gold">#FFD700</color>
     <color name="yellow">#FFFF00</color>
     <color name="green">#008000</color>
-    <color name="blue">#0000FF</color>
+    <color name="blue">#4bc1d2</color>
     <color name="purple">#800080</color>
     <color name="pink">#FFC0CB</color>
     <color name="orange">#FFA500</color>
@@ -25,8 +25,12 @@
     <color name="dim_foreground_light_disabled">#80323232</color>
     <color name="dim_foreground_light_inverse">#ff006eaa</color>
     <color name="dim_foreground_light_inverse_disabled">#80bebebe</color>
+    <color name="thirty_transparent_black">#4d000000</color>
+    <color name="twenty_transparent_black">#33000000</color>
+    <color name="fifteen_trans_black">#26000000</color>
+    
     <!-- 字体阴影颜色 -->
-     <color name="text_shadow_color">#66000000</color>
+    <color name="text_shadow_color">#66000000</color>
     <!-- 内容主色 黑色 -->
     <color name="font_color_black">#4a535a</color>
 
@@ -41,6 +45,8 @@
 
     <!-- 标题色 -->
     <color name="font_color_white">#ffffff</color>
+    <!-- 近黑字体，Metra Style -->
+    <color name="font_color_most_black">#626262</color>
 
     <!-- 按钮文字色 深灰色 -->
     <color name="font_color_dark_gray">#737d86</color>
@@ -49,7 +55,6 @@
     <color name="font_color_light_gray">#c4ced6</color>
     <!-- 好看的浅黑色配白底 -->
     <color name="font_color_light_black">#656565</color>
-    
 
     <!-- *********背景颜色定义********** -->
 
@@ -68,6 +73,8 @@
     <color name="bg_color_view">#EAEFF5</color>
     <!-- 青色背景 -->
     <color name="bg_list_color">#EAEFF5</color>
+    <!-- 淡棕色背景 -->
+    <color name="bg_color_light_brown">#FCF2DA</color>
     <!-- 系统消息未读时的颜色值 -->
     <color name="bg_color_sysmsg_unread">#E9FFE8</color>
     <color name="bg_color_list_pressed">#ECF1F4</color>
@@ -99,4 +106,54 @@
     <!-- A-Z bar 字母颜色 -->
     <color name="alphabet_text_color">@color/font_color_light_gray</color>
 
+    <!-- TabBar -->
+    <color name="tab_widget_bg_color">#0c0c0d</color>
+    <color name="tab_title_font_color">#909589</color>
+    <color name="tab_indicator_bg_color">#e8e8e8</color>
+    <!-- TabBar -->
+    <!-- 二维码扫描颜色值 -->
+    <color name="contents_text">#ff000000</color>
+    <color name="encode_view">#ffffffff</color>
+    <color name="possible_result_points">#c0ffbd21</color>
+    <!-- Android standard ICS color -->
+    <color name="result_minor_text">#ffc0c0c0</color>
+    <color name="result_points">#c099cc00</color>
+    <!-- Android standard ICS color -->
+    <color name="result_text">#ffffffff</color>
+    <color name="result_view">#b0000000</color>
+    <color name="status_text">#ffffffff</color>
+    <color name="transparent">#00000000</color>
+    <color name="viewfinder_laser">#ffcc0000</color>
+    <!-- Android standard ICS color -->
+    <color name="viewfinder_mask">#60000000</color>
+    <!-- ExpandList Color -->
+    <color name="expand_list_item_bg">#EFF4F7</color>
+    <!--holo蓝 -->
+    <color name="holo_blue">#FF33E5B5</color>
+    <color name="holo_red">#FC5D61</color>
+    <color name="holo_green">#50C866</color>
+    <color name="holo_purple">#493F58</color>
+    <!-- 添加Task页颜色 -->
+    <color name="task_add_title">#DDDCD7</color>
+    <color name="task_add_title_text">#9E9F99</color>
+    <color name="task_add_sub">#F5F6F0</color>
+    <color name="tast_add_sub_text">#A4A4A6</color>
+    <color name="task_add_bg">#EBECE6</color>
+    <color name="task_notify">#C8CAC5</color>
+    <color name="task_chart">#BBBCB7</color>
+    <!-- 时间选择器 -->
+     <color name="circle_background">#fff2f2f2</color>
+    <color name="line_background">#ffcccccc</color>
+    <color name="done_text_color_normal">#ff333333</color>
+    <color name="done_text_color_disabled">#ffcccccc</color>
+    <color name="date_blue">#ff33b5e5</color>
+    <color name="darker_blue">#ff0099cc</color>
+    <color name="date_picker_text_normal">#ff999999</color>
+    <color name="calendar_header">#ff999999</color>
+    <color name="date_picker_view_animator">#fff2f2f2</color>
+
+    <color name="ampm_text_color">#8c8c8c</color>
+    <color name="numbers_text_color">#8c8c8c</color>
+
+    <color name="transparent_black">#7F000000</color>
 </resources>

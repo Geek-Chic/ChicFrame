@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import com.geekchic.base.share.util.ResultUtils;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.test.PerformanceTestCase;
@@ -160,7 +162,8 @@ public class SharePreferenceUtils
         {
             HashMap hashmap = new HashMap();
             hashmap.putAll(preferences.getAll());
-            return (new NetJsonParser()).packJsonStr(hashmap);
+//            return (new ResultUtils()).decodeRes(hashmap);
+            return null;
         }
         catch(Throwable throwable)
         {
@@ -175,7 +178,7 @@ public class SharePreferenceUtils
     {
         try
         {
-            HashMap hashmap = (new NetJsonParser()).parserJson(json);
+            HashMap hashmap = (new ResultUtils()).decodeRes(json);
             if(hashmap != null)
             {
                 SharedPreferences.Editor editor = preferences.edit();

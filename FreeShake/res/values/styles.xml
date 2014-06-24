@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -26,6 +26,8 @@
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowContentOverlay">@null</item> 
         <item name="android:background">@null</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item> 
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item> 
          
     </style>
         <style name="Widget.HorizontalProgressBarStyle" parent="@android:style/Widget.ProgressBar.Horizontal">
@@ -36,6 +38,7 @@
     <!-- 默认主题 -->
      <style name="Default" parent="@android:style/Theme.Black">
         <item name="android:textColorPrimaryInverse">@android:color/black</item>
+         <item name="android:windowNoTitle">true</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowTitleSize">46.0dip</item>
         <item name="android:windowTitleBackgroundStyle">@style/Default.CustomWindowTitleBackground</item>
@@ -43,6 +46,7 @@
         <item name="android:listViewStyle">@style/Widget.CustomListView</item>
         <item name="android:checkboxStyle">@style/Widget.CustomCheckBox</item>
         <item name="android:radioButtonStyle">@style/Widget.CustomRadioButton</item>
+        <item name="android:buttonStyle">@style/Widget.CustomButton</item>
         <item name="android:windowAnimationStyle">@style/Anim.ActyAnimation</item>
     </style>
     <!-- 通用CheckBox -->
@@ -55,12 +59,21 @@
     </style>
     <!-- 通用EditText -->
     <style name="Widget.CustomEditText" parent="@android:style/Widget.EditText">
-        <item name="android:background">@drawable/bg_common_edittext_selected</item>
+        <item name="android:background">@drawable/bg_common_edt_selector</item>
+        <item name="android:textColorHint">@color/font_color_light_gray</item>
     </style>
     <!-- 通用ListView -->
     <style name="Widget.CustomListView" parent="@android:style/Widget.ListView">
         <item name="android:scrollingCache">false</item>
         <item name="android:cacheColorHint">@null</item>
+    </style>
+    <!-- 通用Button -->
+    <style name="Widget.CustomButton" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/bg_common_btn_blue_selector</item>
+        <item name="android:paddingLeft">@dimen/margin_large</item>
+        <item name="android:paddingRight">@dimen/margin_large</item>
+        <item name="android:textColor">@color/font_color_white</item>
+        <item name="android:textSize">@dimen/font_size_large</item>
     </style>
     <!-- 默认黑色背景 -->
       <style name="Default.CustomWindowTitleBackground">
@@ -69,6 +82,7 @@
     <!-- 无TitleBar主题  -->
     <style name="Default.NoTitleBar" parent="@style/Default">
         <item name="android:windowNoTitle">true</item>
+         <item name="android:windowContentOverlay">@null</item>
     </style>
     <!-- 转场动画  -->
     <style name="Anim.ActyAnimation" parent="@android:style/Animation.Activity">
@@ -104,13 +118,46 @@
         <item name="android:activityCloseExitAnimation">@anim/transitions_translucent_zoom_exit</item>
     </style>
     <!-- 对话框按钮 -->
-    <style name="dialog_button_style">
-        <item name="android:layout_width">wrap_content</item>
+    <style name="dialog_button_style" parent="@style/Widget.CustomButton">
+        <item name="android:layout_width">0dip</item>
         <item name="android:layout_height">40dip</item>
         <item name="android:layout_weight">1</item>
         <item name="android:textColor">#ffffff</item>
         <item name="android:textSize">@dimen/font_size_medium</item>
         <item name="android:gravity">center</item>
-        <item name="android:background">@drawable/bg_common_btn_blue_selector</item>
+    </style>
+    <!-- 启动画面 -->
+      <style name="AppStart" parent="android:style/Theme.NoTitleBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@drawable/welcome</item>
+    </style>
+    <!-- 弹窗动画 -->
+         <style name="PopupAnimation"/>
+      	<style name="PopupAnimation.RightToLeft">
+		<item name="@android:windowEnterAnimation">@anim/transitions_slide_in_right</item>
+		<item name="@android:windowExitAnimation">@anim/transitions_slide_out_right</item>
+	</style>
+	<!-- 向上出现，向下退出动画 -->
+	<style name="dialog_animn_from_top_sytle" parent="android:Animation">
+	     <item name="@android:windowEnterAnimation">@anim/transitions_slide_in_up</item>
+        <item name="@android:windowExitAnimation">@anim/transitions_slide_out_down</item>
+	</style>
+	<!-- 标题字体 -->
+	<style name="title_style">
+	    <item name="android:textColor">@color/font_color_white</item>
+	    <item name="android:textSize">@dimen/font_size_xlarge</item>
+	    <item name="android:textStyle">bold</item>
+	</style>
+	<!-- 时间选择器 -->
+	    <style name="time_label">
+        <item name="android:textSize">@dimen/time_label_size</item>
+        <item name="android:textColor">@color/numbers_text_color</item>
+    </style>
+
+    <style name="ampm_label">
+        <item name="android:textSize">@dimen/ampm_label_size</item>
+        <item name="android:textColor">@color/ampm_text_color</item>
+        <item name="android:textStyle">bold</item>
     </style>
 </resources>

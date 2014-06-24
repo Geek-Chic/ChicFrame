@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/margin_medium"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="张三同意您的请求"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/font_color_most_black" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="好友姓名：张三"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/font_color_most_black" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="好友新号：15687223545"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/font_color_most_black" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_gravity="center"
+        android:text="确认并存入通讯录" />
+
+</LinearLayout>

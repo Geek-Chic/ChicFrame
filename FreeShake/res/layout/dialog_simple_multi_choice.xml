@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/btn_dialog_selector"
+    android:checkMark="@drawable/btn_dialog_choice_indicator"
+    android:ellipsize="marquee"
+    android:gravity="left|center_vertical"
+    android:minHeight="40dip"
+    android:paddingLeft="13.3dip"
+    android:paddingRight="13.3dip"
+    android:singleLine="true"
+    android:textColor="@drawable/dialog_list_item_text_selector"
+    android:textSize="15sp" />

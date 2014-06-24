@@ -1,13 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">FreeShake</string>
+    <string name="app_name">吾友</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
     <string name="empty"></string>
-
+    <!-- 对话框 -->
+    <string name="dialog_loading">加载中。。。</string>
+    <string name="dialog_upload">正在上传中。。。。</string>
+    <string name="dialog_tips">提示</string>
+    <string name="toast_http_error">网络错误</string>
+    <string name="toast_success">提交成功</string>
+    <string name="toast_failed">提交失败,请检查网络状态</string>
+    <!-- 按钮 -->
+    <string name="btn_confirm">确定</string>
+    <string name="btn_cancel">取消</string>
+    <!-- 关于 -->
+    <string name="about">关于</string>
+    <string name="about_app">“吾友”是一款辅助型APP，是基于手机原生通讯录搭建的换号管理系统，在保护基本通讯数据安全的前提，利用网络实时同步备份，实时查找，最大限度的减少丢失联系人的风险。并且设计了更为科学的群聊方式--基于事件驱动的通信方式，可减少在信息量大时的混乱和干扰，提高工作生活效率。</string>
+    <string name="about_name">作者</string>
+    <string name="about_mail">邮箱</string>
     <!-- 反馈信息 -->
     <string name="feedback_title">反馈信息</string>
     <string name="feedback_hint_text">说些什么吧....</string>
     <string name="feedback_commit_btn">提交</string>
-</resources>
+    <!-- 登录 -->
+    <string name="login_btn">登录</string>
+    <string name="login_register"><u>注册帐号</u></string>
+    <string name="login_please_input_user">请输入账号</string>
+    <string name="login_please_input_password">请输入密码</string>
+    <string name="logout">退出登录</string>
+    <!-- 注册 -->
+    <string name="register_declaration">声明</string>
+    <string name="register_agree_declaration">同意并继续</string>
+    <string name="register_nickname_hint">您的真实姓名</string>
+    <string name="register_password">您的密码</string>
+    <string name="register_start">启动</string>
+    <string name="register_nickname_require_hint">*为方便标识自己，请输入您的真实姓名</string>
+    <string name="register_phone_hint">请输入注册的电话号码</string>
+    <string name="register_verfication_hint">验证码</string>
+    <string name="register_verfication_code">获取验证码</string>
+    <string name="register_verfy_count">%1$d重新获取</string>
+    <string name="register_go_next">下一步</string>
+    <string name="register_error_name">姓名不能为空</string>
+    <string name="register_error_password">密码不能为空</string>
+    <!-- 导航 -->
+    <string name="nav_step_one">妈妈再也不用担心我换号了</string>
+    <string name="nav_step_two">老师再也不用担心我的作业了</string>
+    <string name="nav_step_three">朋友再也不担心忍受我灌水了</string>
+    <string name="nav_step_four">数据保护不易，且行且珍惜</string>
+    <string name="nav_start">启动</string>
+    <!-- 二维码 -->
+    <string name="zxing_title">二维码</string>
+    <string name="zxing_tips">将二维码放入框内，即可自动完成扫描</string>
+    <string name="zxing_camera_error">相机启动失败</string>
+    <string name="zxing_scan_error">扫描失败</string>
+    <!-- PullToFresh -->
+    <string name="pull_to_refresh_pull_label">Pull to refresh…</string>
+    <string name="pull_to_refresh_release_label">Release to refresh…</string>
+    <string name="pull_to_refresh_refreshing_label">Loading…</string>
+
+    <!-- Just use standard Pull Down String when pulling up. These can be set for languages which require it -->
+    <string name="pull_to_refresh_from_bottom_pull_label">@string/pull_to_refresh_pull_label</string>
+    <string name="pull_to_refresh_from_bottom_release_label">@string/pull_to_refresh_release_label</string>
+    <string name="pull_to_refresh_from_bottom_refreshing_label">@string/pull_to_refresh_refreshing_label</string>
+    <!-- xlistview -->
+    <string name="xlistview_header_hint_normal">下拉刷新</string>
+    <string name="xlistview_header_hint_ready">释放立即刷新</string>
+    <string name="xlistview_header_hint_loading">正在刷新...</string>
+    <string name="xlistview_header_last_time">上次更新时间：</string>
+    <string name="xlistview_footer_hint_normal">查看更多</string>
+    <string name="xlistview_footer_hint_ready">松开载入更多</string>
+
+    <!-- user header -->
+    <string name="user_info">%1$s[%2$s]</string>
+    <string name="user_action_profile">选项</string>
+    <string name="user_action_search">查找</string>
+    <!-- 聊天 -->
+    <string name="chat_title">聊天</string>
+    <string name="chat_send">发送</string>
+    <!-- 界面标题 -->
+    <string name="project_create_title">创建项目</string>
+    <string name="main_tab_message">消息中心</string>
+    <string name="main_tab_statictic">统计</string>
+    <string name="main_tab_complete">历史</string>
+    <string name="main_tab_going">项目</string>
+    <string name="setting">设置</string>
+    <string name="profile_setting">资料设置</string>
+    <string name="registration">注册</string>
+    <string name="dlg_fuzzy_search">模糊查找</string>
+    <!-- 通知 -->
+    <string name="notify_captcha_title">注册验证</string>
+    <string name="notify_register">有一条注册通知</string>
+    <string name="notify_captcha_content">您的验证码为[%1$s]，感谢您使用手机注册验证功能，如果不是本人操作，请忽略本信息</string>
+    <!-- 时间选择器 -->
+    <string name="done_label">Done</string>
+    <string name="day_picker_description">Month grid of days</string>
+    <string name="year_picker_description">Year list</string>
+    <string name="select_day">Select month and day</string>
+    <string name="select_year">Select year</string>
+    <string name="item_is_selected">%1$s selected</string>
+    <string name="sans_serif" translatable="false">sans-serif</string>
+    <string name="day_of_week_label_typeface" translatable="false">sans-serif</string>
+    <string name="time_placeholder" translatable="false">--</string>
+    <string name="time_separator" translatable="false">:</string>
+    <string name="deleted_key">deleted</string>
+    <string name="hour_picker_description">Hours circular slider</string>
+    <string name="minute_picker_description">Minutes circular slider</string>
+    <string name="radial_numbers_typeface" translatable="false">sans-serif</string>
+    <string name="select_hours">Select hours</string>
+    <string name="select_minutes">Select minutes</string>
+    <!-- 相机 -->
+    <string name="dialog_camera">拍照</string>
+    <string name="dialog_allimage">从像相册选择</string>
+    <!-- 分享  -->
+    <string name="weibo_oauth_regiseter">应用授权</string>
+    <string name="website">http://www.baidu.cn</string>
+    <string name="weibo_upload_content">分享图片</string>
+    <string name="share_content">ShareSDK for Android不仅集成简单、支持如QQ好友、微信、新浪微博、腾讯微博等所有社交平台，而且还有强大的统计分析管理后台，实时了解用户、信息流、回流率、传播效应等数据，详情见官网http://sharesdk.cn @ShareSDK</string>
+    <string name="error_10001">请求传的参数格式不正确</string>
+    <string name="error_10002">非法的APPKEY或者不存在</string>
+    <string name="error_10003">非法的DEVICE_TOKEN或者不存在</string>
+    <string name="error_10007">服务器异常</string>
+    <string name="error_30001">上传的文件为空</string>
+    <string name="error_30002">snsplat信息有误或者未空</string>
+    <string name="error_30003">content信息提取URL失败</string>
+    <string name="error_30004">JSON解析有误</string>
+    <string name="error_30005">分享内容为空</string>
+    <string name="error_30006">事件未定义</string>
+    <string name="error_30007">事件已经失效/禁用</string>
+    <string name="error_30008">密文解密失败</string>
+    <string name="error_30009">无此统计上传项目</string>
+    <string name="error_300010">客户端生成的device_key与服务端不一致</string>
+    <string name="platform">平台</string>
+    <string name="sinaweibo">新浪微博</string>
+    <string name="tencentweibo">腾讯微博</string>
+    <string name="facebook">Facebook</string>
+    <string name="twitter">Twitter</string>
+    <string name="renren">人人网</string>
+    <string name="qzone">QQ空间</string>
+    <string name="douban">豆瓣</string>
+    <string name="evernote">印象笔记</string>
+    <string name="neteasemicroblog">网易微博</string>
+    <string name="wechat">微信好友</string>
+    <string name="wechatmoments">微信朋友圈</string>
+    <string name="shouhumicroblog">搜狐微博</string>
+    <string name="plz_choose_sms">请选择“信息”</string>
+    <string name="plz_choose_email">请选择“电子邮件”</string>
+    <string name="sim_state_absent">设备中没有可用的SIM卡</string>
+    <string name="sim_state_network_locked">移动网络被锁定</string>
+    <string name="sim_state_pin_required">PIN码被锁定</string>
+    <string name="sim_state_puk_required">PUK码被锁定</string>
+    <string name="sim_state_ready">就绪</string>
+    <string name="not_yet_authorized">尚未授权</string>
+    
+  </resources>

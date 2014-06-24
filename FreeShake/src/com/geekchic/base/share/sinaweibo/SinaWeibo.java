@@ -8,6 +8,9 @@
  */
 package com.geekchic.base.share.sinaweibo;
 
+import java.util.HashMap;
+
+import android.R.string;
 import android.content.Context;
 
 import com.geekchic.base.share.ShareService;
@@ -20,6 +23,7 @@ import com.geekchic.base.share.ShareService;
  */
 public class SinaWeibo extends ShareService
 {
+    public static final String NAME = "SinaWeibo";
     private String mAppKey;
     private String mAppSecret;
     private String mRedirectUrl;
@@ -81,8 +85,7 @@ public class SinaWeibo extends ShareService
     @Override
     public int getVersion()
     {
-        // TODO Auto-generated method stub
-        return 0;
+        return 1;
     }
 
     @Override
@@ -98,5 +101,36 @@ public class SinaWeibo extends ShareService
         mAppSecret=getParamByKey("AppSecret");
         mRedirectUrl=getParamByKey("RedirectUrl");
     }
-    
+    @Override
+    protected void authUser(String name)
+    {
+        boolean flag=false;
+        SinaParamUtils sinaParamUtils=SinaParamUtils.getInstance();
+        HashMap hashMap=sinaParamUtils.auth(name);
+        if(null==hashMap){
+            if(mBasicShareActionLinstener!=null){
+                mBasicShareActionLinstener.onError(this,ShareService.ACTION_USER_INFOR, new Throwable());
+                return;
+            }
+        }
+        if(hashMap.containsKey("error_code")){
+            int errorCode=((Integer)hashMap.get("error_code")).intValue();
+            if(errorCode!=0){
+                if(mBasicShareActionLinstener!=null){
+                    String error=String.valueOf(hashMap.get("error"));
+                    String request=String.valueOf(hashMap.get("request"));
+                    String errorMsg=(new StringBuilder()).append(error).append(" (").append(errorCode).append("): ").append(request).toString();
+                    mBasicShareActionLinstener.onError(this, ShareService.ACTION_USER_INFOR, new Throwable(errorMsg));
+                }
+                return;
+            }
+        }
+        if(flag){
+            //将id和screen_name插入数据库中
+        }
+        if(mBasicShareActionLinstener!=null){
+            mBasicShareActionLinstener.onComplete(this, ShareService.ACTION_USER_INFOR, hashMap);
+        }
+        return;
+    }
 }

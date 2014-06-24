@@ -17,7 +17,7 @@ import android.view.ViewConfiguration;
 import android.view.ViewParent;
 import android.widget.CheckBox;
 
-import com.geekchic.freeshake.R;
+import com.geekchic.wuyou.R;
 
 public class SwitchButton extends CheckBox {
     private Paint mPaint;

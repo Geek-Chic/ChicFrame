@@ -2,12 +2,11 @@ package com.geekchic.common.utils;
 
 import android.content.Context;
 import android.widget.Toast;
-
 /**
- * Toast统一管理类
- * 
- * @author way
- * 
+ * @ClassName: ToastUtil
+ * @Descritpion: Toast工具类
+ * @author evil
+ * @date May 10, 2014
  */
 public class ToastUtil {
 	// Toast

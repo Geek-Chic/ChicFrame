@@ -71,7 +71,7 @@ public class AppException extends Exception implements UncaughtExceptionHandler
         mContext=context;
         this.mDefaultHandler=Thread.getDefaultUncaughtExceptionHandler();
         //设置为默认Exception收集器
-        Thread.setDefaultUncaughtExceptionHandler(this);
+//        Thread.setDefaultUncaughtExceptionHandler(this);
     }
     @Override
     public void uncaughtException(Thread thread, Throwable ex)
@@ -102,7 +102,7 @@ public class AppException extends Exception implements UncaughtExceptionHandler
      */
     public File saveErrorLog(String excp) {
         String savePath = getErrorPath(mContext);
-        String date = DateUtil.getDateStr();
+        String date = DateUtil.getDateStr(System.currentTimeMillis());
         String logFilePath = "appexception";
         FileWriter fw = null;
         PrintWriter pw = null;
@@ -219,7 +219,7 @@ public class AppException extends Exception implements UncaughtExceptionHandler
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         // 退出
-//                        AppManager.getAppManager().AppExit(cont);
+                        AppManager.getAppManager().AppExit(cont);
                     }
                 });
         builder.show();

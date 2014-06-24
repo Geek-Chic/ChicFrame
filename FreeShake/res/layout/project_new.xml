@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/task_add_bg" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/task_add_title"
+            android:gravity="center"
+            android:padding="@dimen/margin_small"
+            android:text="联系信息"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/task_add_title_text" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_small" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="Email："
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/tast_add_sub_text" />
+
+            <EditText
+                android:id="@+id/project_new_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:background="@null"
+                android:gravity="right"
+                android:text="jiangpengtct@sina.com"
+                android:textColor="@color/tast_add_sub_text" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/task_add_sub"
+            android:padding="@dimen/margin_small" >
+
+            <TextView
+                android:id="@+id/project_new_people_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="组员"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/tast_add_sub_text" />
+
+            <TextView
+                android:id="@+id/project_pepole_new"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@null"
+                android:layout_toRightOf="@id/project_new_people_title"
+                android:layout_marginLeft="@dimen/margin_medium"
+                android:textSize="@dimen/font_size_large"
+                android:gravity="right"
+                android:text="蒋鹏"
+                android:textColor="@color/tast_add_sub_text" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/task_add_title"
+            android:gravity="center"
+            android:padding="@dimen/margin_medium"
+            android:text="任务信息"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/task_add_title_text" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_small" >
+
+            <TextView
+                android:id="@+id/project_new_name_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="任务名称"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/tast_add_sub_text" />
+
+            <EditText
+                android:id="@+id/project_new_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@id/project_new_name_title"
+                android:background="@null"
+                android:gravity="right"
+                android:text="毕业"
+                android:textColor="@color/tast_add_sub_text" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/task_add_sub"
+            android:padding="@dimen/margin_small" >
+
+            <TextView
+                android:id="@+id/project_new_note_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="任务描述"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/tast_add_sub_text" />
+
+            <EditText
+                android:id="@+id/project_new_note"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:layout_toRightOf="@id/project_new_note_title"
+                android:background="@null"
+                android:gravity="right"
+                android:text="毕业设计、论文、释译"
+                android:textColor="@color/tast_add_sub_text" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_small" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="开始时间"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/tast_add_sub_text" />
+
+            <TextView
+                android:id="@+id/project_new_starttime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@null"
+                android:gravity="right"
+                android:text="00:00"
+                android:textColor="@color/tast_add_sub_text" />
+
+            <TextView
+                android:id="@+id/project_new_startdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/project_new_starttime"
+                android:background="@null"
+                android:paddingRight="@dimen/margin_medium"
+                android:text="2014-1-1"
+                android:textColor="@color/tast_add_sub_text" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/task_add_sub"
+            android:padding="@dimen/margin_small" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="结束时间"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/tast_add_sub_text" />
+
+            <TextView
+                android:id="@+id/project_new_endtime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@null"
+                android:gravity="right"
+                android:text="12:00"
+                android:textColor="@color/tast_add_sub_text" />
+
+            <TextView
+                android:id="@+id/project_new_enddate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/project_new_endtime"
+                android:background="@null"
+                android:gravity="right"
+                android:paddingRight="@dimen/margin_medium"
+                android:text="2014-6-1"
+                android:textColor="@color/tast_add_sub_text" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_small" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="优先级"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/tast_add_sub_text" />
+
+            <ImageButton
+                android:id="@+id/project_new_levell"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@null"
+                android:src="@drawable/icon_red_flag" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</ScrollView>

@@ -1,15 +1,18 @@
 package com.geekchic.freeshake.module.shake;
 
 import android.app.Activity;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.Response.Listener;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.geekchic.base.update.UpdateFrequent;
@@ -17,21 +20,24 @@ import com.geekchic.base.update.UpdateManager;
 import com.geekchic.base.update.UpdateOptions;
 import com.geekchic.base.update.UpdateOptions.UpdateFormat;
 import com.geekchic.common.utils.ToastUtil;
-import com.geekchic.freeshake.R;
-import com.widget.slidingmenu.SlidingActivity;
+import com.geekchic.framework.ui.dialog.ProgressDialog;
+import com.geekchic.wuyou.R;
 import com.widget.slidingmenu.SlidingMenu;
 
 public class FreeShakeActivity extends Activity
 {
     protected SlidingMenu mSlidingMenu;
     private static final String CITY_CODE_URL="https://raw.githubusercontent.com/snowdream/android-autoupdater/master/docs/test/updateinfo.xml";
+    ProgressDialog progressDialog;
+    private AnimationDrawable animationDrawable;
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+        setContentView(R.layout.login);
+        Button button=(Button) findViewById(R.id.login_btn);
+        button.setOnClickListener(new llll());
     	String urlString="https://raw.githubusercontent.com/snowdream/android-autoupdater/master/docs/test/updateinfo.xml";
     	  UpdateManager manager = new UpdateManager(this);
 
@@ -81,6 +87,14 @@ public class FreeShakeActivity extends Activity
 		});
 		sRequest.setShouldCache(false);
 		requestQueue.add(sRequest);
+	}
+	private class llll implements OnClickListener{
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			progressDialog=ProgressDialog.createProgressDialog(FreeShakeActivity.this);
+			progressDialog.show();
+		}
 	}
     public void test(){
         try
