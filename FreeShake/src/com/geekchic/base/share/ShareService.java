@@ -47,6 +47,7 @@ public abstract class ShareService
     public static final int SHARE_APPS = 7;
     
     protected Context mContext;
+    protected SharePreferenceUtils mSharePreferenceUtils;
     
     protected BasicShareActionLinstener mBasicShareActionLinstener;
     
@@ -107,9 +108,11 @@ public abstract class ShareService
     public ShareService(Context context)
     {
         this.mContext = context;
-        
+        String share=getName();
+        mSharePreferenceUtils=new SharePreferenceUtils(context, share, getVersion());
+        mBasicShareActionLinstener=new BasicShareActionLinstener();
+        setParam(share);
     }
-    
     public static ShareService getShareService(Context context, String shareName)
     {
         if (shareName == null)
@@ -274,6 +277,7 @@ public abstract class ShareService
                 break;
         }
     }
+    protected abstract void a();
     
     protected abstract boolean a(int k, Object obj);
     
