@@ -233,6 +233,18 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+         <!-- 分享授权Activity -->
+          <activity
+            android:name=".ui.setting.ShareAllActivity"
+            android:configChanges="orientation|keyboardHidden|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/Default" >
+            <intent-filter>
+                <action android:name="com.geekchic.wuyou.SHAREALLGRID" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <!-- 二维码界面 -->
         <activity
             android:name=".ui.tools.ZXingActivity"

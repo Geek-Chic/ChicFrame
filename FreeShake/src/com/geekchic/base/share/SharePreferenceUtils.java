@@ -12,11 +12,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import com.geekchic.base.share.util.ResultUtils;
-
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.test.PerformanceTestCase;
+
+import com.geekchic.base.share.util.ResultUtils;
 
 /**
  * @ClassName: SharePreferenceUtils
@@ -26,7 +25,7 @@ import android.test.PerformanceTestCase;
  */
 public class SharePreferenceUtils
 {
-    private static final String DB_NAME = "cn_sharesdk_weibodb";
+    private static final String DB_NAME = "sharedb";
     
     private SharedPreferences preferences;
     
@@ -42,7 +41,7 @@ public class SharePreferenceUtils
      */
     public SharePreferenceUtils(Context context, String share, int version)
     {
-        String shareFile = (new StringBuilder()).append("cn_sharesdk_weibodb")
+        String shareFile = (new StringBuilder()).append("sharedb")
                 .append(share)
                 .append("-")
                 .append(version)

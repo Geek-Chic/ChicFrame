@@ -26,7 +26,7 @@ import android.content.Context;
  * @author jp
  * @date Apr 12, 2014
  */
-public abstract class SaxServiceHandle extends DefaultHandler {
+public  class SaxServiceHandle extends DefaultHandler {
 	/**
 	 * TAG
 	 */

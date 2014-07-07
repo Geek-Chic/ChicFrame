@@ -12,5 +12,6 @@
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry kind="src" path="fastjson"/>
 	<classpathentry kind="lib" path="libs/zxing.jar"/>
+	<classpathentry kind="src" path="/youtui-share"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

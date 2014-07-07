@@ -10,19 +10,19 @@ package com.geekchic.base.share;
 
 /**
  * @ClassName: AuthThread
- * @Descritpion:[用一句话描述作用] 
+ * @Descritpion:分享操作线程
  * @author Administrator
  * @date 2014-4-10
  */
 public class ActionThread extends Thread
 {
     private static final String TAG=ActionThread.class.getName();
-    private final int  action;
+    private final int  mActionId;
     private final Object obj;
     private ShareService mShareService;
-    public ActionThread(ShareService service,int i,Object obj){
+    public ActionThread(ShareService service,int actionId,Object obj){
         super(TAG);
-        this.action=i;
+        this.mActionId=actionId;
         this.mShareService=service;
         this.obj=obj;
     }
@@ -30,8 +30,8 @@ public class ActionThread extends Thread
     public void run()
     {
         super.run();
-        if(mShareService.a(action,obj)){
-            mShareService.handle(action, obj);
+        if(mShareService.isValid()){
+            mShareService.handle(mActionId, obj);
         }
     }
 }

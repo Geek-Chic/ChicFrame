@@ -18,6 +18,7 @@ import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CheckedTextView;
+import android.widget.Toast;
 
 import com.geekchic.base.share.ShareActionLinstener;
 import com.geekchic.base.share.ShareService;
@@ -35,6 +36,17 @@ import com.geekchic.wuyou.R;
  */
 public class AuthActivity extends BaseTitleBarActivity implements OnClickListener,ShareActionLinstener,Callback
 {
+    /**新浪微博授权成功*/
+    private static final int SINA_AUTH_SUCCESS = 0;
+    /** 新浪微博授权失败 */
+    private static final int SINA_AUTH_FAIL = 1;
+    //private static final int SINA_AUTH_CANCLE = 2;
+    /**QQ授权成功 */
+    private static final int QQ_AUTH_SUCCESS = 3;
+    //private static final int QQ_AUTH_FAIL = 4;
+    //private static final int QQ_AUTH_CANCEL = 5;
+    /** 腾讯微博授权成功 */
+    private static final int TENCENTWB_AUTH_SUCCESS = 6;
     private CheckedTextView sinaCheckedTextView;
     private CheckedTextView qzoneCheckedTextView;
     private CheckedTextView txCheckedTextView;
@@ -116,7 +128,7 @@ public class AuthActivity extends BaseTitleBarActivity implements OnClickListene
     @Override
     public void onClick(View v)
     {
-        ShareService shareService=new SinaWeibo(this);
+        ShareService shareService=getShareService(v.getId());
         CheckedTextView ctv=(CheckedTextView) v;
         if(null==shareService){
             ctv.setChecked(false);
@@ -135,14 +147,19 @@ public class AuthActivity extends BaseTitleBarActivity implements OnClickListene
     @Override
     public void onComplete(ShareService shareService, int i, HashMap hashMap)
     {
-        // TODO Auto-generated method stub
-        
+        Message msg=new Message();
+        msg.what=SINA_AUTH_SUCCESS;
+        msg.arg1=i;
+        msg.obj=shareService;
+        mHandler.sendMessage(msg);
     }
     @Override
     public void onError(ShareService shareService, int i, Throwable throwable)
     {
-        // TODO Auto-generated method stub
-        
+        Message msg=new Message();
+        msg.what=SINA_AUTH_SUCCESS;
+        msg.arg1=i;
+        msg.obj=shareService;
     }
     @Override
     public void onCancel(ShareService shareService, int i)
@@ -153,6 +170,17 @@ public class AuthActivity extends BaseTitleBarActivity implements OnClickListene
     @Override
     public boolean handleMessage(Message msg)
     {
+        ShareService service=(ShareService) msg.obj;
+        switch (msg.what)
+        {
+            case SINA_AUTH_SUCCESS:
+               String  text = service.getName() + " completed at " + "auth";
+                Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+                break;
+            
+            default:
+                break;
+        }
         return false;
     }
     

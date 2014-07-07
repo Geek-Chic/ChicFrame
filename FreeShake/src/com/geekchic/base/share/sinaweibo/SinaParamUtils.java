@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.geekchic.base.share.BasePairs;
-import com.geekchic.base.share.ShareHttpManager;
 import com.geekchic.base.share.ShareManager;
+import com.geekchic.base.share.http.ShareHttpManager;
 import com.geekchic.base.share.ui.AuthorizeListener;
 import com.geekchic.base.share.util.ResultUtils;
 import com.geekchic.common.utils.StringUtils;

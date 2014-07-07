@@ -69,7 +69,7 @@ public class ShareAllGird extends Activity implements OnClickListener
         btnCancel = new Button(this);
         btnCancel.setTextColor(-1);
         btnCancel.setTextSize(1, 20F);
-        btnCancel.setText(ShareUtils.getString(this, "cancel"));
+        btnCancel.setText("取消");
         btnCancel.setPadding(0, 0, 0, ShareUtils.dipToPx(this, 5));
 //        btnCancel.setBackgroundDrawable(ShareUtils.getDrawable(this, "btn_cancel_back"));
         android.widget.LinearLayout.LayoutParams lpBtn = new android.widget.LinearLayout.LayoutParams(-1, ShareUtils.dipToPx(this, 45));

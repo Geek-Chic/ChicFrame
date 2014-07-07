@@ -8,6 +8,8 @@
  */
 package com.geekchic.base.share;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 
 /**
@@ -47,6 +49,9 @@ public abstract class ShareService
     public static final int SHARE_APPS = 7;
     
     protected Context mContext;
+    /**
+     * PreferencedUtils存储
+     */
     protected SharePreferenceUtils mSharePreferenceUtils;
     
     protected BasicShareActionLinstener mBasicShareActionLinstener;
@@ -74,35 +79,13 @@ public abstract class ShareService
     
     public static void initSDK(Context context)
     {
-        initSDK(context, null, true);
+        mShareManager=ShareManager.getInstance(context);
     }
     
-    public static void initSDK(Context context, boolean flag)
-    {
-        initSDK(context, null, flag);
-    }
-    
-    public static void initSDK(Context context, String s)
-    {
-        initSDK(context, s, true);
-    }
-    
-    public static void initSDK(Context context, String share, boolean flag)
-    {
-        if(mShareManager==null){
-            mShareManager=new ShareManager();
-            String s1=share;
-            if(s1==null){
-                s1=mShareManager.getParam(context, "AppKey");
-            }
-            if(flag){
-                
-            }
-        }
-    }
     
     public static void stopSDK(Context context)
     {
+        mShareManager=null;
     }
     
     public ShareService(Context context)
@@ -111,19 +94,17 @@ public abstract class ShareService
         String share=getName();
         mSharePreferenceUtils=new SharePreferenceUtils(context, share, getVersion());
         mBasicShareActionLinstener=new BasicShareActionLinstener();
-        setParam(share);
     }
     public static ShareService getShareService(Context context, String shareName)
     {
         if (shareName == null)
             return null;
-        ShareService shareServices[] = getShareServices(context);
+        ArrayList<ShareService> shareServices = getShareServices(context);
         if (shareServices == null)
             return null;
-        int size = shareServices.length;
-        for (int i = 0; i < size; i++)
+        int size = shareServices.size();
+        for (ShareService service:shareServices)
         {
-            ShareService service = shareServices[i];
             if (shareName.equals(service.getName()))
             {
                 return service;
@@ -132,15 +113,14 @@ public abstract class ShareService
         return null;
     }
     
-    public static ShareService[] getShareServices(Context context)
+    public static ArrayList<ShareService> getShareServices(Context context)
     {
         long start=System.currentTimeMillis();
         if(null==mShareManager){
             String s = "Please call ShareService.initSDK(Context) before any action.";
             throw new NullPointerException(s);
         }else{
-            ShareService[] shareServices=mShareManager.init(context);
-            return shareServices;
+            return mShareManager.getShareService(context);
         }
         
     }
@@ -150,48 +130,7 @@ public abstract class ShareService
         ShareService.flag = flag;
     }
     
-    public void setShareParam(String key, String value)
-    {
-        if (mShareManager == null)
-        {
-            String tips = "Please call ShareService.initSDK(Context) before any action.";
-            throw new NullPointerException(tips);
-        }
-        String shareName = getName();
-        mShareManager.setShareParam(getContext(), shareName, key, value);
-        setParam(shareName);
-    }
-    
-    private void setParam(String shareName)
-    {
-        if (mShareManager == null)
-        {
-            String tips = "Please call ShareService.initSDK(Context) before any action.";
-            throw new NullPointerException(tips);
-        }
-        String idParam = mShareManager.getParam(mContext, shareName, "Id");
-        try
-        {
-            id = Integer.parseInt(idParam);
-        }
-        catch (Throwable throwable)
-        {
-            System.err.println("Failed to parse Id, this will cause method getId() always returens 0");
-        }
-        String sortIdParam = mShareManager.getParam(mContext,
-                shareName,
-                "SortId");
-        try
-        {
-            sortID = Integer.parseInt(sortIdParam);
-        }
-        catch (Throwable throwable1)
-        {
-            System.err.println("Failed to parse SortId, this won't cause any problem, don't worry");
-        }
-        initShareService(shareName);
-    }
-    
+
     /**
      * 根据模块名获取参数
      * @param key 参数key
@@ -206,7 +145,7 @@ public abstract class ShareService
         }
         else
         {
-            return mShareManager.getParam(mContext, getName(), key);
+            return mShareManager.getParam(getName(), key);
         }
     }
     
@@ -223,7 +162,7 @@ public abstract class ShareService
     public void setShareServiceActionLinstener(
             ShareActionLinstener shareActionLinstener)
     {
-        
+        this.mBasicShareActionLinstener.addBasicShareActionLinstener(shareActionLinstener);
     }
     
     public void showUser(String shareName)
@@ -272,16 +211,16 @@ public abstract class ShareService
                 }
                 break;
             case ACTION_FOLLOWING_USER:
-                b((String) obj);
+//                b((String) obj);
                 break;
             case ACTION_TIMELINE:
-                Object aobj[] = (Object[]) (Object[]) obj;
-                a(((Integer) aobj[0]).intValue(),
-                        ((Integer) aobj[1]).intValue(),
-                        (String) aobj[2]);
+//                Object aobj[] = (Object[]) (Object[]) obj;
+//                a(((Integer) aobj[0]).intValue(),
+//                        ((Integer) aobj[1]).intValue(),
+//                        (String) aobj[2]);
                 break;
             case ACTION_USER_INFOR:
-                authUser(obj!=null?(String)obj:null);
+                getUser(obj!=null?(String)obj:null);
                 break;
             default:
                 break;
@@ -296,19 +235,12 @@ public abstract class ShareService
     public void removeAccount(){
         //从数据库中移除数据
     }
-    protected abstract void a();
-    
-    protected abstract boolean a(int k, Object obj);
-    
-    protected abstract void a(int k, int l, String shareName);
-    
-    protected abstract void b(String s);
     
     /**
      * 验证获取授权用户信息
      * @param name
      */
-    protected abstract void authUser(String name);
+    protected abstract void getUser(String name);
     
     public abstract void initShareService(String shareName);
     
@@ -317,5 +249,6 @@ public abstract class ShareService
     public abstract int getVersion();
     
     public abstract int getPlatformId();
+    
     
 }
