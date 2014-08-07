@@ -154,7 +154,11 @@
         <item name="android:textSize">@dimen/time_label_size</item>
         <item name="android:textColor">@color/numbers_text_color</item>
     </style>
-
+    <!-- 分享主题 -->
+   <style name="SharePopupAnim">
+        <item name="android:windowEnterAnimation">@anim/transitions_slide_in_up</item>
+        <item name="android:windowExitAnimation">@anim/transitions_slide_out_down</item>
+    </style>
     <style name="ampm_label">
         <item name="android:textSize">@dimen/ampm_label_size</item>
         <item name="android:textColor">@color/ampm_text_color</item>

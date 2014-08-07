@@ -9,12 +9,15 @@ import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.geekchic.framework.ui.dialog.effect.Effectstype;
 import com.geekchic.wuyou.R;
 
 public class BasicDialog extends Dialog
 {
-	private DialogController mDialogController;
+    private DialogController mDialogController;
+    
     private boolean mCancelable;
+    
     /**
      * 默认构造函数
      * @param context 上下文
@@ -23,6 +26,7 @@ public class BasicDialog extends Dialog
     {
         super(context, R.style.AppDialog);
     }
+    
     /**
      * 构造函数
      * @param context 上下文
@@ -31,30 +35,54 @@ public class BasicDialog extends Dialog
     public BasicDialog(Context context, int theme)
     {
         super(context, theme);
-        mDialogController=new DialogController(getContext(), this, getWindow());
-        setCanceledOnTouchOutside(true);
-        mCancelable=true;
+        init(context, theme, true);
     }
+    
     /**
      * 构造函数，是否可出取消
      * @param context 上下文
      * @param theme 主题
      * @param cancelable 是否可取消
      */
-    public BasicDialog(Context context, int theme,boolean cancelable)
+    public BasicDialog(Context context, int theme, boolean cancelable)
     {
         super(context, theme);
-        mDialogController=new DialogController(getContext(), this, getWindow());
+        init(context, theme, cancelable);
+    }
+    
+    /**
+     * 初始化
+     * @param context
+     * @param theme
+     * @param cancelable
+     */
+    private void init(Context context, int theme, boolean cancelable)
+    {
+        mDialogController = new DialogController(getContext(), this,
+                getWindow());
         setCanceledOnTouchOutside(cancelable);
-        mCancelable=cancelable;
+        mCancelable = cancelable;
+        setOnShowListener(new OnShowListener()
+        {
+            
+            @Override
+            public void onShow(DialogInterface dialog)
+            {
+                mDialogController.show();
+            }
+        });
     }
+    
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-    	super.onCreate(savedInstanceState);
-    	mDialogController.initView();
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        mDialogController.initView();
     }
+    
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
         if (keyCode == KeyEvent.KEYCODE_MENU)
         {
             // 屏蔽Menu键
@@ -69,6 +97,7 @@ public class BasicDialog extends Dialog
         
         return super.onKeyDown(keyCode, event);
     }
+    
     /**
      * @ClassName: OnCheckStateChangeListener
      * @Descritpion: 多选状态监听器
@@ -77,89 +106,110 @@ public class BasicDialog extends Dialog
      */
     public interface OnCheckStateChangeListener
     {
-         /**
-          * 多选状态监听器
-          * @param which
-          * @param isChecked
-          */
+        /**
+         * 多选状态监听器
+         * @param which
+         * @param isChecked
+         */
         public void onCheckedChanged(int which, boolean isChecked);
     }
+    
     /**
      * 获取自定义视图
      * @return
      */
-    public View getContentView(){
-    	return mDialogController.getContentView();
+    public View getContentView()
+    {
+        return mDialogController.getContentView();
     }
-    public ListView getListView(){
-    	return mDialogController.getListView();
+    
+    public ListView getListView()
+    {
+        return mDialogController.getListView();
     }
-    public static class Builder{
-    	/**
-    	 * 构造参数
-    	 */
-    	private final DialogController.DialogParams params;
-    	/**
-    	 * Builder构造函数
-    	 * @param context
-    	 */
-    	public Builder(Context context){
-    		params=new DialogController.DialogParams(context);
-    	}
-    	/**
-    	 * 设置消息内容
-    	 * @param message
-    	 * @return
-    	 */
-    	public Builder setMessage(String message){
-    		params.mMessageText=message;
-    		return this;
-    	}
-    	/**
-    	 * 设置消息内容
-    	 * @param messageID id
-    	 * @return
-    	 */
-    	public Builder setMessage(int messageID){
-    		setMessage(params.mContext.getString(messageID));
-    		return this;
-    	}
-    	/**
-    	 * 设置消息标题
-    	 * @param title
-    	 * @return
-    	 */
-    	public Builder setTitle(String title){
-    		params.mTitle=title;
-    		return this;
-    	}
-    	/**
-    	 * 设置消息标题
-    	 * @param titleID
-    	 * @return
-    	 */
-    	public Builder setTitle(int titleID){
-    		setTitle(params.mContext.getString(titleID));
-    		return this;
-    	}
-    	/**
-    	 * 设置自定义布局
-    	 * @param view
-    	 * @return
-    	 */
-    	public Builder setContentView(View view){
-    		params.mCustomView=view;
-    		return this;
-    	}
-    	/**
-    	 * 设置自定义布局
-    	 * @param viewID
-    	 * @return
-    	 */
-    	public Builder setContentView(int viewID){
-    		params.mCustomViewID=viewID;
-    		return this;
-    	}
+    
+    public static class Builder
+    {
+        /**
+         * 构造参数
+         */
+        private final DialogController.DialogParams params;
+        
+        /**
+         * Builder构造函数
+         * @param context
+         */
+        public Builder(Context context)
+        {
+            params = new DialogController.DialogParams(context);
+        }
+        
+        /**
+         * 设置消息内容
+         * @param message
+         * @return
+         */
+        public Builder setMessage(String message)
+        {
+            params.mMessageText = message;
+            return this;
+        }
+        
+        /**
+         * 设置消息内容
+         * @param messageID id
+         * @return
+         */
+        public Builder setMessage(int messageID)
+        {
+            setMessage(params.mContext.getString(messageID));
+            return this;
+        }
+        
+        /**
+         * 设置消息标题
+         * @param title
+         * @return
+         */
+        public Builder setTitle(String title)
+        {
+            params.mTitle = title;
+            return this;
+        }
+        
+        /**
+         * 设置消息标题
+         * @param titleID
+         * @return
+         */
+        public Builder setTitle(int titleID)
+        {
+            setTitle(params.mContext.getString(titleID));
+            return this;
+        }
+        
+        /**
+         * 设置自定义布局
+         * @param view
+         * @return
+         */
+        public Builder setContentView(View view)
+        {
+            params.mCustomView = view;
+            return this;
+        }
+        
+        /**
+         * 设置自定义布局
+         * @param viewID
+         * @return
+         */
+        public Builder setContentView(int viewID)
+        {
+            params.mCustomViewID = viewID;
+            return this;
+        }
+        
         /**
          * 设置listview的adapter<BR>
          * @param adapter listview的adapter
@@ -173,71 +223,117 @@ public class BasicDialog extends Dialog
             params.mOnClickListener = listener;
             return this;
         }
-    	/**
-    	 * 创建确定按钮
-    	 * @param positiveButtonText
-    	 * @param listener
-    	 * @return
-    	 */
-    	public Builder setPositiveButton(String positiveButtonText,DialogInterface.OnClickListener listener){
-    		params.mPossitiveButtonText=positiveButtonText;
-    		params.mPositiveClickListener=listener;
-    		return this;
-    	}
-    	/**
-    	 * 创建确定按钮
-    	 * @param positiveText
-    	 * @param listener
-    	 * @return
-    	 */
-        public Builder setPositivewButton(int positiveText,DialogInterface.OnClickListener listener){
-        	return setPositiveButton(params.mContext.getString(positiveText), listener);
-        }
+        
         /**
-         * 创建取消按钮
-         * @param negativeText
+         * 创建确定按钮
+         * @param positiveButtonText
          * @param listener
          * @return
          */
-        public Builder setNegativeButton(String negativeText,DialogInterface.OnClickListener listener){
-            params.mNegativeButtonText=negativeText;
-            params.mNegativeClickListener=listener;
+        public Builder setPositiveButton(String positiveButtonText,
+                DialogInterface.OnClickListener listener)
+        {
+            params.mPossitiveButtonText = positiveButtonText;
+            params.mPositiveClickListener = listener;
             return this;
         }
+        
+        /**
+         * 创建确定按钮
+         * @param positiveText
+         * @param listener
+         * @return
+         */
+        public Builder setPositivewButton(int positiveText,
+                DialogInterface.OnClickListener listener)
+        {
+            return setPositiveButton(params.mContext.getString(positiveText),
+                    listener);
+        }
+        
         /**
          * 创建取消按钮
          * @param negativeText
          * @param listener
          * @return
          */
-        public Builder setNegativeButton(int negativeTextID,DialogInterface.OnClickListener listener){
-        	return setNegativeButton(params.mContext.getString(negativeTextID), listener);
+        public Builder setNegativeButton(String negativeText,
+                DialogInterface.OnClickListener listener)
+        {
+            params.mNegativeButtonText = negativeText;
+            params.mNegativeClickListener = listener;
+            return this;
         }
+        
+        /**
+         * 创建取消按钮
+         * @param negativeText
+         * @param listener
+         * @return
+         */
+        public Builder setNegativeButton(int negativeTextID,
+                DialogInterface.OnClickListener listener)
+        {
+            return setNegativeButton(params.mContext.getString(negativeTextID),
+                    listener);
+        }
+        
         /**
          * 创建中间按钮
          * @param neutralButtonText
          * @param listener
          * @return
          */
-        public Builder setNeutralButtonBuilder(String neutralButtonText,DialogInterface.OnClickListener listener){
-        	params.mNeutralButtonText=neutralButtonText;
-        	params.mNegativeClickListener=listener;
-        	return this;
+        public Builder setNeutralButtonBuilder(String neutralButtonText,
+                DialogInterface.OnClickListener listener)
+        {
+            params.mNeutralButtonText = neutralButtonText;
+            params.mNegativeClickListener = listener;
+            return this;
         }
+        
         /**
          * 创建中间按钮
          * @param neutralTextID
          * @param listener
          * @return
          */
-        public Builder setNeutralButtonBuilder(int neutralTextID,DialogInterface.OnClickListener listener){
-        	return setNegativeButton(params.mContext.getString(neutralTextID), listener);
+        public Builder setNeutralButtonBuilder(int neutralTextID,
+                DialogInterface.OnClickListener listener)
+        {
+            return setNegativeButton(params.mContext.getString(neutralTextID),
+                    listener);
         }
-        public BasicDialog create(){
-        	final BasicDialog dialog=new BasicDialog(params.mContext,R.style.AppDialog);
-        	params.apply(dialog.mDialogController);
-        	return dialog;
+        
+        /**
+         * 设置弹框效果
+         * @param type
+         * @return
+         */
+        public Builder setEffectType(Effectstype type)
+        {
+            params.mEffectType = type;
+            return this;
+        }
+        
+        /**
+         * 设置弹框动画时间
+         * @param duration
+         * @return
+         */
+        public Builder setEffectDuration(int duration)
+        {
+            params.mEffectDuration = duration;
+            return this;
+        }
+        
+        public BasicDialog create()
+        {
+            final BasicDialog dialog = new BasicDialog(params.mContext,
+                    R.style.AppDialog);
+            params.apply(dialog.mDialogController);
+            return dialog;
         }
     }
-   
+    
 }

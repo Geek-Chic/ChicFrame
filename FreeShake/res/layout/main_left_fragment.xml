@@ -14,7 +14,7 @@
         <include layout="@layout/user_header" />
 
         <com.geekchic.wuyou.ui.main.view.IphoneTreePullToRefreshView
-            android:id="@+id/contact_pull_refresh_expandable_list"
+            android:id="@+id/contact_pullrefresh_expandlist"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:fillViewport="true"

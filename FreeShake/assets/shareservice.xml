@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ShareInfo>
-    <!--说明：   	
+
+    <!--
+        说明：   	
     	1、表格中的第一项
     		<ShareSDK AppKey="api20" />
     	是必须的，其中的AppKey是你在Share SDK上注册的开发者帐号的AppKey
@@ -28,35 +30,44 @@
 			twitter：https://dev.twitter.com
 			搜狐随身看：https://open.sohu.com
 			QQ好友分享：http://mobile.qq.com/api/
-			微信：http://open.weixin.qq.com-->
-			  
-    
+			微信：http://open.weixin.qq.com
+    -->
+
     <SinaWeibo
-        SortId="1"
-        AppKey="3201194191"
-        AppSecret="0334252914651e8f76bad63337b3b78f"
+        AppKey="3491323713"
+        AppSecret="fde107cb9cf858b9414d117fd35c28bc"
         Id="1"
-        RedirectUrl="http://appgo.cn" />
+        RedirectUrl="https://api.weibo.com/oauth2/default.html"
+        SortId="1" />
 
     <TencentWeibo
-        SortId="2"
         AppKey="801307650"
         AppSecret="ae36f4ee3946e1cbb98d6965b0b2ff5c"
+        Id="2"
         RedirectUrl="http://sharesdk.cn"
-        Id="2" />
+        SortId="2" />
 
     <QZone
-        SortId="3"
         AppId="100371282"
         AppKey="aed9b0303e3ed1e27bae87c33761161d"
         Id="3"
-        RedirectUrl="http://www.shareSDK.cn" />
-       
+        RedirectUrl="http://www.shareSDK.cn"
+        SortId="3" />
+
     <Renren
-        SortId="4"
-        AppId="226427"
         ApiKey="fc5b8aed373c4c27a05b712acba0f8c3"
+        AppId="226427"
         Id="4"
-        SecretKey="f29df781abdd4f49beca5a2194676ca4" />  
-       
-</ShareInfor>
+        SecretKey="f29df781abdd4f49beca5a2194676ca4"
+        SortId="4" />
+
+    <Sms
+        Id="5"
+        SortId="5" />
+
+    <Mail
+        Id="6"
+        SortId="6" />
+
+    <ShareInfor>
+    </ShareInfor>

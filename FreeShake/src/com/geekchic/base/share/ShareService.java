@@ -8,9 +8,11 @@
  */
 package com.geekchic.base.share;
 
-import java.util.ArrayList;
-
+import android.app.Activity;
 import android.content.Context;
+import android.support.v4.app.FragmentActivity;
+
+import com.geekchic.base.share.dao.ShareData;
 
 /**
  * @ClassName: ShareService
@@ -49,6 +51,7 @@ public abstract class ShareService
     public static final int SHARE_APPS = 7;
     
     protected Context mContext;
+    
     /**
      * PreferencedUtils存储
      */
@@ -60,77 +63,61 @@ public abstract class ShareService
     
     private int sortID;
     
-    private static boolean flag;
+    private ShareData mShareData;
     
     /**
      * 分享参数管理类
      */
     private static ShareManager mShareManager;
+    
     /**
      * @ClassName: ShareParams
      * @Descritpion:分享参数
      * @author jp
      * @date 2014-4-10
      */
-    public static class ShareParams{
+    public static class ShareParams
+    {
         public String text;
+        
         public String imagePath;
     }
     
     public static void initSDK(Context context)
     {
-        mShareManager=ShareManager.getInstance(context);
+        mShareManager = ShareManager.getInstance(context);
     }
-    
     
     public static void stopSDK(Context context)
     {
-        mShareManager=null;
+        mShareManager = null;
     }
     
     public ShareService(Context context)
     {
         this.mContext = context;
-        String share=getName();
-        mSharePreferenceUtils=new SharePreferenceUtils(context, share, getVersion());
-        mBasicShareActionLinstener=new BasicShareActionLinstener();
+        String shareName = getName();
+        mSharePreferenceUtils = new SharePreferenceUtils(context, shareName,
+                getVersion());
+        mBasicShareActionLinstener = new BasicShareActionLinstener();
     }
+    
     public static ShareService getShareService(Context context, String shareName)
     {
         if (shareName == null)
             return null;
-        ArrayList<ShareService> shareServices = getShareServices(context);
-        if (shareServices == null)
-            return null;
-        int size = shareServices.size();
-        for (ShareService service:shareServices)
+        if (null == mShareManager)
         {
-            if (shareName.equals(service.getName()))
-            {
-                return service;
-            }
+            initSDK(context);
         }
-        return null;
+        return mShareManager.getShareService(shareName);
     }
     
-    public static ArrayList<ShareService> getShareServices(Context context)
-    {
-        long start=System.currentTimeMillis();
-        if(null==mShareManager){
-            String s = "Please call ShareService.initSDK(Context) before any action.";
-            throw new NullPointerException(s);
-        }else{
-            return mShareManager.getShareService(context);
-        }
-        
-    }
+    //    public static void shortLinkTransformationSetting(boolean flag)
+    //    {
+    //        ShareService.flag = flag;
+    //    }
     
-    public static void shortLinkTransformationSetting(boolean flag)
-    {
-        ShareService.flag = flag;
-    }
-    
-
     /**
      * 根据模块名获取参数
      * @param key 参数key
@@ -211,44 +198,45 @@ public abstract class ShareService
                 }
                 break;
             case ACTION_FOLLOWING_USER:
-//                b((String) obj);
+                //                b((String) obj);
                 break;
             case ACTION_TIMELINE:
-//                Object aobj[] = (Object[]) (Object[]) obj;
-//                a(((Integer) aobj[0]).intValue(),
-//                        ((Integer) aobj[1]).intValue(),
-//                        (String) aobj[2]);
+                //                Object aobj[] = (Object[]) (Object[]) obj;
+                //                a(((Integer) aobj[0]).intValue(),
+                //                        ((Integer) aobj[1]).intValue(),
+                //                        (String) aobj[2]);
                 break;
             case ACTION_USER_INFOR:
-                getUser(obj!=null?(String)obj:null);
+                //                getUser(obj != null ? (String) obj : null);
                 break;
             default:
                 break;
         }
     }
-    public boolean isValid(){
+    
+    public boolean isValid()
+    {
         /**
          * 由数据库判断
          */
         return false;
     }
-    public void removeAccount(){
+    
+    public void removeAccount()
+    {
         //从数据库中移除数据
     }
     
-    /**
-     * 验证获取授权用户信息
-     * @param name
-     */
-    protected abstract void getUser(String name);
-    
-    public abstract void initShareService(String shareName);
+    public abstract void initShareService();
     
     public abstract String getName();
     
+    public abstract String getShowName(Context context);
+    
+    public abstract int getIconId();
+    
     public abstract int getVersion();
     
-    public abstract int getPlatformId();
-    
+    public abstract void doShare(ShareData shareData);
     
 }

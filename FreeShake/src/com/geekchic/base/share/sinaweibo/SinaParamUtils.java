@@ -14,7 +14,7 @@ import java.util.HashMap;
 import com.geekchic.base.share.BasePairs;
 import com.geekchic.base.share.ShareManager;
 import com.geekchic.base.share.http.ShareHttpManager;
-import com.geekchic.base.share.ui.AuthorizeListener;
+import com.geekchic.base.share.ui.ShareListener;
 import com.geekchic.base.share.util.ResultUtils;
 import com.geekchic.common.utils.StringUtils;
 
@@ -67,7 +67,7 @@ public class SinaParamUtils
         }
             
     }
-    public void addAuthorizeLinstener(AuthorizeListener authorizeListener){
+    public void addAuthorizeLinstener(ShareListener authorizeListener){
         SinaSSOLinstener sinaSSOLinstener=new SinaSSOLinstener(this, authorizeListener);
     }
 }

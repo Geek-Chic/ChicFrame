@@ -8,7 +8,7 @@
  */
 package com.geekchic.base.share.sinaweibo;
 
-import com.geekchic.base.share.ui.AuthorizeListener;
+import com.geekchic.base.share.ui.ShareListener;
 
 import android.os.Bundle;
 import android.webkit.CookieManager;
@@ -23,8 +23,8 @@ import android.webkit.CookieSyncManager;
 public class SinaSSOLinstener implements SSOLinstener
 {
     private SinaParamUtils mSinaParamUtils;
-    private AuthorizeListener mAuthorizeListener;
-    public SinaSSOLinstener(SinaParamUtils sinaParamUtils,AuthorizeListener authorizeListener){
+    private ShareListener mAuthorizeListener;
+    public SinaSSOLinstener(SinaParamUtils sinaParamUtils,ShareListener authorizeListener){
         this.mSinaParamUtils=sinaParamUtils;
         this.mAuthorizeListener=authorizeListener;
     }

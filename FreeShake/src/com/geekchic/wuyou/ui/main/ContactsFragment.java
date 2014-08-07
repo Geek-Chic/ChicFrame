@@ -318,7 +318,7 @@ public class ContactsFragment extends BaseFrameFragment implements
 	private void initView(View view) {
 		mInflater = LayoutInflater.from(getActivity());
 		mIphoneTreePullToRefreshView = (IphoneTreePullToRefreshView) view
-				.findViewById(R.id.contact_pull_refresh_expandable_list);
+				.findViewById(R.id.contact_pullrefresh_expandlist);
 		mIphoneTreePullToRefreshView
 				.setOnRefreshListener(listOnRefreshListener);
 		LayoutInflater inflater = (LayoutInflater) getActivity()

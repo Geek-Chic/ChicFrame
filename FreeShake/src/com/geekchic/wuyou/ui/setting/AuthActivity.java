@@ -57,7 +57,6 @@ public class AuthActivity extends BaseTitleBarActivity implements OnClickListene
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        ShareService.initSDK(this);
         initView();
         initData();
     }
@@ -120,9 +119,9 @@ public class AuthActivity extends BaseTitleBarActivity implements OnClickListene
             default:
                 break;
         }
-        if(!StringUtils.isNullOrEmpty(name)){
-            return ShareService.getShareService(this, name);
-        }
+//        if(!StringUtils.isNullOrEmpty(name)){
+//            return ShareService.getShareService(this, name);
+//        }
         return null;
     }
     @Override
